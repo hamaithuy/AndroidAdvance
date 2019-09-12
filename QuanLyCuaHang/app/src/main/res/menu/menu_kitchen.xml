@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/nav_kitchen"
+            android:icon="@mipmap/ic_user"
+            android:title="Kitchen"></item>
+        <item
+            android:id="@+id/nav_update_kitchen"
+            android:icon="@mipmap/ic_user"
+            android:title="Update Kitchen"></item>
+    </group>
+    <item android:title="Tài khoản">
+        <item
+            android:icon="@mipmap/ic_user"
+            android:title="Order"></item>
+        <item
+            android:icon="@mipmap/ic_user"
+            android:title="Update"></item>
+    </item>
+</menu>
