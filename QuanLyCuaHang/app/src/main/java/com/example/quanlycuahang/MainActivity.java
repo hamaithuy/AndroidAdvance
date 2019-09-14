@@ -28,6 +28,8 @@ public class MainActivity extends AppCompatActivity {
         ibLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                Intent intentad = new Intent(MainActivity.this, AdminActivity.class);
+                startActivity(intentad);
 
                 String name = edtTaiKhoan.getText().toString();
                 if (name == "1") {

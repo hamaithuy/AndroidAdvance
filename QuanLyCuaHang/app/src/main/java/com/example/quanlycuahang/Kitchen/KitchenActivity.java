@@ -22,10 +22,11 @@ public class KitchenActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_kitchen);
-        toolbar = findViewById(R.id.tb_kitchen);
-        setSupportActionBar(toolbar);
-        drawerLayout = findViewById(R.id.dl_kitchen);
-        navigationView = findViewById(R.id.nav_view_kitchen);
+        init();
+        setUpNavigation(savedInstanceState);
+    }
+
+    private void setUpNavigation(Bundle savedInstanceState) {
         if (savedInstanceState == null) {
             getSupportFragmentManager().beginTransaction().replace(R.id.fragment_kitchen,
                     new KitchenFragment()).commit();
@@ -54,6 +55,13 @@ public class KitchenActivity extends AppCompatActivity {
         toggle.syncState();
     }
 
+    private void init() {
+        toolbar = findViewById(R.id.tb_kitchen);
+        setSupportActionBar(toolbar);
+        drawerLayout = findViewById(R.id.dl_kitchen);
+        navigationView = findViewById(R.id.nav_view_kitchen);
+    }
+
     @Override
     public void onBackPressed() {
         if (drawerLayout.isDrawerOpen(GravityCompat.START)) {
@@ -61,7 +69,6 @@ public class KitchenActivity extends AppCompatActivity {
         } else {
             super.onBackPressed();
         }
-
 
     }
 }

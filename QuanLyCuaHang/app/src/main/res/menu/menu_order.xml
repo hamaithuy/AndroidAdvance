@@ -10,13 +10,10 @@
             android:id="@+id/nav_update_order"
 
             android:title="Update Order"></item>
+        <item
+            android:id="@+id/nav_logout_order"
+
+            android:title="Đăng Xuất"></item>
     </group>
-    <item android:title="Tài khoản">
-        <item
 
-            android:title="Order"></item>
-        <item
-
-            android:title="Update"></item>
-    </item>
 </menu>
