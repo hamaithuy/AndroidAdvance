@@ -1,4 +1,4 @@
-package com.example.quanlycuahang;
+package com.example.quanlycuahang.Kitchen;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBarDrawerToggle;
@@ -10,6 +10,7 @@ import androidx.drawerlayout.widget.DrawerLayout;
 import android.os.Bundle;
 import android.view.MenuItem;
 
+import com.example.quanlycuahang.R;
 import com.google.android.material.navigation.NavigationView;
 
 public class KitchenActivity extends AppCompatActivity {
