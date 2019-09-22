@@ -3,6 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    android:layout_marginTop="20px"
     android:orientation="horizontal">
 
     <LinearLayout
@@ -12,8 +13,9 @@
 
         <TextView
             android:id="@+id/textView7"
-            android:layout_width="150dp"
-            android:layout_height="wrap_content"
+            android:layout_width="130dp"
+            android:layout_height="53dp"
+            android:layout_gravity="center"
             android:gravity="center"
             android:text="2019-09-15 18:00:00"
             android:textSize="18sp" />
@@ -34,9 +36,10 @@
     </LinearLayout>
 
     <LinearLayout
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginLeft="20px"
+        android:gravity="right"
         android:orientation="vertical">
 
         <TextView
