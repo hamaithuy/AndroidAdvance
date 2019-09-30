@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    tools:context=".Activity.User.AccountActivity">
+    <com.jcminarro.roundkornerlayout.RoundKornerLinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="60dp"
+        android:layout_marginLeft="35dp"
+        app:corner_radius="50dp">
+        <ImageView
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:src="@drawable/demo"/>
+    </com.jcminarro.roundkornerlayout.RoundKornerLinearLayout>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="30dp"
+        android:layout_marginBottom="3dp"
+        android:layout_marginLeft="35dp"
+        android:textStyle="bold"
+        android:textSize="21dp"
+        android:textColor="@android:color/black"
+        android:text="NHAT LINH"/>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="35dp"
+        android:text="tonhatlinh1998@gmail.com"/>
+    <GridView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"></GridView>
+</LinearLayout>
+

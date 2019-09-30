@@ -1,0 +1,201 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:background="@drawable/ee"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        tools:context=".Activity.User.DetailProductActivity">
+        <com.jcminarro.roundkornerlayout.RoundKornerLinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="35dp"
+            android:layout_marginBottom="42dp"
+            android:layout_gravity="center"
+            app:corner_radius="15dp">
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:background="@drawable/circle_logo"
+                android:orientation="vertical"
+                android:gravity="center"
+                android:paddingRight="20dp"
+                android:paddingLeft="20dp">
+                <TextView
+                    android:id="@+id/txtBranName2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:text="JAMLOS"
+                    android:paddingTop="5dp"
+                    android:textColor="#FD9802"
+                    android:textSize="30dp" />
+
+                <TextView
+                    android:id="@+id/txtSlogan3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginBottom="10dp"
+                    android:text="Minimal me. Maximal you"
+                    android:textColor="#353434"
+                    android:textSize="17dp" />
+            </LinearLayout>
+        </com.jcminarro.roundkornerlayout.RoundKornerLinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="center"
+                android:paddingTop="50dp"
+                android:paddingBottom="15dp">
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content">
+                    <com.jcminarro.roundkornerlayout.RoundKornerLinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        app:corner_radius="25dp">
+                        <ImageView
+                            android:id="@+id/imgDetailProduct"
+                            android:layout_width="275dp"
+                            android:layout_height="275dp" />
+                    </com.jcminarro.roundkornerlayout.RoundKornerLinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content">
+                        <TextView
+                            android:id="@+id/txtDetailDiscount"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="20dp"
+                            android:background="@drawable/circle_textview"
+                            android:paddingLeft="14dp"
+                            android:paddingTop="18dp"
+                            android:paddingRight="14dp"
+                            android:paddingBottom="18dp"
+                            android:text="20%"
+                            android:textColor="@android:color/white"
+                            android:textSize="15dp"
+                            android:textStyle="bold"/>
+                    </LinearLayout>
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+                    <com.jcminarro.roundkornerlayout.RoundKornerLinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginBottom="10dp"
+                        app:corner_radius="50dp">
+                        <ImageView
+                            android:id="@+id/imgDetailProduct1"
+                            android:layout_width="85dp"
+                            android:layout_height="85dp"/>
+                    </com.jcminarro.roundkornerlayout.RoundKornerLinearLayout>
+                    <com.jcminarro.roundkornerlayout.RoundKornerLinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        app:corner_radius="50dp"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginBottom="10dp">
+                        <ImageView
+                            android:id="@+id/imgDetailProduct2"
+                            android:layout_width="85dp"
+                            android:layout_height="85dp"/>
+                    </com.jcminarro.roundkornerlayout.RoundKornerLinearLayout>
+                    <com.jcminarro.roundkornerlayout.RoundKornerLinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        app:corner_radius="50dp"
+                        android:layout_marginLeft="10dp">
+                        <ImageView
+                            android:id="@+id/imgDetailProduct3"
+                            android:layout_width="85dp"
+                            android:layout_height="85dp"/>
+                    </com.jcminarro.roundkornerlayout.RoundKornerLinearLayout>
+                </LinearLayout>
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/txtDetailProductName"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="55dp"
+                android:gravity="left"
+                android:textSize="25dp"
+                android:textColor="@android:color/black"
+                android:text="Túi Tote" />
+
+            <TextView
+                android:id="@+id/txtDeTailProductPrice"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="55dp"
+                android:gravity="left"
+                android:textSize="23dp"
+                android:textColor="#D8B093"
+                android:text="200.000 VND" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="15dp"
+                android:orientation="horizontal">
+                <com.cepheuen.elegantnumberbutton.view.ElegantNumberButton
+                    android:id="@+id/elnNumber"
+                    android:layout_width="100dp"
+                    android:layout_height="40dp"
+                    android:layout_marginLeft="55dp"
+                    android:gravity="center"
+                    app:initialNumber="1"
+                    app:textSize="10dp"
+                    app:textColor="@android:color/white"
+                    app:backGroundColor="@android:color/black"
+                    app:finalNumber="20">
+                </com.cepheuen.elegantnumberbutton.view.ElegantNumberButton>
+                <TextView
+                    android:id="@+id/txtCart"
+                    android:layout_width="200dp"
+                    android:layout_height="40dp"
+                    android:text="ADD TO CART"
+                    android:textSize="15dp"
+                    android:gravity="center"
+                    android:textColor="@android:color/white"
+                    android:background="@android:color/black"
+                    android:layout_marginLeft="20dp"
+                    android:clickable="true"/>
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </LinearLayout>
+        <com.google.android.material.bottomnavigation.BottomNavigationView
+            android:id="@+id/nav_view"
+            android:layout_width="0dp"
+            android:layout_height="50dp"
+            android:layout_marginStart="0dp"
+            android:layout_marginEnd="0dp"
+            android:background="?android:attr/windowBackground"
+            android:theme="@style/AAA"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:menu="@menu/bottom_nav_menu" />
+</androidx.constraintlayout.widget.ConstraintLayout>

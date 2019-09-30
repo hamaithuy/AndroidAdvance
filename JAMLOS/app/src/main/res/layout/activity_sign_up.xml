@@ -1,0 +1,176 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/nnn"
+    android:orientation="vertical"
+    tools:context=".Activity.User.SignUpActivity">
+
+    <com.jcminarro.roundkornerlayout.RoundKornerLinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="120dp"
+        android:background="#4A333333"
+        android:orientation="vertical"
+        android:padding="30dp"
+        app:corner_radius="30dp">
+
+        <TextView
+            android:id="@+id/txtSignUp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="SIGN UP"
+            android:textColor="#FFFFFF"
+            android:textSize="30dp"
+            android:textStyle="bold" />
+
+        <com.jcminarro.roundkornerlayout.RoundKornerLinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            app:corner_radius="10dp">
+
+            <EditText
+                android:id="@+id/edtSUName"
+                android:layout_width="280dp"
+                android:layout_height="40dp"
+                android:background="#FFFFFF"
+                android:hint="Name"
+                android:padding="7dp"
+                android:textColor="#083045"
+                android:textSize="18dp" />
+        </com.jcminarro.roundkornerlayout.RoundKornerLinearLayout>
+
+        <com.jcminarro.roundkornerlayout.RoundKornerLinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            app:corner_radius="10dp">
+
+            <EditText
+                android:id="@+id/edtSUEmail"
+                android:layout_width="280dp"
+                android:layout_height="40dp"
+                android:background="#FFFFFF"
+                android:hint="Email"
+                android:padding="7dp"
+                android:textColor="#083045"
+                android:textSize="18dp" />
+        </com.jcminarro.roundkornerlayout.RoundKornerLinearLayout>
+
+        <com.jcminarro.roundkornerlayout.RoundKornerLinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            app:corner_radius="10dp">
+
+            <EditText
+                android:id="@+id/edtSUPassword"
+                android:layout_width="280dp"
+                android:layout_height="40dp"
+                android:background="#FFFFFF"
+                android:hint="Password"
+                android:padding="7dp"
+                android:textColor="#083045"
+                android:textSize="18dp" />
+        </com.jcminarro.roundkornerlayout.RoundKornerLinearLayout>
+
+        <com.jcminarro.roundkornerlayout.RoundKornerLinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            app:corner_radius="10dp">
+
+            <EditText
+                android:id="@+id/edtSUPhoneNumber"
+                android:layout_width="280dp"
+                android:layout_height="40dp"
+                android:background="#FFFFFF"
+                android:hint="Phone Number"
+                android:padding="7dp"
+                android:textColor="#083045"
+                android:textSize="18dp" />
+        </com.jcminarro.roundkornerlayout.RoundKornerLinearLayout>
+
+        <com.jcminarro.roundkornerlayout.RoundKornerLinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="20dp"
+            app:corner_radius="10dp">
+
+            <EditText
+                android:id="@+id/edtSUAddress"
+                android:layout_width="280dp"
+                android:layout_height="40dp"
+                android:background="#FFFFFF"
+                android:hint="Address"
+                android:padding="7dp"
+                android:textColor="#083045"
+                android:textSize="18dp" />
+        </com.jcminarro.roundkornerlayout.RoundKornerLinearLayout>
+    </com.jcminarro.roundkornerlayout.RoundKornerLinearLayout>
+
+    <Button
+        android:id="@+id/btnSUSignUp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="20dp"
+        android:background="@drawable/transparent_bg_bordered_dark_stroke"
+        android:paddingLeft="75dp"
+        android:paddingRight="75dp"
+        android:text="SIGN UP"
+        android:textColor="#000000" />
+    <TextView
+        android:id="@+id/txtHaveAccount"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:text="Already have an account?"
+        android:textSize="16dp"
+        android:textColor="#FFFFFF"
+        android:clickable="true"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginLeft="15dp"
+        android:layout_marginTop="190dp"
+        android:orientation="horizontal">
+
+        <ImageView
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:src="@drawable/logo" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/txtSUSlogan"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:text="Let the adventure"
+                android:textColor="#000000"
+                android:textSize="21dp" />
+
+            <TextView
+                android:id="@+id/txtSUSlogan1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:text="begin again !"
+                android:textColor="#000000"
+                android:textSize="20dp" />
+        </LinearLayout>
+    </LinearLayout>
+
+
+</LinearLayout>

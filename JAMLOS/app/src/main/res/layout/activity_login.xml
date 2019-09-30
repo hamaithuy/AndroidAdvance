@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/background"
+    android:orientation="vertical"
+    tools:context=".Activity.User.LogInActivity">
+
+    <ImageView
+        android:id="@+id/imgLogo"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:layout_marginLeft="50dp"
+        android:layout_marginTop="80dp"
+        android:src="@drawable/logo" />
+
+    <TextView
+        android:id="@+id/txtSlogan"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:paddingLeft="50dp"
+        android:paddingTop="8dp"
+        android:text="Minimal Me. Maximal You"
+        android:textColor="#FFFFFF"
+        android:textSize="19dp" />
+
+    <TextView
+        android:id="@+id/txtLogIn"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="80dp"
+        android:text="SIGN IN"
+        android:gravity="center"
+        android:textColor="@android:color/white"
+        android:textSize="30dp"/>
+
+    <EditText
+        android:id="@+id/edtPhoneNumber"
+        android:layout_width="260dp"
+        android:layout_height="40dp"
+        android:layout_gravity="center"
+        android:layout_marginTop="15dp"
+        android:background="@drawable/transparent_bg_bordered"
+        android:hint="Phone Number"
+        android:text="0978948197"
+        android:paddingLeft="15dp"
+        android:inputType="number"
+        android:textColor="@android:color/white"
+        android:textColorHint="#B6B6B6"
+        android:textSize="18dp" />
+
+    <EditText
+        android:id="@+id/edtPassWord"
+        android:layout_width="260dp"
+        android:layout_height="40dp"
+        android:layout_gravity="center"
+        android:layout_marginTop="10dp"
+        android:background="@drawable/transparent_bg_bordered"
+        android:hint="Password"
+        android:text="123456"
+        android:paddingLeft="15dp"
+        android:inputType="textPassword"
+        android:textColor="@android:color/white"
+        android:textColorHint="#B6B6B6"
+        android:textSize="18dp" />
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="20dp"
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/btnLogIn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/transparent_bg_bordered_button"
+            android:text="LOG IN"
+            android:textColor="@android:color/white" />
+
+        <Button
+            android:id="@+id/btnSignUp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:background="@drawable/transparent_bg_bordered_button"
+            android:text="SIGN UP"
+            android:textColor="@android:color/white" />
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/txtForgotPassWord"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:clickable="true"
+        android:text="Forgot your password?"
+        android:textAlignment="center"
+        android:textColor="@android:color/white"
+        android:textSize="16dp" />
+
+    <Button
+        android:id="@+id/btnOthers"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="90dp"
+        android:background="@drawable/transparent_bg_bordered_button"
+        android:paddingLeft="10dp"
+        android:paddingRight="10dp"
+        android:text="Administrators or Shippers"
+        android:textAlignment="center"
+        android:textColor="@android:color/white"
+        android:textSize="12dp" />
+
+    <RadioGroup
+        android:id="@+id/rdGroup"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+        <RadioButton
+            android:id="@+id/rdAdmin"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="150dp"
+            android:text="   Administrators"
+            android:textColor="@android:color/white"
+            android:visibility="invisible" />
+        <RadioButton
+            android:id="@+id/rdShipper"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="150dp"
+            android:text="   Shippers"
+            android:textColor="@android:color/white"
+            android:visibility="invisible" />
+    </RadioGroup>
+</LinearLayout>

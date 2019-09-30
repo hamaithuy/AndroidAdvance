@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:paddingLeft="20dp"
+    android:paddingTop="20dp"
+    android:paddingRight="20dp"
+    android:paddingBottom="10dp">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+
+        <com.jcminarro.roundkornerlayout.RoundKornerLinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:corner_radius="10dp">
+
+            <ImageView
+                android:id="@+id/imgFeaturedProduct"
+                android:layout_width="120dp"
+                android:layout_height="120dp"
+                android:src="@drawable/hotdog" />
+        </com.jcminarro.roundkornerlayout.RoundKornerLinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="4dp">
+
+            <TextView
+                android:id="@+id/txtDiscount"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="2dp"
+                android:background="@drawable/circle_textview"
+                android:paddingLeft="3dp"
+                android:paddingTop="6dp"
+                android:paddingRight="3dp"
+                android:paddingBottom="6dp"
+                android:text="20%"
+                android:textColor="@android:color/white"
+                android:textSize="12dp"
+                android:textStyle="bold" />
+        </LinearLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+    <TextView
+        android:id="@+id/txtFeaturedNameProduct"
+        android:layout_width="120dp"
+        android:layout_height="wrap_content"
+        android:text="Hot Pot"
+        android:textColor="@android:color/black" />
+
+    <TextView
+        android:id="@+id/txtFeaturedPriceProduct"
+        android:layout_width="120dp"
+        android:layout_height="wrap_content"
+        android:text="350.000 VND" />
+</LinearLayout>
