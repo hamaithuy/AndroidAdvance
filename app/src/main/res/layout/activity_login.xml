@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".LoginActivity">
+<ImageView
+    android:layout_width="wrap_content"
+    android:layout_height="100dp"
+    android:id="@+id/imgIcon"
+    android:src="@drawable/home">
+
+</ImageView>
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/txtUser"
+        android:hint="@string/user"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        >
+    </EditText>
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/txtPass"
+        android:hint="@string/pass"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp">
+    </EditText>
+
+    <ImageButton
+        android:id="@+id/btnLogin_fb"
+        android:layout_width="219dp"
+        android:layout_height="56dp"
+        android:layout_gravity="center"
+        android:src="@drawable/loginfb">
+
+    </ImageButton>
+
+    <ImageButton
+        android:id="@+id/btnLogin_gg"
+        android:layout_width="224dp"
+        android:layout_height="48dp"
+        android:layout_gravity="center"
+        android:src="@drawable/signingg">
+
+    </ImageButton>
+
+    <TextView
+        android:id="@+id/txtQuestion"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:text="@string/question"
+        android:textColor="#2196F3"></TextView>
+</LinearLayout>

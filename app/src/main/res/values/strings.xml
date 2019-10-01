@@ -1,0 +1,10 @@
+<resources>
+    <string name="app_name">Nhà Trọ</string>
+    <string name="title_activity_main">MainActivity</string>
+    <string name="title_home">Home</string>
+    <string name="title_dashboard">Dashboard</string>
+    <string name="title_notifications">Notifications</string>
+    <string name="user">Tên đăng nhập</string>
+    <string name="pass">Mật khẩu</string>
+    <string name="question">Quên mật khẩu</string>
+</resources>

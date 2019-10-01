@@ -1,0 +1,165 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <androidx.appcompat.widget.Toolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:background="#FFFFFF"
+            android:minHeight="?attr/actionBarSize"
+            android:theme="?attr/actionBarTheme"
+            app:titleTextColor="@color/colorPrimaryDark">
+
+        <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:text="Nhà trọ 24h"
+                android:textColor="@color/colorPrimaryDark"
+                android:textSize="22sp"
+                android:textStyle="bold">
+
+        </TextView>
+    </androidx.appcompat.widget.Toolbar>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:layout_height="match_parent"
+        android:layout_width="match_parent">
+
+
+    <ScrollView
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:orientation="vertical"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+        <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="#FFFFFF"
+                android:orientation="vertical">
+
+            <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="15dp"
+                    android:layout_marginRight="10dp"
+                    android:layout_marginBottom="15dp"
+                    android:orientation="horizontal">
+
+                <ImageView
+                        android:id="@+id/imageView2"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        app:srcCompat="@drawable/ic_new_releases_black_24dp" />
+
+                <TextView
+                        android:id="@+id/tvPhongmoi"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:gravity="left"
+                        android:text="Phòng mới đăng"
+                        android:textColor="@color/colorPrimaryDark"
+                        android:textSize="20sp"
+                        android:textStyle="bold" />
+
+                <TextView
+                        android:id="@+id/tvXemthem"
+                        android:layout_width="95dp"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
+                        android:layout_weight="1"
+                        android:gravity="right"
+                        android:text="Xem thêm"
+                        android:textColor="@color/colorPrimary" />
+
+            </LinearLayout>
+
+            <RelativeLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="400dp">
+
+                <GridView
+                        android:id="@+id/gridNewRoom"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="5dp"
+                        android:layout_marginTop="5dp"
+                        android:layout_marginRight="5dp"
+                        android:columnWidth="180dp"
+                        android:numColumns="2"
+                        android:stretchMode="spacingWidth"
+                        android:verticalSpacing="10dp" />
+                <!--spacingWidth khoảng cách các cột được kéo dãn khi độ rộng màn hình mở rộng-->
+
+            </RelativeLayout>
+
+            <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="15dp"
+                    android:layout_marginRight="10dp"
+                    android:layout_marginBottom="15dp"
+                    android:orientation="horizontal">
+
+                <ImageView
+                        android:id="@+id/ivCouple"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        app:srcCompat="@drawable/ic_supervisor_account_black_24dp" />
+
+                <TextView
+                        android:id="@+id/tvPhongghep"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:gravity="left"
+                        android:text="Phòng ở ghép"
+                        android:textColor="@color/colorPrimaryDark"
+                        android:textSize="20sp"
+                        android:textStyle="bold" />
+
+                <TextView
+                        android:id="@+id/tvMore"
+                        android:layout_width="110dp"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
+                        android:layout_weight="1"
+                        android:gravity="right"
+                        android:text="Xem thêm"
+                        android:textColor="@color/colorPrimary" />
+
+            </LinearLayout>
+
+            <RelativeLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="500dp">
+
+                <GridView
+                        android:id="@+id/gridCoupleRoom"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="5dp"
+                        android:layout_marginTop="5dp"
+                        android:layout_marginRight="5dp"
+                        android:columnWidth="180dp"
+                        android:numColumns="2"
+                        android:stretchMode="spacingWidth"
+                        android:verticalSpacing="10dp" />
+                <!--spacingWidth khoảng cách các cột được kéo dãn khi độ rộng màn hình mở rộng-->
+
+            </RelativeLayout>
+        </LinearLayout>
+    </ScrollView>
+</androidx.constraintlayout.widget.ConstraintLayout>
+</LinearLayout>
