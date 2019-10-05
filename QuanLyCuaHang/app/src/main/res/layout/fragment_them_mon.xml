@@ -4,36 +4,36 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".Admin.ThemMonFragment">
+    tools:context=".Admin.Mon.ThemMonFragment">
 
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rv_mon"
+        android:layout_width="match_parent"
+        android:layout_height="300dp" >
+
+    </androidx.recyclerview.widget.RecyclerView>
 
     <EditText
-        android:id="@+id/editText3"
+        android:id="@+id/edt_ten_mon"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:ems="10"
-        android:inputType="textPersonName"
-        android:text="tên" />
+        android:hint="Tên món"
+        android:inputType="textPersonName" />
 
     <EditText
-        android:id="@+id/editText4"
+        android:id="@+id/edt_gia"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:ems="10"
-        android:inputType="textPersonName"
-        android:text="giá" />
-
-    <EditText
-        android:id="@+id/editText5"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:ems="10"
-        android:inputType="textPersonName"
-        android:text="ảnh" />
+        android:hint="Giá"
+        android:inputType="textPersonName" />
 
     <Button
-        android:id="@+id/button2"
+        android:id="@+id/btn_them"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Đồng ý" />
+        android:text="Thêm" />
+
+
 </LinearLayout>

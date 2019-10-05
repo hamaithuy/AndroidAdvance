@@ -8,9 +8,12 @@ import androidx.appcompat.widget.Toolbar;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
 
+import com.example.quanlycuahang.Kitchen.KitchenActivity;
+import com.example.quanlycuahang.MainActivity;
 import com.example.quanlycuahang.R;
 import com.google.android.material.navigation.NavigationView;
 
@@ -46,6 +49,11 @@ public class OrderActivity extends AppCompatActivity {
                     case R.id.nav_update_order:
                         getSupportFragmentManager().beginTransaction().replace(R.id.fragment_oder,
                                 new UpdateOrderFragment()).commit();
+                        break;
+                    case R.id.nav_logout_order:
+                        Intent intent = new Intent(OrderActivity.this, MainActivity.class);
+                        startActivity(intent);
+                        finish();
                         break;
 
                 }

@@ -7,9 +7,12 @@ import androidx.appcompat.widget.Toolbar;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
 
+import com.example.quanlycuahang.Admin.AdminActivity;
+import com.example.quanlycuahang.MainActivity;
 import com.example.quanlycuahang.R;
 import com.google.android.material.navigation.NavigationView;
 
@@ -44,6 +47,12 @@ public class KitchenActivity extends AppCompatActivity {
                         getSupportFragmentManager().beginTransaction().replace(R.id.fragment_kitchen,
                                 new UpdateKitchenFragment()).commit();
                         break;
+                    case R.id.nav_logout_kitchen:
+                        Intent intent = new Intent(KitchenActivity.this, MainActivity.class);
+                        startActivity(intent);
+                        finish();
+                        break;
+
 
                 }
                 drawerLayout.closeDrawer(GravityCompat.START);

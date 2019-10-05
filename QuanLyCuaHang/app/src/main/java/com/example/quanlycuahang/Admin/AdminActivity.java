@@ -7,10 +7,12 @@ import androidx.appcompat.widget.Toolbar;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
-import android.widget.Toast;
 
+import com.example.quanlycuahang.Admin.Mon.ThemMonFragment;
+import com.example.quanlycuahang.MainActivity;
 import com.example.quanlycuahang.R;
 import com.google.android.material.navigation.NavigationView;
 
@@ -56,8 +58,9 @@ public class AdminActivity extends AppCompatActivity {
                                 new ThongKeFragment()).commit();
                         break;
                     case R.id.nav_dang_xuat_admin:
-                        Toast.makeText(AdminActivity.this, "Đăng xuất", Toast.LENGTH_SHORT).show();
-                        break;
+                        Intent intent = new Intent(AdminActivity.this, MainActivity.class);
+                        startActivity(intent);
+                        finish();
 
                 }
                 drawerLayout.closeDrawer(GravityCompat.START);

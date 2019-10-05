@@ -19,7 +19,7 @@
             android:layout_marginTop="25dp"
             android:fontFamily="@font/seguisb"
             android:gravity="center_horizontal"
-            android:text="Đức Trung Restaurant"
+            android:text="TK Restaurant"
             android:textColor="@color/colorWhite"
             android:textSize="55dp">
 

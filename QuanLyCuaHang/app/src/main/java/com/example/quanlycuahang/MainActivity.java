@@ -28,19 +28,18 @@ public class MainActivity extends AppCompatActivity {
         ibLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intentad = new Intent(MainActivity.this, AdminActivity.class);
-                startActivity(intentad);
+
 
                 String name = edtTaiKhoan.getText().toString();
-                if (name == "1") {
+                if (name.equals("1")) {
                     Intent intent = new Intent(MainActivity.this, AdminActivity.class);
                     startActivity(intent);
                 }
-                if (name == "2") {
+                if (name.equals("2")) {
                     Intent intent = new Intent(MainActivity.this, OrderActivity.class);
                     startActivity(intent);
                 }
-                if (name == "3") {
+                if (name.equals("3")) {
                     Intent intent = new Intent(MainActivity.this, KitchenActivity.class);
                     startActivity(intent);
                 }
