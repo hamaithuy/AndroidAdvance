@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v4.widget.DrawerLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity"
+    android:id="@+id/drawerLayout">
+
+    <android.support.constraint.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <ImageButton
+            android:id="@+id/b_play"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+
+            android:layout_marginEnd="167dp"
+            android:layout_marginBottom="79dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/b_previous"
+            app:layout_constraintTop_toBottomOf="@+id/namefm" />
+
+        <ImageButton
+            android:id="@+id/b_previous"
+            android:layout_width="0dp"
+            android:layout_height="50dp"
+            android:layout_marginStart="91dp"
+            android:layout_marginEnd="26dp"
+            android:layout_marginBottom="79dp"
+            android:background="@mipmap/prev"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/b_play"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/namefm"
+            app:layout_constraintVertical_bias="1.0" />
+
+        <ImageButton
+            android:id="@+id/b_next"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_marginEnd="51dp"
+            android:layout_marginBottom="36dp"
+            android:background="@mipmap/next"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.478"
+            app:layout_constraintStart_toEndOf="@+id/b_play"
+            app:layout_constraintTop_toBottomOf="@+id/namefm" />
+
+        <ImageView
+            android:id="@+id/img"
+            android:layout_width="220dp"
+            android:layout_height="200dp"
+            android:layout_marginTop="64dp"
+            android:layout_marginEnd="71dp"
+            android:layout_marginBottom="48dp"
+            android:src="@drawable/xone"
+            android:textAlignment="center"
+            app:layout_constraintBottom_toTopOf="@+id/namefm"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/namefm"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="312dp"
+            android:layout_marginBottom="43dp"
+            android:text="Xone FM"
+            android:textAlignment="center"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toTopOf="@+id/b_play"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+    </android.support.constraint.ConstraintLayout>
+    /*
+
+*/
+    <android.support.design.widget.NavigationView
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        app:menu="@menu/navigation_menu"
+        android:layout_gravity="start"
+        android:id="@+id/nv1">
+    </android.support.design.widget.NavigationView>
+
+
+</android.support.v4.widget.DrawerLayout>

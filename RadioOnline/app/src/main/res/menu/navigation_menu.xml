@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+<item
+    android:id="@+id/nav_xonefm"
+    android:title="XoneFM"/>
+    <item
+        android:id="@+id/nav_wwyl"
+        android:title="WWYL 104.1 FM"/>
+    <item
+    android:id="@+id/nav_dancepop"
+    android:title="DancePopFM"/>
+    <item
+        android:id="@+id/nav_vov"
+        android:title="VOV giao thông"/>
+
+
+</menu>
