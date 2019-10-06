@@ -1,13 +1,15 @@
 package com.appbtl.appweather.model;
 
-public class Coord {
-    private double lon;
-    private double lat;
+import com.google.gson.annotations.Expose;
+import com.google.gson.annotations.SerializedName;
 
-    public Coord(double lon, double lat) {
-        this.lon = lon;
-        this.lat = lat;
-    }
+public class Coord {
+    @SerializedName("lon")
+    @Expose
+    private double lon;
+    @SerializedName("lat")
+    @Expose
+    private double lat;
 
     public double getLon() {
         return lon;
@@ -25,3 +27,4 @@ public class Coord {
         this.lat = lat;
     }
 }
+

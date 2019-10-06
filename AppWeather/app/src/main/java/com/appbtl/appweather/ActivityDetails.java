@@ -1,14 +1,22 @@
 package com.appbtl.appweather;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
+import android.location.Location;
+import android.location.LocationManager;
 import android.os.Bundle;
 import android.util.Log;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 
+import com.appbtl.appweather.model.ListDailys;
 import com.appbtl.appweather.model.item;
+import com.google.android.gms.location.LocationServices;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.gson.Gson;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -16,28 +24,19 @@ import java.util.List;
 public class ActivityDetails extends AppCompatActivity {
     private LinearLayout detaillayout;
     private Intent intent;
-    private ListView listView;
+    private RecyclerView recyclerView;
+    private ListDailys listDailys;
+    private LocationAPI locationAPI;
+    private String resultDailys;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_details);
-        ArrayList<item> list = new ArrayList<item>();
-        item day1 = new item("rain", "33°C", "31°C","16/9","Nắng");
-        item day2 = new item("shine", "33°C", "31°C","17/9","Nắng");
-        item day3 = new item("rain", "33°C", "31°C","18/9","Nắng");
-        item day4 = new item("rain", "36°C", "31°C","19/9","Nắng");
-        item day5 = new item("shine", "35°C", "31°C","20/9","Nắng");
-        item day6 = new item("rain", "34°C", "31°C","21/9","Nắng");
-        list.add(day1);
-        list.add(day2);
-        list.add(day3);
-        list.add(day4);
-        list.add(day5);
-        list.add(day6);
-        listView = (ListView) findViewById(R.id.lvDaily);
-        listView.setAdapter(new Adapter(list, ActivityDetails.this));
         control();
         intent = new Intent(ActivityDetails.this, MainActivity.class);
+        Intent intentdetail= getIntent();
+        resultDailys = intentdetail.getStringExtra("dailys");
+        listDailys = new Gson().fromJson(resultDailys,ListDailys.class);
         detaillayout.setOnTouchListener(new OnSwipeTouchListener(ActivityDetails.this) {
             @Override
             public void onSwipeLeft() {
@@ -45,14 +44,16 @@ public class ActivityDetails extends AppCompatActivity {
                 overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
             }
         });
-        listView.setOnTouchListener(new OnSwipeTouchListener(ActivityDetails.this){
+        recyclerView.setOnTouchListener(new OnSwipeTouchListener(ActivityDetails.this){
             @Override
             public void onSwipeLeft() {
                 startActivity(intent);
                 overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
             }
         });
+        updateUI(listDailys);
     }
+
 
     @Override
     public void finish() {
@@ -62,5 +63,13 @@ public class ActivityDetails extends AppCompatActivity {
 
     private void control() {
         detaillayout = (LinearLayout) findViewById(R.id.detaillayout);
+        recyclerView =(RecyclerView)findViewById(R.id.recView);
+    }
+    public void updateUI(ListDailys listDailys){
+        recyclerView.setHasFixedSize(true);
+        LinearLayoutManager manager =new LinearLayoutManager(ActivityDetails.this,LinearLayoutManager.VERTICAL,false);
+        recyclerView.setLayoutManager(manager);
+        ListDailysAdapter dailysAdapter =new ListDailysAdapter(listDailys,ActivityDetails.this);
+        recyclerView.setAdapter(dailysAdapter);
     }
 }

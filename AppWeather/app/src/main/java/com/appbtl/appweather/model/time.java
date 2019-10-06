@@ -8,13 +8,6 @@ public class time implements Serializable {
     private String time;
     private String wind;
 
-    public time(String weather, String temp, String time, String wind) {
-        this.weather = weather;
-        this.temp = temp;
-        this.time = time;
-        this.wind = wind;
-    }
-
     public String getWeather() {
         return weather;
     }

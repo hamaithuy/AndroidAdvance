@@ -8,11 +8,9 @@ import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.appbtl.appweather.model.item;
 import com.appbtl.appweather.model.time;
 
 import java.util.ArrayList;
-import java.util.List;
 
 public class TimeAdapter extends BaseAdapter {
     private ArrayList<time> listData;
@@ -46,10 +44,10 @@ public class TimeAdapter extends BaseAdapter {
         if (view == null) {
             view = layoutInflater.inflate(R.layout.timeitem, null);
             holder = new ViewHolder();
-            holder.imgWeather = (ImageView) view.findViewById(R.id.imageView2);
-            holder.temp = (TextView) view.findViewById(R.id.textView9);
-            holder.time = (TextView) view.findViewById(R.id.textView7);
-            holder.wind = (TextView) view.findViewById(R.id.textView10);
+            holder.imgWeather = (ImageView) view.findViewById(R.id.imgTT);
+            holder.temp = (TextView) view.findViewById(R.id.tMax);
+            holder.time = (TextView) view.findViewById(R.id.tDate);
+            holder.wind = (TextView) view.findViewById(R.id.tMin);
             view.setTag(holder);
         } else {
             holder = (ViewHolder) view.getTag();

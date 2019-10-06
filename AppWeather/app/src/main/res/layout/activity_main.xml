@@ -37,7 +37,7 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/body"
         android:layout_width="match_parent"
-        android:layout_height="683dp"
+        android:layout_height="wrap_content"
         android:layout_below="@id/bar"
         android:layout_alignParentStart="true"
         android:layout_alignParentEnd="true"
@@ -46,7 +46,8 @@
         android:layout_marginTop="0dp"
         android:layout_marginEnd="0dp"
         android:layout_marginBottom="0dp"
-        android:background="@drawable/bag">
+        android:background="@drawable/background_rain2"
+        android:foregroundGravity="center">
 
         <ImageView
             android:id="@+id/imgTT"
@@ -58,11 +59,162 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:gravity="center|center_horizontal"
+            android:orientation="horizontal"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/main_weather">
+
+            <LinearLayout
+                android:layout_width="100dp"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+
+                <ImageView
+                    android:id="@+id/imgvisibility"
+                    android:layout_width="135px"
+                    android:layout_height="135px"
+                    android:layout_gravity="center"
+                    android:scrollbarAlwaysDrawVerticalTrack="false"
+                    tools:src="@drawable/visibility" />
+
+                <TextView
+                    android:id="@+id/textView6"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:text="Tầm nhìn"
+                    android:textColor="@color/tempColor"
+                    android:textSize="14sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/visibility"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:text="8000m"
+                    android:textColor="@color/tempColor"
+                    android:textSize="14sp"
+                    android:textStyle="bold" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="100dp"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+
+                <ImageView
+                    android:id="@+id/imgpressure"
+                    android:layout_width="135px"
+                    android:layout_height="135px"
+                    android:layout_gravity="center"
+                    android:scrollbarAlwaysDrawHorizontalTrack="false"
+                    android:scrollbarAlwaysDrawVerticalTrack="false"
+                    tools:src="@drawable/airpress" />
+
+                <TextView
+                    android:id="@+id/tv"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:text="Áp lực"
+                    android:textColor="@color/tempColor"
+                    android:textSize="14sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/airpress"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:text="1007hpa"
+                    android:textColor="@color/tempColor"
+                    android:textSize="14sp"
+                    android:textStyle="bold" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="100dp"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+
+                <ImageView
+                    android:id="@+id/imghumidity"
+                    android:layout_width="135px"
+                    android:layout_height="135px"
+                    android:layout_gravity="center"
+                    android:scrollbarAlwaysDrawHorizontalTrack="false"
+                    android:scrollbarAlwaysDrawVerticalTrack="false"
+                    tools:src="@drawable/humidity" />
+
+                <TextView
+                    android:id="@+id/text1"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:text="Độ ẩm"
+                    android:textColor="@color/tempColor"
+                    android:textSize="14sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/humidity"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:text="66%"
+                    android:textColor="@color/tempColor"
+                    android:textSize="14sp"
+                    android:textStyle="bold" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+
+                <ImageView
+                    android:id="@+id/imgwind"
+                    android:layout_width="135px"
+                    android:layout_height="135px"
+                    android:layout_gravity="center"
+                    android:scrollbarAlwaysDrawHorizontalTrack="false"
+                    android:scrollbarAlwaysDrawVerticalTrack="false"
+                    tools:src="@drawable/speed" />
+
+                <TextView
+                    android:id="@+id/text3"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:text="Gió"
+                    android:textColor="@color/tempColor"
+                    android:textSize="14sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/speed"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:text="1.5km/h"
+                    android:textColor="@color/tempColor"
+                    android:textSize="14sp"
+                    android:textStyle="bold" />
+            </LinearLayout>
+
+        </LinearLayout>
+
         <TextView
-            android:id="@+id/Temp"
+            android:id="@+id/txtTempm"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="48dp"
+            android:layout_marginStart="44dp"
             android:layout_marginTop="56dp"
             android:text="20°C"
             android:textColor="@color/tempColor"
@@ -72,7 +224,7 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
-            android:id="@+id/temp4"
+            android:id="@+id/temp_min"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
@@ -83,13 +235,13 @@
             android:textStyle="bold"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.719"
-            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toEndOf="@+id/temp3"
             app:layout_constraintTop_toBottomOf="@+id/imgTT"
-            app:layout_constraintVertical_bias="0.686" />
+            app:layout_constraintVertical_bias="0.691" />
 
         <TextView
-            android:id="@+id/temp"
+            android:id="@+id/temp_max"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
@@ -100,10 +252,10 @@
             android:textStyle="bold"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.711"
-            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintHorizontal_bias="0.052"
+            app:layout_constraintStart_toEndOf="@+id/temp2"
             app:layout_constraintTop_toBottomOf="@+id/imgTT"
-            app:layout_constraintVertical_bias="0.569" />
+            app:layout_constraintVertical_bias="0.574" />
 
         <TextView
             android:id="@+id/temp2"
@@ -111,7 +263,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
             android:layout_marginBottom="200dp"
-            android:text="Nhiệt độ cao nhất:"
+            android:text="Nhiệt độ cao nhất :"
             android:textColor="@color/tempColor"
             android:textSize="20dp"
             android:textStyle="bold"
@@ -128,7 +280,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
             android:layout_marginBottom="200dp"
-            android:text="Nhiệt độ thấp nhất: "
+            android:text="Nhiệt độ thấp nhất:"
             android:textColor="@color/tempColor"
             android:textSize="20dp"
             android:textStyle="bold"
@@ -157,21 +309,21 @@
             app:layout_constraintVertical_bias="0.807" />
 
         <TextView
-            android:id="@+id/temp6"
+            android:id="@+id/main_weather"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
             android:layout_marginBottom="200dp"
-            android:text="Trời nhiều mây"
+            android:text="Mưa"
             android:textColor="@color/tempColor"
             android:textSize="20dp"
             android:textStyle="bold"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.677"
-            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toEndOf="@+id/temp5"
             app:layout_constraintTop_toBottomOf="@+id/imgTT"
-            app:layout_constraintVertical_bias="0.802" />
+            app:layout_constraintVertical_bias="0.808" />
 
         <TextView
             android:id="@+id/wtCity"
@@ -181,164 +333,15 @@
             android:layout_marginBottom="236dp"
             android:gravity="center"
             android:text="Hà Nội"
-            android:textColor="@color/wtCity"
+            android:textColor="@color/tempColor"
             android:textSize="40dp"
             android:textStyle="bold|italic"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.119"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/Temp"
+            app:layout_constraintTop_toBottomOf="@+id/txtTempm"
             app:layout_constraintVertical_bias="0.058" />
-
-        <LinearLayout
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent">
-
-            <LinearLayout
-                android:layout_width="100dp"
-                android:layout_height="match_parent"
-                android:orientation="vertical">
-
-                <ImageView
-                    android:id="@+id/imgvisibility"
-                    android:layout_width="80dp"
-                    android:layout_height="120dp"
-                    android:layout_gravity="center"
-                    android:scrollbarAlwaysDrawVerticalTrack="false"
-                    tools:src="@drawable/visibility" />
-
-                <TextView
-                    android:id="@+id/textView6"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:gravity="center"
-                    android:text="Tầm nhìn"
-                    android:textColor="@color/in4"
-                    android:textSize="20dp"
-                    android:textStyle="bold" />
-
-                <TextView
-                    android:id="@+id/visibility"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:gravity="center"
-                    android:text="8000m"
-                    android:textColor="@color/in4"
-                    android:textSize="18sp"
-                    android:textStyle="bold" />
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="100dp"
-                android:layout_height="match_parent"
-                android:orientation="vertical">
-
-                <ImageView
-                    android:id="@+id/imgpressure"
-                    android:layout_width="80dp"
-                    android:layout_height="120dp"
-                    android:layout_gravity="center"
-                    android:scrollbarAlwaysDrawHorizontalTrack="false"
-                    android:scrollbarAlwaysDrawVerticalTrack="false"
-                    tools:src="@drawable/airpress" />
-
-                <TextView
-                    android:id="@+id/tv"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:gravity="center"
-                    android:text="Áp lực"
-                    android:textColor="@color/in4"
-                    android:textSize="20dp"
-                    android:textStyle="bold" />
-
-                <TextView
-                    android:id="@+id/airpress"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:gravity="center"
-                    android:text="1007hpa"
-                    android:textColor="@color/in4"
-                    android:textSize="18sp"
-                    android:textStyle="bold" />
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="100dp"
-                android:layout_height="match_parent"
-                android:orientation="vertical">
-
-                <ImageView
-                    android:id="@+id/imghumidity"
-                    android:layout_width="80dp"
-                    android:layout_height="120dp"
-                    android:layout_gravity="center"
-                    android:scrollbarAlwaysDrawHorizontalTrack="false"
-                    android:scrollbarAlwaysDrawVerticalTrack="false"
-                    tools:src="@drawable/humidity" />
-
-                <TextView
-                    android:id="@+id/text1"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:gravity="center"
-                    android:text="Độ ẩm"
-                    android:textColor="@color/in4"
-                    android:textSize="20dp"
-                    android:textStyle="bold" />
-
-                <TextView
-                    android:id="@+id/humidity"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:gravity="center"
-                    android:text="66%"
-                    android:textColor="@color/in4"
-                    android:textSize="18sp"
-                    android:textStyle="bold" />
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:orientation="vertical">
-
-                <ImageView
-                    android:id="@+id/imgwind"
-                    android:layout_width="80dp"
-                    android:layout_height="120dp"
-                    android:layout_gravity="center"
-                    android:scrollbarAlwaysDrawHorizontalTrack="false"
-                    android:scrollbarAlwaysDrawVerticalTrack="false"
-                    tools:src="@drawable/speed" />
-
-                <TextView
-                    android:id="@+id/text3"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:gravity="center"
-                    android:text="Gió"
-                    android:textColor="@color/in4"
-                    android:textSize="20dp"
-                    android:textStyle="bold" />
-
-                <TextView
-                    android:id="@+id/speed"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:gravity="center"
-                    android:text="1.5km/h"
-                    android:textColor="@color/in4"
-                    android:textSize="18sp"
-                    android:textStyle="bold" />
-            </LinearLayout>
-
-        </LinearLayout>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

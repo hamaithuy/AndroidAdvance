@@ -1,11 +1,26 @@
 package com.appbtl.appweather.model;
 
+import com.google.gson.annotations.Expose;
+import com.google.gson.annotations.SerializedName;
+
 public class Temp {
+    @SerializedName("day")
+    @Expose
     private double day;
+    @SerializedName("min")
+    @Expose
     private double min;
+    @SerializedName("max")
+    @Expose
     private double max;
+    @SerializedName("night")
+    @Expose
     private double night;
+    @SerializedName("eve")
+    @Expose
     private double eve;
+    @SerializedName("morn")
+    @Expose
     private double morn;
 
     public double getDay() {

@@ -1,19 +1,24 @@
 package com.appbtl.appweather.model;
 
-public class Main {
-    private double temp;
-    private double pressure;
-    private double humidity;
-    private double temp_min;
-    private double temp_max;
+import com.google.gson.annotations.Expose;
+import com.google.gson.annotations.SerializedName;
 
-    public Main(double temp, double pressure, double humidity, double temp_min, double temp_max) {
-        this.temp = temp;
-        this.pressure = pressure;
-        this.humidity = humidity;
-        this.temp_min = temp_min;
-        this.temp_max = temp_max;
-    }
+public class Main {
+    @SerializedName("temp")
+    @Expose
+    private double temp;
+    @SerializedName("temp_min")
+    @Expose
+    private double temp_min;
+    @SerializedName("temp_max")
+    @Expose
+    private double temp_max;
+    @SerializedName("pressure")
+    @Expose
+    private long pressure;
+    @SerializedName("humidity")
+    @Expose
+    private long humidity;
 
     public double getTemp() {
         return temp;
@@ -21,22 +26,6 @@ public class Main {
 
     public void setTemp(double temp) {
         this.temp = temp;
-    }
-
-    public double getPressure() {
-        return pressure;
-    }
-
-    public void setPressure(double pressure) {
-        this.pressure = pressure;
-    }
-
-    public double getHumidity() {
-        return humidity;
-    }
-
-    public void setHumidity(double humidity) {
-        this.humidity = humidity;
     }
 
     public double getTemp_min() {
@@ -53,5 +42,21 @@ public class Main {
 
     public void setTemp_max(double temp_max) {
         this.temp_max = temp_max;
+    }
+
+    public long getPressure() {
+        return pressure;
+    }
+
+    public void setPressure(long pressure) {
+        this.pressure = pressure;
+    }
+
+    public long getHumidity() {
+        return humidity;
+    }
+
+    public void setHumidity(long humidity) {
+        this.humidity = humidity;
     }
 }
