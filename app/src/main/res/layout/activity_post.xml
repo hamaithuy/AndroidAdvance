@@ -5,4 +5,466 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
-        tools:context=".PostActivity" />
+        tools:context=".PostActivity"
+        >
+
+
+
+    <androidx.appcompat.widget.Toolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="#FFFFFF"
+            android:minHeight="?attr/actionBarSize"
+            android:scrollbarFadeDuration="250"
+            android:theme="?attr/actionBarTheme"
+            app:contentInsetStart="0dp"
+            app:contentInsetStartWithNavigation="0dp"
+            app:titleMargin="0dp"
+            app:titleTextColor="@color/colorPrimaryDark">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="56dp">
+
+            <TextView
+                    android:id="@+id/tv_Cancel"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="20dp"
+                    android:text="Hủy"
+                    android:textColor="@android:color/holo_red_dark"
+                    android:textSize="18sp"
+                    android:textStyle="bold"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                    android:id="@+id/tv_Post"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="20dp"
+                    android:text="Đăng"
+                    android:textColor="@color/colorPrimaryDark"
+                    android:textSize="18sp"
+                    android:textStyle="bold"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintRight_toRightOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                    android:id="@+id/textView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:gravity="center"
+                    android:text="Đăng tin"
+                    android:textColor="@color/colorPrimaryDark"
+                    android:textSize="22sp"
+                    android:textStyle="bold"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintRight_toRightOf="parent">
+
+            </TextView>
+
+            <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="@color/text"
+                    app:layout_constraintBottom_toBottomOf="parent">
+
+            </View>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </androidx.appcompat.widget.Toolbar>
+
+
+        <ScrollView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="#FFFFFF">
+            <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical">
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+
+                    <TextView
+                            android:id="@+id/tv_Loaitin"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="15dp"
+                            android:layout_marginTop="15dp"
+                            android:text="Loại tin"
+                            android:textColor="@color/colorPrimaryDark"
+                            android:textSize="18sp"
+                            android:textStyle="bold"
+                            app:layout_constraintLeft_toLeftOf="parent"
+                            app:layout_constraintTop_toTopOf="parent" />
+
+                    <RadioGroup
+                            android:id="@+id/rg_Loaitin"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="15dp"
+                            android:layout_marginTop="15dp"
+                            android:layout_marginRight="15dp"
+                            android:orientation="horizontal"
+                            app:layout_constraintLeft_toLeftOf="parent"
+                            app:layout_constraintRight_toRightOf="parent"
+                            app:layout_constraintTop_toBottomOf="@id/tv_Loaitin">
+
+
+                        <RadioButton
+                                android:id="@+id/rb_chothue"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:text="Cho thuê"
+                                android:textSize="16dp" />
+
+                        <RadioButton
+                                android:id="@+id/rb_oghep"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:text="Tìm người ở ghép"
+                                android:textSize="16dp" />
+
+                    </RadioGroup>
+
+                    <TextView
+                            android:id="@+id/tv_Loaiphong"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="15dp"
+                            android:layout_marginTop="15dp"
+                            android:text="Loại phòng"
+                            android:textColor="@color/colorPrimaryDark"
+                            android:textSize="18sp"
+                            android:textStyle="bold"
+                            app:layout_constraintLeft_toLeftOf="parent"
+                            app:layout_constraintTop_toBottomOf="@id/rg_Loaitin" />
+
+                    <RadioGroup
+                            android:id="@+id/rg_Loaiphong"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="15dp"
+                            android:layout_marginTop="15dp"
+                            android:layout_marginRight="15dp"
+                            android:orientation="vertical"
+                            app:layout_constraintLeft_toLeftOf="parent"
+                            app:layout_constraintRight_toRightOf="parent"
+                            app:layout_constraintTop_toBottomOf="@id/tv_Loaiphong">
+
+
+                        <RadioButton
+                                android:id="@+id/rb_Phong"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:text="Phòng"
+                                android:textSize="16sp" />
+
+                        <RadioButton
+                                android:id="@+id/rb_Canho"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:text="Căn hộ"
+                                android:textSize="16sp" />
+
+                        <RadioButton
+                                android:id="@+id/rb_Canhomini"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:text="Căn hộ mini"
+                                android:textSize="16sp" />
+
+                        <RadioButton
+                                android:id="@+id/rb_Nguyencan"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:text="Nguyên căn"
+                                android:textSize="16sp" />
+
+                    </RadioGroup>
+
+                    <TextView
+                            android:id="@+id/tv1"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="15dp"
+                            android:layout_marginTop="15dp"
+
+                            android:text="Địa chỉ"
+                            android:textColor="@color/colorPrimaryDark"
+                            android:textSize="18sp"
+                            android:textStyle="bold"
+                            app:layout_constraintLeft_toLeftOf="parent"
+                            app:layout_constraintTop_toBottomOf="@id/rg_Loaiphong" />
+
+
+                    <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="30dp"
+                            android:id="@+id/tv_diaChi"
+                            android:layout_marginLeft="15dp"
+                            android:layout_marginTop="15dp"
+                            android:layout_marginRight="15dp"
+                            android:gravity="center_vertical"
+                            android:hint="Chọn địa chỉ"
+                            android:paddingLeft="8dp"
+                            android:textSize="16sp"
+                            app:layout_constraintLeft_toLeftOf="parent"
+                            app:layout_constraintRight_toRightOf="parent"
+                            app:layout_constraintTop_toBottomOf="@id/tv1" />
+                    <TextView
+                        android:id="@+id/tv_giaphong"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="15dp"
+                        android:layout_marginTop="15dp"
+                        android:text="Giá phòng (VND)"
+                        android:textColor="@color/colorPrimaryDark"
+                        android:textSize="18sp"
+                        android:textStyle="bold"
+                        app:layout_constraintLeft_toLeftOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/tv_diaChi" />
+                    <TextView
+                            android:id="@+id/tv_dienTich"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginRight="15dp"
+                            android:layout_marginTop="15dp"
+                            android:text="Diện tích (m2)"
+                            android:textColor="@color/colorPrimaryDark"
+                            android:textSize="18sp"
+                            android:textStyle="bold"
+                            app:layout_constraintRight_toRightOf="parent"
+                            app:layout_constraintTop_toBottomOf="@id/tv_diaChi" />
+
+                    <LinearLayout
+                            android:id="@+id/ln_gia_dt"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        app:layout_constraintTop_toBottomOf="@id/tv_giaphong"
+                        app:layout_constraintLeft_toLeftOf="parent"
+                            app:layout_constraintRight_toRightOf="parent"
+                            android:layout_marginLeft="15dp"
+                            android:layout_marginRight="15dp"
+                        >
+                        <EditText
+                                android:id="@+id/et_giaPhong"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                                android:hint="3000000"
+                                android:layout_marginRight="15dp"></EditText>
+                        <EditText
+                                android:id="@+id/et_dienTich"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:hint="20"
+                                android:layout_marginLeft="15dp"></EditText>
+                    </LinearLayout>
+                    <TextView
+                            android:id="@+id/tv_tienIch"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="15dp"
+                            android:layout_marginTop="15dp"
+                            android:text="Tiện ích phòng"
+                            android:textColor="@color/colorPrimaryDark"
+                            android:textSize="18sp"
+                            android:textStyle="bold"
+                            app:layout_constraintLeft_toLeftOf="parent"
+                            app:layout_constraintTop_toBottomOf="@id/ln_gia_dt" />
+                    <LinearLayout
+                            android:id="@+id/ln_tienich1"
+                            android:orientation="horizontal"
+                            android:layout_width="match_parent"
+                            android:layout_height="50dp"
+                            app:layout_constraintTop_toBottomOf="@id/tv_tienIch"
+                            app:layout_constraintLeft_toLeftOf="parent"
+                            app:layout_constraintRight_toRightOf="parent"
+                            android:layout_marginRight="15dp"
+                            android:gravity="center"
+                            android:layout_marginLeft="15dp">
+                        <CheckBox
+                                android:id="@+id/rb_wifi"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:text="Wifi"
+                                android:textSize="16sp" />
+                        <CheckBox
+                                android:id="@+id/rb_ownWC"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:text="WC riêng"
+                                android:textSize="16sp" />
+                        <CheckBox
+                                android:id="@+id/rb_keepCar"
+                                android:layout_width="0dp"
+                                android:layout_weight="1"
+                                android:layout_height="wrap_content"
+                                android:text="Giữ xe"
+                                android:textSize="16sp" />
+                        <CheckBox
+                                android:id="@+id/rb_free"
+                                android:layout_width="0dp"
+                                android:layout_weight="1"
+                                android:layout_height="wrap_content"
+                                android:text="Tự do"
+                                android:textSize="16sp" />
+                    </LinearLayout>
+                    <LinearLayout
+                            android:id="@+id/ln_tienich2"
+                            android:orientation="horizontal"
+                            android:layout_width="match_parent"
+                            android:layout_height="50dp"
+                            app:layout_constraintTop_toBottomOf="@id/ln_tienich1"
+                            app:layout_constraintLeft_toLeftOf="parent"
+                            app:layout_constraintRight_toRightOf="parent"
+                            android:layout_marginRight="15dp"
+                            android:gravity="center"
+                            android:layout_marginLeft="15dp">
+
+                        <CheckBox
+                                android:id="@+id/rb_kitchen"
+                                android:layout_width="0dp"
+                                android:layout_weight="1"
+                                android:layout_height="wrap_content"
+                                android:text="Bếp"
+                                android:textSize="16sp" />
+                        <CheckBox
+                                android:id="@+id/rb_airMachine"
+                                android:layout_width="0dp"
+                                android:layout_weight="1"
+                                android:layout_height="wrap_content"
+                                android:text="Điều hòa"
+                                android:textSize="16sp" />
+                        <CheckBox
+                                android:id="@+id/rb_fridge"
+                                android:layout_width="0dp"
+                                android:layout_weight="1"
+                                android:layout_height="wrap_content"
+                                android:text="Tử lạnh"
+                                android:textSize="16sp" />
+                        <CheckBox
+                                android:id="@+id/rb_washMachine"
+                                android:layout_width="0dp"
+                                android:layout_weight="1"
+                                android:layout_height="wrap_content"
+                                android:text="Máy giặt"
+                                android:textSize="16sp" />
+                    </LinearLayout>
+                    <TextView
+                            android:id="@+id/tv_tieude"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="15dp"
+                            android:layout_marginTop="15dp"
+                            android:text="Tiêu đề bài đăng"
+                            android:textColor="@color/colorPrimaryDark"
+                            android:textSize="18sp"
+                            android:textStyle="bold"
+                            app:layout_constraintLeft_toLeftOf="parent"
+                            app:layout_constraintTop_toBottomOf="@id/ln_tienich2" />
+                    <EditText
+                            android:id="@+id/et_tieuDe"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:hint="Nhập tiêu đề bài đăng"
+                            android:layout_marginRight="15dp"
+                            app:layout_constraintTop_toBottomOf="@id/tv_tieude"
+                            app:layout_constraintLeft_toLeftOf="parent"
+                            app:layout_constraintRight_toRightOf="parent"
+                            android:layout_marginLeft="15dp"
+                            ></EditText>
+                    <TextView
+                            android:id="@+id/tv_lienHe"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="15dp"
+                            android:layout_marginTop="15dp"
+                            android:text="Liên hệ với chủ"
+                            android:textColor="@color/colorPrimaryDark"
+                            android:textSize="18sp"
+                            android:textStyle="bold"
+                            app:layout_constraintLeft_toLeftOf="parent"
+                            app:layout_constraintTop_toBottomOf="@id/et_tieuDe" />
+                    <EditText
+                            android:id="@+id/et_lienHe"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:hint="Tên chủ nhà"
+                            android:layout_marginRight="15dp"
+                            app:layout_constraintTop_toBottomOf="@id/tv_lienHe"
+                            app:layout_constraintLeft_toLeftOf="parent"
+                            app:layout_constraintRight_toRightOf="parent"
+                            android:layout_marginLeft="15dp"
+                            ></EditText>
+                    <TextView
+                            android:id="@+id/tv_sdt"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="15dp"
+                            android:layout_marginTop="15dp"
+                            android:text="Số điện thoại"
+                            android:textColor="@color/colorPrimaryDark"
+                            android:textSize="18sp"
+                            android:textStyle="bold"
+                            app:layout_constraintLeft_toLeftOf="parent"
+                            app:layout_constraintTop_toBottomOf="@id/et_lienHe" />
+                    <EditText
+                            android:id="@+id/et_soDT"
+                            android:inputType="number"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:hint="Nhập số điện thoại của bạn"
+                            android:layout_marginRight="15dp"
+                            app:layout_constraintTop_toBottomOf="@id/tv_sdt"
+                            app:layout_constraintLeft_toLeftOf="parent"
+                            app:layout_constraintRight_toRightOf="parent"
+                            android:layout_marginLeft="15dp"
+                            ></EditText>
+                    <TextView
+                            android:id="@+id/tv_mieuTa"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="15dp"
+                            android:layout_marginTop="15dp"
+                            android:text="Mô tả chi tiết"
+                            android:textColor="@color/colorPrimaryDark"
+                            android:textSize="18sp"
+                            android:textStyle="bold"
+                            app:layout_constraintLeft_toLeftOf="parent"
+                            app:layout_constraintTop_toBottomOf="@id/et_soDT"/>
+
+                    <EditText
+                            android:id="@+id/et_moTa"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:ems="10"
+                            android:layout_marginLeft="15dp"
+                            android:layout_marginRight="15dp"
+                            android:gravity="start|top"
+                            android:inputType="textMultiLine"
+                            app:layout_constraintTop_toBottomOf="@id/tv_mieuTa"
+                            app:layout_constraintLeft_toLeftOf="parent"
+                            app:layout_constraintRight_toRightOf="parent"/>
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+    </LinearLayout>
+        </ScrollView>
+
+
+</LinearLayout>

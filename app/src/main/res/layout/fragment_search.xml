@@ -1,37 +1,40 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#FFFFFF"
     android:orientation="vertical">
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="10dp"
-        android:layout_marginTop="10dp"
-        android:layout_marginRight="10dp"
-        android:orientation="horizontal">
-
-        <EditText
-            android:id="@+id/edtSearch"
-            android:layout_width="wrap_content"
+    <androidx.appcompat.widget.Toolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:ems="10"
-            android:hint="Tìm quận, đường, ..."
-            android:inputType="textPersonName" />
+            android:background="#FFFFFF"
+            android:minHeight="?attr/actionBarSize"
+            android:scrollbarFadeDuration="250"
+            android:theme="?attr/actionBarTheme"
+            app:contentInsetStart="0dp">
 
-        <Button
-            android:id="@+id/button"
-            android:layout_width="0dp"
-            android:layout_height="30dp"
-            android:layout_weight="1"
-            android:background="@color/colorPrimaryDark"
-            android:text="Tìm kiếm"
-            android:textColor="#FFFFFF" />
+        <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="56dp">
 
-    </LinearLayout>
+            <SearchView
+                    android:id="@+id/search_Room"
+                    android:layout_width="match_parent"
+                    android:layout_height="45dp"
+                    android:iconifiedByDefault="false"
+                    android:queryHint="Tìm kiếm quận, đường..."
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintRight_toRightOf="parent"/>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </androidx.appcompat.widget.Toolbar>
 
     <FrameLayout
 

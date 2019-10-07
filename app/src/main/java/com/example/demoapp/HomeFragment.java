@@ -1,10 +1,13 @@
 package com.example.demoapp;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.GridView;
+import android.widget.ImageView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -17,8 +20,7 @@ import java.util.Date;
 public class HomeFragment extends Fragment {
     GridView gridNewRoom;
     GridView gridCoupleRoom;
-    SimpleDateFormat dtf = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
-    //Date tP = dtf.format(dt);
+    ImageView iv_Post;
 
     @Nullable
     @Override
@@ -27,12 +29,30 @@ public class HomeFragment extends Fragment {
         try {
             ArrayList<Room> listRoom= Room.makeListRoom();
             GridAdapter roomAdapter = new GridAdapter(getActivity(),listRoom);
+
             // Phòng mới
             gridNewRoom = (GridView) view.findViewById(R.id.gridNewRoom);
             gridNewRoom.setAdapter(roomAdapter);
+            gridNewRoom.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                @Override
+                public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                    // Code here
+                }
+            });
+
             // Phòng ở ghép
             gridCoupleRoom = (GridView) view.findViewById(R.id.gridCoupleRoom);
             gridCoupleRoom.setAdapter((roomAdapter));
+
+            // Đăng phòng
+            iv_Post = (ImageView) view.findViewById(R.id.iv_Post);
+            iv_Post.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    Intent intent = new Intent(getActivity(),com.example.demoapp.PostActivity.class);
+                    startActivity(intent);
+                }
+            });
         }catch (Exception ex){
             String erorr = ex.getMessage();
         }
