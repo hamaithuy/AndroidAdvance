@@ -1,6 +1,7 @@
 package com.example.quanlycuahang.Admin.Mon;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -31,19 +32,35 @@ public class RecyclerViewMon {
     class MonItemView extends RecyclerView.ViewHolder {
         private TextView tvTenMon;
         private TextView tvGia;
+        private TextView tvLoaiMon;
+        private TextView tvStt;
         private String key;
 
         public MonItemView(ViewGroup parent) {
             super(LayoutInflater.from(context).inflate(R.layout.mon_item_layout, parent, false));
             tvTenMon = itemView.findViewById(R.id.tv_ten_mon);
             tvGia = itemView.findViewById(R.id.tv_gia_mon);
+            tvLoaiMon = itemView.findViewById(R.id.tv_loai_mon);
+            tvStt = itemView.findViewById(R.id.tv_stt_mon);
+            itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    Intent intent = new Intent(context, MonUpdateActivity.class);
+                    intent.putExtra("key", key);
+                    intent.putExtra("TenMon", tvTenMon.getText().toString());
+                    intent.putExtra("Gia", tvGia.getText().toString());
+                    intent.putExtra("LoaiMon", tvLoaiMon.getText().toString());
+                    context.startActivity(intent);
+
+                }
+            });
 
         }
 
         public void bind(Mon mon, String key) {
-          tvGia.setText(Integer.toString(mon.getGia()));
-           tvTenMon.setText(mon.getTenMon());
-
+            tvGia.setText(Integer.toString(mon.getGia()));
+            tvTenMon.setText(mon.getTenMon());
+            tvLoaiMon.setText(mon.getLoaiMon());
             this.key = key;
         }
     }
@@ -66,6 +83,8 @@ public class RecyclerViewMon {
         @Override
         public void onBindViewHolder(@NonNull MonItemView holder, int position) {
             holder.bind(monList.get(position), mKeys.get(position));
+            position++;
+            holder.tvStt.setText(""+position);
         }
 
         @Override

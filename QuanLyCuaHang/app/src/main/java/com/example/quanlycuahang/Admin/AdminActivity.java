@@ -76,6 +76,7 @@ public class AdminActivity extends AppCompatActivity {
     private void init() {
         toolbar = findViewById(R.id.tb_admin);
         setSupportActionBar(toolbar);
+        getSupportActionBar().setDisplayShowTitleEnabled(false);
         drawerLayout = findViewById(R.id.dl_admin);
         navigationView = findViewById(R.id.nav_view_admin);
     }

@@ -19,8 +19,17 @@
             android:background="@color/colorPrimaryDark"
             android:elevation="4dp"
             android:theme="@style/ThemeOverlay.AppCompat.ActionBar"
-            app:popupTheme="@style/ThemeOverlay.AppCompat.Light"></androidx.appcompat.widget.Toolbar>
+            app:popupTheme="@style/ThemeOverlay.AppCompat.Light">
 
+            <TextView
+                android:fontFamily="@font/seguisb"
+                android:textSize="22dp"
+                android:textColor="@color/colorWhite"
+                android:gravity="left"
+                android:text="Admin"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"></TextView>
+        </androidx.appcompat.widget.Toolbar>
         <androidx.fragment.app.FragmentTabHost
             android:id="@+id/fragment_admin"
             android:layout_width="match_parent"
