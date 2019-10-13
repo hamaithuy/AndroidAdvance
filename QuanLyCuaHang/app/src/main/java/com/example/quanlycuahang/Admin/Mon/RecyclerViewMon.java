@@ -36,9 +36,10 @@ public class RecyclerViewMon {
     class MonItemView extends RecyclerView.ViewHolder {
         private TextView tvTenMon;
         private TextView tvGia;
+        private TextView tvGiaHide;
         private TextView tvLoaiMon;
         private ImageView imgItem;
-       // private TextView tvStt;
+        // private TextView tvStt;
         private String key;
 
         public MonItemView(ViewGroup parent) {
@@ -46,7 +47,8 @@ public class RecyclerViewMon {
             tvTenMon = itemView.findViewById(R.id.tv_ten_mon);
             tvGia = itemView.findViewById(R.id.tv_gia_mon);
             tvLoaiMon = itemView.findViewById(R.id.tv_loai_mon);
-          //  tvStt = itemView.findViewById(R.id.tv_stt_mon);
+            tvGiaHide = itemView.findViewById(R.id.tv_gia_mon_hide);
+            //  tvStt = itemView.findViewById(R.id.tv_stt_mon);
             imgItem = itemView.findViewById(R.id.img_item);
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -54,7 +56,7 @@ public class RecyclerViewMon {
                     Intent intent = new Intent(context, MonUpdateActivity.class);
                     intent.putExtra("key", key);
                     intent.putExtra("TenMon", tvTenMon.getText().toString());
-                    intent.putExtra("Gia", tvGia.getText().toString());
+                    intent.putExtra("Gia", tvGiaHide.getText().toString());
                     intent.putExtra("LoaiMon", tvLoaiMon.getText().toString());
                     context.startActivity(intent);
 
@@ -67,11 +69,19 @@ public class RecyclerViewMon {
 
             NumberFormat formatter = new DecimalFormat("#,###");
             int gia = (mon.getGia());
+            tvGiaHide.setText(mon.getGia().toString());
             String formattedNumber = formatter.format(gia);
-            tvGia.setText(formattedNumber+" đ");
+            tvGia.setText(formattedNumber + " đ");
             tvTenMon.setText(mon.getTenMon());
             tvLoaiMon.setText(mon.getLoaiMon());
-            imgItem.setImageResource(R.drawable.img_sinh_to);
+            if (mon.getLoaiMon().equals("Sinh tố")) {
+                imgItem.setImageResource(R.drawable.img_sinh_to);
+            } else if (mon.getLoaiMon().equals("Nước uống")) {
+                imgItem.setImageResource(R.drawable.img_nuoc_uong);
+            } else if (mon.getLoaiMon().equals("Đồ ăn")) {
+                imgItem.setImageResource(R.drawable.img_do_an);
+            }
+
             this.key = key;
         }
     }

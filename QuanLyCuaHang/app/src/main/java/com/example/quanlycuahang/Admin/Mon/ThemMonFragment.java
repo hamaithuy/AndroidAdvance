@@ -10,9 +10,9 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
-import android.widget.EditText;
-import android.widget.Toast;
+import android.widget.Spinner;
 
 import com.example.quanlycuahang.R;
 
@@ -25,6 +25,8 @@ import java.util.List;
 public class ThemMonFragment extends Fragment {
     private RecyclerView recyclerView;
     private Button btnActivityThem;
+    private Spinner spXepTheo;
+    private Spinner spLocTheo;
     View vRoot;
 
 
@@ -55,7 +57,37 @@ public class ThemMonFragment extends Fragment {
                 startActivity(intent);
             }
         });
-
+        spXepTheo=vRoot.findViewById(R.id.sp_xep_theo);
+        spLocTheo =vRoot.findViewById(R.id.sp_loc_theo);
+        String arr[] = {
+                "Sort By",
+                "Từ thấp đến cao",
+                "từ cao đến thấp",
+                "từ a -> z",
+                "từ z -> a"};
+        ArrayAdapter<String> adapter = new ArrayAdapter<String>
+                (
+                        getContext(),
+                        android.R.layout.simple_spinner_item,
+                        arr
+                );
+        adapter.setDropDownViewResource
+                (android.R.layout.simple_list_item_single_choice);
+        spXepTheo.setAdapter(adapter);
+        String arrLocTheo[] = {
+                "Filter Type",
+                "Sinh tố",
+                "Nước uống",
+                "Đồ ăn"};
+        ArrayAdapter<String> adapterLocTheo = new ArrayAdapter<String>
+                (
+                        getContext(),
+                        android.R.layout.simple_spinner_item,
+                        arrLocTheo
+                );
+        adapterLocTheo.setDropDownViewResource
+                (android.R.layout.simple_list_item_single_choice);
+        spLocTheo.setAdapter(adapterLocTheo);
     }
 
     private void getData() {
