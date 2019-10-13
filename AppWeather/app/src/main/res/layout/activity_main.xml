@@ -8,37 +8,10 @@
     android:orientation="vertical"
     tools:context=".MainActivity">
 
-    <LinearLayout
-        android:id="@+id/bar"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@color/barColor"
-        android:orientation="vertical">
-
-        <TextView
-            android:id="@+id/City"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:gravity="center"
-            android:text="Hà Nội"
-            android:textColor="@color/barTextColor"
-            android:textSize="18sp" />
-
-        <TextView
-            android:id="@+id/Address"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:gravity="center"
-            android:text="Hoàng Mai, Hà Nội"
-            android:textColor="@color/barTextColor"
-            android:textSize="18sp" />
-    </LinearLayout>
-
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/body"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/bar"
+        android:layout_height="match_parent"
         android:layout_alignParentStart="true"
         android:layout_alignParentEnd="true"
         android:layout_alignParentBottom="true"
@@ -49,11 +22,42 @@
         android:background="@drawable/background_rain2"
         android:foregroundGravity="center">
 
+        <LinearLayout
+            android:id="@+id/bar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="#0027408B"
+            android:orientation="vertical"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <TextView
+                android:id="@+id/City"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="#00FFFFFF"
+                android:gravity="center"
+                android:text="Hà Nội"
+                android:textColor="@color/barTextColor"
+                android:textSize="18sp" />
+
+            <TextView
+                android:id="@+id/Address"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="#00AD3838"
+                android:gravity="center"
+                android:text="Hoàng Mai, Hà Nội"
+                android:textColor="@color/barTextColor"
+                android:textSize="18sp" />
+        </LinearLayout>
+
         <ImageView
             android:id="@+id/imgTT"
             android:layout_width="177dp"
             android:layout_height="165dp"
-            android:layout_marginTop="25dp"
+            android:layout_marginTop="150dp"
             android:layout_marginEnd="17dp"
             android:src="@drawable/shine"
             app:layout_constraintEnd_toEndOf="parent"
@@ -215,7 +219,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="44dp"
-            android:layout_marginTop="56dp"
+            android:layout_marginTop="170dp"
             android:text="20°C"
             android:textColor="@color/tempColor"
             android:textSize="40dp"
