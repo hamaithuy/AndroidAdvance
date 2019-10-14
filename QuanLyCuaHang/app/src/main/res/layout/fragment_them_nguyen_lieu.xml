@@ -4,28 +4,10 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".Admin.ThemNguyenLieuFragment">
+    tools:context=".Admin.NguyenLieu.ThemNguyenLieuFragment">
 
-
-    <EditText
-        android:id="@+id/editText"
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rv_them_nguyen_lieu"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:ems="10"
-        android:inputType="textPersonName"
-        android:text="Tên món" />
-
-    <EditText
-        android:id="@+id/editText2"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:ems="10"
-        android:inputType="textPersonName"
-        android:text="số lượng" />
-
-    <Button
-        android:id="@+id/button"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Hoàn thành" />
+        android:layout_height="match_parent" />
 </LinearLayout>
