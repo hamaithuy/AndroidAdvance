@@ -1,4 +1,4 @@
-package com.example.quanlycuahang.Admin.NguyenLieu;
+package com.example.quanlycuahang.Admin.TaiKhoan;
 
 
 import android.os.Bundle;
@@ -10,21 +10,15 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.example.quanlycuahang.Admin.Mon.Mon;
-import com.example.quanlycuahang.Admin.Mon.RecyclerViewMon;
 import com.example.quanlycuahang.R;
 
 import java.util.List;
 
-
-/**
- * A simple {@link Fragment} subclass.
- */
-public class ThemNguyenLieuFragment extends Fragment {
-    View vRoot;
+public class QuanLyTaiKhoanFragment extends Fragment {
     private RecyclerView recyclerView;
+    View vRoot;
 
-    public ThemNguyenLieuFragment() {
+    public QuanLyTaiKhoanFragment() {
         // Required empty public constructor
     }
 
@@ -33,17 +27,17 @@ public class ThemNguyenLieuFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        vRoot = inflater.inflate(R.layout.fragment_them_nguyen_lieu, container, false);
+        vRoot = inflater.inflate(R.layout.fragment_quan_ly_tai_khoan, container, false);
         init();
         getData();
         return vRoot;
     }
 
     private void getData() {
-        new NguyenLieuFireBaseDatabaseHelper().DanhSachNguyenLieu(new NguyenLieuFireBaseDatabaseHelper.NguyenLieuDataStatuts() {
+        new TaiKhoanFireBaseDataBase().DanhSachTaiKhoan(new TaiKhoanFireBaseDataBase.TaiKhoanDataStatuts() {
             @Override
-            public void DataIsLoaded(List<Mon> mons, List<String> keys) {
-                new NguyenLieuRecyclerView().setConfig(recyclerView, getContext(), mons, keys);
+            public void DataIsLoaded(List<TaiKhoan> taiKhoans, List<String> keys) {
+                new RecyclerViewTaiKhoan().setConfig(recyclerView, getContext(), taiKhoans, keys);
             }
 
             @Override
@@ -61,11 +55,12 @@ public class ThemNguyenLieuFragment extends Fragment {
 
             }
         });
+
     }
 
     private void init() {
-        recyclerView=vRoot.findViewById(R.id.rv_them_nguyen_lieu);
-
+        recyclerView = vRoot.findViewById(R.id.rv_tai_khoan);
     }
+
 
 }

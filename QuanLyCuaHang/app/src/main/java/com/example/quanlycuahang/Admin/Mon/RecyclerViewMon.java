@@ -13,7 +13,6 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.quanlycuahang.R;
-import com.squareup.picasso.Picasso;
 
 import java.text.DecimalFormat;
 import java.text.NumberFormat;
@@ -44,12 +43,12 @@ public class RecyclerViewMon {
 
         public MonItemView(ViewGroup parent) {
             super(LayoutInflater.from(context).inflate(R.layout.mon_item_layout, parent, false));
-            tvTenMon = itemView.findViewById(R.id.tv_ten_mon);
-            tvGia = itemView.findViewById(R.id.tv_gia_mon);
-            tvLoaiMon = itemView.findViewById(R.id.tv_loai_mon);
+            tvTenMon = itemView.findViewById(R.id.tv_ten_nguyen_lieu);
+            tvGia = itemView.findViewById(R.id.tv_gia_nguyen_lieu);
+            tvLoaiMon = itemView.findViewById(R.id.tv_loai_nguyen_lieu);
             tvGiaHide = itemView.findViewById(R.id.tv_gia_mon_hide);
             //  tvStt = itemView.findViewById(R.id.tv_stt_mon);
-            imgItem = itemView.findViewById(R.id.img_item);
+            imgItem = itemView.findViewById(R.id.img_item_nguyen_lieu);
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {

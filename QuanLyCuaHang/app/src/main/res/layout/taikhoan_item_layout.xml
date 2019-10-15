@@ -9,13 +9,13 @@
 
 
     <ImageView
-        android:id="@+id/img_item_nguyen_lieu"
+        android:id="@+id/img_tai_khoan"
         android:layout_width="75dp"
         android:layout_height="75dp"
         android:layout_gravity="center_vertical"
         android:layout_marginLeft="10dp"
         android:scaleType="centerInside"
-       ></ImageView>
+        ></ImageView>
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -31,7 +31,7 @@
             android:orientation="vertical">
 
             <TextView
-                android:id="@+id/tv_ten_nguyen_lieu"
+                android:id="@+id/tv_ten_tai_khoan"
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
                 android:layout_weight="1"
@@ -41,7 +41,7 @@
                 android:textStyle="bold" />
 
             <TextView
-                android:id="@+id/tv_loai_nguyen_lieu"
+                android:id="@+id/tv_mat_khau"
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
                 android:layout_weight="1"
@@ -60,15 +60,15 @@
 
 
             <TextView
-                android:id="@+id/tv_gia_nguyen_lieu"
+                android:id="@+id/tv_ten"
                 android:layout_width="wrap_content"
-                android:layout_height="match_parent"
+                android:layout_height="wrap_content"
                 android:gravity="center_vertical"
                 android:text="TextView"
                 android:textColor="@color/colorRed"
                 android:textSize="20dp" />
             <TextView
-                android:id="@+id/tv_gia_mon_hide"
+                android:id="@+id/tv_vi_tri"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:gravity="center_vertical"

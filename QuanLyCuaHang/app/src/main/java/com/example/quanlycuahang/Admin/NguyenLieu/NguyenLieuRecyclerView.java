@@ -2,7 +2,9 @@ package com.example.quanlycuahang.Admin.NguyenLieu;
 
 import android.content.Context;
 import android.view.LayoutInflater;
+import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -31,21 +33,108 @@ public class NguyenLieuRecyclerView {
         private TextView tvTenMon;
         private TextView tvSoLuong;
         private TextView tvLoaiMon;
+        private TextView tvLoai;
+        private TextView tvGiaMon;
         private ImageView imgItem;
         private String key;
+        private ImageButton imgTru;
+        private ImageButton imgCong;
+
 
         public NguyenLieuItemView(ViewGroup parent) {
             super(LayoutInflater.from(context).inflate(R.layout.nguyen_lieu_item_layout, parent, false));
-            tvTenMon = itemView.findViewById(R.id.tv_ten_mon);
-            tvLoaiMon = itemView.findViewById(R.id.tv_loai_mon);
+            tvTenMon = itemView.findViewById(R.id.tv_ten_nguyen_lieu);
+            tvLoaiMon = itemView.findViewById(R.id.tv_loai_nguyen_lieu);
+            tvLoai = itemView.findViewById(R.id.tv_nguyen_lieu_loai);
             tvSoLuong = itemView.findViewById(R.id.tv_so_luong);
-            imgItem = itemView.findViewById(R.id.img_item);
+            tvGiaMon = itemView.findViewById(R.id.tv_gia_nguyen_lieu);
+            imgTru = itemView.findViewById(R.id.img_tru);
+            imgCong = itemView.findViewById(R.id.img_cong);
+            imgItem = itemView.findViewById(R.id.img_item_nguyen_lieu);
+            imgTru.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    Mon mon = new Mon();
+                    String sl = tvSoLuong.getText().toString();
+                    int soLuong = Integer.parseInt(sl);
+                    soLuong--;
+                    mon.setTenMon(tvTenMon.getText().toString());
+                    mon.setLoai(Integer.parseInt(tvLoai.getText().toString()));
+                    mon.setGia(Integer.parseInt(tvGiaMon.getText().toString()));
+                    mon.setSoLuong(soLuong);
+                    mon.setLoaiMon(tvLoaiMon.getText().toString());
+                    String sluong = String.valueOf(soLuong);
+                    tvSoLuong.setText(sluong);
+                    new NguyenLieuFireBaseDatabaseHelper().SuaMon(key, mon, new NguyenLieuFireBaseDatabaseHelper.NguyenLieuDataStatuts() {
+                        @Override
+                        public void DataIsLoaded(List<Mon> mons, List<String> keys) {
+
+                        }
+
+                        @Override
+                        public void DataIsInserted() {
+
+                        }
+
+                        @Override
+                        public void DataIsUpdated() {
+
+                        }
+
+                        @Override
+                        public void DataIsDeleted() {
+
+                        }
+                    });
+                }
+            });
+            imgCong.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    Mon mon = new Mon();
+                    String sl = tvSoLuong.getText().toString();
+                    int soLuong = Integer.parseInt(sl);
+                    soLuong++;
+                    mon.setTenMon(tvTenMon.getText().toString());
+                    mon.setLoai(Integer.parseInt(tvLoai.getText().toString()));
+                    mon.setGia(Integer.parseInt(tvGiaMon.getText().toString()));
+                    mon.setSoLuong(soLuong);
+                    mon.setLoaiMon(tvLoaiMon.getText().toString());
+                    String sluong = String.valueOf(soLuong);
+                    tvSoLuong.setText(sluong);
+                    new NguyenLieuFireBaseDatabaseHelper().SuaMon(key, mon, new NguyenLieuFireBaseDatabaseHelper.NguyenLieuDataStatuts() {
+                        @Override
+                        public void DataIsLoaded(List<Mon> mons, List<String> keys) {
+
+                        }
+
+                        @Override
+                        public void DataIsInserted() {
+
+                        }
+
+                        @Override
+                        public void DataIsUpdated() {
+
+                        }
+
+                        @Override
+                        public void DataIsDeleted() {
+
+                        }
+                    });
+
+
+                }
+            });
         }
 
         public void bind(Mon mon, String key) {
             tvTenMon.setText(mon.getTenMon());
             tvLoaiMon.setText(mon.getLoaiMon());
             tvSoLuong.setText(mon.getSoLuong().toString());
+            tvGiaMon.setText(mon.getGia().toString());
+            tvLoai.setText(mon.getLoai().toString());
             if (mon.getLoaiMon().equals("Sinh tố")) {
                 imgItem.setImageResource(R.drawable.img_sinh_to);
             } else if (mon.getLoaiMon().equals("Nước uống")) {

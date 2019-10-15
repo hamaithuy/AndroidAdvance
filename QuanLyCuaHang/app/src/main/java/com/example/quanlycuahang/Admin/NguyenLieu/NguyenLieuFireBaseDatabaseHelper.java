@@ -3,6 +3,7 @@ package com.example.quanlycuahang.Admin.NguyenLieu;
 import androidx.annotation.NonNull;
 
 import com.example.quanlycuahang.Admin.Mon.Mon;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -49,6 +50,14 @@ public class NguyenLieuFireBaseDatabaseHelper {
             @Override
             public void onCancelled(@NonNull DatabaseError databaseError) {
 
+            }
+        });
+    }
+    public void SuaMon(String key, Mon mon, final NguyenLieuDataStatuts nguyenLieuDataStatuts) {
+        reference.child(key).setValue(mon).addOnSuccessListener(new OnSuccessListener<Void>() {
+            @Override
+            public void onSuccess(Void aVoid) {
+                nguyenLieuDataStatuts.DataIsUpdated();
             }
         });
     }
