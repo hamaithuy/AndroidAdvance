@@ -31,7 +31,7 @@ public class HomeFragment extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_home,container,false);
         try {
-            ArrayList<Room> listRoom= Room.makeListRoom();
+            ArrayList<Room> listRoom= new ArrayList<Room>();
             GridAdapter roomAdapter = new GridAdapter(getActivity(),listRoom);
 
             // Phòng mới

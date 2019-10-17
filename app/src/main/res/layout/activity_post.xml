@@ -108,7 +108,7 @@
                             app:layout_constraintTop_toTopOf="parent" />
 
                     <RadioGroup
-                            android:id="@+id/rg_Loaitin"
+                            android:id="@+id/rg_kindPost"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_marginLeft="15dp"
@@ -149,10 +149,10 @@
                             android:textSize="18sp"
                             android:textStyle="bold"
                             app:layout_constraintLeft_toLeftOf="parent"
-                            app:layout_constraintTop_toBottomOf="@id/rg_Loaitin" />
+                            app:layout_constraintTop_toBottomOf="@id/rg_kindPost" />
 
                     <RadioGroup
-                            android:id="@+id/rg_Loaiphong"
+                            android:id="@+id/rg_kindRoom"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_marginLeft="15dp"
@@ -206,13 +206,13 @@
                             android:textSize="18sp"
                             android:textStyle="bold"
                             app:layout_constraintLeft_toLeftOf="parent"
-                            app:layout_constraintTop_toBottomOf="@id/rg_Loaiphong" />
+                            app:layout_constraintTop_toBottomOf="@id/rg_kindRoom" />
 
 
-                    <TextView
-                            android:id="@+id/tv_diaChi"
+                    <EditText
+                            android:id="@+id/et_address"
                             android:layout_width="match_parent"
-                            android:layout_height="30dp"
+                            android:layout_height="wrap_content"
                             android:layout_marginLeft="15dp"
                             android:layout_marginTop="15dp"
                             android:layout_marginRight="15dp"
@@ -235,7 +235,7 @@
                             android:textSize="18sp"
                             android:textStyle="bold"
                             app:layout_constraintLeft_toLeftOf="parent"
-                            app:layout_constraintTop_toBottomOf="@id/tv_diaChi" />
+                            app:layout_constraintTop_toBottomOf="@id/et_address" />
 
                     <TextView
                             android:id="@+id/tv_dienTich"
@@ -248,7 +248,7 @@
                             android:textSize="18sp"
                             android:textStyle="bold"
                             app:layout_constraintRight_toRightOf="parent"
-                            app:layout_constraintTop_toBottomOf="@id/tv_diaChi" />
+                            app:layout_constraintTop_toBottomOf="@id/et_address" />
 
                     <LinearLayout
                             android:id="@+id/ln_gia_dt"
@@ -262,7 +262,7 @@
                             app:layout_constraintTop_toBottomOf="@id/tv_giaphong">
 
                         <EditText
-                                android:id="@+id/et_giaPhong"
+                                android:id="@+id/et_price"
                                 android:layout_width="0dp"
                                 android:layout_height="wrap_content"
                                 android:layout_marginRight="15dp"
@@ -270,7 +270,7 @@
                                 android:hint="3000000"></EditText>
 
                         <EditText
-                                android:id="@+id/et_dienTich"
+                                android:id="@+id/et_acreage"
                                 android:layout_width="0dp"
                                 android:layout_height="wrap_content"
                                 android:layout_marginLeft="15dp"
@@ -396,7 +396,7 @@
                             app:layout_constraintTop_toBottomOf="@id/ln_tienich2" />
 
                     <EditText
-                            android:id="@+id/et_tieuDe"
+                            android:id="@+id/et_title"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_marginLeft="15dp"
@@ -417,10 +417,10 @@
                             android:textSize="18sp"
                             android:textStyle="bold"
                             app:layout_constraintLeft_toLeftOf="parent"
-                            app:layout_constraintTop_toBottomOf="@id/et_tieuDe" />
+                            app:layout_constraintTop_toBottomOf="@id/et_title" />
 
                     <EditText
-                            android:id="@+id/et_lienHe"
+                            android:id="@+id/et_boss"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_marginLeft="15dp"
@@ -441,10 +441,10 @@
                             android:textSize="18sp"
                             android:textStyle="bold"
                             app:layout_constraintLeft_toLeftOf="parent"
-                            app:layout_constraintTop_toBottomOf="@id/et_lienHe" />
+                            app:layout_constraintTop_toBottomOf="@id/et_boss" />
 
                     <EditText
-                            android:id="@+id/et_soDT"
+                            android:id="@+id/et_phone"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_marginLeft="15dp"
@@ -466,10 +466,10 @@
                             android:textSize="18sp"
                             android:textStyle="bold"
                             app:layout_constraintLeft_toLeftOf="parent"
-                            app:layout_constraintTop_toBottomOf="@id/et_soDT" />
+                            app:layout_constraintTop_toBottomOf="@id/et_phone" />
 
                     <EditText
-                            android:id="@+id/et_moTa"
+                            android:id="@+id/et_description"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_marginLeft="15dp"
@@ -492,7 +492,7 @@
                             android:textColor="#FFFFFF"
                             android:textSize="18sp"
                             app:layout_constraintLeft_toLeftOf="parent"
-                            app:layout_constraintTop_toBottomOf="@id/et_moTa"></Button>
+                            app:layout_constraintTop_toBottomOf="@id/et_description"></Button>
 
                     <androidx.constraintlayout.widget.ConstraintLayout
                             android:id="@+id/ct_img"

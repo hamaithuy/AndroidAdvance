@@ -40,8 +40,8 @@ public class GridAdapter extends ArrayAdapter<Room> {
 
         ivRoomAvatar.setImageResource(value.get(position).image);
         tvAddress.setText(value.get(position).address);
-        tvPrice.setText(Float.toString(value.get(position).price));
-        tvAcreage.setText(value.get(position).acreage);
+        tvPrice.setText(Double.toString(value.get(position).price));
+        tvAcreage.setText(Float.toString(value.get(position).acreage));
 
         return gridItemView;
     }

@@ -4,10 +4,10 @@ import java.util.Date;
 public class Room {
     public int image;
     public String title;
-    public float price;
+    public double price;
     public String address;
     public String phoneNumber;
-    public String acreage;
+    public float acreage;
     public Date timePost;
     public String description;
 
@@ -25,8 +25,8 @@ public class Room {
     public String boss;  // Chủ nhà
 
 
-    public Room(int image, String title, float price, String address, String phoneNumber,
-                String acreage, Date timePost, String description,
+    public Room(int image, String title, double price, String address, String phoneNumber,
+                float acreage, Date timePost, String description,
                 Boolean wifi, Boolean ownWc, Boolean keepCar, Boolean freedom, Boolean kitchen,
                 Boolean airMachine, Boolean fridge, Boolean washMachine) {
 
@@ -54,28 +54,7 @@ public class Room {
     public Room() {
     }
 
-    public static ArrayList<Room> makeListRoom(){
-        ArrayList<Room> listRoom = new ArrayList<Room>();
-        Date dt = new Date();
-        Room room1 = new Room(R.drawable.phongtro,"Còn nhiều phòng trọ cho thuê ở Định Công",3000000,"Ngõ 245 Phố Định Công",
-                "0364968346 - anh Sơn","30 m2", dt,"Có nhiều phong cho thuê, mại zô",
-                true,true,true,true,true,true,true,true);
-        Room room2 = new Room(R.drawable.phongtro2,"Còn nhiều phòng trọ cho thuê ở Định Công",3000000,"Ngõ 245 Phố Định Công",
-                "0364968346 - anh Sơn","30 m2", dt,"Có nhiều phong cho thuê, mại zô",
-                true,true,true,true,true,true,true,true);
-        Room room3 = new Room(R.drawable.phongtro,"Còn nhiều phòng trọ cho thuê ở Định Công",3000000,"Ngõ 245 Phố Định Công",
-                "0364968346 - anh Sơn","30 m2", dt,"Có nhiều phong cho thuê, mại zô",
-                true,true,true,true,true,true,true,true);
-        Room room4 = new Room(R.drawable.phongtro2,"Còn nhiều phòng trọ cho thuê ở Định Công",3000000,"Ngõ 245 Phố Định Công",
-                "0364968346 - anh Sơn","30 m2", dt,"Có nhiều phong cho thuê, mại zô",
-                true,true,true,true,true,true,true,true);
 
-        listRoom.add(room1);
-        listRoom.add(room2);
-        listRoom.add(room3);
-        listRoom.add(room4);
-        return listRoom;
-    }
 
     public int getImage() {
         return image;
@@ -93,11 +72,11 @@ public class Room {
         this.title = title;
     }
 
-    public float getPrice() {
+    public double getPrice() {
         return price;
     }
 
-    public void setPrice(float price) {
+    public void setPrice(double price) {
         this.price = price;
     }
 
@@ -117,11 +96,11 @@ public class Room {
         this.phoneNumber = phoneNumber;
     }
 
-    public String getAcreage() {
+    public float getAcreage() {
         return acreage;
     }
 
-    public void setAcreage(String acreage) {
+    public void setAcreage(float acreage) {
         this.acreage = acreage;
     }
 

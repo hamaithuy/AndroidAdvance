@@ -14,12 +14,13 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class ListAdapter extends ArrayAdapter<Room> {
     private final Context context;
-    private final ArrayList<Room> value;
+    private final List<Room> value;
 
-    public ListAdapter(@NonNull Context context, ArrayList<Room> value) {
+    public ListAdapter(@NonNull Context context, List<Room> value) {
         super(context, R.layout.grid_item,value);
         this.context = context;
         this.value = value;
@@ -43,10 +44,10 @@ public class ListAdapter extends ArrayAdapter<Room> {
         TextView tvTime = (TextView) listItemView.findViewById(R.id.tv_time);
 
         ivRoomAvatar.setImageResource(value.get(position).image);
-        tvPrice.setText(Float.toString(value.get(position).price));
+        tvPrice.setText(Double.toString(value.get(position).price));
         tvTitle.setText(value.get(position).title);
         tvAddress.setText(value.get(position).address);
-        tvAcreage.setText(value.get(position).acreage);
+        tvAcreage.setText(Float.toString(value.get(position).acreage));
         tvTime.setText(value.get(position).timePost.toString());
         return listItemView;
     }
