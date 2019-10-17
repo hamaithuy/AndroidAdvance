@@ -54,7 +54,7 @@
                     app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
-                    android:id="@+id/textView"
+                    android:id="@+id/tv_price"
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
                     android:gravity="center"
@@ -91,7 +91,8 @@
 
                 <androidx.constraintlayout.widget.ConstraintLayout
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content">
+                        android:layout_height="wrap_content"
+                        android:paddingBottom="50dp">
 
                     <TextView
                             android:id="@+id/tv_Loaitin"
@@ -209,9 +210,9 @@
 
 
                     <TextView
+                            android:id="@+id/tv_diaChi"
                             android:layout_width="match_parent"
                             android:layout_height="30dp"
-                            android:id="@+id/tv_diaChi"
                             android:layout_marginLeft="15dp"
                             android:layout_marginTop="15dp"
                             android:layout_marginRight="15dp"
@@ -222,24 +223,26 @@
                             app:layout_constraintLeft_toLeftOf="parent"
                             app:layout_constraintRight_toRightOf="parent"
                             app:layout_constraintTop_toBottomOf="@id/tv1" />
+
                     <TextView
-                        android:id="@+id/tv_giaphong"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="15dp"
-                        android:layout_marginTop="15dp"
-                        android:text="Giá phòng (VND)"
-                        android:textColor="@color/colorPrimaryDark"
-                        android:textSize="18sp"
-                        android:textStyle="bold"
-                        app:layout_constraintLeft_toLeftOf="parent"
-                        app:layout_constraintTop_toBottomOf="@id/tv_diaChi" />
+                            android:id="@+id/tv_giaphong"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="15dp"
+                            android:layout_marginTop="15dp"
+                            android:text="Giá phòng (VND)"
+                            android:textColor="@color/colorPrimaryDark"
+                            android:textSize="18sp"
+                            android:textStyle="bold"
+                            app:layout_constraintLeft_toLeftOf="parent"
+                            app:layout_constraintTop_toBottomOf="@id/tv_diaChi" />
+
                     <TextView
                             android:id="@+id/tv_dienTich"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_marginRight="15dp"
                             android:layout_marginTop="15dp"
+                            android:layout_marginRight="15dp"
                             android:text="Diện tích (m2)"
                             android:textColor="@color/colorPrimaryDark"
                             android:textSize="18sp"
@@ -251,28 +254,30 @@
                             android:id="@+id/ln_gia_dt"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                        android:orientation="horizontal"
-                        app:layout_constraintTop_toBottomOf="@id/tv_giaphong"
-                        app:layout_constraintLeft_toLeftOf="parent"
-                            app:layout_constraintRight_toRightOf="parent"
                             android:layout_marginLeft="15dp"
                             android:layout_marginRight="15dp"
-                        >
+                            android:orientation="horizontal"
+                            app:layout_constraintLeft_toLeftOf="parent"
+                            app:layout_constraintRight_toRightOf="parent"
+                            app:layout_constraintTop_toBottomOf="@id/tv_giaphong">
+
                         <EditText
                                 android:id="@+id/et_giaPhong"
                                 android:layout_width="0dp"
                                 android:layout_height="wrap_content"
-                            android:layout_weight="1"
-                                android:hint="3000000"
-                                android:layout_marginRight="15dp"></EditText>
+                                android:layout_marginRight="15dp"
+                                android:layout_weight="1"
+                                android:hint="3000000"></EditText>
+
                         <EditText
                                 android:id="@+id/et_dienTich"
                                 android:layout_width="0dp"
                                 android:layout_height="wrap_content"
+                                android:layout_marginLeft="15dp"
                                 android:layout_weight="1"
-                                android:hint="20"
-                                android:layout_marginLeft="15dp"></EditText>
+                                android:hint="20"></EditText>
                     </LinearLayout>
+
                     <TextView
                             android:id="@+id/tv_tienIch"
                             android:layout_width="wrap_content"
@@ -285,87 +290,98 @@
                             android:textStyle="bold"
                             app:layout_constraintLeft_toLeftOf="parent"
                             app:layout_constraintTop_toBottomOf="@id/ln_gia_dt" />
+
                     <LinearLayout
                             android:id="@+id/ln_tienich1"
-                            android:orientation="horizontal"
                             android:layout_width="match_parent"
                             android:layout_height="50dp"
-                            app:layout_constraintTop_toBottomOf="@id/tv_tienIch"
-                            app:layout_constraintLeft_toLeftOf="parent"
-                            app:layout_constraintRight_toRightOf="parent"
+                            android:layout_marginLeft="15dp"
                             android:layout_marginRight="15dp"
                             android:gravity="center"
-                            android:layout_marginLeft="15dp">
+                            android:orientation="horizontal"
+                            app:layout_constraintLeft_toLeftOf="parent"
+                            app:layout_constraintRight_toRightOf="parent"
+                            app:layout_constraintTop_toBottomOf="@id/tv_tienIch">
+
                         <CheckBox
-                                android:id="@+id/rb_wifi"
+                                android:id="@+id/cb_wifi"
                                 android:layout_width="0dp"
                                 android:layout_height="wrap_content"
                                 android:layout_weight="1"
                                 android:text="Wifi"
                                 android:textSize="16sp" />
+
                         <CheckBox
-                                android:id="@+id/rb_ownWC"
+                                android:id="@+id/cb_ownWC"
                                 android:layout_width="0dp"
                                 android:layout_height="wrap_content"
                                 android:layout_weight="1"
                                 android:text="WC riêng"
                                 android:textSize="16sp" />
+
                         <CheckBox
-                                android:id="@+id/rb_keepCar"
+                                android:id="@+id/cb_keepCar"
                                 android:layout_width="0dp"
-                                android:layout_weight="1"
                                 android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:checked="false"
                                 android:text="Giữ xe"
                                 android:textSize="16sp" />
+
                         <CheckBox
-                                android:id="@+id/rb_free"
+                                android:id="@+id/cb_free"
                                 android:layout_width="0dp"
-                                android:layout_weight="1"
                                 android:layout_height="wrap_content"
+                                android:layout_weight="1"
                                 android:text="Tự do"
                                 android:textSize="16sp" />
                     </LinearLayout>
+
                     <LinearLayout
                             android:id="@+id/ln_tienich2"
-                            android:orientation="horizontal"
                             android:layout_width="match_parent"
                             android:layout_height="50dp"
-                            app:layout_constraintTop_toBottomOf="@id/ln_tienich1"
-                            app:layout_constraintLeft_toLeftOf="parent"
-                            app:layout_constraintRight_toRightOf="parent"
+                            android:layout_marginLeft="15dp"
                             android:layout_marginRight="15dp"
                             android:gravity="center"
-                            android:layout_marginLeft="15dp">
+                            android:orientation="horizontal"
+                            app:layout_constraintLeft_toLeftOf="parent"
+                            app:layout_constraintRight_toRightOf="parent"
+                            app:layout_constraintTop_toBottomOf="@id/ln_tienich1">
 
                         <CheckBox
-                                android:id="@+id/rb_kitchen"
+                                android:id="@+id/cb_kitchen"
                                 android:layout_width="0dp"
-                                android:layout_weight="1"
                                 android:layout_height="wrap_content"
+                                android:layout_weight="1"
                                 android:text="Bếp"
                                 android:textSize="16sp" />
+
                         <CheckBox
-                                android:id="@+id/rb_airMachine"
+                                android:id="@+id/cb_airMachine"
                                 android:layout_width="0dp"
-                                android:layout_weight="1"
                                 android:layout_height="wrap_content"
+                                android:layout_weight="1"
                                 android:text="Điều hòa"
                                 android:textSize="16sp" />
+
                         <CheckBox
-                                android:id="@+id/rb_fridge"
+                                android:id="@+id/cb_fridge"
                                 android:layout_width="0dp"
-                                android:layout_weight="1"
                                 android:layout_height="wrap_content"
+                                android:layout_weight="1"
                                 android:text="Tử lạnh"
                                 android:textSize="16sp" />
+
                         <CheckBox
-                                android:id="@+id/rb_washMachine"
+                                android:id="@+id/cb_washMachine"
                                 android:layout_width="0dp"
-                                android:layout_weight="1"
                                 android:layout_height="wrap_content"
+                                android:layout_weight="1"
                                 android:text="Máy giặt"
                                 android:textSize="16sp" />
                     </LinearLayout>
+
                     <TextView
                             android:id="@+id/tv_tieude"
                             android:layout_width="wrap_content"
@@ -378,17 +394,18 @@
                             android:textStyle="bold"
                             app:layout_constraintLeft_toLeftOf="parent"
                             app:layout_constraintTop_toBottomOf="@id/ln_tienich2" />
+
                     <EditText
                             android:id="@+id/et_tieuDe"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:hint="Nhập tiêu đề bài đăng"
+                            android:layout_marginLeft="15dp"
                             android:layout_marginRight="15dp"
-                            app:layout_constraintTop_toBottomOf="@id/tv_tieude"
+                            android:hint="Nhập tiêu đề bài đăng"
                             app:layout_constraintLeft_toLeftOf="parent"
                             app:layout_constraintRight_toRightOf="parent"
-                            android:layout_marginLeft="15dp"
-                            ></EditText>
+                            app:layout_constraintTop_toBottomOf="@id/tv_tieude"></EditText>
+
                     <TextView
                             android:id="@+id/tv_lienHe"
                             android:layout_width="wrap_content"
@@ -401,17 +418,18 @@
                             android:textStyle="bold"
                             app:layout_constraintLeft_toLeftOf="parent"
                             app:layout_constraintTop_toBottomOf="@id/et_tieuDe" />
+
                     <EditText
                             android:id="@+id/et_lienHe"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:hint="Tên chủ nhà"
+                            android:layout_marginLeft="15dp"
                             android:layout_marginRight="15dp"
-                            app:layout_constraintTop_toBottomOf="@id/tv_lienHe"
+                            android:hint="Tên chủ nhà"
                             app:layout_constraintLeft_toLeftOf="parent"
                             app:layout_constraintRight_toRightOf="parent"
-                            android:layout_marginLeft="15dp"
-                            ></EditText>
+                            app:layout_constraintTop_toBottomOf="@id/tv_lienHe"></EditText>
+
                     <TextView
                             android:id="@+id/tv_sdt"
                             android:layout_width="wrap_content"
@@ -424,18 +442,19 @@
                             android:textStyle="bold"
                             app:layout_constraintLeft_toLeftOf="parent"
                             app:layout_constraintTop_toBottomOf="@id/et_lienHe" />
+
                     <EditText
                             android:id="@+id/et_soDT"
-                            android:inputType="number"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:hint="Nhập số điện thoại của bạn"
+                            android:layout_marginLeft="15dp"
                             android:layout_marginRight="15dp"
-                            app:layout_constraintTop_toBottomOf="@id/tv_sdt"
+                            android:hint="Nhập số điện thoại của bạn"
+                            android:inputType="number"
                             app:layout_constraintLeft_toLeftOf="parent"
                             app:layout_constraintRight_toRightOf="parent"
-                            android:layout_marginLeft="15dp"
-                            ></EditText>
+                            app:layout_constraintTop_toBottomOf="@id/tv_sdt"></EditText>
+
                     <TextView
                             android:id="@+id/tv_mieuTa"
                             android:layout_width="wrap_content"
@@ -447,23 +466,138 @@
                             android:textSize="18sp"
                             android:textStyle="bold"
                             app:layout_constraintLeft_toLeftOf="parent"
-                            app:layout_constraintTop_toBottomOf="@id/et_soDT"/>
+                            app:layout_constraintTop_toBottomOf="@id/et_soDT" />
 
                     <EditText
                             android:id="@+id/et_moTa"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:ems="10"
                             android:layout_marginLeft="15dp"
                             android:layout_marginRight="15dp"
+                            android:ems="10"
                             android:gravity="start|top"
                             android:inputType="textMultiLine"
-                            app:layout_constraintTop_toBottomOf="@id/tv_mieuTa"
                             app:layout_constraintLeft_toLeftOf="parent"
-                            app:layout_constraintRight_toRightOf="parent"/>
+                            app:layout_constraintRight_toRightOf="parent"
+                            app:layout_constraintTop_toBottomOf="@id/tv_mieuTa" />
+
+                    <Button
+                            android:id="@+id/btn_upImg"
+                            android:layout_width="150dp"
+                            android:layout_height="50dp"
+                            android:layout_marginLeft="15dp"
+                            android:layout_marginTop="15dp"
+                            android:background="@color/colorPrimaryDark"
+                            android:text="Đăng ảnh"
+                            android:textColor="#FFFFFF"
+                            android:textSize="18sp"
+                            app:layout_constraintLeft_toLeftOf="parent"
+                            app:layout_constraintTop_toBottomOf="@id/et_moTa"></Button>
+
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                            android:id="@+id/ct_img"
+                            android:layout_width="400dp"
+                            android:layout_height="400dp"
+                            android:layout_marginTop="15dp"
+                            android:padding="5dp"
+                            app:layout_constraintLeft_toLeftOf="parent"
+                            app:layout_constraintRight_toRightOf="parent"
+                            app:layout_constraintTop_toBottomOf="@id/btn_upImg">
+
+                        <View
+                                android:id="@+id/view6"
+                                android:layout_width="1dp"
+                                android:layout_height="match_parent"
+                                android:background="@color/text"
+                                app:layout_constraintLeft_toRightOf="@id/img1">
+
+                        </View>
+
+                        <View
+                                android:id="@+id/view5"
+                                android:layout_width="match_parent"
+                                android:layout_height="1dp"
+                                android:background="@color/text"
+                                app:layout_constraintTop_toBottomOf="@id/img1">
+
+                        </View>
+
+                        <View
+                                android:id="@+id/view4"
+                                android:layout_width="1dp"
+                                android:layout_height="match_parent"
+                                android:background="@color/text"
+                                app:layout_constraintLeft_toLeftOf="parent">
+
+                        </View>
+
+                        <View
+                                android:id="@+id/view3"
+                                android:layout_width="match_parent"
+                                android:layout_height="1dp"
+                                android:background="@color/text"
+                                app:layout_constraintBottom_toBottomOf="parent">
+
+                        </View>
+
+                        <View
+                                android:id="@+id/view2"
+                                android:layout_width="1dp"
+                                android:layout_height="match_parent"
+                                android:background="@color/text"
+                                app:layout_constraintRight_toRightOf="parent">
+
+                        </View>
+
+                        <View
+                                android:id="@+id/view1"
+                                android:layout_width="match_parent"
+                                android:layout_height="1dp"
+                                android:background="@color/text"
+                                app:layout_constraintTop_toTopOf="parent">
+
+                        </View>
+
+                        <ImageView
+                                android:id="@+id/img1"
+                                android:layout_width="0dp"
+                                android:layout_height="200dp"
+                                android:padding="10dp"
+                                app:layout_constraintLeft_toLeftOf="parent"
+                                app:layout_constraintTop_toTopOf="parent"
+                                app:layout_constraintWidth_percent="0.5"></ImageView>
+
+                        <ImageView
+                                android:id="@+id/img2"
+                                android:layout_width="0dp"
+                                android:layout_height="200dp"
+                                android:padding="10dp"
+                                app:layout_constraintLeft_toRightOf="@id/img1"
+                                app:layout_constraintTop_toTopOf="parent"
+                                app:layout_constraintWidth_percent="0.5"></ImageView>
+
+                        <ImageView
+                                android:id="@+id/img3"
+                                android:layout_width="0dp"
+                                android:layout_height="200dp"
+                                android:padding="10dp"
+                                app:layout_constraintLeft_toLeftOf="parent"
+                                app:layout_constraintTop_toBottomOf="@id/img1"
+                                app:layout_constraintWidth_percent="0.5"></ImageView>
+
+                        <ImageView
+                                android:id="@+id/img4"
+                                android:layout_width="0dp"
+                                android:layout_height="200dp"
+                                android:padding="10dp"
+                                app:layout_constraintLeft_toRightOf="@id/img3"
+                                app:layout_constraintTop_toBottomOf="@id/img2"
+                                app:layout_constraintWidth_percent="0.5"></ImageView>
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+
 
                 </androidx.constraintlayout.widget.ConstraintLayout>
-    </LinearLayout>
+            </LinearLayout>
         </ScrollView>
 
 

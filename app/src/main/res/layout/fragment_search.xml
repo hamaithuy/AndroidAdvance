@@ -22,7 +22,7 @@
                 android:layout_height="56dp">
 
             <SearchView
-                    android:id="@+id/search_Room"
+                    android:id="@+id/tv_searchRoom"
                     android:layout_width="match_parent"
                     android:layout_height="45dp"
                     android:iconifiedByDefault="false"
@@ -36,10 +36,33 @@
 
     </androidx.appcompat.widget.Toolbar>
 
-    <FrameLayout
 
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_weight="1"/>
+            <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+                <com.google.android.material.floatingactionbutton.FloatingActionButton
+                        android:id="@+id/floatingActionButton"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="@color/colorPrimaryDark"
+                        android:clickable="true"
+                        android:layout_marginRight="20dp"
+                        android:layout_marginBottom="20dp"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintRight_toRightOf="parent"
+                        android:baselineAlignBottom="true"
+                        app:srcCompat="@drawable/ic_more" />
+                <ListView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintLeft_toLeftOf="parent"></ListView>
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+
+
+
+
 
 </LinearLayout>

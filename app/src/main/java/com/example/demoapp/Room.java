@@ -20,6 +20,9 @@ public class Room {
     public Boolean fridge;
     public Boolean washMachine;
 
+    public int kindPost; // 1-Cho thuê , 2- Ở ghép
+    public int kindRoom; // 1-Phòng, 2- Căn hộ, 3- Căn hộ mini, 4- Nguyên căn
+    public String boss;  // Chủ nhà
 
 
     public Room(int image, String title, float price, String address, String phoneNumber,
@@ -44,8 +47,12 @@ public class Room {
                 this.airMachine = airMachine;
                 this.fridge = fridge;
                 this.washMachine = washMachine;
+
+
     }
 
+    public Room() {
+    }
 
     public static ArrayList<Room> makeListRoom(){
         ArrayList<Room> listRoom = new ArrayList<Room>();
@@ -70,4 +77,155 @@ public class Room {
         return listRoom;
     }
 
+    public int getImage() {
+        return image;
+    }
+
+    public void setImage(int image) {
+        this.image = image;
+    }
+
+    public String getTitle() {
+        return title;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
+    }
+
+    public float getPrice() {
+        return price;
+    }
+
+    public void setPrice(float price) {
+        this.price = price;
+    }
+
+    public String getAddress() {
+        return address;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
+    }
+
+    public String getPhoneNumber() {
+        return phoneNumber;
+    }
+
+    public void setPhoneNumber(String phoneNumber) {
+        this.phoneNumber = phoneNumber;
+    }
+
+    public String getAcreage() {
+        return acreage;
+    }
+
+    public void setAcreage(String acreage) {
+        this.acreage = acreage;
+    }
+
+    public Date getTimePost() {
+        return timePost;
+    }
+
+    public void setTimePost(Date timePost) {
+        this.timePost = timePost;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public Boolean getWifi() {
+        return wifi;
+    }
+
+    public void setWifi(Boolean wifi) {
+        this.wifi = wifi;
+    }
+
+    public Boolean getOwnWc() {
+        return ownWc;
+    }
+
+    public void setOwnWc(Boolean ownWc) {
+        this.ownWc = ownWc;
+    }
+
+    public Boolean getKeepCar() {
+        return keepCar;
+    }
+
+    public void setKeepCar(Boolean keepCar) {
+        this.keepCar = keepCar;
+    }
+
+    public Boolean getFreedom() {
+        return freedom;
+    }
+
+    public void setFreedom(Boolean freedom) {
+        this.freedom = freedom;
+    }
+
+    public Boolean getKitchen() {
+        return kitchen;
+    }
+
+    public void setKitchen(Boolean kitchen) {
+        this.kitchen = kitchen;
+    }
+
+    public Boolean getAirMachine() {
+        return airMachine;
+    }
+
+    public void setAirMachine(Boolean airMachine) {
+        this.airMachine = airMachine;
+    }
+
+    public Boolean getFridge() {
+        return fridge;
+    }
+
+    public void setFridge(Boolean fridge) {
+        this.fridge = fridge;
+    }
+
+    public Boolean getWashMachine() {
+        return washMachine;
+    }
+
+    public void setWashMachine(Boolean washMachine) {
+        this.washMachine = washMachine;
+    }
+
+    public int getKindPost() {
+        return kindPost;
+    }
+
+    public void setKindPost(int kindPost) {
+        this.kindPost = kindPost;
+    }
+
+    public int getKindRoom() {
+        return kindRoom;
+    }
+
+    public void setKindRoom(int kindRoom) {
+        this.kindRoom = kindRoom;
+    }
+
+    public String getBoss() {
+        return boss;
+    }
+
+    public void setBoss(String boss) {
+        this.boss = boss;
+    }
 }

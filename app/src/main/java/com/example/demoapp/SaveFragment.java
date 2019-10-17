@@ -1,9 +1,11 @@
 package com.example.demoapp;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.GridView;
 import android.widget.ListView;
 
@@ -29,6 +31,13 @@ public class SaveFragment extends Fragment {
             // Danh sách phòng đã lưu
             listSaveRoom = (ListView) view.findViewById(R.id.ls_saveRoom);
             listSaveRoom.setAdapter(listAdapter);
+            listSaveRoom.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                @Override
+                public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                    Intent intent = new Intent(getActivity(),com.example.demoapp.DetailActivity.class);
+                    startActivity(intent);
+                }
+            });
         }catch (Exception ex){
             String error = ex.getMessage();
         }
