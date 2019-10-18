@@ -2,6 +2,7 @@ package com.example.quanlycuahang.Admin.TaiKhoan;
 
 import androidx.annotation.NonNull;
 
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -48,6 +49,33 @@ public class TaiKhoanFireBaseDataBase {
             @Override
             public void onCancelled(@NonNull DatabaseError databaseError) {
 
+            }
+        });
+    }
+
+    public void ThemTaiKhoan(TaiKhoan taiKhoan, final TaiKhoanDataStatuts taiKhoanDataStatuts) {
+        String key = reference.push().getKey();
+        reference.child(key).setValue(taiKhoan).addOnSuccessListener(new OnSuccessListener<Void>() {
+            @Override
+            public void onSuccess(Void aVoid) {
+                taiKhoanDataStatuts.DataIsInserted();
+            }
+        });
+    }
+
+    public void SuaTaiKhoan(String key, TaiKhoan taiKhoan, final TaiKhoanDataStatuts taiKhoanDataStatuts) {
+        reference.child(key).setValue(taiKhoan).addOnSuccessListener(new OnSuccessListener<Void>() {
+            @Override
+            public void onSuccess(Void aVoid) {
+                taiKhoanDataStatuts.DataIsUpdated();
+            }
+        });
+    }
+    public void XoaTaiKhoan(String key, final TaiKhoanDataStatuts taiKhoanDataStatuts){
+        reference.child(key).setValue(null).addOnSuccessListener(new OnSuccessListener<Void>() {
+            @Override
+            public void onSuccess(Void aVoid) {
+                taiKhoanDataStatuts.DataIsDeleted();
             }
         });
     }

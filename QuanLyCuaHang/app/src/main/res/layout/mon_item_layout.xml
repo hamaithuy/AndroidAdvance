@@ -14,8 +14,7 @@
         android:layout_height="75dp"
         android:layout_gravity="center_vertical"
         android:layout_marginLeft="10dp"
-        android:scaleType="centerInside"
-       ></ImageView>
+        android:scaleType="centerInside"></ImageView>
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -53,10 +52,10 @@
         </LinearLayout>
 
         <LinearLayout
-            android:orientation="vertical"
             android:layout_width="0dp"
             android:layout_height="match_parent"
-            android:layout_weight="2">
+            android:layout_weight="2"
+            android:orientation="vertical">
 
 
             <TextView
@@ -67,6 +66,7 @@
                 android:text="TextView"
                 android:textColor="@color/colorRed"
                 android:textSize="20dp" />
+
             <TextView
                 android:id="@+id/tv_gia_mon_hide"
                 android:layout_width="wrap_content"
@@ -75,6 +75,37 @@
                 android:text="TextView"
                 android:textColor="@color/colorRed"
                 android:textSize="20dp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:gravity="center_horizontal"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:layout_weight="3">
+
+            <ImageButton
+                android:id="@+id/img_chinh_sua_mon"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_marginLeft="10dp"
+                android:background="@color/colorWhite"
+                android:scaleType="centerInside"
+                android:src="@drawable/img_chinh_sua">
+
+            </ImageButton>
+
+            <ImageButton
+                android:id="@+id/img_xoa_mon"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_marginHorizontal="20dp"
+                android:background="@color/colorWhite"
+                android:scaleType="centerInside"
+                android:src="@drawable/img_xoa">
+
+            </ImageButton>
+
         </LinearLayout>
 
     </LinearLayout>

@@ -15,7 +15,7 @@
     </androidx.recyclerview.widget.RecyclerView>
 
     <Button
-        android:id="@+id/btn_activity_them_tai_khoan"
+        android:id="@+id/btn_them_tai_khoan"
         android:layout_width="100dp"
         android:layout_height="100dp"
         android:layout_gravity="right"

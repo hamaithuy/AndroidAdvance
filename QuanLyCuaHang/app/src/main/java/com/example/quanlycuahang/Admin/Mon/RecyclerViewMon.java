@@ -5,8 +5,10 @@ import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -38,7 +40,9 @@ public class RecyclerViewMon {
         private TextView tvGiaHide;
         private TextView tvLoaiMon;
         private ImageView imgItem;
-        // private TextView tvStt;
+        private ImageButton imgChinhSuaMon;
+        private ImageButton imgXoaMon;
+
         private String key;
 
         public MonItemView(ViewGroup parent) {
@@ -47,9 +51,11 @@ public class RecyclerViewMon {
             tvGia = itemView.findViewById(R.id.tv_gia_nguyen_lieu);
             tvLoaiMon = itemView.findViewById(R.id.tv_loai_nguyen_lieu);
             tvGiaHide = itemView.findViewById(R.id.tv_gia_mon_hide);
-            //  tvStt = itemView.findViewById(R.id.tv_stt_mon);
+            imgChinhSuaMon = itemView.findViewById(R.id.img_chinh_sua_mon);
+            imgXoaMon = itemView.findViewById(R.id.img_xoa_mon);
             imgItem = itemView.findViewById(R.id.img_item_nguyen_lieu);
-            itemView.setOnClickListener(new View.OnClickListener() {
+
+            imgChinhSuaMon.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
                     Intent intent = new Intent(context, MonUpdateActivity.class);
@@ -59,6 +65,32 @@ public class RecyclerViewMon {
                     intent.putExtra("LoaiMon", tvLoaiMon.getText().toString());
                     context.startActivity(intent);
 
+                }
+            });
+            imgXoaMon.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    new MonFireBaseDatabaseHelper().XoaMon(key, new MonFireBaseDatabaseHelper.DataStatuts() {
+                        @Override
+                        public void DataIsLoaded(List<Mon> mons, List<String> keys) {
+
+                        }
+
+                        @Override
+                        public void DataIsInserted() {
+
+                        }
+
+                        @Override
+                        public void DataIsUpdated() {
+
+                        }
+
+                        @Override
+                        public void DataIsDeleted() {
+                            Toast.makeText(context, "Xóa thành công", Toast.LENGTH_SHORT).show();
+                        }
+                    });
                 }
             });
 

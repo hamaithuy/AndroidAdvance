@@ -101,7 +101,7 @@ public class MonUpdateActivity extends AppCompatActivity {
     private void init() {
         edtTenMon = findViewById(R.id.edt_update_ten_mon);
         edtGia = findViewById(R.id.edt_update_gia);
-        btnCapNhap = findViewById(R.id.btn_cap_nhap);
+        btnCapNhap = findViewById(R.id.btn_tao_tai_khoan);
         btnXoa = findViewById(R.id.btn_xoa);
         snLoaiMon=findViewById(R.id.sn_update_loai_mon);
         key = getIntent().getStringExtra("key");

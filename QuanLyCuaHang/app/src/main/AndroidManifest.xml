@@ -12,8 +12,14 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
-            android:name=".Admin.Mon.ThemMonActivity"
+            android:name=".Admin.TaiKhoan.TaiKhoanUpdate"
             android:screenOrientation="landscape"></activity>
+        <activity
+            android:name=".Admin.TaiKhoan.ThemTaiKhoan"
+            android:screenOrientation="landscape" />
+        <activity
+            android:name=".Admin.Mon.ThemMonActivity"
+            android:screenOrientation="landscape" />
         <activity
             android:name=".Admin.Mon.MonUpdateActivity"
             android:screenOrientation="landscape" />
