@@ -2,7 +2,6 @@ package com.example.thstore;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.widget.RelativeLayout;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
@@ -13,5 +12,6 @@ public class SplashScreen extends AppCompatActivity {
         super.onCreate(savedInstanceState);
 
         startActivity(new Intent(this,MainActivity.class));
+        
     }
 }
