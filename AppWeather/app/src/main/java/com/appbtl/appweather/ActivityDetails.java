@@ -19,6 +19,7 @@ import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.gson.Gson;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 public class ActivityDetails extends AppCompatActivity {
@@ -64,6 +65,7 @@ public class ActivityDetails extends AppCompatActivity {
     private void control() {
         detaillayout = (LinearLayout) findViewById(R.id.detaillayout);
         recyclerView =(RecyclerView)findViewById(R.id.recView);
+
     }
     public void updateUI(ListDailys listDailys){
         recyclerView.setHasFixedSize(true);

@@ -15,11 +15,13 @@ import com.bumptech.glide.Glide;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
 
 public class ListDailysAdapter extends RecyclerView.Adapter<ListDailysAdapter.recylerHolder> {
     ListDailys listDailys;
     Context context;
+    private HashMap<String, String> Des = new HashMap<String, String>();
     public ListDailysAdapter(ListDailys listDailys, Context context) {
         this.listDailys = listDailys;
         this.context = context;
@@ -44,7 +46,7 @@ public class ListDailysAdapter extends RecyclerView.Adapter<ListDailysAdapter.re
         String Day = simpleDateFormat.format(date);
         holder.tMax.setText(max+"°C");
         holder.tMin.setText(min+"°C");
-        holder.txtTT.setText(listDailys.getList().get(position).getWeather().get(0).getDescription());
+        holder.txtTT.setText(Des.get(listDailys.getList().get(position).getWeather().get(0).getDescription()));
         holder.tdate.setText(Day);
         Glide.with(holder.itemView.getContext()).load("http://openweathermap.org/img/w/"+listDailys.getList().get(position).getWeather().get(0).getIcon()+".png")
                 .into(holder.imgTT);
@@ -65,6 +67,13 @@ public class ListDailysAdapter extends RecyclerView.Adapter<ListDailysAdapter.re
             tMax =(TextView)itemView.findViewById(R.id.tMax);
             tMin = (TextView)itemView.findViewById(R.id.tMin);
             imgTT = (ImageView)itemView.findViewById(R.id.imgTT);
+            Des.put("scattered clouds", "Mây rải rác");
+            Des.put("moderate rain", "Mưa vừa");
+            Des.put("heavy intensity rain", "Mưa lớn");
+            Des.put("broken clouds", "Mây rải rác");
+            Des.put("sky is clear", "Trời quang");
+            Des.put("light rain", "Mưa nhỏ");
+
         }
     }
 }

@@ -1,15 +1,10 @@
 package com.appbtl.appweather;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.constraintlayout.widget.ConstraintLayout;
-
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.drawable.AnimationDrawable;
 import android.location.Location;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -21,16 +16,16 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.appbtl.appweather.model.ListDailys;
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.constraintlayout.widget.ConstraintLayout;
+
 import com.appbtl.appweather.model.OpenWeatherJson;
 import com.google.android.gms.location.LocationServices;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
-import com.google.gson.JsonParser;
-import com.google.gson.JsonSyntaxException;
 
-import org.json.JSONObject;
-
+import java.util.HashMap;
 import java.util.concurrent.ExecutionException;
 
 public class MainActivity extends AppCompatActivity {
@@ -45,6 +40,7 @@ public class MainActivity extends AppCompatActivity {
     private LocationAPI locationAPI;
     private AnimationDrawable animBackgroundRain;
     private String resultDailys;
+    private HashMap<String, String> Des = new HashMap<String, String>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -54,10 +50,12 @@ public class MainActivity extends AppCompatActivity {
         mContext = getApplicationContext();
         setIcon();
 
-
         mainlayout.setOnTouchListener(new OnSwipeTouchListener(MainActivity.this) {
             @Override
             public void onSwipeRight() {
+                if (resultDailys == null) {
+                    resultDailys = "";
+                }
                 intent.putExtra("dailys", resultDailys);
                 startActivity(intent);
                 overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_right);
@@ -127,7 +125,6 @@ public class MainActivity extends AppCompatActivity {
         locationAPI.fusedLocationClient.getLastLocation().addOnSuccessListener(this, new OnSuccessListener<Location>() {
             @Override
             public void onSuccess(Location location) {
-
                 if (location != null) {
                     //làm việc với location ở đây
                     String url = "http://api.openweathermap.org/data/2.5/weather?" + "lat=" + location.getLatitude() + "&lon=" + location.getLongitude() + "&appid=b87ce30a14229dd8e26f167dd2111f06";
@@ -143,6 +140,18 @@ public class MainActivity extends AppCompatActivity {
                         e.printStackTrace();
                     }
                 } else {
+                    String url = "http://api.openweathermap.org/data/2.5/weather?" + "lat=" + 21.028511 + "&lon=" + 105.804817 + "&appid=b87ce30a14229dd8e26f167dd2111f06";
+                    //truyền tham số location để lấy file json
+                    String dailys = "http://api.openweathermap.org/data/2.5/forecast/daily?lat=" + 21.028511 + "&lon=" + 105.804817 + "&units=metric&cnt=7&appid=be8d3e323de722ff78208a7dbb2dcd6f";
+
+                    new GetFileJson().execute(url);
+                    try {
+                        resultDailys = new WeatherDailysAsynctask().execute(dailys).get();
+                    } catch (ExecutionException e) {
+                        e.printStackTrace();
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
                     Toast.makeText(MainActivity.this, "Chưa nhận được vị trí.Vui lòng kiểm tra lại GPS!", Toast.LENGTH_SHORT).show();
                 }
             }
@@ -173,6 +182,12 @@ public class MainActivity extends AppCompatActivity {
         speed = (TextView) findViewById(R.id.speed);
         intent = new Intent(MainActivity.this, ActivityDetails.class);
         intent1 = new Intent(MainActivity.this, ActivityInfo.class);
+        Des.put("scattered clouds", "Mây rải rác");
+        Des.put("moderate rain", "Mưa vừa");
+        Des.put("heavy intensity rain", "Mưa lớn");
+        Des.put("broken clouds", "Mây rải rác");
+        Des.put("sky is clear", "Trời quang");
+        Des.put("light rain", "Mưa nhỏ");
     }
 
     private class GetFileJson extends WeatherAsynctask {
@@ -189,7 +204,9 @@ public class MainActivity extends AppCompatActivity {
             temp.setText(tempmain + "°C");
             tempMax.setText(tempmax + "°C");
             tempMin.setText(tempmin + "°C");
-            mainWeather.setText(result.getWeather().get(0).getDescription());
+            String des = result.getWeather().get(0).getDescription();
+            String status = Des.get(des);
+            mainWeather.setText(status);
             visibility.setText(result.getVisibility() + "m");
             airpress.setText(result.getMain().getPressure() + " hpa");
             humidity.setText(result.getMain().getHumidity() + "%");
