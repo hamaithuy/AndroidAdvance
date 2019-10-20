@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/layout_login"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="160dp"
+        android:text="ĐĂNG NHẬP"
+        android:textAlignment="center"
+        android:textColor="@color/colorText"
+        android:textSize="25dp" />
+
+    <TextView
+        android:id="@+id/lbUsername"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/textView"
+        android:layout_marginBottom="-50dp"
+        android:layout_marginLeft="65dp"
+        android:text="Email đăng nhập"
+        android:textSize="18dp"
+        android:textColor="@color/colorText"/>
+
+    <EditText
+        android:id="@+id/txtUsername"
+        android:layout_width="120pt"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/textView"
+        android:layout_marginLeft="60dp"
+        android:layout_marginBottom="-97dp"
+        android:ems="10"
+        android:text="" />
+
+    <TextView
+        android:id="@+id/lblPassword"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/txtUsername"
+        android:layout_marginBottom="-50dp"
+        android:text="Mật khẩu"
+        android:layout_marginLeft="65dp"
+        android:textSize="18dp"
+        android:textColor="@color/colorText"/>
+
+    <EditText
+        android:id="@+id/txtPassword"
+        android:layout_width="120pt"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/lblPassword"
+        android:layout_marginBottom="-50dp"
+        android:layout_marginLeft="60dp"
+        android:ems="10"
+        android:inputType="textPassword" />
+
+
+    <Button
+        android:id="@+id/btnSignup"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/btnLogin"
+        android:layout_marginLeft="197dp"
+        android:backgroundTint="@color/colorSignUp"
+        android:text="Đăng ký"
+        android:textColor="@color/colorText"/>
+
+    <Button
+        android:id="@+id/btnLogin"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/txtPassword"
+        android:layout_marginLeft="70dp"
+        android:layout_marginBottom="-50dp"
+        android:background="@color/colorAccent"
+        android:text="Đăng nhập"
+        android:textColor="@color/colorLogin" />
+
+</RelativeLayout>

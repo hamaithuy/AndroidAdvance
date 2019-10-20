@@ -4,4 +4,8 @@
     <color name="colorPrimaryDark">#000000</color>
     <color name="colorAccent">#E4FF5722</color>
     <color name="colorSplash">#ffffff</color>
+    <color name="colorActionBar">#ffffff</color>
+    <color name="colorText">#000000</color>
+    <color name="colorLogin">#ffffff</color>
+    <color name="colorSignUp">#ffffff</color>
 </resources>
