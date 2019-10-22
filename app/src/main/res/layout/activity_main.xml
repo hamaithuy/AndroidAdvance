@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/background">
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_centerHorizontal="true"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="25dp"
+            android:fontFamily="@font/seguisb"
+            android:gravity="center_horizontal"
+            android:text="TK Restaurant"
+            android:textColor="@color/colorWhite"
+            android:textSize="55dp">
+
+        </TextView>
+
+        <LinearLayout
+
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="150dp"
+            android:layout_marginTop="50dp"
+            android:background="@drawable/layout_background"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="600dp"
+                android:layout_margin="25dp"
+                android:orientation="vertical">
+
+                <EditText
+                    android:id="@+id/edt_tai_khoan"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="20dp"
+                    android:layout_marginTop="80dp"
+                    android:layout_marginEnd="20dp"
+                    android:background="@drawable/custom_corners"
+                    android:drawableLeft="@drawable/ic_perm_identity_black_24dp"
+                    android:drawablePadding="10dp"
+                    android:fontFamily="@font/segoeui"
+                    android:hint="Tên tài khoản"
+                    android:inputType="text"
+                    android:padding="20dp"
+                    android:textColor="@color/colorBlack"
+                    android:textColorHint="#606060"
+                    android:textSize="20sp" />
+
+                <EditText
+                    android:id="@+id/edt_password"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="20dp"
+                    android:layout_marginTop="20dp"
+                    android:layout_marginEnd="20dp"
+                    android:background="@drawable/custom_corners"
+                    android:drawableLeft="@drawable/ic_lock_outline_black_24dp"
+                    android:drawablePadding="10dp"
+                    android:fontFamily="@font/segoeui"
+                    android:hint="Mật khẩu"
+                    android:inputType="textPassword"
+                    android:padding="20dp"
+                    android:textColor="@color/colorBlack"
+                    android:textColorHint="#606060"
+                    android:textSize="20sp" />
+
+                <CheckBox
+                    android:id="@+id/checkbox"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="20sp"
+                    android:layout_marginTop="40dp"
+                    android:fontFamily="@font/segoeui"
+                    android:paddingLeft="15dp"
+                    android:text="Nhớ tài khoản"
+                    android:textColor="@color/colorXam"
+                    android:textSize="25dp" />
+
+                <ImageButton
+                    android:id="@+id/ib_login"
+                    android:layout_width="95dp"
+                    android:layout_height="95dp"
+                    android:layout_gravity="end"
+                    android:layout_marginTop="110dp"
+                    android:layout_marginEnd="10dp"
+                    android:background="@drawable/button_background"
+                    android:src="@drawable/ic_arrow_forward_black_24dp" />
+
+
+            </LinearLayout>
+
+        </LinearLayout>
+    </LinearLayout>
+</RelativeLayout>
