@@ -5,7 +5,6 @@
     android:background="@drawable/background"
     android:orientation="horizontal"
     android:weightSum="10">
-
     <LinearLayout
         android:layout_width="0dp"
         android:layout_height="match_parent"
@@ -22,15 +21,17 @@
         <ScrollView
             android:layout_width="match_parent"
             android:layout_height="match_parent">
+
             <LinearLayout
-                android:orientation="vertical"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent">
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+
                 <LinearLayout
-                    android:background="@drawable/custom_corners"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_margin="5dp"
+                    android:background="@drawable/custom_corners"
                     android:orientation="horizontal"
                     android:weightSum="10">
 
@@ -43,519 +44,82 @@
                         android:src="@drawable/img_coca"></ImageView>
 
                     <LinearLayout
-                        android:orientation="vertical"
-                        android:layout_margin="10dp"
                         android:layout_width="0dp"
                         android:layout_height="match_parent"
-                        android:layout_weight="6">
+                        android:layout_margin="10dp"
+                        android:layout_weight="6"
+                        android:orientation="vertical">
+
                         <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
                             android:fontFamily="@font/seguisb"
-                            android:textSize="20dp"
-                            android:textColor="@color/colorRed"
                             android:text="Coca cola"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"></TextView>
-                        <TextView
-                            android:layout_marginTop="5dp"
-                            android:textColor="@color/colorBlack"
-                            android:textSize="18dp"
-                            android:fontFamily="@font/segoeui"
-                            android:text="Giá : 11.000 đ"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"></TextView>
-                        <TextView
-                            android:layout_marginTop="5dp"
-                            android:textColor="@color/colorXam"
-                            android:textSize="16dp"
-                            android:fontFamily="@font/segoeui"
-                            android:text="Số lượng còn : 200"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"></TextView>
-                    </LinearLayout>
-                    <ImageButton
-                        android:layout_marginRight="5dp"
-                        android:layout_weight="1"
-                        android:layout_width="0dp"
-                        android:layout_height="55dp"
-                        android:layout_gravity="center"
-                        android:background="@drawable/button_background"
-                        android:src="@drawable/ic_arrow_forward_black_24dp" />
-                </LinearLayout>
-                <LinearLayout
-                    android:background="@drawable/custom_corners"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_margin="5dp"
-                    android:orientation="horizontal"
-                    android:weightSum="10">
-
-                    <ImageView
-                        android:layout_width="0dp"
-                        android:layout_height="100dp"
-                        android:layout_margin="5dp"
-                        android:layout_weight="3"
-                        android:scaleType="centerCrop"
-                        android:src="@drawable/img_coca"></ImageView>
-
-                    <LinearLayout
-                        android:orientation="vertical"
-                        android:layout_margin="10dp"
-                        android:layout_width="0dp"
-                        android:layout_height="match_parent"
-                        android:layout_weight="6">
-                        <TextView
-                            android:fontFamily="@font/seguisb"
-                            android:textSize="20dp"
                             android:textColor="@color/colorRed"
-                            android:text="Coca Fake"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"></TextView>
+                            android:textSize="20dp"></TextView>
+
                         <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
                             android:layout_marginTop="5dp"
-                            android:textColor="@color/colorBlack"
-                            android:textSize="18dp"
                             android:fontFamily="@font/segoeui"
                             android:text="Giá : 11.000 đ"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"></TextView>
+                            android:textColor="@color/colorBlack"
+                            android:textSize="18dp"></TextView>
+
                         <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
                             android:layout_marginTop="5dp"
-                            android:textColor="@color/colorXam"
-                            android:textSize="16dp"
                             android:fontFamily="@font/segoeui"
                             android:text="Số lượng còn : 200"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"></TextView>
+                            android:textColor="@color/colorXam"
+                            android:textSize="16dp"></TextView>
                     </LinearLayout>
+
                     <ImageButton
-                        android:layout_marginRight="5dp"
-                        android:layout_weight="1"
                         android:layout_width="0dp"
                         android:layout_height="55dp"
                         android:layout_gravity="center"
-                        android:background="@drawable/button_background"
-                        android:src="@drawable/ic_arrow_forward_black_24dp" />
-                </LinearLayout>
-                <LinearLayout
-                    android:background="@drawable/custom_corners"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_margin="5dp"
-                    android:orientation="horizontal"
-                    android:weightSum="10">
-
-                    <ImageView
-                        android:layout_width="0dp"
-                        android:layout_height="100dp"
-                        android:layout_margin="5dp"
-                        android:layout_weight="3"
-                        android:scaleType="centerCrop"
-                        android:src="@drawable/img_coca"></ImageView>
-
-                    <LinearLayout
-                        android:orientation="vertical"
-                        android:layout_margin="10dp"
-                        android:layout_width="0dp"
-                        android:layout_height="match_parent"
-                        android:layout_weight="6">
-                        <TextView
-                            android:fontFamily="@font/seguisb"
-                            android:textSize="20dp"
-                            android:textColor="@color/colorRed"
-                            android:text="Coca China"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"></TextView>
-                        <TextView
-                            android:layout_marginTop="5dp"
-                            android:textColor="@color/colorBlack"
-                            android:textSize="18dp"
-                            android:fontFamily="@font/segoeui"
-                            android:text="Giá : 11.000 đ"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"></TextView>
-                        <TextView
-                            android:layout_marginTop="5dp"
-                            android:textColor="@color/colorXam"
-                            android:textSize="16dp"
-                            android:fontFamily="@font/segoeui"
-                            android:text="Số lượng còn : 200"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"></TextView>
-                    </LinearLayout>
-                    <ImageButton
                         android:layout_marginRight="5dp"
                         android:layout_weight="1"
-                        android:layout_width="0dp"
-                        android:layout_height="55dp"
-                        android:layout_gravity="center"
                         android:background="@drawable/button_background"
                         android:src="@drawable/ic_arrow_forward_black_24dp" />
                 </LinearLayout>
-                <LinearLayout
-                    android:background="@drawable/custom_corners"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_margin="5dp"
-                    android:orientation="horizontal"
-                    android:weightSum="10">
-
-                    <ImageView
-                        android:layout_width="0dp"
-                        android:layout_height="100dp"
-                        android:layout_margin="5dp"
-                        android:layout_weight="3"
-                        android:scaleType="centerCrop"
-                        android:src="@drawable/img_coca"></ImageView>
-
-                    <LinearLayout
-                        android:orientation="vertical"
-                        android:layout_margin="10dp"
-                        android:layout_width="0dp"
-                        android:layout_height="match_parent"
-                        android:layout_weight="6">
-                        <TextView
-                            android:fontFamily="@font/seguisb"
-                            android:textSize="20dp"
-                            android:textColor="@color/colorRed"
-                            android:text="Coca Japan"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"></TextView>
-                        <TextView
-                            android:layout_marginTop="5dp"
-                            android:textColor="@color/colorBlack"
-                            android:textSize="18dp"
-                            android:fontFamily="@font/segoeui"
-                            android:text="Giá : 11.000 đ"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"></TextView>
-                        <TextView
-                            android:layout_marginTop="5dp"
-                            android:textColor="@color/colorXam"
-                            android:textSize="16dp"
-                            android:fontFamily="@font/segoeui"
-                            android:text="Số lượng còn : 200"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"></TextView>
-                    </LinearLayout>
-                    <ImageButton
-                        android:layout_marginRight="5dp"
-                        android:layout_weight="1"
-                        android:layout_width="0dp"
-                        android:layout_height="55dp"
-                        android:layout_gravity="center"
-                        android:background="@drawable/button_background"
-                        android:src="@drawable/ic_arrow_forward_black_24dp" />
-                </LinearLayout>
-                <LinearLayout
-                    android:background="@drawable/custom_corners"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_margin="5dp"
-                    android:orientation="horizontal"
-                    android:weightSum="10">
-
-                    <ImageView
-                        android:layout_width="0dp"
-                        android:layout_height="100dp"
-                        android:layout_margin="5dp"
-                        android:layout_weight="3"
-                        android:scaleType="centerCrop"
-                        android:src="@drawable/img_coca"></ImageView>
-
-                    <LinearLayout
-                        android:orientation="vertical"
-                        android:layout_margin="10dp"
-                        android:layout_width="0dp"
-                        android:layout_height="match_parent"
-                        android:layout_weight="6">
-                        <TextView
-                            android:fontFamily="@font/seguisb"
-                            android:textSize="20dp"
-                            android:textColor="@color/colorRed"
-                            android:text="Coca VN"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"></TextView>
-                        <TextView
-                            android:layout_marginTop="5dp"
-                            android:textColor="@color/colorBlack"
-                            android:textSize="18dp"
-                            android:fontFamily="@font/segoeui"
-                            android:text="Giá : 11.000 đ"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"></TextView>
-                        <TextView
-                            android:layout_marginTop="5dp"
-                            android:textColor="@color/colorXam"
-                            android:textSize="16dp"
-                            android:fontFamily="@font/segoeui"
-                            android:text="Số lượng còn : 200"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"></TextView>
-                    </LinearLayout>
-                    <ImageButton
-                        android:layout_marginRight="5dp"
-                        android:layout_weight="1"
-                        android:layout_width="0dp"
-                        android:layout_height="55dp"
-                        android:layout_gravity="center"
-                        android:background="@drawable/button_background"
-                        android:src="@drawable/ic_arrow_forward_black_24dp" />
-                </LinearLayout>
-                <LinearLayout
-                    android:background="@drawable/custom_corners"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_margin="5dp"
-                    android:orientation="horizontal"
-                    android:weightSum="10">
-
-                    <ImageView
-                        android:layout_width="0dp"
-                        android:layout_height="100dp"
-                        android:layout_margin="5dp"
-                        android:layout_weight="3"
-                        android:scaleType="centerCrop"
-                        android:src="@drawable/img_coca"></ImageView>
-
-                    <LinearLayout
-                        android:orientation="vertical"
-                        android:layout_margin="10dp"
-                        android:layout_width="0dp"
-                        android:layout_height="match_parent"
-                        android:layout_weight="6">
-                        <TextView
-                            android:fontFamily="@font/seguisb"
-                            android:textSize="20dp"
-                            android:textColor="@color/colorRed"
-                            android:text="Coca USA"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"></TextView>
-                        <TextView
-                            android:layout_marginTop="5dp"
-                            android:textColor="@color/colorBlack"
-                            android:textSize="18dp"
-                            android:fontFamily="@font/segoeui"
-                            android:text="Giá : 11.000 đ"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"></TextView>
-                        <TextView
-                            android:layout_marginTop="5dp"
-                            android:textColor="@color/colorXam"
-                            android:textSize="16dp"
-                            android:fontFamily="@font/segoeui"
-                            android:text="Số lượng còn : 200"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"></TextView>
-                    </LinearLayout>
-                    <ImageButton
-                        android:layout_marginRight="5dp"
-                        android:layout_weight="1"
-                        android:layout_width="0dp"
-                        android:layout_height="55dp"
-                        android:layout_gravity="center"
-                        android:background="@drawable/button_background"
-                        android:src="@drawable/ic_arrow_forward_black_24dp" />
-                </LinearLayout>
-                <LinearLayout
-                    android:background="@drawable/custom_corners"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_margin="5dp"
-                    android:orientation="horizontal"
-                    android:weightSum="10">
-
-                    <ImageView
-                        android:layout_width="0dp"
-                        android:layout_height="100dp"
-                        android:layout_margin="5dp"
-                        android:layout_weight="3"
-                        android:scaleType="centerCrop"
-                        android:src="@drawable/img_coca"></ImageView>
-
-                    <LinearLayout
-                        android:orientation="vertical"
-                        android:layout_margin="10dp"
-                        android:layout_width="0dp"
-                        android:layout_height="match_parent"
-                        android:layout_weight="6">
-                        <TextView
-                            android:fontFamily="@font/seguisb"
-                            android:textSize="20dp"
-                            android:textColor="@color/colorRed"
-                            android:text="Coca Thai"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"></TextView>
-                        <TextView
-                            android:layout_marginTop="5dp"
-                            android:textColor="@color/colorBlack"
-                            android:textSize="18dp"
-                            android:fontFamily="@font/segoeui"
-                            android:text="Giá : 11.000 đ"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"></TextView>
-                        <TextView
-                            android:layout_marginTop="5dp"
-                            android:textColor="@color/colorXam"
-                            android:textSize="16dp"
-                            android:fontFamily="@font/segoeui"
-                            android:text="Số lượng còn : 200"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"></TextView>
-                    </LinearLayout>
-                    <ImageButton
-                        android:layout_marginRight="5dp"
-                        android:layout_weight="1"
-                        android:layout_width="0dp"
-                        android:layout_height="55dp"
-                        android:layout_gravity="center"
-                        android:background="@drawable/button_background"
-                        android:src="@drawable/ic_arrow_forward_black_24dp" />
-                </LinearLayout>
-                <LinearLayout
-                    android:background="@drawable/custom_corners"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_margin="5dp"
-                    android:orientation="horizontal"
-                    android:weightSum="10">
-
-                    <ImageView
-                        android:layout_width="0dp"
-                        android:layout_height="100dp"
-                        android:layout_margin="5dp"
-                        android:layout_weight="3"
-                        android:scaleType="centerCrop"
-                        android:src="@drawable/img_coca"></ImageView>
-
-                    <LinearLayout
-                        android:orientation="vertical"
-                        android:layout_margin="10dp"
-                        android:layout_width="0dp"
-                        android:layout_height="match_parent"
-                        android:layout_weight="6">
-                        <TextView
-                            android:fontFamily="@font/seguisb"
-                            android:textSize="20dp"
-                            android:textColor="@color/colorRed"
-                            android:text="Coca Real"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"></TextView>
-                        <TextView
-                            android:layout_marginTop="5dp"
-                            android:textColor="@color/colorBlack"
-                            android:textSize="18dp"
-                            android:fontFamily="@font/segoeui"
-                            android:text="Giá : 11.000 đ"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"></TextView>
-                        <TextView
-                            android:layout_marginTop="5dp"
-                            android:textColor="@color/colorXam"
-                            android:textSize="16dp"
-                            android:fontFamily="@font/segoeui"
-                            android:text="Số lượng còn : 200"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"></TextView>
-                    </LinearLayout>
-                    <ImageButton
-                        android:layout_marginRight="5dp"
-                        android:layout_weight="1"
-                        android:layout_width="0dp"
-                        android:layout_height="55dp"
-                        android:layout_gravity="center"
-                        android:background="@drawable/button_background"
-                        android:src="@drawable/ic_arrow_forward_black_24dp" />
-                </LinearLayout>
-                <LinearLayout
-                    android:background="@drawable/custom_corners"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_margin="5dp"
-                    android:orientation="horizontal"
-                    android:weightSum="10">
-
-                    <ImageView
-                        android:layout_width="0dp"
-                        android:layout_height="100dp"
-                        android:layout_margin="5dp"
-                        android:layout_weight="3"
-                        android:scaleType="centerCrop"
-                        android:src="@drawable/img_coca"></ImageView>
-
-                    <LinearLayout
-                        android:orientation="vertical"
-                        android:layout_margin="10dp"
-                        android:layout_width="0dp"
-                        android:layout_height="match_parent"
-                        android:layout_weight="6">
-                        <TextView
-                            android:fontFamily="@font/seguisb"
-                            android:textSize="20dp"
-                            android:textColor="@color/colorRed"
-                            android:text="Coca Real"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"></TextView>
-                        <TextView
-                            android:layout_marginTop="5dp"
-                            android:textColor="@color/colorBlack"
-                            android:textSize="18dp"
-                            android:fontFamily="@font/segoeui"
-                            android:text="Giá : 11.000 đ"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"></TextView>
-                        <TextView
-                            android:layout_marginTop="5dp"
-                            android:textColor="@color/colorXam"
-                            android:textSize="16dp"
-                            android:fontFamily="@font/segoeui"
-                            android:text="Số lượng còn : 200"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"></TextView>
-                    </LinearLayout>
-                    <ImageButton
-                        android:layout_marginRight="5dp"
-                        android:layout_weight="1"
-                        android:layout_width="0dp"
-                        android:layout_height="55dp"
-                        android:layout_gravity="center"
-                        android:background="@drawable/button_background"
-                        android:src="@drawable/ic_arrow_forward_black_24dp" />
-                </LinearLayout>
-
-
             </LinearLayout>
 
 
         </ScrollView>
     </LinearLayout>
-
     <LinearLayout
-        android:weightSum="10"
         android:layout_width="0dp"
         android:layout_height="match_parent"
         android:layout_margin="15dp"
         android:layout_weight="4"
         android:background="@drawable/custom_layout"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:weightSum="10">
+
         <TextView
-            android:textColor="@color/colorBlack"
-            android:textSize="20dp"
-            android:fontFamily="@font/seguisb"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
+            android:fontFamily="@font/seguisb"
             android:gravity="center"
             android:text="Giỏ Hàng"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"></TextView>
+            android:textColor="@color/colorBlack"
+            android:textSize="20dp"></TextView>
+
         <LinearLayout
-            android:orientation="vertical"
-            android:layout_weight="9"
             android:layout_width="match_parent"
-            android:layout_height="0dp">
+            android:layout_height="0dp"
+            android:layout_weight="9"
+            android:orientation="vertical">
             <LinearLayout
-                android:background="@drawable/custom_corners"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="5dp"
+                android:background="@drawable/custom_corners"
                 android:orientation="horizontal"
                 android:weightSum="10">
 
@@ -568,157 +132,84 @@
                     android:src="@drawable/img_coca"></ImageView>
 
                 <LinearLayout
-                    android:orientation="vertical"
-                    android:layout_margin="10dp"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
-                    android:layout_weight="6">
+                    android:layout_margin="10dp"
+                    android:layout_weight="6"
+                    android:orientation="vertical">
+
                     <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
                         android:fontFamily="@font/seguisb"
-                        android:textSize="20dp"
-                        android:textColor="@color/colorRed"
                         android:text="Coca Real"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"></TextView>
-                    <TextView
-                        android:layout_marginTop="5dp"
-                        android:textColor="@color/colorBlack"
-                        android:textSize="18dp"
-                        android:fontFamily="@font/segoeui"
-                        android:text="Giá : 11.000 đ"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"></TextView>
-                    <LinearLayout
-                        android:paddingHorizontal="20dp"
-                        android:weightSum="3"
-                        android:orientation="horizontal"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent">
-                        <Button
-                            android:layout_weight="1"
-                            android:text="-"
-                            android:layout_width="40dp"
-                            android:layout_height="30dp">
-
-                        </Button>
-                        <TextView
-                            android:layout_weight="1"
-                            android:gravity="center_vertical"
-                            android:textColor="@color/colorRed"
-                            android:text="1"
-                            android:layout_width="wrap_content"
-                            android:layout_height="match_parent">
-
-                        </TextView>
-                        <Button
-                            android:layout_weight="1"
-                            android:text="+"
-                            android:layout_width="40dp"
-                            android:layout_height="30dp">
-
-                        </Button>
-
-                    </LinearLayout>
-
-                </LinearLayout>
-                <Button
-                    android:text="X"
-                    android:layout_marginRight="5dp"
-                    android:layout_weight="1"
-                    android:layout_width="0dp"
-                    android:layout_height="55dp"
-                    android:layout_gravity="center"
-                    android:background="@drawable/button_background"
-                    />
-            </LinearLayout>
-            <LinearLayout
-                android:background="@drawable/custom_corners"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_margin="5dp"
-                android:orientation="horizontal"
-                android:weightSum="10">
-
-                <ImageView
-                    android:layout_width="0dp"
-                    android:layout_height="100dp"
-                    android:layout_margin="5dp"
-                    android:layout_weight="3"
-                    android:scaleType="centerCrop"
-                    android:src="@drawable/img_coca"></ImageView>
-
-                <LinearLayout
-                    android:orientation="vertical"
-                    android:layout_margin="10dp"
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_weight="6">
-                    <TextView
-                        android:fontFamily="@font/seguisb"
-                        android:textSize="20dp"
                         android:textColor="@color/colorRed"
-                        android:text="Coca Fake"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"></TextView>
+                        android:textSize="20dp"></TextView>
+
                     <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
                         android:layout_marginTop="5dp"
-                        android:textColor="@color/colorBlack"
-                        android:textSize="18dp"
                         android:fontFamily="@font/segoeui"
                         android:text="Giá : 11.000 đ"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"></TextView>
+                        android:textColor="@color/colorBlack"
+                        android:textSize="18dp"></TextView>
+
                     <LinearLayout
-                        android:paddingHorizontal="20dp"
-                        android:weightSum="3"
-                        android:orientation="horizontal"
                         android:layout_width="match_parent"
-                        android:layout_height="match_parent">
+                        android:layout_height="match_parent"
+                        android:orientation="horizontal"
+                        android:paddingHorizontal="20dp"
+                        android:weightSum="3">
+
                         <Button
-                            android:layout_weight="1"
-                            android:text="-"
                             android:layout_width="40dp"
-                            android:layout_height="30dp">
+                            android:layout_height="30dp"
+                            android:layout_weight="1"
+                            android:text="-">
 
                         </Button>
+
                         <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
                             android:layout_weight="1"
                             android:gravity="center_vertical"
-                            android:textColor="@color/colorRed"
-                            android:text="2"
-                            android:layout_width="wrap_content"
-                            android:layout_height="match_parent">
+                            android:text="1"
+                            android:textColor="@color/colorRed">
 
                         </TextView>
+
                         <Button
-                            android:layout_weight="1"
-                            android:text="+"
                             android:layout_width="40dp"
-                            android:layout_height="30dp">
+                            android:layout_height="30dp"
+                            android:layout_weight="1"
+                            android:text="+">
 
                         </Button>
 
                     </LinearLayout>
 
                 </LinearLayout>
+
                 <Button
-                    android:text="X"
-                    android:layout_marginRight="5dp"
-                    android:layout_weight="1"
                     android:layout_width="0dp"
                     android:layout_height="55dp"
                     android:layout_gravity="center"
+                    android:layout_marginRight="5dp"
+                    android:layout_weight="1"
                     android:background="@drawable/button_background"
-                    />
+                    android:text="X" />
             </LinearLayout>
         </LinearLayout>
-       <Button
-           android:textColor="@color/colorWhite"
-           android:text="Thanh Toán"
-           android:background="@drawable/background"
-           android:layout_weight="1"
-           android:layout_width="match_parent"
-           android:layout_height="0dp"></Button>
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:background="@drawable/background"
+            android:text="Thanh Toán"
+            android:textColor="@color/colorWhite"></Button>
 
 
     </LinearLayout>
