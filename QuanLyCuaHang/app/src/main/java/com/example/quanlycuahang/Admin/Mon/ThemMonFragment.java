@@ -7,6 +7,7 @@ import android.os.Bundle;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -60,7 +61,7 @@ public class ThemMonFragment extends Fragment {
         spXepTheo=vRoot.findViewById(R.id.sp_xep_theo);
         spLocTheo =vRoot.findViewById(R.id.sp_loc_theo);
         String arr[] = {
-                "Sort By",
+                "Sắp xếp theo",
                 "Từ thấp đến cao",
                 "từ cao đến thấp",
                 "từ a -> z",
@@ -68,21 +69,22 @@ public class ThemMonFragment extends Fragment {
         ArrayAdapter<String> adapter = new ArrayAdapter<String>
                 (
                         getContext(),
-                        android.R.layout.simple_spinner_item,
+                        R.layout.color_spinner_layout,
                         arr
                 );
         adapter.setDropDownViewResource
                 (android.R.layout.simple_list_item_single_choice);
+
         spXepTheo.setAdapter(adapter);
         String arrLocTheo[] = {
-                "Filter Type",
+                "Lọc theo",
                 "Sinh tố",
                 "Nước uống",
                 "Đồ ăn"};
         ArrayAdapter<String> adapterLocTheo = new ArrayAdapter<String>
                 (
                         getContext(),
-                        android.R.layout.simple_spinner_item,
+                        R.layout.color_spinner_layout,
                         arrLocTheo
                 );
         adapterLocTheo.setDropDownViewResource

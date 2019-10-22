@@ -10,11 +10,11 @@
 
     <ImageView
         android:id="@+id/img_item_nguyen_lieu"
-        android:layout_width="75dp"
-        android:layout_height="75dp"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
         android:layout_gravity="center_vertical"
         android:layout_marginLeft="10dp"
-        android:scaleType="centerInside"></ImageView>
+        android:scaleType="centerCrop"></ImageView>
 
     <LinearLayout
         android:layout_width="match_parent"
