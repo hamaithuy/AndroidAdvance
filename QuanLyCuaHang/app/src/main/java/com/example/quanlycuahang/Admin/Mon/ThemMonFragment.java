@@ -13,6 +13,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.Spinner;
 
 import com.example.quanlycuahang.R;
@@ -25,7 +26,7 @@ import java.util.List;
  */
 public class ThemMonFragment extends Fragment {
     private RecyclerView recyclerView;
-    private Button btnActivityThem;
+    private ImageButton btnActivityThem;
     private Spinner spXepTheo;
     private Spinner spLocTheo;
     View vRoot;

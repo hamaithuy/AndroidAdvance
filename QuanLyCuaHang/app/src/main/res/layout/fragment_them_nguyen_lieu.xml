@@ -7,6 +7,7 @@
     tools:context=".Admin.NguyenLieu.ThemNguyenLieuFragment">
 
     <androidx.recyclerview.widget.RecyclerView
+        android:layout_margin="15dp"
         android:id="@+id/rv_them_nguyen_lieu"
         android:layout_width="match_parent"
         android:layout_height="match_parent" />
