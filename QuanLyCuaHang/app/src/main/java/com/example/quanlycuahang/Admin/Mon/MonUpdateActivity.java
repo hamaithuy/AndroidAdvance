@@ -73,6 +73,7 @@ public class MonUpdateActivity extends AppCompatActivity {
                 mon.setGia(gia);
                 mon.setSoLuong(0);
                 mon.setLoaiMon(LoaiMon);
+                mon.setLoai(snLoaiMon.getSelectedItemPosition()+1);
                 new MonFireBaseDatabaseHelper().SuaMon(key, mon, new MonFireBaseDatabaseHelper.DataStatuts() {
                     @Override
                     public void DataIsLoaded(List<Mon> mons, List<String> keys) {

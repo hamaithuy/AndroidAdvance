@@ -39,9 +39,11 @@
                 android:text="TextView"
                 android:textColor="@color/colorBlack"
                 android:textSize="25dp"
-                android:textStyle="bold" />
+                android:fontFamily="@font/calibribold"
+                />
 
             <TextView
+                android:fontFamily="@font/calibribold"
                 android:id="@+id/tv_loai_nguyen_lieu"
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
@@ -93,6 +95,7 @@
 
 
             <TextView
+                android:fontFamily="@font/calibribold"
                 android:id="@+id/tv_so_luong"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"

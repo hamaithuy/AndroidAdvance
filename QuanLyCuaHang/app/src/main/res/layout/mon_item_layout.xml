@@ -44,7 +44,7 @@
                 android:textStyle="bold" />
 
             <TextView
-                android:fontFamily="@font/calibriregular"
+                android:fontFamily="@font/calibribold"
                 android:id="@+id/tv_loai_nguyen_lieu"
                 android:layout_width="match_parent"
                 android:layout_height="0dp"

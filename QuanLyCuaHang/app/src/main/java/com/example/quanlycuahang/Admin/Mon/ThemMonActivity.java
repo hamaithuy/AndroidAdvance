@@ -53,38 +53,46 @@ public class ThemMonActivity extends AppCompatActivity {
         btnThem.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Mon mon = new Mon();
-                mon.setTenMon(edtTenMon.getText().toString());
+                String tenMon=edtTenMon.getText().toString();
                 String strGia = edtGia.getText().toString();
                 String LoaiMon = snLoaiMon.getSelectedItem().toString();
-                int Loai = snLoaiMon.getSelectedItemPosition();
-                Loai = Loai+1;
-                int gia = Integer.parseInt(strGia);
-                mon.setGia(gia);
-                mon.setSoLuong(0);
-                mon.setLoaiMon(LoaiMon);
-                mon.setLoai(Loai);
-                new MonFireBaseDatabaseHelper().ThemMon(mon, new MonFireBaseDatabaseHelper.DataStatuts() {
-                    @Override
-                    public void DataIsLoaded(List<Mon> mons, List<String> keys) {
+                if (tenMon.equals("")&&strGia.equals("")){
+                    Toast.makeText(ThemMonActivity.this, "Xin vui lòng nhập đầy đủ", Toast.LENGTH_SHORT).show();
+                }
+                else {
+                    Mon mon = new Mon();
+                    mon.setTenMon(edtTenMon.getText().toString());
+                    int Loai = snLoaiMon.getSelectedItemPosition();
+                    Loai = Loai+1;
+                    int gia = Integer.parseInt(strGia);
+                    mon.setGia(gia);
+                    mon.setSoLuong(0);
+                    mon.setLoaiMon(LoaiMon);
+                    mon.setLoai(Loai);
+                    new MonFireBaseDatabaseHelper().ThemMon(mon, new MonFireBaseDatabaseHelper.DataStatuts() {
+                        @Override
+                        public void DataIsLoaded(List<Mon> mons, List<String> keys) {
 
-                    }
+                        }
 
-                    @Override
-                    public void DataIsInserted() {
-                        Toast.makeText(ThemMonActivity.this, "da them thanh cong", Toast.LENGTH_SHORT).show();
-                    }
+                        @Override
+                        public void DataIsInserted() {
+                            Toast.makeText(ThemMonActivity.this, "Đã thêm món thành công", Toast.LENGTH_SHORT).show();
+                            finish();
+                        }
 
-                    @Override
-                    public void DataIsUpdated() {
+                        @Override
+                        public void DataIsUpdated() {
 
-                    }
+                        }
 
-                    @Override
-                    public void DataIsDeleted() {
+                        @Override
+                        public void DataIsDeleted() {
 
-                    }
-                });
+                        }
+                    });
+                }
+
             }
 
         });
