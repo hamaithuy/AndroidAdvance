@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "421044138754",
+    "firebase_url": "https://app-chat-88ad6.firebaseio.com",
+    "project_id": "app-chat-88ad6",
+    "storage_bucket": "app-chat-88ad6.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:421044138754:android:e6506ef97f8043f829881b",
+        "android_client_info": {
+          "package_name": "vn.edu.hou.appchat"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "421044138754-6ratt9dt2a8dna6doppjnsvsrjtk2k3p.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCsB2uOP4zcTvNl080Uejztfkc6KEcSsTI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "421044138754-6ratt9dt2a8dna6doppjnsvsrjtk2k3p.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

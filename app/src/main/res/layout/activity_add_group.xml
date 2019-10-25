@@ -46,7 +46,7 @@
             android:layout_height="wrap_content"
             android:background="@drawable/rounded_textview"
             android:gravity="center"
-            android:text="G"
+            android:text="R"
             android:textColor="@android:color/white"
             android:textSize="30sp" />
 
@@ -65,7 +65,7 @@
         android:layout_width="match_parent"
         android:layout_height="1dp"
         android:background="@color/white" />
-    <android.support.v7.widget.RecyclerView
+    <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recycleListFriend"
         android:layout_width="match_parent"
         android:layout_height="match_parent"

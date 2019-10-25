@@ -4,6 +4,6 @@
     <color name="colorPrimaryDark">#0288D1</color>
     <color name="colorAccent">#4fa881</color>
     <color name="editTextColor">#2fa881</color>
-    <color name="white">#ffffff</color>
-    <color name="grey">#aaaaaa</color>
+    <color name="white">#fff</color>
+    <color name="grey">#aaa</color>
 </resources>
