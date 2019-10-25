@@ -6,9 +6,19 @@
     android:orientation="vertical"
     tools:context=".Admin.NguyenLieu.ThemNguyenLieuFragment">
 
-    <androidx.recyclerview.widget.RecyclerView
+    <Spinner
+        android:id="@+id/sp_loc_theo_nguyen_lieu"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
         android:layout_margin="15dp"
+        android:background="@drawable/custom_seach_view"
+        android:gravity="center_vertical|center_horizontal">
+
+    </Spinner>
+
+    <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rv_them_nguyen_lieu"
         android:layout_width="match_parent"
-        android:layout_height="match_parent" />
+        android:layout_height="match_parent"
+        android:layout_margin="15dp" />
 </LinearLayout>

@@ -1,74 +1,136 @@
-<?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Admin.TaiKhoan.ThemTaiKhoan">
+    android:background="@drawable/img_anh_nen"
+    android:orientation="vertical">
 
-    <EditText
-        android:id="@+id/edt_update_tentk"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="399dp"
-        android:layout_marginTop="61dp"
-        android:layout_marginEnd="410dp"
-        android:ems="10"
-        android:inputType="textPersonName"
-        android:text="Name"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
 
-    <EditText
-        android:id="@+id/edt_update_ten_tai_khoan"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="399dp"
-        android:layout_marginTop="68dp"
-        android:layout_marginEnd="410dp"
-        android:ems="10"
-        android:inputType="textPersonName"
-        android:text="Name"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/edt_update_tentk" />
-
-    <EditText
-        android:id="@+id/edt_update_mat_khau"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="401dp"
-        android:layout_marginTop="52dp"
-        android:layout_marginEnd="408dp"
-        android:ems="10"
-        android:inputType="textPersonName"
-        android:text="Name"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/edt_update_ten_tai_khoan" />
-
-    <Spinner
-        android:id="@+id/sp_vi_tri"
-        android:layout_width="1022dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="1dp"
-        android:layout_marginTop="95dp"
-        android:layout_marginEnd="1dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/edt_update_mat_khau" />
-
-    <Button
-        android:id="@+id/btn_cap_nhap_tai_khoan"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="468dp"
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
         android:layout_marginTop="55dp"
-        android:layout_marginEnd="468dp"
-        android:text="Button"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/sp_vi_tri" />
+        android:layout_marginHorizontal="95dp"
+        android:orientation="vertical">
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/calibribold"
+            android:text="Tên nhân viên"
+            android:textColor="@color/colorWhite"
+            android:textSize="26dp">
+
+        </TextView>
+
+        <EditText
+            android:id="@+id/edt_update_tentk"
+            android:layout_width="match_parent"
+            android:layout_height="55dp"
+            android:layout_marginTop="5dp"
+            android:background="@drawable/custom_edit_text"
+            android:fontFamily="@font/calibribold"
+            android:paddingLeft="10dp">
+
+        </EditText>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:fontFamily="@font/calibribold"
+            android:text="Tên tài khoản"
+            android:textColor="@color/colorWhite"
+            android:textSize="26dp">
+
+        </TextView>
+
+        <EditText
+            android:id="@+id/edt_update_ten_tai_khoan"
+            android:layout_width="match_parent"
+            android:layout_height="55dp"
+            android:layout_marginTop="15dp"
+            android:background="@drawable/custom_edit_text"
+            android:fontFamily="@font/calibribold"
+            android:paddingLeft="10dp">
+
+        </EditText>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:fontFamily="@font/calibribold"
+            android:text="Mật khẩu"
+            android:textColor="@color/colorWhite"
+            android:textSize="26dp">
+
+        </TextView>
+
+        <EditText
+            android:layout_width="match_parent"
+            android:id="@+id/edt_update_mat_khau"
+            android:layout_height="55dp"
+            android:layout_marginTop="15dp"
+            android:background="@drawable/custom_edit_text"
+            android:fontFamily="@font/calibribold"
+            android:paddingLeft="10dp">
+
+        </EditText>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:fontFamily="@font/calibribold"
+            android:text="Loại tài khoản"
+            android:textColor="@color/colorWhite"
+            android:textSize="26dp">
+
+        </TextView>
+
+        <RelativeLayout
+
+            android:layout_width="250dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="15dp"
+            android:background="@drawable/spinner_border"
+            android:orientation="horizontal">
+
+            <Spinner
+                android:id="@+id/sp_cap_nhap_vi_tri"
+                android:layout_width="250dp"
+                android:layout_height="55dp"
+                android:layout_centerVertical="true"
+                android:layout_gravity="center"
+                android:background="@android:color/transparent"
+                android:fontFamily="@font/calibribold"
+                android:gravity="center"
+                android:spinnerMode="dropdown" />
+
+            <ImageView
+                android:layout_width="55dp"
+                android:layout_height="55dp"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:layout_gravity="center"
+                android:src="@drawable/img_drop_arrow" />
+
+        </RelativeLayout>
+
+        <Button
+            android:id="@+id/btn_cap_nhap_tai_khoan"
+            android:layout_width="150dp"
+            android:layout_height="65dp"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="35dp"
+            android:background="@drawable/custom_button"
+            android:fontFamily="@font/calibribold"
+            android:text="Cập nhập tài khoản"
+            android:textAllCaps="false"
+            android:textColor="@color/colorWhite"
+            android:textSize="18dp" />
+
+    </LinearLayout>
+
+
+</LinearLayout>

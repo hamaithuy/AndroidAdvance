@@ -16,7 +16,7 @@ import java.util.List;
 
 public class MonUpdateActivity extends AppCompatActivity {
     private EditText edtTenMon, edtGia;
-    private Button btnCapNhap, btnXoa;
+    private Button btnCapNhap;
     private Spinner snLoaiMon;
     private String key;
     private String TenMon;
@@ -29,37 +29,10 @@ public class MonUpdateActivity extends AppCompatActivity {
         setContentView(R.layout.activity_mon_update);
         init();
         updateMon();
-        XoaMon();
+
     }
 
-    private void XoaMon() {
-        btnXoa.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                new MonFireBaseDatabaseHelper().XoaMon(key, new MonFireBaseDatabaseHelper.DataStatuts() {
-                    @Override
-                    public void DataIsLoaded(List<Mon> mons, List<String> keys) {
 
-                    }
-
-                    @Override
-                    public void DataIsInserted() {
-
-                    }
-
-                    @Override
-                    public void DataIsUpdated() {
-
-                    }
-
-                    @Override
-                    public void DataIsDeleted() {
-                        Toast.makeText(MonUpdateActivity.this, "Xoa Thanh cong", Toast.LENGTH_SHORT).show();
-                    }
-                });
-            }
-        });
-    }
 
     private void updateMon() {
         btnCapNhap.setOnClickListener(new View.OnClickListener() {
@@ -87,7 +60,8 @@ public class MonUpdateActivity extends AppCompatActivity {
 
                     @Override
                     public void DataIsUpdated() {
-                        Toast.makeText(MonUpdateActivity.this, "Cap nhap thanh cong", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(MonUpdateActivity.this, "Cập nhập thành công", Toast.LENGTH_SHORT).show();
+                        finish();
                     }
 
                     @Override
@@ -102,8 +76,7 @@ public class MonUpdateActivity extends AppCompatActivity {
     private void init() {
         edtTenMon = findViewById(R.id.edt_update_ten_mon);
         edtGia = findViewById(R.id.edt_update_gia);
-        btnCapNhap = findViewById(R.id.btn_tao_tai_khoan);
-        btnXoa = findViewById(R.id.btn_xoa);
+        btnCapNhap = findViewById(R.id.btn_cap_nhap_mon);
         snLoaiMon=findViewById(R.id.sn_update_loai_mon);
         key = getIntent().getStringExtra("key");
         TenMon = getIntent().getStringExtra("TenMon");
