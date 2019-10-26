@@ -29,7 +29,6 @@ public class OrderFragment extends Fragment {
     private List<Oder> glstOder;
 
     public OrderFragment() {
-        // Required empty public constructor
     }
 
     @Override
@@ -44,7 +43,27 @@ public class OrderFragment extends Fragment {
     }
 
     private void hienthiDulieu() {
-      //  new MonFireBaseDatabaseHelper().
+         new   OderFirebaseHelper().DanhSachHoaDonTam(new OderFirebaseHelper.OderDataStatuts() {
+             @Override
+             public void DataIsLoaded(List<Oder> oders, List<String> keys) {
+                 new RecyclerViewGiohang().setConfig(m_recyclerViewGiohang, getContext(), oders, keys);
+             }
+
+             @Override
+             public void DataIsInserted() {
+
+             }
+
+             @Override
+             public void DataIsUpdated() {
+
+             }
+
+             @Override
+             public void DataIsDeleted() {
+
+             }
+         });
         new MonFireBaseDatabaseHelper().DanhSachMon(new MonFireBaseDatabaseHelper.DataStatuts() {
             @Override
             public void DataIsLoaded(List<Mon> mons, List<String> keys) {
