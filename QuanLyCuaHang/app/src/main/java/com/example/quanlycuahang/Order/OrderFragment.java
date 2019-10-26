@@ -12,7 +12,6 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.RecyclerView;
-
 import com.example.quanlycuahang.Admin.AdminActivity;
 import com.example.quanlycuahang.Admin.HoaDon.HoaDon;
 import com.example.quanlycuahang.Admin.HoaDon.HoaDonFirebaseHelper;
@@ -30,6 +29,7 @@ import java.util.List;
 public class OrderFragment extends Fragment {
     View vRoot;
     private RecyclerView m_recyclerView;
+    private RecyclerView m_recyclerViewGiohang;
     private Button m_btnThanhtoan;
     private boolean load = false;
     private List<Oder> glstOder;
@@ -43,6 +43,7 @@ public class OrderFragment extends Fragment {
         vRoot = inflater.inflate(R.layout.fragment_order, container, false);
         m_recyclerView = vRoot.findViewById(R.id.rv_oder);
         m_btnThanhtoan = vRoot.findViewById(R.id.btnThanhtoan);
+        m_recyclerViewGiohang = vRoot.findViewById(R.id.rv_Giohang);
         hienthiDulieu();
         thanhtoanHoaDon();
         return vRoot;
@@ -70,8 +71,8 @@ public class OrderFragment extends Fragment {
 
             }
         });
-    }
 
+    }
     private void thanhtoanHoaDon() {
         m_btnThanhtoan.setOnClickListener(new View.OnClickListener() {
             @Override
