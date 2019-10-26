@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="25dp"
+    android:background="@drawable/custom_layout"
+    android:orientation="vertical">
+
+
+    <TextView
+        android:id="@+id/txtSttHoadon_Nhabep"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="15dp"
+        android:fontFamily="@font/seguisb"
+        android:gravity="left"
+        android:text="Hóa Đơn 001"
+        android:textColor="@color/colorRed"
+        android:textSize="25dp"></TextView>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rv_kitchen_Child"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"></androidx.recyclerview.widget.RecyclerView>
+
+    <Button
+        android:id="@+id/btnHoanthanh_Nhabep"
+        android:layout_width="match_parent"
+        android:layout_height="70dp"
+        android:layout_gravity="bottom"
+        android:layout_margin="5dp"
+        android:background="@drawable/button_background"
+        android:text="Hoàn Thành"
+        android:textColor="@color/colorWhite"></Button>
+
+
+</LinearLayout>
