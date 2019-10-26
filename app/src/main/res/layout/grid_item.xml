@@ -11,7 +11,7 @@
             android:layout_marginBottom="10dp">
 
         <ImageView
-                android:id="@+id/ivRoomAvatar"
+                android:id="@+id/iv_GridRoomAvatar"
                 android:layout_width="match_parent"
                 android:layout_height="120dp"
                 android:scaleType="centerCrop"
@@ -45,7 +45,7 @@
                 app:srcCompat="@drawable/ic_location_on_black_24dp" />
 
         <TextView
-                android:id="@+id/tvAddress"
+                android:id="@+id/tv_address"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
@@ -68,7 +68,7 @@
                 app:srcCompat="@drawable/ic_acreage_24dp" />
 
         <TextView
-                android:id="@+id/tvAcreage"
+                android:id="@+id/tv_acreage"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"

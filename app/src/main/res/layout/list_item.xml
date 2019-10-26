@@ -1,121 +1,129 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
-        android:layout_height="200dp"
-        android:orientation="vertical">
-
-    <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-            xmlns:app="http://schemas.android.com/apk/res-auto"
-            xmlns:tools="http://schemas.android.com/tools"
+        android:layout_height="wrap_content"
+        xmlns:card_view="http://schemas.android.com/apk/res-auto"
+        android:layout_margin="5dp"
+        card_view:cardCornerRadius="5dp"
+        card_view:cardElevation="10dp"
+        >
+    <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="200dp"
-            android:orientation="horizontal"
-            android:paddingLeft="8dp"
-            android:paddingTop="8dp"
-            android:paddingRight="8dp"
-            android:paddingBottom="5dp">
-
-        <ImageView
-                android:id="@+id/iv_list_roomAvatar"
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:scaleType="centerCrop"
-                app:layout_constraintLeft_toLeftOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintWidth_percent="0.35"
-                app:srcCompat="@drawable/phongtro2" />
-
-        <TextView
-                android:id="@+id/tv_price"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="3dp"
-                android:layout_marginTop="3dp"
-                android:background="@color/colorPrimaryDark"
-                android:padding="3dp"
-                android:text="6 triệu"
-                android:textColor="#FFFFFF"
-                app:layout_constraintLeft_toLeftOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+            android:orientation="vertical">
 
         <androidx.constraintlayout.widget.ConstraintLayout
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:paddingLeft="10dp"
-                app:layout_constraintLeft_toRightOf="@id/iv_list_roomAvatar"
-                app:layout_constraintRight_toRightOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintWidth_percent="0.65">
-
-            <TextView
-                    android:id="@+id/tv_title"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="Chung cư Nguyễn Văn Lượng 2 phường 11 Thống Nhất"
-                    android:textColor="@color/colorPrimaryDark"
-                    android:textStyle="bold"
-                    app:layout_constraintLeft_toLeftOf="parent"
-                    app:layout_constraintRight_toRightOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
+                android:layout_width="match_parent"
+                android:layout_height="200dp"
+                android:orientation="horizontal"
+                android:paddingLeft="8dp"
+                android:paddingTop="8dp"
+                android:paddingRight="8dp"
+                android:paddingBottom="5dp">
 
             <ImageView
-                    android:id="@+id/ic_location"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="8dp"
-                    app:layout_constraintLeft_toLeftOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/tv_title"
-                    app:srcCompat="@drawable/ic_location_on_black_24dp" />
-
-            <ImageView
-                    android:id="@+id/ic_land"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="8dp"
-                    app:layout_constraintLeft_toLeftOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/ic_location"
-                    app:srcCompat="@drawable/ic_acreage_24dp" />
-
-            <ImageView
-                    android:id="@+id/ic_time"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="8dp"
-                    app:layout_constraintLeft_toLeftOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/ic_land"
-                    app:srcCompat="@drawable/ic_access_time" />
+                    android:id="@+id/iv_RoomAvatar"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:scaleType="centerCrop"
+                    card_view:layout_constraintLeft_toLeftOf="parent"
+                    card_view:layout_constraintTop_toTopOf="parent"
+                    card_view:layout_constraintWidth_percent="0.35" />
 
             <TextView
-                    android:id="@+id/tv_address"
+                    android:id="@+id/tv_price"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="30dp"
-                    android:text="Phường 11, Gò Vấp"
-                    android:textColor="@color/colorBtnThem"
-                    app:layout_constraintLeft_toLeftOf="parent"
-                    app:layout_constraintTop_toTopOf="@id/ic_location" />
+                    android:layout_marginLeft="3dp"
+                    android:layout_marginTop="3dp"
+                    android:background="@color/colorPrimaryDark"
+                    android:padding="3dp"
+                    android:text="6 triệu"
+                    android:textColor="#FFFFFF"
+                    card_view:layout_constraintLeft_toLeftOf="parent"
+                    card_view:layout_constraintTop_toTopOf="parent" />
 
-            <TextView
-                    android:id="@+id/tv_acreage"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="30dp"
-                    android:text="TextView"
-                    android:textColor="@color/colorBtnThem"
-                    app:layout_constraintLeft_toLeftOf="parent"
-                    app:layout_constraintTop_toTopOf="@id/ic_land" />
+            <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:paddingLeft="10dp"
+                    card_view:layout_constraintLeft_toRightOf="@id/iv_RoomAvatar"
+                    card_view:layout_constraintRight_toRightOf="parent"
+                    card_view:layout_constraintTop_toTopOf="parent"
+                    card_view:layout_constraintWidth_percent="0.65">
 
-            <TextView
-                    android:id="@+id/tv_time"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="30dp"
-                    android:text="TextView"
-                    app:layout_constraintLeft_toLeftOf="parent"
-                    app:layout_constraintTop_toTopOf="@id/ic_time" />
+                <TextView
+                        android:id="@+id/tv_title"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Chung cư Nguyễn Văn Lượng 2 phường 11 Thống Nhất"
+                        android:textColor="@color/colorPrimaryDark"
+                        android:textStyle="bold"
+                        card_view:layout_constraintLeft_toLeftOf="parent"
+                        card_view:layout_constraintRight_toRightOf="parent"
+                        card_view:layout_constraintTop_toTopOf="parent" />
+
+                <ImageView
+                        android:id="@+id/ic_location"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="8dp"
+                        card_view:layout_constraintLeft_toLeftOf="parent"
+                        card_view:layout_constraintTop_toBottomOf="@id/tv_title"
+                        card_view:srcCompat="@drawable/ic_location_on_black_24dp" />
+
+                <ImageView
+                        android:id="@+id/ic_land"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="8dp"
+                        card_view:layout_constraintLeft_toLeftOf="parent"
+                        card_view:layout_constraintTop_toBottomOf="@id/ic_location"
+                        card_view:srcCompat="@drawable/ic_acreage_24dp" />
+
+                <ImageView
+                        android:id="@+id/ic_time"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="8dp"
+                        card_view:layout_constraintLeft_toLeftOf="parent"
+                        card_view:layout_constraintTop_toBottomOf="@id/ic_land"
+                        card_view:srcCompat="@drawable/ic_access_time" />
+
+                <TextView
+                        android:id="@+id/tv_address"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="30dp"
+                        android:text="Phường 11, Gò Vấp"
+                        android:textColor="@color/colorBtnThem"
+                        card_view:layout_constraintLeft_toLeftOf="parent"
+                        card_view:layout_constraintTop_toTopOf="@id/ic_location" />
+
+                <TextView
+                        android:id="@+id/tv_acreage"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="30dp"
+                        android:text="TextView"
+                        android:textColor="@color/colorBtnThem"
+                        card_view:layout_constraintLeft_toLeftOf="parent"
+                        card_view:layout_constraintTop_toTopOf="@id/ic_land" />
+
+                <TextView
+                        android:id="@+id/tv_time"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="30dp"
+                        android:text="TextView"
+                        card_view:layout_constraintLeft_toLeftOf="parent"
+                        card_view:layout_constraintTop_toTopOf="@id/ic_time" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
 
         </androidx.constraintlayout.widget.ConstraintLayout>
+    </LinearLayout>
+</androidx.cardview.widget.CardView>
 
-
-    </androidx.constraintlayout.widget.ConstraintLayout>
-</LinearLayout>

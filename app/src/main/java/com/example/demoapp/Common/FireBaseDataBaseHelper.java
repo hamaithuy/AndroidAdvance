@@ -1,4 +1,4 @@
-package com.example.demoapp;
+package com.example.demoapp.Common;
 
 import androidx.annotation.NonNull;
 
@@ -9,14 +9,18 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.GenericTypeIndicator;
 import com.google.firebase.database.ValueEventListener;
+import com.google.firebase.storage.StorageReference;
+import com.google.firebase.storage.StorageTask;
 
-import java.security.Key;
 import java.util.ArrayList;
 import java.util.List;
 
 public class FireBaseDataBaseHelper<T>{
     private FirebaseDatabase mDatabase;
     private DatabaseReference mDatabaseReference;
+    private StorageReference mStorageRef;
+    private StorageTask mUploadTask;
+
     private List<T>  objects = new ArrayList<>();
 
     // Create interface to link our main process with onDataChange process
@@ -27,7 +31,7 @@ public class FireBaseDataBaseHelper<T>{
         void DataIsDeleted();
     }
 
-    FireBaseDataBaseHelper(String node){
+    public FireBaseDataBaseHelper(String node){
         mDatabase = FirebaseDatabase.getInstance();
         mDatabaseReference = mDatabase.getReference(node);
     }
@@ -64,4 +68,6 @@ public class FireBaseDataBaseHelper<T>{
                     }
                 });
     }
+
+
 }

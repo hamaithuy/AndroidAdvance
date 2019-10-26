@@ -58,14 +58,8 @@
 
     </androidx.appcompat.widget.Toolbar>
 
-    <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:app="http://schemas.android.com/apk/res-auto"
-        android:layout_height="match_parent"
-        android:layout_width="match_parent">
-
-
     <ScrollView
-            android:layout_width="fill_parent"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:orientation="vertical"
@@ -77,14 +71,22 @@
                 android:layout_height="match_parent"
                 android:background="#FFFFFF"
                 android:orientation="vertical">
+            <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
 
             <LinearLayout
+                    android:id="@+id/ln1"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="15dp"
                     android:layout_marginRight="10dp"
                     android:layout_marginBottom="15dp"
-                    android:orientation="horizontal">
+                    android:orientation="horizontal"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintRight_toRightOf="parent">
 
                 <ImageView
                         android:id="@+id/imageView2"
@@ -116,32 +118,23 @@
 
             </LinearLayout>
 
-            <RelativeLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="400dp">
+            <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/rv_NewRoom"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintTop_toBottomOf="@id/ln1">
 
-                <GridView
-                        android:id="@+id/gridNewRoom"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="5dp"
-                        android:layout_marginTop="5dp"
-                        android:layout_marginRight="5dp"
-                        android:columnWidth="180dp"
-                        android:numColumns="2"
-                        android:stretchMode="spacingWidth"
-                        android:verticalSpacing="10dp" />
-                <!--spacingWidth khoảng cách các cột được kéo dãn khi độ rộng màn hình mở rộng-->
-
-            </RelativeLayout>
+            </androidx.recyclerview.widget.RecyclerView>
 
             <LinearLayout
+                    android:id="@+id/ln2"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="15dp"
                     android:layout_marginRight="10dp"
                     android:layout_marginBottom="15dp"
-                    android:orientation="horizontal">
+                    android:orientation="horizontal"
+                    app:layout_constraintTop_toBottomOf="@id/rv_NewRoom">
 
                 <ImageView
                         android:id="@+id/ivCouple"
@@ -172,26 +165,17 @@
                         android:textColor="@color/colorPrimary" />
 
             </LinearLayout>
-
-            <RelativeLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="500dp">
-
-                <GridView
-                        android:id="@+id/gridCoupleRoom"
-                        android:layout_width="wrap_content"
+                <androidx.recyclerview.widget.RecyclerView
+                        android:id="@+id/rv_DoubleRoom"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginLeft="5dp"
-                        android:layout_marginTop="5dp"
-                        android:layout_marginRight="5dp"
-                        android:columnWidth="180dp"
-                        android:numColumns="2"
-                        android:stretchMode="spacingWidth"
-                        android:verticalSpacing="10dp" />
-                <!--spacingWidth khoảng cách các cột được kéo dãn khi độ rộng màn hình mở rộng-->
+                        app:layout_constraintTop_toBottomOf="@id/ln2"
+                        >
 
-            </RelativeLayout>
+                </androidx.recyclerview.widget.RecyclerView>
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
         </LinearLayout>
     </ScrollView>
-</androidx.constraintlayout.widget.ConstraintLayout>
+
 </LinearLayout>

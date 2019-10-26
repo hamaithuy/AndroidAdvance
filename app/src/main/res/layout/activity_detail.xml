@@ -5,7 +5,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
-        tools:context=".DetailActivity">
+        tools:context=".View.DetailActivity">
         <androidx.appcompat.widget.Toolbar
                 android:id="@+id/toolbar"
                 android:layout_width="match_parent"
@@ -84,27 +84,30 @@
                         android:id="@+id/iv_roomImg"
                         android:layout_width="match_parent"
                         android:layout_height="230dp"
-                        android:src="@drawable/phongtro2"
+                        android:src="@drawable/home"
+                        android:scaleType="centerCrop"
                         app:layout_constraintTop_toTopOf="parent"
                         app:layout_constraintLeft_toLeftOf="parent"
                         app:layout_constraintRight_toRightOf="parent">
                 </ImageView>
+
                 <TextView
                         android:id="@+id/tv_title"
-                        android:layout_width="wrap_content"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="15dp"
-                        android:layout_marginRight="15dp"
                         android:layout_marginTop="15dp"
+                        android:layout_marginRight="15dp"
+                        android:gravity="left"
                         android:paddingLeft="8dp"
                         android:paddingRight="8dp"
-                        android:text="Chung cư Nguyễn Văn Lượng 2 phường 11 Thống Nhất"
+                        android:text="Chung cư Nguyễn Văn Lượng 2 "
                         android:textColor="@color/colorPrimaryDark"
                         android:textSize="18sp"
                         android:textStyle="bold"
                         app:layout_constraintLeft_toLeftOf="parent"
-                        app:layout_constraintTop_toBottomOf="@id/iv_roomImg"
-                        app:layout_constraintRight_toRightOf="parent"/>
+                        app:layout_constraintRight_toRightOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/iv_roomImg" />
                 <ImageView
                         android:id="@+id/ic_location"
                         android:layout_width="wrap_content"

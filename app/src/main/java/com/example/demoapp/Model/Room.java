@@ -1,8 +1,8 @@
-package com.example.demoapp;
+package com.example.demoapp.Model;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Date;
 public class Room {
-    public int image;
     public String title;
     public double price;
     public String address;
@@ -23,14 +23,16 @@ public class Room {
     public int kindPost; // 1-Cho thuê , 2- Ở ghép
     public int kindRoom; // 1-Phòng, 2- Căn hộ, 3- Căn hộ mini, 4- Nguyên căn
     public String boss;  // Chủ nhà
-
+    public String imageUrl;
+    public int position;
+    public String key;
 
     public Room(int image, String title, double price, String address, String phoneNumber,
                 float acreage, Date timePost, String description,
                 Boolean wifi, Boolean ownWc, Boolean keepCar, Boolean freedom, Boolean kitchen,
                 Boolean airMachine, Boolean fridge, Boolean washMachine) {
 
-                this.image = image;
+
                 this.title = title;
                 this.price = price;
                 this.address = address;
@@ -51,17 +53,35 @@ public class Room {
 
     }
 
+    public Room(int position) {
+        this.position = position;
+    }
+
     public Room() {
     }
 
-
-
-    public int getImage() {
-        return image;
+    public int getPosition() {
+        return position;
     }
 
-    public void setImage(int image) {
-        this.image = image;
+    public void setPosition(int position) {
+        this.position = position;
+    }
+
+    public String getKey() {
+        return key;
+    }
+
+    public void setKey(String key) {
+        this.key = key;
+    }
+
+    public String getImageUrl() {
+        return imageUrl;
+    }
+
+    public void setImageUrl(String imageUrl) {
+        this.imageUrl = imageUrl;
     }
 
     public String getTitle() {

@@ -48,12 +48,9 @@
 
     </androidx.appcompat.widget.Toolbar>
 
-
-    <ListView xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:app="http://schemas.android.com/apk/res-auto"
-        android:id="@+id/ls_saveRoom"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="#FFFFFF"
-        android:orientation="vertical" />
+    <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rv_SaveRoom"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+    </androidx.recyclerview.widget.RecyclerView>
 </LinearLayout>

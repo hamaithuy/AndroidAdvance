@@ -1,4 +1,4 @@
-package com.example.demoapp;
+package com.example.demoapp.View;
 
 import android.os.Bundle;
 import android.view.KeyEvent;
@@ -10,6 +10,8 @@ import android.widget.EditText;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+
+import com.example.demoapp.R;
 
 public class SearchFragment extends Fragment {
 
