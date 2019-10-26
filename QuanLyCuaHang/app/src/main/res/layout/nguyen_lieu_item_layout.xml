@@ -10,14 +10,13 @@
 
     <ImageView
         android:id="@+id/img_item_nguyen_lieu"
-        android:layout_width="60dp"
-        android:layout_height="60dp"
+        android:layout_width="75dp"
+        android:layout_height="75dp"
         android:layout_gravity="center_vertical"
-        android:layout_marginLeft="20dp"
-        android:scaleType="centerCrop"></ImageView>
+        android:layout_marginLeft="10dp"
+        android:scaleType="centerInside"></ImageView>
 
     <LinearLayout
-        android:paddingLeft="25dp"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_margin="15dp"
@@ -39,11 +38,9 @@
                 android:text="TextView"
                 android:textColor="@color/colorBlack"
                 android:textSize="25dp"
-                android:fontFamily="@font/calibribold"
-                />
+                android:textStyle="bold" />
 
             <TextView
-                android:fontFamily="@font/calibribold"
                 android:id="@+id/tv_loai_nguyen_lieu"
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
@@ -95,7 +92,6 @@
 
 
             <TextView
-                android:fontFamily="@font/calibribold"
                 android:id="@+id/tv_so_luong"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"

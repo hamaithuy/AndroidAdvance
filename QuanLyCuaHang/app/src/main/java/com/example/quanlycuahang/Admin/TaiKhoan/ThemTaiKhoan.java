@@ -47,7 +47,6 @@ public class ThemTaiKhoan extends AppCompatActivity {
                     @Override
                     public void DataIsInserted() {
                         Toast.makeText(ThemTaiKhoan.this, "Thêm tài khoản Thành công", Toast.LENGTH_SHORT).show();
-                        finish();
                     }
 
                     @Override
@@ -70,7 +69,7 @@ public class ThemTaiKhoan extends AppCompatActivity {
         edtTenTaiKhoan = findViewById(R.id.edt_ten_tai_khoan);
         edtMatKhau = findViewById(R.id.edt_mat_khau);
         edtTen = findViewById(R.id.edt_ten);
-        spViTri = findViewById(R.id.sp_cap_nhap_vi_tri);
+        spViTri = findViewById(R.id.sp_vi_tri);
         String arrViTri[] = {
                 "Admin",
                 "Nhà Bếp",

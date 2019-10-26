@@ -1,10 +1,6 @@
-package com.example.quanlycuahang.Admin.Mon;
+package com.example.quanlycuahang.Order;
 
-import android.util.Log;
-import android.widget.Toast;
-
-import androidx.annotation.NonNull;
-
+import com.example.quanlycuahang.Admin.HoaDon.HoaDon;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -13,16 +9,18 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
+
 import java.util.List;
 
-public class MonFireBaseDatabaseHelper {
+import androidx.annotation.NonNull;
+
+public class OderFirebaseHelper {
     private FirebaseDatabase database;
     private DatabaseReference reference;
-    private List<Mon> mons = new ArrayList<>();
+    private List<Oder> oders = new ArrayList<>();
 
-
-    public interface DataStatuts {
-        void DataIsLoaded(List<Mon> mons, List<String> keys);
+    public interface OderDataStatuts {
+        void DataIsLoaded(List<Oder> oders, List<String> keys);
 
         void DataIsInserted();
 
@@ -30,25 +28,22 @@ public class MonFireBaseDatabaseHelper {
 
         void DataIsDeleted();
     }
-
-    public MonFireBaseDatabaseHelper() {
-        // kết nối đến bảng Mon trong database
+    public OderFirebaseHelper() {
         database = FirebaseDatabase.getInstance();
-        reference = database.getReference("Mon");
+        reference = database.getReference("HoaDonTam");
     }
-
-    public void DanhSachMon(final DataStatuts dataStatuts) {
+    public void DanhSachHoaDonTam(final OderFirebaseHelper.OderDataStatuts oderDataStatuts) {
         reference.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                mons.clear();
+                oders.clear();
                 List<String> keys = new ArrayList<>();
                 for (DataSnapshot keyNode : dataSnapshot.getChildren()) {
                     keys.add(keyNode.getKey());
-                    Mon mon = keyNode.getValue(Mon.class);
-                    mons.add(mon);
+                    Oder oder = keyNode.getValue(Oder.class);
+                    oders.add(oder);
                 }
-                dataStatuts.DataIsLoaded(mons, keys);
+                oderDataStatuts.DataIsLoaded(oders, keys);
             }
 
             @Override
@@ -57,28 +52,24 @@ public class MonFireBaseDatabaseHelper {
             }
         });
     }
-
-    public void ThemMon(Mon mon, final DataStatuts dataStatuts) {
+    public void ThemHoaDonTam(Oder oder, final OderFirebaseHelper.OderDataStatuts dataStatuts) {
         String key = reference.push().getKey();
-        reference.child(key).setValue(mon).addOnSuccessListener(new OnSuccessListener<Void>() {
+        reference.child(key).setValue(oder).addOnSuccessListener(new OnSuccessListener<Void>() {
             @Override
             public void onSuccess(Void aVoid) {
                 dataStatuts.DataIsInserted();
             }
         });
-
     }
-
-    public void SuaMon(String key, Mon mon, final DataStatuts dataStatuts) {
-        reference.child(key).setValue(mon).addOnSuccessListener(new OnSuccessListener<Void>() {
+    public void SuaHoaDonTam(String key, Oder oder, final OderFirebaseHelper.OderDataStatuts dataStatuts) {
+        reference.child(key).setValue(oder).addOnSuccessListener(new OnSuccessListener<Void>() {
             @Override
             public void onSuccess(Void aVoid) {
                 dataStatuts.DataIsUpdated();
             }
         });
     }
-
-    public void XoaMon(String key, final DataStatuts dataStatuts) {
+    public void XoaHoaDontam(String key, final OderFirebaseHelper.OderDataStatuts dataStatuts) {
         reference.child(key).setValue(null).addOnSuccessListener(new OnSuccessListener<Void>() {
             @Override
             public void onSuccess(Void aVoid) {
@@ -86,5 +77,8 @@ public class MonFireBaseDatabaseHelper {
             }
         });
     }
+
+
+
 
 }

@@ -70,7 +70,7 @@ public class TaiKhoanUpdate extends AppCompatActivity {
         edtTenTaiKhoan = findViewById(R.id.edt_update_ten_tai_khoan);
         edtMatKhau = findViewById(R.id.edt_update_mat_khau);
         edtTen = findViewById(R.id.edt_update_tentk);
-        spViTri = findViewById(R.id.sp_cap_nhap_vi_tri);
+        spViTri = findViewById(R.id.sp_vi_tri);
         btnCapNhap = findViewById(R.id.btn_cap_nhap_tai_khoan);
         key = getIntent().getStringExtra("key");
         TenTaiKhoan = getIntent().getStringExtra("TenTaiKhoan");

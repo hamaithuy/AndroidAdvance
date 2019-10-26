@@ -99,19 +99,15 @@ public class RecyclerViewTaiKhoan {
             tvTen.setText(taiKhoan.getTen().toString());
             if (taiKhoan.getViTri().toString().equals("1")) {
                 tvViTri.setText("Admin");
-                imgTaiKhoan.setImageResource(R.drawable.img_admin);
             }
             if (taiKhoan.getViTri().toString().equals("2")) {
                 tvViTri.setText("Nhà Bếp");
-                imgTaiKhoan.setImageResource(R.drawable.img_dau_bep);
             }
             if (taiKhoan.getViTri().toString().equals("3")) {
                 tvViTri.setText("Nhân Viên");
-                imgTaiKhoan.setImageResource(R.drawable.img_nhan_vien);
             }
 
-
-
+            imgTaiKhoan.setImageResource(R.drawable.img_do_an);
             this.key = key;
         }
 
