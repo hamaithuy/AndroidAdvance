@@ -94,5 +94,20 @@
             android:layout_weight="1"
             android:background="@drawable/button_background"
             android:text="X" />
+        <TextView
+            android:id="@+id/tv_loai_gio_hang"
+            android:text="sadasd"
+            android:layout_width="0dp"
+            android:layout_height="0dp"></TextView>
+        <TextView
+            android:id="@+id/tv_loai_mon_gio_hang"
+            android:text="sadasd"
+            android:layout_width="0dp"
+            android:layout_height="0dp"></TextView>
+        <TextView
+            android:id="@+id/tv_id_gio_hang"
+            android:text="sadasd"
+            android:layout_width="0dp"
+            android:layout_height="0dp"></TextView>
     </LinearLayout>
 </LinearLayout>
