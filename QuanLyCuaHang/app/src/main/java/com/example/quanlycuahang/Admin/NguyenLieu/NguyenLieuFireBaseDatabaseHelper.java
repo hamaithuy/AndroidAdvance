@@ -44,7 +44,7 @@ public class NguyenLieuFireBaseDatabaseHelper {
                     Mon mon = keynode.getValue(Mon.class);
                     mons.add(mon);
                 }
-                nguyenLieuDataStatuts.DataIsLoaded(mons,keys);
+                nguyenLieuDataStatuts.DataIsLoaded(mons, keys);
             }
 
             @Override
@@ -52,7 +52,84 @@ public class NguyenLieuFireBaseDatabaseHelper {
 
             }
         });
+
     }
+
+    public void DanhSachNguyenLieuSinhTo(final NguyenLieuDataStatuts nguyenLieuDataStatuts) {
+        reference.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                mons.clear();
+                List<String> keys = new ArrayList<>();
+                for (DataSnapshot keynode : dataSnapshot.getChildren()) {
+                    keys.add(keynode.getKey());
+                    Mon mon = keynode.getValue(Mon.class);
+                    if (mon.getLoai().equals(1)) {
+                        mons.add(mon);
+                    }
+
+                }
+                nguyenLieuDataStatuts.DataIsLoaded(mons, keys);
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
+
+    }
+
+    public void DanhSachNguyenLieuNuocUong(final NguyenLieuDataStatuts nguyenLieuDataStatuts) {
+        reference.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                mons.clear();
+                List<String> keys = new ArrayList<>();
+                for (DataSnapshot keynode : dataSnapshot.getChildren()) {
+                    keys.add(keynode.getKey());
+                    Mon mon = keynode.getValue(Mon.class);
+                    if (mon.getLoai().equals(2)) {
+                        mons.add(mon);
+                    }
+
+                }
+                nguyenLieuDataStatuts.DataIsLoaded(mons, keys);
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
+
+    }
+
+    public void DanhSachNguyenLieuThucAn(final NguyenLieuDataStatuts nguyenLieuDataStatuts) {
+        reference.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                mons.clear();
+                List<String> keys = new ArrayList<>();
+                for (DataSnapshot keynode : dataSnapshot.getChildren()) {
+                    keys.add(keynode.getKey());
+                    Mon mon = keynode.getValue(Mon.class);
+                    if (mon.getLoai().equals(3)) {
+                        mons.add(mon);
+                    }
+
+                }
+                nguyenLieuDataStatuts.DataIsLoaded(mons, keys);
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
+
+    }
+
     public void SuaMon(String key, Mon mon, final NguyenLieuDataStatuts nguyenLieuDataStatuts) {
         reference.child(key).setValue(mon).addOnSuccessListener(new OnSuccessListener<Void>() {
             @Override

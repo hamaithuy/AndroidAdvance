@@ -3,38 +3,48 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
 
+
+
     <EditText
         android:layout_width="match_parent"
         android:layout_height="40dp"
-        android:layout_margin="15dp"
+        android:layout_margin="5dp"
         android:background="@drawable/custom_seach_view"
         android:drawableLeft="@drawable/ic_seach"
-        android:hint="Tìm món">
+        android:hint="Tìm món"
+        android:paddingLeft="5dp"
+        android:textColor="@color/colorWhite"
+        android:textColorHint="@color/colorWhite"
+        android:textSize="13dp">
 
     </EditText>
 
     <LinearLayout
-        android:layout_margin="15dp"
-        android:background="@drawable/custom_corners"
-        android:weightSum="2"
+
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal">
+        android:layout_height="40dp"
+        android:layout_margin="5dp"
+        android:orientation="horizontal"
+        android:weightSum="2">
 
         <Spinner
-            android:layout_weight="1"
-
+            android:gravity="center_vertical|center_horizontal"
+            android:background="@drawable/custom_seach_view"
             android:id="@+id/sp_xep_theo"
             android:layout_width="0dp"
-            android:layout_height="match_parent">
+            android:layout_height="match_parent"
+            android:layout_weight="1">
 
         </Spinner>
-        <Spinner
-            android:layout_weight="1"
 
+        <Spinner
+            android:gravity="center_vertical|center_horizontal"
+            android:background="@drawable/custom_seach_view"
+            android:layout_marginLeft="5dp"
             android:id="@+id/sp_loc_theo"
             android:layout_width="0dp"
-            android:layout_height="match_parent">
+            android:layout_height="match_parent"
+            android:layout_weight="1">
 
         </Spinner>
 
@@ -48,13 +58,18 @@
 
     </androidx.recyclerview.widget.RecyclerView>
 
-    <Button
+    <ImageButton
+        android:padding="25dp"
+        android:background="@drawable/custom_add_new_food"
+        android:scaleType="centerCrop"
+        android:src="@drawable/img_add_food"
         android:id="@+id/btn_activity_them"
-        android:layout_width="100dp"
-        android:layout_height="100dp"
+        android:layout_width="72dp"
+        android:layout_height="72dp"
         android:layout_gravity="right"
+        android:layout_marginRight="20dp"
         android:layout_marginTop="-100dp"
-        android:text="Them Mon">
+        >
 
-    </Button>
+    </ImageButton>
 </LinearLayout>

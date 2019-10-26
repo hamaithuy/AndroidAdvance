@@ -10,10 +10,10 @@
 
     <ImageView
         android:id="@+id/img_tai_khoan"
-        android:layout_width="75dp"
-        android:layout_height="75dp"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
         android:layout_gravity="center_vertical"
-        android:layout_marginLeft="10dp"
+        android:layout_marginLeft="20dp"
         android:scaleType="centerInside"></ImageView>
 
     <LinearLayout
@@ -21,6 +21,7 @@
         android:layout_height="match_parent"
         android:layout_margin="15dp"
         android:orientation="horizontal"
+        android:paddingLeft="25dp"
         android:weightSum="10">
 
         <LinearLayout
@@ -36,6 +37,7 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
+                android:fontFamily="@font/calibribold"
                 android:gravity="center_vertical"
                 android:text="TextView"
                 android:textColor="@color/colorRed"
@@ -46,6 +48,7 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
+                android:fontFamily="@font/calibribold"
                 android:gravity="center_vertical"
                 android:text="Vị Trí"
                 android:textColor="@color/colorRed"
@@ -55,49 +58,67 @@
         </LinearLayout>
 
         <LinearLayout
+            android:gravity="right"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_gravity="center_vertical"
-            android:layout_weight="4"
-            android:orientation="horizontal">
+            android:layout_weight="5"
+            android:orientation="horizontal"
+            android:weightSum="2">
+            <LinearLayout
 
-            <ImageButton
-                android:layout_marginLeft="10dp"
-                android:background="@color/colorWhite"
-                android:scaleType="centerInside"
-                android:id="@+id/img_chinh_sua_tai_khoan"
-                android:layout_width="50dp"
-                android:layout_height="50dp"
-                android:src="@drawable/img_chinh_sua">
-
-            </ImageButton>
-
-            <ImageButton
-                android:layout_marginLeft="10dp"
-                android:background="@color/colorWhite"
-                android:scaleType="centerInside"
-                android:id="@+id/img_xoa_tai_Khoan"
-                android:layout_width="50dp"
-                android:layout_height="50dp"
-                android:src="@drawable/img_xoa">
-
-            </ImageButton>
-
-
-            <TextView
-                android:text="tên tài khoản"
-                android:id="@+id/tv_ten_tai_khoan"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"></TextView>
-
-            <TextView
-                android:id="@+id/tv_mat_khau"
+                android:orientation="horizontal"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="mat khau"
-                android:textColor="@color/colorXam"
-                android:textSize="20dp" />
+                android:layout_height="match_parent">
+                <ImageButton
+                    android:layout_gravity="center_vertical"
+                    android:id="@+id/img_chinh_sua_tai_khoan"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:layout_marginLeft="10dp"
+                    android:background="@color/colorWhite"
+                    android:scaleType="centerInside"
+                    android:src="@drawable/img_chinh_sua">
+
+                </ImageButton>
+
+                <ImageButton
+                    android:layout_gravity="center_vertical"
+                    android:id="@+id/img_xoa_tai_Khoan"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:layout_marginLeft="10dp"
+                    android:background="@color/colorWhite"
+                    android:scaleType="centerInside"
+                    android:src="@drawable/img_xoa">
+
+                </ImageButton>
+            </LinearLayout>
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:orientation="vertical"
+                android:layout_height="match_parent">
+                <TextView
+                    android:id="@+id/tv_ten_tai_khoan"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="tên tài khoản"></TextView>
+
+                <TextView
+                    android:id="@+id/tv_mat_khau"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="mat khau"
+                    android:textColor="@color/colorXam"
+                    android:textSize="20dp" />
+            </LinearLayout>
+
+
+
+
         </LinearLayout>
 
     </LinearLayout>

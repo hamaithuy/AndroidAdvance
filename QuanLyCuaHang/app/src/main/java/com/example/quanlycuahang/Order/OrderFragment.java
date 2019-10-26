@@ -1,6 +1,5 @@
 package com.example.quanlycuahang.Order;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -8,23 +7,18 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.Toast;
 
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.fragment.app.Fragment;
-import androidx.recyclerview.widget.RecyclerView;
-import com.example.quanlycuahang.Admin.AdminActivity;
 import com.example.quanlycuahang.Admin.HoaDon.HoaDon;
 import com.example.quanlycuahang.Admin.HoaDon.HoaDonFirebaseHelper;
 import com.example.quanlycuahang.Admin.Mon.Mon;
 import com.example.quanlycuahang.Admin.Mon.MonFireBaseDatabaseHelper;
-import com.example.quanlycuahang.Admin.TaiKhoan.TaiKhoan;
-import com.example.quanlycuahang.Admin.TaiKhoan.TaiKhoanFireBaseDataBase;
-import com.example.quanlycuahang.Kitchen.KitchenActivity;
-import com.example.quanlycuahang.MainActivity;
 import com.example.quanlycuahang.R;
 
-import java.util.ArrayList;
 import java.util.List;
+
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.RecyclerView;
 
 public class OrderFragment extends Fragment {
     View vRoot;
@@ -50,6 +44,7 @@ public class OrderFragment extends Fragment {
     }
 
     private void hienthiDulieu() {
+      //  new MonFireBaseDatabaseHelper().
         new MonFireBaseDatabaseHelper().DanhSachMon(new MonFireBaseDatabaseHelper.DataStatuts() {
             @Override
             public void DataIsLoaded(List<Mon> mons, List<String> keys) {

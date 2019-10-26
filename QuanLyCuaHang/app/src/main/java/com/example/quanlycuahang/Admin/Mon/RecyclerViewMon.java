@@ -25,6 +25,7 @@ public class RecyclerViewMon {
     private Context context;
     private MonAdapter monAdapter;
 
+
     public void setConfig(RecyclerView recyclerView, Context mContext, List<Mon> mons, List<String> keys) {
         context = mContext;
         monAdapter = new MonAdapter(mons, keys);
@@ -134,7 +135,10 @@ public class RecyclerViewMon {
 
         @Override
         public void onBindViewHolder(@NonNull MonItemView holder, int position) {
+
             holder.bind(monList.get(position), mKeys.get(position));
+
+
 //            position++;
 //            holder.tvStt.setText(""+position);
         }
@@ -144,4 +148,5 @@ public class RecyclerViewMon {
             return monList.size();
         }
     }
+
 }

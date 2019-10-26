@@ -10,10 +10,8 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.quanlycuahang.Admin.Mon.Mon;
-
 import com.example.quanlycuahang.R;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import androidx.annotation.NonNull;
@@ -23,7 +21,6 @@ import androidx.recyclerview.widget.RecyclerView;
 public class RecyclerViewOder {
     private Context mContext;
     private MonOderAdapter mMonAdapter;
-    private ArrayList<String> abc = new ArrayList<>();
 
     public void setConfig(RecyclerView recyclerView, Context context, List<Mon> mons, List<String> keys) {
         mContext = context;

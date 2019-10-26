@@ -1,11 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#008577</color>
+    <color name="colorPrimary">#5f4a8b</color>
     <color name="colorPrimaryDark">#5f4a8b</color>
     <color name="colorAccent">#5f4a8b</color>
+    <color name="colorSeach">#76649C</color>
     <color name="colorWhite">#FFFFFF</color>
     <color name="colorBlack">#000000</color>
     <color name="colorRed">#FF0000</color>
     <color name="colorToolBar">#E65F4A8B</color>
     <color name="colorXam">#8C8C8C</color>
+    <color name="colorXanh">#4F6DBB</color>
 </resources>
