@@ -1,5 +1,7 @@
 package com.appbtl.appweather;
 
+import android.appwidget.AppWidgetManager;
+import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.drawable.AnimationDrawable;
@@ -13,9 +15,12 @@ import android.util.Log;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.ListView;
 import android.widget.PopupWindow;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
@@ -35,27 +40,30 @@ import com.google.gson.Gson;
 import java.io.File;
 import java.io.IOException;
 import java.text.Normalizer;
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.concurrent.ExecutionException;
 
 public class MainActivity extends AppCompatActivity {
     private RelativeLayout mainlayout;
-    private Intent intent;
+    private Intent intent, intent1;
     private Context mContext;
     private PopupWindow mPopupWindow;
-    private ImageView imgvisibility, imgpressure, imghumidity, imgwind;
+    private ImageView imgvisibility, imgpressure, imghumidity, imgwind, imgTT;
     private TextView city, temp, tempMax, tempMin, mainWeather, visibility, humidity, speed, airpress, wtCity, address;
     private ConstraintLayout body;
     private LocationAPI locationAPI;
-    private AnimationDrawable animBackgroundRain;
-    private String resultDailys, reSultMain;
+    private AnimationDrawable animBackgroundRain,animHumidity,animWind,animVisibility,animPressure,animTT;
+    private String resultDailys, reSultMain, resultHours;
     private HashMap<String, String> Des = new HashMap<String, String>();
     private IOFile ioFile;
     private RequestPermission pms;
     AddressInfo add;
     private Intent it;
     private static final String TAG = "MyActivity";
+    private ArrayList<String> ls = new ArrayList<String>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -84,6 +92,10 @@ public class MainActivity extends AppCompatActivity {
 
             @Override
             public void onSwipeLeft() {
+                if (resultHours == null) {
+                    resultHours = "";
+                }
+                startActivity(intent1);
                 overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
             }
 
@@ -101,7 +113,6 @@ public class MainActivity extends AppCompatActivity {
                         @Override
                         public void onSuccess(Location location) {
                             if (location != null) {
-                                Toast.makeText(MainActivity.this, location.toString(), Toast.LENGTH_LONG).show();
                                 add = getAddress(location.getLatitude(), location.getLongitude());
 
                                 //làm việc với location ở đây
@@ -111,9 +122,15 @@ public class MainActivity extends AppCompatActivity {
                                 try {
                                     reSultMain = new WeatherAsynctask().execute(url).get();
                                     resultDailys = new WeatherDailysAsynctask().execute(dailys).get();
+                                    OpenWeatherJson js = new Gson().fromJson(reSultMain, OpenWeatherJson.class);
+                                    String hours = "https://openweathermap.org/data/2.5/forecast/?appid=b6907d289e10d714a6e88b30761fae22&id=" + js.getId() + "&units=metric";
+                                    resultHours = new WeatherDailysAsynctask().execute(hours).get();
+                                    Log.i(TAG, "onSuccess: " + resultHours);
                                     updateUI(add, reSultMain);
                                     ioFile.saveFile("mainWeather.bat", reSultMain, mContext);
                                     ioFile.saveFile("dailys.bat", resultDailys, mContext);
+                                    ioFile.saveFile("hours.bat", resultHours, mContext);
+
                                 } catch (ExecutionException e) {
                                     e.printStackTrace();
                                 } catch (InterruptedException e) {
@@ -140,6 +157,19 @@ public class MainActivity extends AppCompatActivity {
                 Button btnFind = (Button) customview.findViewById(R.id.btnAccept);
                 final EditText editText = (EditText) customview.findViewById(R.id.editText);
                 Button btnLocale = (Button) customview.findViewById(R.id.getCurrentLocale);
+                ListView lvls = (ListView) customview.findViewById(R.id.lv);
+                ArrayList<String> sub = new ArrayList<String>();
+                sub = ls;
+                Collections.reverse(sub);
+                ArrayAdapter<String> arrayAdapter
+                        = new ArrayAdapter<String>(MainActivity.this, android.R.layout.simple_list_item_1, sub);
+                lvls.setAdapter(arrayAdapter);
+                lvls.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                    @Override
+                    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                        editText.setText(parent.getItemAtPosition(position).toString());
+                    }
+                });
                 btnFind.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
@@ -151,17 +181,30 @@ public class MainActivity extends AppCompatActivity {
                             reSultMain = new WeatherAsynctask().execute(url).get();
                             OpenWeatherJson result = new Gson().fromJson(reSultMain, OpenWeatherJson.class);
                             String dailys = "http://api.openweathermap.org/data/2.5/forecast/daily?lat=" + result.getCoord().getLat() + "&lon=" + result.getCoord().getLat() + "&units=metric&cnt=7&appid=be8d3e323de722ff78208a7dbb2dcd6f";
-                            resultDailys = new WeatherAsynctask().execute(dailys).get();
-                            ioFile.saveFile("mainWeather.bat", resultDailys, mContext);
+                            String hours = "https://openweathermap.org/data/2.5/forecast/?appid=b6907d289e10d714a6e88b30761fae22&id=" + result.getId() + "&units=metric";
+                            Log.i(TAG, "onClick: " + hours);
+                            resultDailys = new WeatherDailysAsynctask().execute(dailys).get();
+                            resultHours = new WeatherDailysAsynctask().execute(hours).get();
+                            ioFile.saveFile("mainWeather.bat", reSultMain, mContext);
                             ioFile.saveFile("dailys.bat", resultDailys, mContext);
+                            ioFile.saveFile("hours.bat", resultHours, mContext);
                             AddressInfo address = getAddress(result.getCoord().getLat(), result.getCoord().getLon());
                             updateUI(address, reSultMain);
+                            //widget
+                            Intent intent = new Intent(MainActivity.this, widget.class);
+                            intent.setAction(AppWidgetManager.ACTION_APPWIDGET_UPDATE);
+                            int ids[] = AppWidgetManager.getInstance(getApplication()).getAppWidgetIds(new ComponentName(getApplication(), widget.class));
+                            intent.putExtra(AppWidgetManager.EXTRA_APPWIDGET_IDS, ids);
+                            intent.putExtra("data", reSultMain);
+                            sendBroadcast(intent);
                         } catch (ExecutionException e) {
                             e.printStackTrace();
                         } catch (InterruptedException e) {
                             e.printStackTrace();
                         }
                         ioFile.saveFile("mainWeather.bat", reSultMain, mContext);
+                        ls.remove(editText.getText().toString());
+                        ls.add(editText.getText().toString());
                         mPopupWindow.dismiss();
                     }
                 });
@@ -183,19 +226,18 @@ public class MainActivity extends AppCompatActivity {
     protected void onStart() {
         super.onStart();
         pms.pLocation(MainActivity.this);
-        locationAPI.fusedLocationClient.getLastLocation().addOnSuccessListener(new OnSuccessListener<Location>() {
-            @Override
-            public void onSuccess(Location location) {
-//                add = getAddress(location.getLatitude(),location.getLongitude());
-                add = getAddress(20.45, 106.33);
-            }
-        });
         File file = new File(this.getFilesDir(), "mainWeather.bat");
-        String dt;
         if (file.exists()) {
-            dt = ioFile.readFile("mainWeather.bat", mContext);
+            String dt = ioFile.readFile("mainWeather.bat", mContext);
+            final OpenWeatherJson result = new Gson().fromJson(dt, OpenWeatherJson.class);
+            locationAPI.fusedLocationClient.getLastLocation().addOnSuccessListener(new OnSuccessListener<Location>() {
+                @Override
+                public void onSuccess(Location location) {
+//                add = getAddress(location.getLatitude(),location.getLongitude());
+                    add = getAddress(result.getCoord().getLat(), result.getCoord().getLon());
+                }
+            });
             Log.i(TAG, dt);
-            OpenWeatherJson result = new Gson().fromJson(dt, OpenWeatherJson.class);
             updateUI(getAddress(result.getCoord().getLat(), result.getCoord().getLon()), data());
         } else {
             getWeather1();
@@ -222,16 +264,20 @@ public class MainActivity extends AppCompatActivity {
 
                         // location.getLatitude()
                         // location.getLongitude()
-                        String url = "http://api.openweathermap.org/data/2.5/weather?" + "lat=" + "21.028511" + "&lon=" + "105.804817" + "&appid=b87ce30a14229dd8e26f167dd2111f06";
+                        String url = "http://api.openweathermap.org/data/2.5/weather?" + "lat=" + location.getLatitude() + "&lon=" + location.getLongitude() + "&appid=b87ce30a14229dd8e26f167dd2111f06";
                         //truyền tham số location để lấy file json
-                        String dailys = "http://api.openweathermap.org/data/2.5/forecast/daily?lat=" + "21.028511" + "&lon=" + "105.804817" + "&units=metric&cnt=7&appid=be8d3e323de722ff78208a7dbb2dcd6f";
+                        String dailys = "http://api.openweathermap.org/data/2.5/forecast/daily?lat=" + location.getLatitude() + "&lon=" + location.getLongitude() + "&units=metric&cnt=7&appid=be8d3e323de722ff78208a7dbb2dcd6f";
+                        //get daily hours
                         try {
                             reSultMain = new WeatherAsynctask().execute(url).get();
+                            OpenWeatherJson js = new Gson().fromJson(reSultMain, OpenWeatherJson.class);
                             resultDailys = new WeatherDailysAsynctask().execute(dailys).get();
+                            String hours = "https://openweathermap.org/data/2.5/forecast/?appid=b6907d289e10d714a6e88b30761fae22&id=" + js.getId() + "&units=metric";
+                            resultHours = new WeatherDailysAsynctask().execute(hours).get();
                             updateUI(add, reSultMain);
                             ioFile.saveFile("mainWeather.bat", reSultMain, mContext);
                             ioFile.saveFile("dailys.bat", resultDailys, mContext);
-
+                            ioFile.saveFile("hours.bat", resultHours, mContext);
                         } catch (ExecutionException e) {
                             e.printStackTrace();
                         } catch (InterruptedException e) {
@@ -267,14 +313,24 @@ public class MainActivity extends AppCompatActivity {
         airpress = (TextView) findViewById(R.id.airpress);
         humidity = (TextView) findViewById(R.id.humidity);
         speed = (TextView) findViewById(R.id.speed);
+        imgTT = (ImageView) findViewById(R.id.imgTT);
         intent = new Intent(MainActivity.this, ActivityDetails.class);
-
+        intent1 = new Intent(MainActivity.this, ActivityInfo.class);
         Des.put("scattered clouds", "Mây rải rác");
         Des.put("moderate rain", "Mưa vừa");
         Des.put("heavy intensity rain", "Mưa lớn");
         Des.put("broken clouds", "Mây rải rác");
         Des.put("sky is clear", "Trời quang");
         Des.put("light rain", "Mưa nhỏ");
+        Des.put("few clouds", "Ít mây");
+
+        ls.add("hà nội");
+        ls.add("hà đông");
+        ls.add("hà giang");
+        ls.add("bắc giang");
+        ls.add("london");
+        ls.add("ottawa");
+        ls.add("tokyo");
     }
 
     public String data() {
@@ -297,7 +353,11 @@ public class MainActivity extends AppCompatActivity {
         //kết quả trả về json thành object
         wtCity.setText(add.getCity());
         city.setText(add.getCity());
-
+        if(!result.getWeather().get(0).getMain().equals("rain")){
+            imgTT.setImageResource(R.drawable.anim_sun);
+            animTT = (AnimationDrawable)imgTT.getDrawable();
+            animTT.start();
+        }
         temp.setText(tempmain + "°C");
         tempMax.setText(tempmax + "°C");
         tempMin.setText(tempmin + "°C");
@@ -313,10 +373,18 @@ public class MainActivity extends AppCompatActivity {
 
 
     private void setIcon() {
-        imgvisibility.setImageResource(R.drawable.visibility);
-        imgpressure.setImageResource(R.drawable.airpress);
-        imghumidity.setImageResource(R.drawable.humidity);
-        imgwind.setImageResource(R.drawable.speed);
+        imgvisibility.setImageResource(R.drawable.anim_visibility);
+        animVisibility = (AnimationDrawable)imgvisibility.getDrawable();
+        animVisibility.start();
+        imgpressure.setImageResource(R.drawable.anim_air);
+        animPressure = (AnimationDrawable)imgpressure.getDrawable();
+        animPressure.start();
+        imghumidity.setImageResource(R.drawable.humidity_anim);
+        animHumidity = (AnimationDrawable)imghumidity.getDrawable();
+        animHumidity.start();
+        imgwind.setImageResource(R.drawable.anim_wind);
+        animWind = (AnimationDrawable)imgwind.getDrawable();
+        animWind.start();
         body.setBackgroundResource(R.drawable.background_rain2);
         animBackgroundRain = (AnimationDrawable) body.getBackground();
         animBackgroundRain.start();

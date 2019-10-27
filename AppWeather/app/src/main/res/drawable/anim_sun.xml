@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<animation-list xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:drawable="@drawable/sun0"
+        android:duration="60"/>
+    <item android:drawable="@drawable/sun1"
+        android:duration="60"/><item android:drawable="@drawable/sun2"
+    android:duration="60"/><item android:drawable="@drawable/sun3"
+    android:duration="60"/><item android:drawable="@drawable/sun4"
+    android:duration="60"/><item android:drawable="@drawable/sun5"
+    android:duration="60"/><item android:drawable="@drawable/sun6"
+    android:duration="60"/><item android:drawable="@drawable/sun7"
+    android:duration="60"/><item android:drawable="@drawable/sun8"
+    android:duration="60"/><item android:drawable="@drawable/sun9"
+    android:duration="60"/><item android:drawable="@drawable/sun10"
+    android:duration="60"/><item android:drawable="@drawable/sun11"
+    android:duration="60"/><item android:drawable="@drawable/sun12"
+    android:duration="60"/><item android:drawable="@drawable/sun13"
+    android:duration="60"/><item android:drawable="@drawable/sun14"
+    android:duration="60"/><item android:drawable="@drawable/sun15"
+    android:duration="60"/><item android:drawable="@drawable/sun16"
+    android:duration="60"/><item android:drawable="@drawable/sun17"
+    android:duration="60"/><item android:drawable="@drawable/sun18"
+    android:duration="60"/><item android:drawable="@drawable/sun19"
+    android:duration="60"/><item android:drawable="@drawable/sun20"
+    android:duration="60"/><item android:drawable="@drawable/sun21"
+    android:duration="60"/><item android:drawable="@drawable/sun22"
+    android:duration="60"/><item android:drawable="@drawable/sun23"
+    android:duration="60"/>
+</animation-list>

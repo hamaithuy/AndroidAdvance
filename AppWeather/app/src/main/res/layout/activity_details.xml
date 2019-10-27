@@ -5,7 +5,7 @@
     android:id="@+id/detaillayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/background2"
+    android:background="@drawable/efde1355c5134516fe1e12b220402e70"
     android:orientation="vertical"
     tools:context=".ActivityDetails">
 

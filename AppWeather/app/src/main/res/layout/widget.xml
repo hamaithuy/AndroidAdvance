@@ -46,261 +46,94 @@
             android:textSize="35dp"
             android:textStyle="bold|italic" />
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="150dp"
+        <ImageView
+            android:id="@+id/imageView5"
+            android:layout_width="67dp"
+            android:layout_height="57dp"
             android:layout_below="@+id/imageView3"
-            android:layout_marginLeft="5dp"
-            android:layout_marginTop="0dp">
+            android:layout_alignParentStart="true"
+            android:layout_marginStart="104dp"
+            android:layout_marginTop="17dp"
+            android:src="@drawable/airpress" />
 
-            <LinearLayout
-                android:layout_width="40dp"
-                android:layout_height="match_parent"
-                android:layout_marginLeft="0dp"
-                android:orientation="vertical">
+        <TextView
+            android:id="@+id/textView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/imageView3"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentEnd="true"
+            android:layout_marginStart="32dp"
+            android:layout_marginTop="80dp"
+            android:layout_marginEnd="323dp"
+            android:text="TextView" />
 
-                <TextView
-                    android:id="@+id/textView31"
-                    android:layout_width="match_parent"
-                    android:layout_height="10dp"
-                    android:layout_weight="1"
-                    android:gravity="center"
-                    android:text="1:00" />
+        <ImageView
+            android:id="@+id/imageView4"
+            android:layout_width="73dp"
+            android:layout_height="58dp"
+            android:layout_below="@+id/imageView3"
+            android:layout_alignParentStart="true"
+            android:layout_marginStart="23dp"
+            android:layout_marginTop="17dp"
+            android:src="@drawable/visibility" />
 
-                <ImageView
-                    android:id="@+id/imageView13"
-                    android:layout_width="30dp"
-                    android:layout_height="5dp"
-                    android:layout_marginLeft="5dp"
-                    android:layout_weight="1"
-                    android:src="@drawable/shine" />
+        <ImageView
+            android:id="@+id/imageView6"
+            android:layout_width="72dp"
+            android:layout_height="55dp"
+            android:layout_below="@+id/imageView3"
+            android:layout_alignParentStart="true"
+            android:layout_marginStart="181dp"
+            android:layout_marginTop="18dp"
+            android:src="@drawable/humidity" />
 
-                <TextView
-                    android:id="@+id/tv1h"
-                    android:layout_width="match_parent"
-                    android:layout_height="10dp"
-                    android:layout_weight="1"
-                    android:gravity="center"
-                    android:text="20°C" />
+        <TextView
+            android:id="@+id/textView15"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/imageView3"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentEnd="true"
+            android:layout_marginStart="189dp"
+            android:layout_marginTop="80dp"
+            android:layout_marginEnd="166dp"
+            android:text="TextView" />
 
-            </LinearLayout>
+        <ImageView
+            android:id="@+id/imageView7"
+            android:layout_width="71dp"
+            android:layout_height="55dp"
+            android:layout_below="@+id/imageView3"
+            android:layout_alignParentStart="true"
+            android:layout_marginStart="260dp"
+            android:layout_marginTop="19dp"
+            android:src="@drawable/speed" />
 
-            <LinearLayout
-                android:layout_width="40dp"
-                android:layout_height="match_parent"
-                android:layout_marginLeft="0dp"
-                android:orientation="vertical">
+        <TextView
+            android:id="@+id/textView16"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/imageView3"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentEnd="true"
+            android:layout_marginStart="266dp"
+            android:layout_marginTop="79dp"
+            android:layout_marginEnd="89dp"
+            android:text="TextView" />
 
-                <TextView
-                    android:id="@+id/textView32"
-                    android:layout_width="match_parent"
-                    android:layout_height="10dp"
-                    android:layout_weight="1"
-                    android:gravity="center"
-                    android:text="4:00" />
+        <TextView
+            android:id="@+id/textView14"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/imageView3"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentEnd="true"
+            android:layout_marginStart="111dp"
+            android:layout_marginTop="80dp"
+            android:layout_marginEnd="244dp"
+            android:text="TextView" />
 
-                <ImageView
-                    android:id="@+id/imageView14"
-                    android:layout_width="30dp"
-                    android:layout_height="5dp"
-                    android:layout_marginLeft="5dp"
-                    android:layout_weight="1"
-                    android:src="@drawable/shine" />
-
-                <TextView
-                    android:id="@+id/tv4h"
-                    android:layout_width="match_parent"
-                    android:layout_height="10dp"
-                    android:layout_weight="1"
-                    android:gravity="center"
-                    android:text="20°C" />
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="40dp"
-                android:layout_height="match_parent"
-                android:layout_marginLeft="0dp"
-                android:orientation="vertical">
-
-                <TextView
-                    android:id="@+id/textView33"
-                    android:layout_width="match_parent"
-                    android:layout_height="10dp"
-                    android:layout_weight="1"
-                    android:gravity="center"
-                    android:text="7:00" />
-
-                <ImageView
-                    android:id="@+id/imageView15"
-                    android:layout_width="30dp"
-                    android:layout_height="5dp"
-                    android:layout_marginLeft="5dp"
-                    android:layout_weight="1"
-                    android:src="@drawable/shine" />
-
-                <TextView
-                    android:id="@+id/tv7h"
-                    android:layout_width="match_parent"
-                    android:layout_height="10dp"
-                    android:layout_weight="1"
-                    android:gravity="center"
-                    android:text="20°C" />
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="40dp"
-                android:layout_height="match_parent"
-                android:layout_marginLeft="0dp"
-                android:orientation="vertical">
-
-                <TextView
-                    android:id="@+id/textView34"
-                    android:layout_width="match_parent"
-                    android:layout_height="10dp"
-                    android:layout_weight="1"
-                    android:gravity="center"
-                    android:text="10:00" />
-
-                <ImageView
-                    android:id="@+id/imageView16"
-                    android:layout_width="30dp"
-                    android:layout_height="5dp"
-                    android:layout_marginLeft="5dp"
-                    android:layout_weight="1"
-                    android:src="@drawable/shine" />
-
-                <TextView
-                    android:id="@+id/tv10h"
-                    android:layout_width="match_parent"
-                    android:layout_height="10dp"
-                    android:layout_weight="1"
-                    android:gravity="center"
-                    android:text="20°C" />
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="40dp"
-                android:layout_height="match_parent"
-                android:layout_marginLeft="0dp"
-                android:orientation="vertical">
-
-                <TextView
-                    android:id="@+id/textView35"
-                    android:layout_width="match_parent"
-                    android:layout_height="10dp"
-                    android:layout_weight="1"
-                    android:gravity="center"
-                    android:text="13:00" />
-
-                <ImageView
-                    android:id="@+id/imageView17"
-                    android:layout_width="30dp"
-                    android:layout_height="5dp"
-                    android:layout_marginLeft="5dp"
-                    android:layout_weight="1"
-                    android:src="@drawable/shine" />
-                <TextView
-                    android:id="@+id/tv1hpm"
-                    android:layout_width="match_parent"
-                    android:layout_height="10dp"
-                    android:layout_weight="1"
-                    android:gravity="center"
-                    android:text="20°C" />
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="40dp"
-                android:layout_height="match_parent"
-                android:layout_marginLeft="0dp"
-                android:orientation="vertical">
-
-                <TextView
-                    android:id="@+id/textView36"
-                    android:layout_width="match_parent"
-                    android:layout_height="10dp"
-                    android:layout_weight="1"
-                    android:gravity="center"
-                    android:text="16:00" />
-
-                <ImageView
-                    android:id="@+id/imageView18"
-                    android:layout_width="30dp"
-                    android:layout_height="5dp"
-                    android:layout_marginLeft="5dp"
-                    android:layout_weight="1"
-                    android:src="@drawable/shine" />
-
-                <TextView
-                    android:id="@+id/tv4hpm"
-                    android:layout_width="match_parent"
-                    android:layout_height="10dp"
-                    android:layout_weight="1"
-                    android:gravity="center"
-                    android:text="20°C" />
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="40dp"
-                android:layout_height="match_parent"
-                android:layout_marginLeft="0dp"
-                android:orientation="vertical">
-
-                <TextView
-                    android:id="@+id/textView37"
-                    android:layout_width="match_parent"
-                    android:layout_height="10dp"
-                    android:layout_weight="1"
-                    android:gravity="center"
-                    android:text="19:00" />
-
-                <ImageView
-                    android:id="@+id/imageView19"
-                    android:layout_width="30dp"
-                    android:layout_height="5dp"
-                    android:layout_marginLeft="5dp"
-                    android:layout_weight="1"
-                    android:src="@drawable/shine" />
-
-                <TextView
-                    android:id="@+id/tv7hpm"
-                    android:layout_width="match_parent"
-                    android:layout_height="10dp"
-                    android:layout_weight="1"
-                    android:gravity="center"
-                    android:text="20°C" />
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="50dp"
-                android:layout_height="match_parent"
-                android:layout_marginLeft="0dp"
-                android:orientation="vertical">
-
-                <TextView
-                    android:id="@+id/textView38"
-                    android:layout_width="match_parent"
-                    android:layout_height="10dp"
-                    android:layout_weight="1"
-                    android:gravity="center"
-                    android:text="22:00" />
-
-                <ImageView
-                    android:id="@+id/imageView20"
-                    android:layout_width="30dp"
-                    android:layout_height="5dp"
-                    android:layout_marginLeft="5dp"
-                    android:layout_weight="1"
-                    android:src="@drawable/shine" />
-
-                <TextView
-                    android:id="@+id/tv10hpm"
-                    android:layout_width="match_parent"
-                    android:layout_height="10dp"
-                    android:layout_weight="1"
-                    android:gravity="center"
-                    android:text="20°C" />
-            </LinearLayout>
-        </LinearLayout>
 
     </RelativeLayout>
 

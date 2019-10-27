@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<animation-list xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:drawable="@drawable/wind00"
+        android:duration="70"/>
+    <item android:drawable="@drawable/wind01"
+        android:duration="70"/><item android:drawable="@drawable/wind02"
+    android:duration="70"/><item android:drawable="@drawable/wind03"
+    android:duration="70"/><item android:drawable="@drawable/wind04"
+    android:duration="70"/><item android:drawable="@drawable/wind05"
+    android:duration="70"/><item android:drawable="@drawable/wind06"
+    android:duration="70"/><item android:drawable="@drawable/wind07"
+    android:duration="70"/><item android:drawable="@drawable/wind08"
+    android:duration="70"/><item android:drawable="@drawable/wind09"
+    android:duration="70"/><item android:drawable="@drawable/wind10"
+    android:duration="70"/><item android:drawable="@drawable/wind11"
+    android:duration="70"/><item android:drawable="@drawable/wind12"
+    android:duration="70"/><item android:drawable="@drawable/wind13"
+    android:duration="70"/><item android:drawable="@drawable/wind14"
+    android:duration="70"/><item android:drawable="@drawable/wind15"
+    android:duration="70"/><item android:drawable="@drawable/wind16"
+    android:duration="70"/><item android:drawable="@drawable/wind17"
+    android:duration="70"/><item android:drawable="@drawable/wind18"
+    android:duration="70"/><item android:drawable="@drawable/wind19"
+    android:duration="70"/>
+    <item android:drawable="@drawable/wind20"
+        android:duration="70"/>
+
+</animation-list>

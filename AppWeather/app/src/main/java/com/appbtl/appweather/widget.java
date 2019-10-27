@@ -3,23 +3,33 @@ package com.appbtl.appweather;
 import android.appwidget.AppWidgetManager;
 import android.appwidget.AppWidgetProvider;
 import android.content.Context;
+import android.content.Intent;
+import android.util.Log;
 import android.widget.RemoteViews;
+
+import static com.appbtl.appweather.R.string.app_name;
 
 /**
  * Implementation of App Widget functionality.
  */
 public class widget extends AppWidgetProvider {
 
+    private static final String TAG = "MyActivity";
+
     static void updateAppWidget(Context context, AppWidgetManager appWidgetManager,
                                 int appWidgetId) {
 
-//        CharSequence widgetText = context.getString(R.string.app_name);
+        CharSequence widgetText = context.getString(app_name);
         // Construct the RemoteViews object
-//        RemoteViews views = new RemoteViews(context.getPackageName(), R.layout.widget);
-//        views.setTextViewText(R.id.appwidget_text, "hello");
-
+        RemoteViews views = new RemoteViews(context.getPackageName(), R.layout.widget);
+//Extract the data…
+        Intent intentUpdate = new Intent(context.getApplicationContext(), MainActivity.class);
+        intentUpdate.setAction(AppWidgetManager.ACTION_APPWIDGET_UPDATE);
+        String dataRe = intentUpdate.getStringExtra("data");
+        Log.i(TAG, "updateAppWidget: " + dataRe);
+        views.setTextViewText(R.id.textView13, dataRe);
         // Instruct the widget manager to update the widget
-//        appWidgetManager.updateAppWidget(appWidgetId, views);
+        appWidgetManager.updateAppWidget(appWidgetId, views);
     }
 
     @Override
