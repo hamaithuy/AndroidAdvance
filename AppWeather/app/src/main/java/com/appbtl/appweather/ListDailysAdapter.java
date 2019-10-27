@@ -16,7 +16,6 @@ import com.bumptech.glide.Glide;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.HashMap;
-import java.util.List;
 
 public class ListDailysAdapter extends RecyclerView.Adapter<ListDailysAdapter.recylerHolder> {
     ListDailys listDailys;
@@ -64,8 +63,8 @@ public class ListDailysAdapter extends RecyclerView.Adapter<ListDailysAdapter.re
             super(itemView);
             tdate = (TextView)itemView.findViewById(R.id.tDate);
             txtTT=(TextView)itemView.findViewById(R.id.txtTT);
-            tMax =(TextView)itemView.findViewById(R.id.tMax);
-            tMin = (TextView)itemView.findViewById(R.id.tMin);
+            tMax =(TextView)itemView.findViewById(R.id.thMax);
+            tMin = (TextView)itemView.findViewById(R.id.thMin);
             imgTT = (ImageView)itemView.findViewById(R.id.imgTT);
             Des.put("scattered clouds", "Mây rải rác");
             Des.put("moderate rain", "Mưa vừa");

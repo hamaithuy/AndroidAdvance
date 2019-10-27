@@ -5,6 +5,7 @@
     android:id="@+id/detaillayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/background2"
     android:orientation="vertical"
     tools:context=".ActivityDetails">
 
@@ -12,10 +13,10 @@
         android:id="@+id/textView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="#03A9F4"
-        android:text="Hà Nội"
+        android:background="#28000000"
+        android:text="Các ngày tiếp theo"
         android:textAlignment="center"
-        android:textColor="#FFFFFF"
+        android:textColor="@color/tempColor"
         android:textSize="24sp"
         android:textStyle="bold" />
 
@@ -23,6 +24,6 @@
         android:id="@+id/recView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@drawable/bg" />
+        android:layout_marginTop="10dp" />
 
 </LinearLayout>

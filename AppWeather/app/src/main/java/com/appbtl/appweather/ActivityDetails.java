@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Context;
 import android.content.Intent;
 import android.location.Location;
 import android.location.LocationManager;
@@ -27,16 +28,18 @@ public class ActivityDetails extends AppCompatActivity {
     private Intent intent;
     private RecyclerView recyclerView;
     private ListDailys listDailys;
-    private LocationAPI locationAPI;
     private String resultDailys;
+    private IOFile ioFile;
+    private Context context;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_details);
         control();
+        context = getApplicationContext();
+        ioFile = new IOFile();
         intent = new Intent(ActivityDetails.this, MainActivity.class);
-        Intent intentdetail= getIntent();
-        resultDailys = intentdetail.getStringExtra("dailys");
+        resultDailys = ioFile.readFile("dailys.bat",this);
         listDailys = new Gson().fromJson(resultDailys,ListDailys.class);
         detaillayout.setOnTouchListener(new OnSwipeTouchListener(ActivityDetails.this) {
             @Override

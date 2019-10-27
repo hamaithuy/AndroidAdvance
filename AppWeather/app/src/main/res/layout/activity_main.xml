@@ -40,7 +40,8 @@
                 android:gravity="center"
                 android:text="Hà Nội"
                 android:textColor="@color/barTextColor"
-                android:textSize="18sp" />
+                android:textSize="18sp"
+                android:textStyle="bold" />
 
             <TextView
                 android:id="@+id/Address"
@@ -50,15 +51,16 @@
                 android:gravity="center"
                 android:text="Hoàng Mai, Hà Nội"
                 android:textColor="@color/barTextColor"
-                android:textSize="18sp" />
+                android:textSize="18sp"
+                android:textStyle="bold" />
         </LinearLayout>
 
         <ImageView
             android:id="@+id/imgTT"
-            android:layout_width="177dp"
-            android:layout_height="165dp"
-            android:layout_marginTop="150dp"
-            android:layout_marginEnd="17dp"
+            android:layout_width="150dp"
+            android:layout_height="150dp"
+            android:layout_marginTop="152dp"
+            android:layout_marginEnd="36dp"
             android:src="@drawable/shine"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
@@ -66,12 +68,12 @@
         <LinearLayout
             android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:layout_marginBottom="50dp"
             android:gravity="center|center_horizontal"
             android:orientation="horizontal"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/main_weather">
+            app:layout_constraintStart_toStartOf="parent">
 
             <LinearLayout
                 android:layout_width="100dp"
@@ -231,121 +233,89 @@
             android:id="@+id/temp_min"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:layout_marginBottom="200dp"
+            android:layout_marginTop="364dp"
             android:text="20°C"
             android:textColor="@color/tempColor"
             android:textSize="20dp"
             android:textStyle="bold"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toEndOf="@+id/temp3"
-            app:layout_constraintTop_toBottomOf="@+id/imgTT"
-            app:layout_constraintVertical_bias="0.691" />
+            app:layout_constraintTop_toBottomOf="@+id/bar" />
 
         <TextView
             android:id="@+id/temp_max"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:layout_marginBottom="200dp"
+            android:layout_marginStart="4dp"
+            android:layout_marginTop="336dp"
             android:text="20°C"
             android:textColor="@color/tempColor"
             android:textSize="20dp"
             android:textStyle="bold"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.052"
             app:layout_constraintStart_toEndOf="@+id/temp2"
-            app:layout_constraintTop_toBottomOf="@+id/imgTT"
-            app:layout_constraintVertical_bias="0.574" />
+            app:layout_constraintTop_toBottomOf="@+id/bar" />
 
         <TextView
             android:id="@+id/temp2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:layout_marginBottom="200dp"
+            android:layout_marginStart="76dp"
+            android:layout_marginTop="336dp"
             android:text="Nhiệt độ cao nhất :"
             android:textColor="@color/tempColor"
             android:textSize="20dp"
             android:textStyle="bold"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.341"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/imgTT"
-            app:layout_constraintVertical_bias="0.573" />
+            app:layout_constraintTop_toBottomOf="@+id/bar" />
 
         <TextView
             android:id="@+id/temp3"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:layout_marginBottom="200dp"
+            android:layout_marginStart="76dp"
             android:text="Nhiệt độ thấp nhất:"
             android:textColor="@color/tempColor"
             android:textSize="20dp"
             android:textStyle="bold"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.358"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/imgTT"
-            app:layout_constraintVertical_bias="0.69" />
+            app:layout_constraintTop_toBottomOf="@+id/temp2" />
 
         <TextView
             android:id="@+id/temp5"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:layout_marginBottom="200dp"
+            android:layout_marginStart="76dp"
+            android:layout_marginTop="4dp"
             android:text="Trạng thái: "
             android:textColor="@color/tempColor"
             android:textSize="20dp"
             android:textStyle="bold"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.272"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/imgTT"
-            app:layout_constraintVertical_bias="0.807" />
+            app:layout_constraintTop_toBottomOf="@+id/temp3" />
 
         <TextView
             android:id="@+id/main_weather"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:layout_marginBottom="200dp"
+            android:layout_marginTop="4dp"
             android:text="Mưa"
             android:textColor="@color/tempColor"
             android:textSize="20dp"
             android:textStyle="bold"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toEndOf="@+id/temp5"
-            app:layout_constraintTop_toBottomOf="@+id/imgTT"
-            app:layout_constraintVertical_bias="0.808" />
+            app:layout_constraintTop_toBottomOf="@+id/temp3" />
 
         <TextView
             android:id="@+id/wtCity"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:layout_marginBottom="236dp"
+            android:layout_marginStart="28dp"
             android:gravity="center"
             android:text="Hà Nội"
             android:textColor="@color/tempColor"
             android:textSize="40dp"
             android:textStyle="bold|italic"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.119"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/txtTempm"
-            app:layout_constraintVertical_bias="0.058" />
+            app:layout_constraintTop_toBottomOf="@+id/txtTempm" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

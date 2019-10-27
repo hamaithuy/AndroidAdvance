@@ -12,16 +12,12 @@ import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.Response;
 
-public abstract class WeatherAsynctask extends AsyncTask<String, Void, OpenWeatherJson> {
+public class WeatherAsynctask extends AsyncTask<String, Void, String> {
     OkHttpClient client = new OkHttpClient();
     OpenWeatherJson result;
-    @Override
-    protected void onPostExecute(OpenWeatherJson openWeatherJson) {
-        doJson(openWeatherJson);
-    }
 
     @Override
-    protected OpenWeatherJson doInBackground(String... strings) {
+    protected String doInBackground(String... strings) {
         Request.Builder builder = new Request.Builder();
         builder.url(strings[0]);
 
@@ -30,16 +26,14 @@ public abstract class WeatherAsynctask extends AsyncTask<String, Void, OpenWeath
         try {
 
             Response response = client.newCall(request).execute();
-            if (response!=null){
-            String rs = response.body().string();
-            result =  new Gson().fromJson(rs,OpenWeatherJson.class);
-            return result;}
+            if (response != null) {
+                String rs = response.body().string();
+                return rs;
+            }
 
         } catch (Exception e) {
 
         }
         return null;
     }
-
-    public abstract void doJson(OpenWeatherJson result);
 }

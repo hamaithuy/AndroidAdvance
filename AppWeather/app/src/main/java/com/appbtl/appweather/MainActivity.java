@@ -3,7 +3,11 @@ package com.appbtl.appweather;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.drawable.AnimationDrawable;
+import android.location.Address;
+import android.location.Geocoder;
 import android.location.Location;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.os.Bundle;
 import android.view.Gravity;
 import android.view.LayoutInflater;
@@ -20,12 +24,17 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.constraintlayout.widget.ConstraintLayout;
 
+import com.appbtl.appweather.model.AddressInfo;
 import com.appbtl.appweather.model.OpenWeatherJson;
 import com.google.android.gms.location.LocationServices;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.gson.Gson;
 
+import java.io.File;
+import java.io.IOException;
 import java.util.HashMap;
+import java.util.List;
 import java.util.concurrent.ExecutionException;
 
 public class MainActivity extends AppCompatActivity {
@@ -33,14 +42,17 @@ public class MainActivity extends AppCompatActivity {
     private Intent intent;
     private Context mContext;
     private PopupWindow mPopupWindow;
-    private Intent intent1;
     private ImageView imgvisibility, imgpressure, imghumidity, imgwind;
-    private TextView city, temp, tempMax, tempMin, mainWeather, visibility, humidity, speed, airpress;
+    private TextView city, temp, tempMax, tempMin, mainWeather, visibility, humidity, speed, airpress, wtCity, address;
     private ConstraintLayout body;
     private LocationAPI locationAPI;
     private AnimationDrawable animBackgroundRain;
-    private String resultDailys;
+    private String resultDailys, reSultMain;
     private HashMap<String, String> Des = new HashMap<String, String>();
+    private IOFile ioFile;
+    private RequestPermission pms;
+    AddressInfo add;
+    private Intent it;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,48 +61,64 @@ public class MainActivity extends AppCompatActivity {
         controls();
         mContext = getApplicationContext();
         setIcon();
+        pms = new RequestPermission();
 
+        add = new AddressInfo();
+        ioFile = new IOFile();
+        locationAPI = new LocationAPI();
+        locationAPI.connectLocationApi(this);//kết nối API
+        locationAPI.fusedLocationClient = LocationServices.getFusedLocationProviderClient(this);
+        it = new Intent(this, ServiceUpdate.class);
+        startService(it);
         mainlayout.setOnTouchListener(new OnSwipeTouchListener(MainActivity.this) {
             @Override
             public void onSwipeRight() {
                 if (resultDailys == null) {
                     resultDailys = "";
                 }
-                intent.putExtra("dailys", resultDailys);
                 startActivity(intent);
                 overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_right);
             }
 
             @Override
             public void onSwipeLeft() {
-                startActivity(intent1);
+
                 overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
             }
 
             @Override
             public void onSwipeBottom() {
-                locationAPI.fusedLocationClient.getLastLocation().addOnSuccessListener(MainActivity.this, new OnSuccessListener<Location>() {
-                    @Override
-                    public void onSuccess(Location location) {
-                        if (location != null) {
-                            //làm việc với location ở đây
-                            String url = "http://api.openweathermap.org/data/2.5/weather?" + "lat=" + location.getLatitude() + "&lon=" + location.getLongitude() + "&appid=b87ce30a14229dd8e26f167dd2111f06";
-                            //truyền tham số location để lấy file json
-                            String dailys = "http://api.openweathermap.org/data/2.5/forecast/daily?lat=" + location.getLatitude() + "&lon=" + location.getLongitude() + "&units=metric&cnt=7&appid=be8d3e323de722ff78208a7dbb2dcd6f";
+                pms.pLocation(MainActivity.this);
+                if (isOnline() == false) {
+                    Toast.makeText(MainActivity.this, "Bạn chưa bật kết nối mạng!", Toast.LENGTH_SHORT).show();
+                } else {
+                    locationAPI.fusedLocationClient.getLastLocation().addOnSuccessListener(MainActivity.this, new OnSuccessListener<Location>() {
+                        @Override
+                        public void onSuccess(Location location) {
+                            if (location != null) {
+                                add = getAddress(location);
 
-                            new GetFileJson().execute(url);
-                            try {
-                                resultDailys = new WeatherDailysAsynctask().execute(dailys).get();
-                            } catch (ExecutionException e) {
-                                e.printStackTrace();
-                            } catch (InterruptedException e) {
-                                e.printStackTrace();
+                                //làm việc với location ở đây
+                                String url = "http://api.openweathermap.org/data/2.5/weather?" + "lat=" + location.getLatitude() + "&lon=" + location.getLongitude() + "&appid=b87ce30a14229dd8e26f167dd2111f06";
+                                //truyền tham số location để lấy file json
+                                String dailys = "http://api.openweathermap.org/data/2.5/forecast/daily?lat=" + location.getLatitude() + "&lon=" + location.getLongitude() + "&units=metric&cnt=7&appid=be8d3e323de722ff78208a7dbb2dcd6f";
+                                try {
+                                    reSultMain = new WeatherAsynctask().execute(url).get();
+                                    resultDailys = new WeatherDailysAsynctask().execute(dailys).get();
+                                    updateUI(add, reSultMain);
+                                    ioFile.saveFile("mainWeather.bat", reSultMain, mContext);
+                                    ioFile.saveFile("dailys.bat", resultDailys, mContext);
+                                } catch (ExecutionException e) {
+                                    e.printStackTrace();
+                                } catch (InterruptedException e) {
+                                    e.printStackTrace();
+                                }
+                            } else {
+                                Toast.makeText(MainActivity.this, "Chưa nhận được vị trí.Vui lòng kiểm tra lại GPS!", Toast.LENGTH_SHORT).show();
                             }
-                        } else {
-                            Toast.makeText(MainActivity.this, "Chưa nhận được vị trí.Vui lòng kiểm tra lại GPS!", Toast.LENGTH_SHORT).show();
                         }
-                    }
-                });
+                    });
+                }
             }
         });
         city.setOnClickListener(new View.OnClickListener() {
@@ -111,60 +139,79 @@ public class MainActivity extends AppCompatActivity {
                         mPopupWindow.dismiss();
                     }
                 });
+                mPopupWindow.setFocusable(true);
+                mPopupWindow.update();
                 mPopupWindow.showAtLocation(body, Gravity.CENTER, 0, 0);
             }
         });
-        getWeather();
+
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+        pms.pLocation(MainActivity.this);
+        locationAPI.fusedLocationClient.getLastLocation().addOnSuccessListener(new OnSuccessListener<Location>() {
+            @Override
+            public void onSuccess(Location location) {
+                add = getAddress(location);
+            }
+        });
+        String dt = ioFile.readFile("mainWeather.bat", mContext);
+        File file = new File(this.getFilesDir(), "mainWeather.bat");
+        if (file.exists())
+//        if(dt!=null||dt.equals("")){
+//
+            updateUI(add, data());
+//        }
+        else {
+            getWeather();
+        }
     }
 
     private void getWeather() {
-        locationAPI = new LocationAPI();
-        locationAPI.connectLocationApi(this);//kết nối API
-        locationAPI.locationRequest();//tạo request để lấy location
-        locationAPI.fusedLocationClient = LocationServices.getFusedLocationProviderClient(this);
-        locationAPI.fusedLocationClient.getLastLocation().addOnSuccessListener(this, new OnSuccessListener<Location>() {
-            @Override
-            public void onSuccess(Location location) {
-                if (location != null) {
-                    //làm việc với location ở đây
-                    String url = "http://api.openweathermap.org/data/2.5/weather?" + "lat=" + location.getLatitude() + "&lon=" + location.getLongitude() + "&appid=b87ce30a14229dd8e26f167dd2111f06";
-                    //truyền tham số location để lấy file json
-                    String dailys = "http://api.openweathermap.org/data/2.5/forecast/daily?lat=" + location.getLatitude() + "&lon=" + location.getLongitude() + "&units=metric&cnt=7&appid=be8d3e323de722ff78208a7dbb2dcd6f";
+        if (isOnline() == false) {
+            Toast.makeText(MainActivity.this, "Bạn chưa bật kết nối mạng!", Toast.LENGTH_SHORT).show();
+        } else {
+            locationAPI.fusedLocationClient.getLastLocation().addOnSuccessListener(this, new OnSuccessListener<Location>() {
+                @Override
+                public void onSuccess(Location location) {
+                    if (location != null) {
+                        add = getAddress(location);
+                        //làm việc với location ở đây
 
-                    new GetFileJson().execute(url);
-                    try {
-                        resultDailys = new WeatherDailysAsynctask().execute(dailys).get();
-                    } catch (ExecutionException e) {
-                        e.printStackTrace();
-                    } catch (InterruptedException e) {
-                        e.printStackTrace();
-                    }
-                } else {
-                    String url = "http://api.openweathermap.org/data/2.5/weather?" + "lat=" + 21.028511 + "&lon=" + 105.804817 + "&appid=b87ce30a14229dd8e26f167dd2111f06";
-                    //truyền tham số location để lấy file json
-                    String dailys = "http://api.openweathermap.org/data/2.5/forecast/daily?lat=" + 21.028511 + "&lon=" + 105.804817 + "&units=metric&cnt=7&appid=be8d3e323de722ff78208a7dbb2dcd6f";
+                        // location.getLatitude()
+                        // location.getLongitude()
+                        String url = "http://api.openweathermap.org/data/2.5/weather?" + "lat=" + "21.028511" + "&lon=" + "105.804817" + "&appid=b87ce30a14229dd8e26f167dd2111f06";
+                        //truyền tham số location để lấy file json
+                        String dailys = "http://api.openweathermap.org/data/2.5/forecast/daily?lat=" + "21.028511" + "&lon=" + "105.804817" + "&units=metric&cnt=7&appid=be8d3e323de722ff78208a7dbb2dcd6f";
+                        try {
+                            reSultMain = new WeatherAsynctask().execute(url).get();
+                            resultDailys = new WeatherDailysAsynctask().execute(dailys).get();
+                            updateUI(add, reSultMain);
+                            ioFile.saveFile("mainWeather.bat", reSultMain, mContext);
+                            ioFile.saveFile("dailys.bat", resultDailys, mContext);
 
-                    new GetFileJson().execute(url);
-                    try {
-                        resultDailys = new WeatherDailysAsynctask().execute(dailys).get();
-                    } catch (ExecutionException e) {
-                        e.printStackTrace();
-                    } catch (InterruptedException e) {
-                        e.printStackTrace();
+                        } catch (ExecutionException e) {
+                            e.printStackTrace();
+                        } catch (InterruptedException e) {
+                            e.printStackTrace();
+                        }
                     }
-                    Toast.makeText(MainActivity.this, "Chưa nhận được vị trí.Vui lòng kiểm tra lại GPS!", Toast.LENGTH_SHORT).show();
                 }
-            }
-        });
-        locationAPI.fusedLocationClient.getLastLocation().addOnFailureListener(this, new OnFailureListener() {
-            @Override
-            public void onFailure(@NonNull Exception e) {
-                Toast.makeText(MainActivity.this, "Bạn chưa bật GPS.Vui lòng bật GPS và thử lại!", Toast.LENGTH_SHORT).show();
-            }
-        });
+            });
+            locationAPI.fusedLocationClient.getLastLocation().addOnFailureListener(this, new OnFailureListener() {
+                @Override
+                public void onFailure(@NonNull Exception e) {
+                    Toast.makeText(MainActivity.this, "Bạn chưa bật GPS.Vui lòng bật GPS và thử lại!", Toast.LENGTH_SHORT).show();
+                }
+            });
+        }
     }
 
     private void controls() {
+        address = (TextView) findViewById(R.id.Address);
+        wtCity = (TextView) findViewById(R.id.wtCity);
         city = (TextView) findViewById(R.id.City);
         body = (ConstraintLayout) findViewById(R.id.body);
         mainlayout = (RelativeLayout) findViewById(R.id.mainlayout);
@@ -181,7 +228,7 @@ public class MainActivity extends AppCompatActivity {
         humidity = (TextView) findViewById(R.id.humidity);
         speed = (TextView) findViewById(R.id.speed);
         intent = new Intent(MainActivity.this, ActivityDetails.class);
-        intent1 = new Intent(MainActivity.this, ActivityInfo.class);
+
         Des.put("scattered clouds", "Mây rải rác");
         Des.put("moderate rain", "Mưa vừa");
         Des.put("heavy intensity rain", "Mưa lớn");
@@ -190,30 +237,42 @@ public class MainActivity extends AppCompatActivity {
         Des.put("light rain", "Mưa nhỏ");
     }
 
-    private class GetFileJson extends WeatherAsynctask {
-        @Override
-        public void doJson(OpenWeatherJson result) {
-            int tempmain, tempmax, tempmin;
-            double t = result.getMain().getTemp() - 273.15;
-            tempmain = (int) t;
-            double max = result.getMain().getTemp_max() - 273.15;
-            tempmax = (int) max;
-            double min = result.getMain().getTemp_min() - 273.15;
-            tempmin = (int) min;
-            //kết quả trả về json thành object
-            temp.setText(tempmain + "°C");
-            tempMax.setText(tempmax + "°C");
-            tempMin.setText(tempmin + "°C");
-            String des = result.getWeather().get(0).getDescription();
-            String status = Des.get(des);
-            mainWeather.setText(status);
-            visibility.setText(result.getVisibility() + "m");
-            airpress.setText(result.getMain().getPressure() + " hpa");
-            humidity.setText(result.getMain().getHumidity() + "%");
-            speed.setText(result.getWind().getSpeed() + "km/h");
-            // làm việc với giao diện ở đây;
-        }
+    public String data() {
+        String dt = ioFile.readFile("mainWeather.bat", mContext);
+        return dt;
     }
+
+    private void updateUI(AddressInfo add, String rs) {
+        OpenWeatherJson result = new Gson().fromJson(rs, OpenWeatherJson.class);
+        int tempmain, tempmax, tempmin;
+        double t = result.getMain().getTemp() - 273.15;
+        tempmain = (int) t;
+        double max = result.getMain().getTemp_max() - 273.15;
+        tempmax = (int) max;
+        double min = result.getMain().getTemp_min() - 273.15;
+        tempmin = (int) min;
+        //kết quả trả về json thành object
+        wtCity.setText(add.getCity());
+        city.setText(add.getCity());
+        if (add.getVillage() == null || add.getVillage().equals("Unnamed Road")) {
+            address.setText(add.getArea() + "-" + add.getCity());
+        } else {
+            address.setText(add.getVillage() + "-" + add.getArea() + "-" + add.getCity());
+        }
+
+        temp.setText(tempmain + "°C");
+        tempMax.setText(tempmax + "°C");
+        tempMin.setText(tempmin + "°C");
+        String des = result.getWeather().get(0).getDescription();
+        String status = Des.get(des);
+        mainWeather.setText(status);
+        visibility.setText(result.getVisibility() + "m");
+        airpress.setText(result.getMain().getPressure() + " hpa");
+        humidity.setText(result.getMain().getHumidity() + "%");
+        speed.setText(result.getWind().getSpeed() + "km/h");
+        // làm việc với giao diện ở đây;
+    }
+
 
     private void setIcon() {
         imgvisibility.setImageResource(R.drawable.visibility);
@@ -224,5 +283,50 @@ public class MainActivity extends AppCompatActivity {
         animBackgroundRain = (AnimationDrawable) body.getBackground();
         animBackgroundRain.start();
 
+    }
+
+    private Boolean isOnline() {
+        ConnectivityManager cm = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
+        NetworkInfo ni = cm.getActiveNetworkInfo();
+        if (ni != null && ni.isConnected()) {
+            return true;
+        }
+        return false;
+    }
+
+    private AddressInfo getAddress(Location location) {
+        AddressInfo addressInfo = new AddressInfo();
+        if (Geocoder.isPresent()) {
+            Geocoder geocoder = new Geocoder(this);
+            try {
+                List<Address> ad = geocoder.getFromLocation(location.getLatitude(), location.getLongitude(), 1);
+                if (ad != null) {
+                    for (Address name : ad) {
+                        String ct = name.getAdminArea();
+                        String subarea = name.getLocality();
+                        String area = name.getSubAdminArea();
+                        String village = name.getFeatureName();
+                        String road = name.getThoroughfare();
+                        addressInfo.setCity(ct);
+                        addressInfo.setArea(area);
+                        addressInfo.setVillage(village);
+                        addressInfo.setRoad(road);
+                        addressInfo.setPlace(subarea);
+                        wtCity.setText(ct);
+                        city.setText(ct);
+                        if (village == "" || village.equals("Unnamed Road")) {
+                            address.setText(area + "-" + ct);
+                        } else {
+                            address.setText(village + "-" + area + "-" + ct);
+                        }
+
+                        return addressInfo;
+                    }
+                }
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+        return null;
     }
 }

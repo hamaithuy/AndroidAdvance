@@ -48,7 +48,7 @@ public class LocationAPI implements GoogleApiClient.ConnectionCallbacks,GoogleAp
             //xin cấp quyền truy cập vị trí
         }
     }
-    protected void connectLocationApi(Activity activity){
+    protected void connectLocationApi(Context activity){
         if (googleApiClient == null) {
             googleApiClient = new GoogleApiClient.Builder(activity)
                     .addConnectionCallbacks(this)
@@ -65,7 +65,7 @@ public class LocationAPI implements GoogleApiClient.ConnectionCallbacks,GoogleAp
         locationRequest.setInterval(5000);
         locationRequest.setFastestInterval(5000);
     }
-    protected void getLocation(Activity activity){
+    protected void getLocation(Context activity){
         fusedLocationClient = LocationServices.getFusedLocationProviderClient(activity);
     }
 }

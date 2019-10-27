@@ -45,8 +45,8 @@ public class Adapter extends BaseAdapter {
             view = layoutInflater.inflate(R.layout.item, null);
             holder = new ViewHolder();
             holder.imgWeather = (ImageView) view.findViewById(R.id.imgTT);
-            holder.maxTemp = (TextView) view.findViewById(R.id.tMax);
-            holder.minTemp = (TextView) view.findViewById(R.id.tMin);
+            holder.maxTemp = (TextView) view.findViewById(R.id.thMax);
+            holder.minTemp = (TextView) view.findViewById(R.id.thMin);
             holder.date = (TextView) view.findViewById(R.id.tDate);
             holder.status = (TextView) view.findViewById(R.id.txtTT);
             view.setTag(holder);
