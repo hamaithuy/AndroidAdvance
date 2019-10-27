@@ -6,6 +6,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -30,6 +32,7 @@ public class RecyclerViewOder {
     }
 
     class MonItemOderview extends RecyclerView.ViewHolder {
+        private ImageView imgOder;
         private TextView m_txtTenmon;
         private TextView m_txtGia;
         private TextView m_txtLoaimon;
@@ -37,9 +40,9 @@ public class RecyclerViewOder {
         private TextView m_txtSoluongCon;
         private TextView m_txtMonID;
         private EditText m_edtSoluong;
-        private Button m_btnpre;
-        private Button m_btnNext;
-        private Button m_btnAdd;
+        private ImageButton m_btnpre;
+        private ImageButton m_btnNext;
+        private ImageButton m_btnAdd;
         private String key;
 
         public MonItemOderview(ViewGroup parent) {
@@ -52,6 +55,13 @@ public class RecyclerViewOder {
             m_txtGia.setText(mon.getGia().toString());
             m_txtLoaimon.setText(mon.getLoaiMon());
             m_txtLoai.setText(mon.getLoai().toString());
+            if (mon.getLoaiMon().equals("Sinh tố")) {
+                imgOder.setImageResource(R.drawable.img_sinh_to);
+            } else if (mon.getLoaiMon().equals("Nước uống")) {
+                imgOder.setImageResource(R.drawable.img_nuoc_uong);
+            } else if (mon.getLoaiMon().equals("Đồ ăn")) {
+                imgOder.setImageResource(R.drawable.img_do_an);
+            }
 
             if (mon.getSoLuong() < 1) {
                 m_txtSoluongCon.setText("Hết hàng");
@@ -75,14 +85,15 @@ public class RecyclerViewOder {
         }
 
         private void init() {
+            imgOder = itemView.findViewById(R.id.img_item_oder);
             m_txtTenmon = (TextView) itemView.findViewById(R.id.txtTenmon);
             m_txtGia = (TextView) itemView.findViewById(R.id.txtGia);
             m_txtLoaimon = (TextView) itemView.findViewById(R.id.txtLoaimon);
             m_txtSoluongCon = (TextView) itemView.findViewById(R.id.txtSoluongCon);
             m_edtSoluong = (EditText) itemView.findViewById(R.id.edtSoluong);
-            m_btnpre = (Button) itemView.findViewById(R.id.btnpre);
-            m_btnNext = (Button) itemView.findViewById(R.id.btnNext);
-            m_btnAdd = (Button) itemView.findViewById(R.id.btnAdd);
+            m_btnpre = (ImageButton) itemView.findViewById(R.id.btnpre);
+            m_btnNext = (ImageButton) itemView.findViewById(R.id.btnNext);
+            m_btnAdd = (ImageButton) itemView.findViewById(R.id.btnAdd);
             m_txtMonID = (TextView) itemView.findViewById(R.id.txtMonID);
             m_txtLoai = (TextView) itemView.findViewById(R.id.txtLoai);
             m_btnpre.setOnClickListener(new View.OnClickListener() {

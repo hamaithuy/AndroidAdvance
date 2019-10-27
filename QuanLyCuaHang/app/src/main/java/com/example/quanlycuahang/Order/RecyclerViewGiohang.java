@@ -5,6 +5,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -33,7 +34,7 @@ public class RecyclerViewGiohang {
         private String key;
         private ImageView img_Anhsanpham;
         private TextView txtTenmon, txtGia, txtSoluong,tvLoai,tvLoaiMon,tvId;
-        private Button btnPre, btnNext, btnDelete;
+        private ImageButton btnPre, btnNext, btnDelete;
 
         public GiohangItemView(ViewGroup parent) {
             super(LayoutInflater.from(mContext).inflate(R.layout.giohang_item_layout, parent, false));
@@ -48,9 +49,9 @@ public class RecyclerViewGiohang {
             tvLoai = (TextView) itemView.findViewById(R.id.tv_loai_gio_hang);
             tvLoaiMon = (TextView) itemView.findViewById(R.id.tv_loai_mon_gio_hang);
             tvId = (TextView) itemView.findViewById(R.id.tv_id_gio_hang);
-            btnPre = (Button) itemView.findViewById(R.id.btnPre_giohang);
-            btnNext = (Button) itemView.findViewById(R.id.btnNext_giohang);
-            btnDelete = (Button) itemView.findViewById(R.id.btnDelete_giohang);
+            btnPre = (ImageButton) itemView.findViewById(R.id.btnPre_giohang);
+            btnNext = (ImageButton) itemView.findViewById(R.id.btnNext_giohang);
+            btnDelete = (ImageButton) itemView.findViewById(R.id.btnDelete_giohang);
             btnPre.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {

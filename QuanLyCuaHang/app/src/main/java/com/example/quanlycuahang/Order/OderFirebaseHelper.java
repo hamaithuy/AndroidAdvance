@@ -26,10 +26,12 @@ public class OderFirebaseHelper {
 
         void DataIsDeleted();
     }
+
     public OderFirebaseHelper() {
         database = FirebaseDatabase.getInstance();
         reference = database.getReference("HoaDonTam");
     }
+
     public void DanhSachHoaDonTam(final OderFirebaseHelper.OderDataStatuts oderDataStatuts) {
         reference.addValueEventListener(new ValueEventListener() {
             @Override
@@ -50,6 +52,10 @@ public class OderFirebaseHelper {
             }
         });
     }
+
+
+
+
     public void ThemHoaDonTam(Oder oder, final OderFirebaseHelper.OderDataStatuts dataStatuts) {
         String key = reference.push().getKey();
         reference.child(key).setValue(oder).addOnSuccessListener(new OnSuccessListener<Void>() {
@@ -59,6 +65,7 @@ public class OderFirebaseHelper {
             }
         });
     }
+
     public void SuaHoaDonTam(String key, Oder oder, final OderFirebaseHelper.OderDataStatuts dataStatuts) {
         reference.child(key).setValue(oder).addOnSuccessListener(new OnSuccessListener<Void>() {
             @Override
@@ -67,6 +74,7 @@ public class OderFirebaseHelper {
             }
         });
     }
+
     public void XoaHoaDontam(String key, final OderFirebaseHelper.OderDataStatuts dataStatuts) {
         reference.child(key).setValue(null).addOnSuccessListener(new OnSuccessListener<Void>() {
             @Override
@@ -75,8 +83,6 @@ public class OderFirebaseHelper {
             }
         });
     }
-
-
 
 
 }

@@ -1,99 +1,110 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:layout_width="match_parent"
-    android:layout_height="wrap_content">
-    <LinearLayout
+
+<LinearLayout android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_margin="5dp"
-        android:background="@drawable/custom_corners"
+        android:layout_height="90dp"
+        android:layout_margin="10dp"
         android:orientation="horizontal"
         android:weightSum="10">
 
         <ImageView
             android:id="@+id/img_Anhsanpham_giohang"
-            android:layout_width="0dp"
-            android:layout_height="100dp"
+            android:layout_width="55dp"
+            android:layout_height="55dp"
+            android:layout_gravity="center_vertical"
             android:layout_margin="5dp"
-            android:layout_weight="3"
-            android:scaleType="centerCrop"
-            android:src="@drawable/img_coca"></ImageView>
+            android:scaleType="centerCrop"></ImageView>
 
         <LinearLayout
+            android:weightSum="5"
             android:layout_width="0dp"
             android:layout_height="match_parent"
-            android:layout_margin="10dp"
-            android:layout_weight="6"
+            android:layout_weight="10"
             android:orientation="vertical">
-
             <TextView
+                android:gravity="center_vertical|center_horizontal"
+                android:layout_weight="1"
                 android:id="@+id/txtTenMon_giohang"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:fontFamily="@font/seguisb"
+                android:fontFamily="@font/calibribold"
                 android:text="Coca Real"
                 android:textColor="@color/colorRed"
                 android:textSize="20dp"></TextView>
 
             <TextView
+                android:gravity="center_vertical|center_horizontal"
+                android:layout_weight="1"
                 android:id="@+id/txtGia_giohang"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="5dp"
-                android:fontFamily="@font/segoeui"
+                android:fontFamily="@font/calibribold"
                 android:text="Giá : 11.000 đ"
                 android:textColor="@color/colorBlack"
                 android:textSize="18dp"></TextView>
-
             <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
+                android:layout_marginHorizontal="25dp"
+                android:weightSum="3"
                 android:orientation="horizontal"
-                android:paddingHorizontal="20dp"
-                android:weightSum="3">
-
-                <Button
+                android:layout_weight="3"
+                android:layout_width="match_parent"
+                android:layout_height="0dp">
+                <ImageButton
+                    android:gravity="center_vertical|center_horizontal"
+                    android:background="@color/colorWhite"
+                    android:src="@drawable/ic_dau_tru"
                     android:id="@+id/btnPre_giohang"
                     android:layout_width="40dp"
-                    android:layout_height="30dp"
+                    android:layout_height="match_parent"
                     android:layout_weight="1"
-                    android:text="-">
+                    >
 
-                </Button>
+                </ImageButton>
 
                 <TextView
+                    android:textSize="18dp"
+                    android:fontFamily="@font/calibribold"
                     android:id="@+id/txtSoluong_giohang"
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
-                    android:gravity="center_vertical"
+                    android:gravity="center_vertical|center_horizontal"
                     android:text="1"
                     android:textColor="@color/colorRed">
 
                 </TextView>
 
-                <Button
+                <ImageButton
+                    android:gravity="center_vertical|center_horizontal"
+                    android:background="@color/colorWhite"
+                    android:src="@drawable/ic_dau_cong"
                     android:id="@+id/btnNext_giohang"
                     android:layout_width="40dp"
-                    android:layout_height="30dp"
+                    android:layout_height="match_parent"
                     android:layout_weight="1"
-                    android:text="+">
+                    >
 
-                </Button>
+                </ImageButton>
+
 
             </LinearLayout>
 
         </LinearLayout>
-
-        <Button
+        <ImageButton
+            android:background="@color/colorWhite"
+            android:scaleType="centerInside"
+            android:src="@drawable/img_xoa"
             android:id="@+id/btnDelete_giohang"
-            android:layout_width="0dp"
-            android:layout_height="55dp"
-            android:layout_gravity="center"
-            android:layout_marginRight="5dp"
-            android:layout_weight="1"
-            android:background="@drawable/button_background"
-            android:text="X" />
+            android:layout_width="35dp"
+            android:layout_height="match_parent">
+
+
+        </ImageButton>
         <TextView
             android:id="@+id/tv_loai_gio_hang"
             android:text="sadasd"
@@ -109,5 +120,13 @@
             android:text="sadasd"
             android:layout_width="0dp"
             android:layout_height="0dp"></TextView>
+
     </LinearLayout>
+    <View
+        android:layout_margin="10dp"
+        android:background="@color/colorPrimaryDark"
+        android:layout_width="match_parent"
+        android:layout_height="1dp">
+
+    </View>
 </LinearLayout>

@@ -5,6 +5,7 @@
     android:background="@drawable/background"
     android:orientation="horizontal"
     android:weightSum="10">
+
     <LinearLayout
         android:layout_width="0dp"
         android:layout_height="match_parent"
@@ -13,20 +14,28 @@
         android:background="@drawable/custom_layout"
         android:orientation="vertical">
 
-        <SearchView
+        <Spinner
+            android:layout_margin="10dp"
+            android:background="@drawable/custom_seach_view"
+            android:id="@+id/sp_oder_loc_theo"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@drawable/custom_seach_view" />
+            >
+
+        </Spinner>
 
         <ScrollView
             android:layout_width="match_parent"
             android:layout_height="match_parent">
+
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/rv_oder"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp" />
         </ScrollView>
     </LinearLayout>
+
     <LinearLayout
         android:layout_width="0dp"
         android:layout_height="match_parent"
@@ -40,7 +49,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
-            android:fontFamily="@font/seguisb"
+            android:fontFamily="@font/calibribold"
             android:gravity="center"
             android:text="Giỏ Hàng"
             android:textColor="@color/colorBlack"
@@ -51,9 +60,11 @@
             android:layout_height="0dp"
             android:layout_weight="9"
             android:orientation="vertical">
+
             <ScrollView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content">
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
                 <androidx.recyclerview.widget.RecyclerView
                     android:id="@+id/rv_Giohang"
                     android:layout_width="match_parent"
@@ -63,6 +74,7 @@
         </LinearLayout>
 
         <Button
+            android:fontFamily="@font/calibribold"
             android:id="@+id/btnThanhtoan"
             android:layout_width="match_parent"
             android:layout_height="0dp"

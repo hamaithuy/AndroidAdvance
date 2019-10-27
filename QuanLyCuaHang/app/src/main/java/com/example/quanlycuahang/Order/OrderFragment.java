@@ -4,7 +4,10 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.Spinner;
 import android.widget.Toast;
 
 import com.example.quanlycuahang.Admin.HoaDon.HoaDon;
@@ -25,6 +28,7 @@ public class OrderFragment extends Fragment {
     private RecyclerView m_recyclerView;
     private RecyclerView m_recyclerViewGiohang;
     private Button m_btnThanhtoan;
+    private Spinner spLocTheo;
     private boolean load = false;
     private List<Oder> glstOder;
 
@@ -37,33 +41,154 @@ public class OrderFragment extends Fragment {
         m_recyclerView = vRoot.findViewById(R.id.rv_oder);
         m_btnThanhtoan = vRoot.findViewById(R.id.btnThanhtoan);
         m_recyclerViewGiohang = vRoot.findViewById(R.id.rv_Giohang);
+        spLocTheo = vRoot.findViewById(R.id.sp_oder_loc_theo);
+        init();
         hienthiDulieu();
         thanhtoanHoaDon();
         return vRoot;
     }
 
+    private void init() {
+        String arrLocTheo[] = {
+                "Lọc theo",
+                "Sinh tố",
+                "Nước uống",
+                "Đồ ăn"};
+        ArrayAdapter<String> adapterLocTheo = new ArrayAdapter<String>
+                (
+                        getContext(),
+                        R.layout.color_spinner_layout,
+                        arrLocTheo
+                );
+        adapterLocTheo.setDropDownViewResource
+                (android.R.layout.simple_list_item_single_choice);
+        spLocTheo.setAdapter(adapterLocTheo);
+        spLocTheo.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                if (i == 0) {
+                    new MonFireBaseDatabaseHelper().DanhSachMon(new MonFireBaseDatabaseHelper.DataStatuts() {
+                        @Override
+                        public void DataIsLoaded(List<Mon> mons, List<String> keys) {
+                            new RecyclerViewOder().setConfig(m_recyclerView, getContext(), mons, keys);
+                        }
+
+                        @Override
+                        public void DataIsInserted() {
+
+                        }
+
+                        @Override
+                        public void DataIsUpdated() {
+
+                        }
+
+                        @Override
+                        public void DataIsDeleted() {
+
+                        }
+                    });
+                }
+                if (i == 1) {
+                    new MonFireBaseDatabaseHelper().DanhSachMonSinhTo(new MonFireBaseDatabaseHelper.DataStatuts() {
+                        @Override
+                        public void DataIsLoaded(List<Mon> mons, List<String> keys) {
+                            new RecyclerViewOder().setConfig(m_recyclerView, getContext(), mons, keys);
+                        }
+
+                        @Override
+                        public void DataIsInserted() {
+
+                        }
+
+                        @Override
+                        public void DataIsUpdated() {
+
+                        }
+
+                        @Override
+                        public void DataIsDeleted() {
+
+                        }
+                    });
+                }
+                if (i == 2) {
+                    new MonFireBaseDatabaseHelper().DanhSachMonNuocUong(new MonFireBaseDatabaseHelper.DataStatuts() {
+                        @Override
+                        public void DataIsLoaded(List<Mon> mons, List<String> keys) {
+                            new RecyclerViewOder().setConfig(m_recyclerView, getContext(), mons, keys);
+                        }
+
+                        @Override
+                        public void DataIsInserted() {
+
+                        }
+
+                        @Override
+                        public void DataIsUpdated() {
+
+                        }
+
+                        @Override
+                        public void DataIsDeleted() {
+
+                        }
+                    });
+                }
+                if (i == 3) {
+                    new MonFireBaseDatabaseHelper().DanhSachMonThucAn(new MonFireBaseDatabaseHelper.DataStatuts() {
+                        @Override
+                        public void DataIsLoaded(List<Mon> mons, List<String> keys) {
+                            new RecyclerViewOder().setConfig(m_recyclerView, getContext(), mons, keys);
+                        }
+
+                        @Override
+                        public void DataIsInserted() {
+
+                        }
+
+                        @Override
+                        public void DataIsUpdated() {
+
+                        }
+
+                        @Override
+                        public void DataIsDeleted() {
+
+                        }
+                    });
+                }
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) {
+
+            }
+        });
+    }
+
     private void hienthiDulieu() {
-         new   OderFirebaseHelper().DanhSachHoaDonTam(new OderFirebaseHelper.OderDataStatuts() {
-             @Override
-             public void DataIsLoaded(List<Oder> oders, List<String> keys) {
-                 new RecyclerViewGiohang().setConfig(m_recyclerViewGiohang, getContext(), oders, keys);
-             }
+        new OderFirebaseHelper().DanhSachHoaDonTam(new OderFirebaseHelper.OderDataStatuts() {
+            @Override
+            public void DataIsLoaded(List<Oder> oders, List<String> keys) {
+                new RecyclerViewGiohang().setConfig(m_recyclerViewGiohang, getContext(), oders, keys);
+            }
 
-             @Override
-             public void DataIsInserted() {
+            @Override
+            public void DataIsInserted() {
 
-             }
+            }
 
-             @Override
-             public void DataIsUpdated() {
+            @Override
+            public void DataIsUpdated() {
 
-             }
+            }
 
-             @Override
-             public void DataIsDeleted() {
+            @Override
+            public void DataIsDeleted() {
 
-             }
-         });
+            }
+        });
         new MonFireBaseDatabaseHelper().DanhSachMon(new MonFireBaseDatabaseHelper.DataStatuts() {
             @Override
             public void DataIsLoaded(List<Mon> mons, List<String> keys) {
@@ -87,6 +212,7 @@ public class OrderFragment extends Fragment {
         });
 
     }
+
     private void thanhtoanHoaDon() {
         m_btnThanhtoan.setOnClickListener(new View.OnClickListener() {
             @Override
