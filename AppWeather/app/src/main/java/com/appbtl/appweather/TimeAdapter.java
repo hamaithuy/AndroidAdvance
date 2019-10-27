@@ -45,9 +45,9 @@ public class TimeAdapter extends BaseAdapter {
             view = layoutInflater.inflate(R.layout.timeitem, null);
             holder = new ViewHolder();
             holder.imgWeather = (ImageView) view.findViewById(R.id.imgTT);
-            holder.temp = (TextView) view.findViewById(R.id.tMax);
+            holder.temp = (TextView) view.findViewById(R.id.thMax);
             holder.time = (TextView) view.findViewById(R.id.tDate);
-            holder.wind = (TextView) view.findViewById(R.id.tMin);
+            holder.wind = (TextView) view.findViewById(R.id.thMin);
             view.setTag(holder);
         } else {
             holder = (ViewHolder) view.getTag();

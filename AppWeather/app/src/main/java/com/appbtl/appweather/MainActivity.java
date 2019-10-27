@@ -31,8 +31,11 @@ import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.gson.Gson;
 
+import org.lucasr.twowayview.TwoWayView;
+
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.concurrent.ExecutionException;
@@ -53,7 +56,7 @@ public class MainActivity extends AppCompatActivity {
     private RequestPermission pms;
     AddressInfo add;
     private Intent it;
-
+    
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -69,6 +72,7 @@ public class MainActivity extends AppCompatActivity {
         locationAPI.connectLocationApi(this);//kết nối API
         locationAPI.fusedLocationClient = LocationServices.getFusedLocationProviderClient(this);
         it = new Intent(this, ServiceUpdate.class);
+
         startService(it);
         mainlayout.setOnTouchListener(new OnSwipeTouchListener(MainActivity.this) {
             @Override
@@ -329,4 +333,5 @@ public class MainActivity extends AppCompatActivity {
         }
         return null;
     }
+
 }

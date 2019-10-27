@@ -27,8 +27,9 @@
             android:layout_height="wrap_content"
             android:layout_alignParentTop="true"
             android:layout_alignParentEnd="true"
+            android:layout_marginStart="40dp"
             android:layout_marginTop="26dp"
-            android:layout_marginEnd="148dp"
+            android:layout_toEndOf="@+id/imageView3"
             android:text="Nắng"
             android:textSize="40dp"
             android:textStyle="bold|italic" />
@@ -38,72 +39,24 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@+id/textView13"
-            android:layout_marginStart="28dp"
+            android:layout_marginStart="45dp"
             android:layout_marginTop="5dp"
             android:layout_toEndOf="@+id/imageView3"
             android:text="20°C"
             android:textSize="35dp"
             android:textStyle="bold|italic" />
 
-        <TextView
-            android:id="@+id/textView3"
-            android:layout_width="49dp"
-            android:layout_height="22dp"
-            android:layout_alignParentTop="true"
-            android:layout_alignParentEnd="true"
-            android:layout_marginStart="39dp"
-            android:layout_marginTop="89dp"
-            android:layout_marginEnd="69dp"
-            android:layout_toEndOf="@+id/tvTemp"
-            android:text="Áp lực:" />
-
-        <TextView
-            android:id="@+id/textView5"
-            android:layout_width="49dp"
-            android:layout_height="22dp"
-            android:layout_alignParentTop="true"
-            android:layout_alignParentEnd="true"
-            android:layout_marginStart="39dp"
-            android:layout_marginTop="114dp"
-            android:layout_marginEnd="69dp"
-            android:layout_toEndOf="@+id/tvTemp"
-            android:text="Độ ẩm:" />
-
-        <TextView
-            android:id="@+id/tvAl"
-            android:layout_width="49dp"
-            android:layout_height="22dp"
-            android:layout_alignParentTop="true"
-            android:layout_alignParentEnd="true"
-            android:layout_marginStart="93dp"
-            android:layout_marginTop="89dp"
-            android:layout_marginEnd="15dp"
-            android:layout_toEndOf="@+id/tvTemp"
-            android:text="1007hpa" />
-
-        <TextView
-            android:id="@+id/tvDA"
-            android:layout_width="49dp"
-            android:layout_height="22dp"
-            android:layout_alignParentTop="true"
-            android:layout_alignParentEnd="true"
-            android:layout_marginStart="93dp"
-            android:layout_marginTop="114dp"
-            android:layout_marginEnd="15dp"
-            android:layout_toEndOf="@+id/tvTemp"
-            android:text="75%" />
-
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="150dp"
             android:layout_below="@+id/imageView3"
-            android:layout_marginLeft="20dp"
-            android:layout_marginTop="5dp">
+            android:layout_marginLeft="5dp"
+            android:layout_marginTop="0dp">
 
             <LinearLayout
-                android:layout_width="50dp"
+                android:layout_width="40dp"
                 android:layout_height="match_parent"
-                android:layout_marginLeft="5dp"
+                android:layout_marginLeft="0dp"
                 android:orientation="vertical">
 
                 <TextView
@@ -116,8 +69,9 @@
 
                 <ImageView
                     android:id="@+id/imageView13"
-                    android:layout_width="match_parent"
-                    android:layout_height="40dp"
+                    android:layout_width="30dp"
+                    android:layout_height="5dp"
+                    android:layout_marginLeft="5dp"
                     android:layout_weight="1"
                     android:src="@drawable/shine" />
 
@@ -132,9 +86,9 @@
             </LinearLayout>
 
             <LinearLayout
-                android:layout_width="50dp"
+                android:layout_width="40dp"
                 android:layout_height="match_parent"
-                android:layout_marginLeft="5dp"
+                android:layout_marginLeft="0dp"
                 android:orientation="vertical">
 
                 <TextView
@@ -147,8 +101,9 @@
 
                 <ImageView
                     android:id="@+id/imageView14"
-                    android:layout_width="match_parent"
-                    android:layout_height="40dp"
+                    android:layout_width="30dp"
+                    android:layout_height="5dp"
+                    android:layout_marginLeft="5dp"
                     android:layout_weight="1"
                     android:src="@drawable/shine" />
 
@@ -162,9 +117,9 @@
             </LinearLayout>
 
             <LinearLayout
-                android:layout_width="50dp"
+                android:layout_width="40dp"
                 android:layout_height="match_parent"
-                android:layout_marginLeft="5dp"
+                android:layout_marginLeft="0dp"
                 android:orientation="vertical">
 
                 <TextView
@@ -177,8 +132,9 @@
 
                 <ImageView
                     android:id="@+id/imageView15"
-                    android:layout_width="match_parent"
-                    android:layout_height="40dp"
+                    android:layout_width="30dp"
+                    android:layout_height="5dp"
+                    android:layout_marginLeft="5dp"
                     android:layout_weight="1"
                     android:src="@drawable/shine" />
 
@@ -192,9 +148,9 @@
             </LinearLayout>
 
             <LinearLayout
-                android:layout_width="50dp"
+                android:layout_width="40dp"
                 android:layout_height="match_parent"
-                android:layout_marginLeft="5dp"
+                android:layout_marginLeft="0dp"
                 android:orientation="vertical">
 
                 <TextView
@@ -207,8 +163,9 @@
 
                 <ImageView
                     android:id="@+id/imageView16"
-                    android:layout_width="match_parent"
-                    android:layout_height="40dp"
+                    android:layout_width="30dp"
+                    android:layout_height="5dp"
+                    android:layout_marginLeft="5dp"
                     android:layout_weight="1"
                     android:src="@drawable/shine" />
 
@@ -222,9 +179,9 @@
             </LinearLayout>
 
             <LinearLayout
-                android:layout_width="50dp"
+                android:layout_width="40dp"
                 android:layout_height="match_parent"
-                android:layout_marginLeft="5dp"
+                android:layout_marginLeft="0dp"
                 android:orientation="vertical">
 
                 <TextView
@@ -237,11 +194,11 @@
 
                 <ImageView
                     android:id="@+id/imageView17"
-                    android:layout_width="match_parent"
-                    android:layout_height="40dp"
+                    android:layout_width="30dp"
+                    android:layout_height="5dp"
+                    android:layout_marginLeft="5dp"
                     android:layout_weight="1"
                     android:src="@drawable/shine" />
-
                 <TextView
                     android:id="@+id/tv1hpm"
                     android:layout_width="match_parent"
@@ -252,9 +209,9 @@
             </LinearLayout>
 
             <LinearLayout
-                android:layout_width="50dp"
+                android:layout_width="40dp"
                 android:layout_height="match_parent"
-                android:layout_marginLeft="5dp"
+                android:layout_marginLeft="0dp"
                 android:orientation="vertical">
 
                 <TextView
@@ -267,8 +224,9 @@
 
                 <ImageView
                     android:id="@+id/imageView18"
-                    android:layout_width="match_parent"
-                    android:layout_height="40dp"
+                    android:layout_width="30dp"
+                    android:layout_height="5dp"
+                    android:layout_marginLeft="5dp"
                     android:layout_weight="1"
                     android:src="@drawable/shine" />
 
@@ -282,9 +240,9 @@
             </LinearLayout>
 
             <LinearLayout
-                android:layout_width="50dp"
+                android:layout_width="40dp"
                 android:layout_height="match_parent"
-                android:layout_marginLeft="5dp"
+                android:layout_marginLeft="0dp"
                 android:orientation="vertical">
 
                 <TextView
@@ -297,8 +255,9 @@
 
                 <ImageView
                     android:id="@+id/imageView19"
-                    android:layout_width="match_parent"
-                    android:layout_height="40dp"
+                    android:layout_width="30dp"
+                    android:layout_height="5dp"
+                    android:layout_marginLeft="5dp"
                     android:layout_weight="1"
                     android:src="@drawable/shine" />
 
@@ -314,7 +273,7 @@
             <LinearLayout
                 android:layout_width="50dp"
                 android:layout_height="match_parent"
-                android:layout_marginLeft="5dp"
+                android:layout_marginLeft="0dp"
                 android:orientation="vertical">
 
                 <TextView
@@ -327,8 +286,9 @@
 
                 <ImageView
                     android:id="@+id/imageView20"
-                    android:layout_width="match_parent"
-                    android:layout_height="40dp"
+                    android:layout_width="30dp"
+                    android:layout_height="5dp"
+                    android:layout_marginLeft="5dp"
                     android:layout_weight="1"
                     android:src="@drawable/shine" />
 
@@ -341,6 +301,7 @@
                     android:text="20°C" />
             </LinearLayout>
         </LinearLayout>
+
     </RelativeLayout>
 
 </RelativeLayout>
