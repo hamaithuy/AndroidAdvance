@@ -107,7 +107,6 @@ public class HomeFragment extends Fragment implements GridRecyclerAdapter.IOnIte
         mRecyclerDRoom.setAdapter(mAdapterDRoom);
         mAdapterDRoom.setOnItemClickListener(this);
 
-        mStorage = FirebaseStorage.getInstance();
         mQuerySelectDRoom = FirebaseDatabase.getInstance()
                 .getReference("Rooms")
                 .orderByChild("kindPost")

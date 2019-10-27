@@ -4,6 +4,7 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
 
@@ -11,6 +12,7 @@ import com.example.demoapp.R;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 public class MainActivity extends AppCompatActivity {
+    public static int flag=0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -20,6 +22,17 @@ public class MainActivity extends AppCompatActivity {
         BottomNavigationView bottomNav = findViewById(R.id.bottom_navigation);
         bottomNav.setOnNavigationItemSelectedListener(navListener);
         getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,new HomeFragment()).commit();
+    }
+
+    public String getUserUriPhoto(){
+        Intent getUserDataIntent = getIntent();
+        String photo = getUserDataIntent.getStringExtra("PHOTO");
+        return photo;
+    }
+    public String getUserName(){
+        Intent getUserDataIntent = getIntent();
+        String name = getUserDataIntent.getStringExtra("NAME");
+        return name;
     }
 
     private BottomNavigationView.OnNavigationItemSelectedListener navListener =
@@ -38,8 +51,13 @@ public class MainActivity extends AppCompatActivity {
                             selectFragment = new SaveFragment();
                             break;
                         case R.id.nav_account:
-                            selectFragment = new AccountFragment();
+                            if (flag == 1) {
+                                selectFragment = new AccountFragment();
+                            } else {
+                                selectFragment = new LoginFragment();
+                            }
                             break;
+
                     }
                     getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,selectFragment).commit();
                     return true;

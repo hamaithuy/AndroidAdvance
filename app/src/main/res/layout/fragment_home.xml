@@ -118,13 +118,16 @@
 
             </LinearLayout>
 
-            <androidx.recyclerview.widget.RecyclerView
-                    android:id="@+id/rv_NewRoom"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    app:layout_constraintTop_toBottomOf="@id/ln1">
+                <androidx.recyclerview.widget.RecyclerView
+                        android:id="@+id/rv_NewRoom"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="15dp"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/ln1">
 
-            </androidx.recyclerview.widget.RecyclerView>
+                </androidx.recyclerview.widget.RecyclerView>
 
             <LinearLayout
                     android:id="@+id/ln2"
@@ -165,12 +168,15 @@
                         android:textColor="@color/colorPrimary" />
 
             </LinearLayout>
+
                 <androidx.recyclerview.widget.RecyclerView
                         android:id="@+id/rv_DoubleRoom"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        app:layout_constraintTop_toBottomOf="@id/ln2"
-                        >
+                        android:layout_marginTop="15dp"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/ln2">
 
                 </androidx.recyclerview.widget.RecyclerView>
             </androidx.constraintlayout.widget.ConstraintLayout>

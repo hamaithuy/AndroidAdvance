@@ -7,4 +7,8 @@
     <string name="user">Tên đăng nhập</string>
     <string name="pass">Mật khẩu</string>
     <string name="question">Quên mật khẩu</string>
+    <string name="dangnhap">Đăng nhập</string>
+    <string name="dangxuat">Đăng xuất</string>
+    <string name="dangky">Đăng ký</string>
+    <string name="taikhoan">Tài khoản</string>
 </resources>
