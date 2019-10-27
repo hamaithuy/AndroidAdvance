@@ -33,7 +33,7 @@ public class RecyclerViewGiohang {
     class GiohangItemView extends RecyclerView.ViewHolder {
         private String key;
         private ImageView img_Anhsanpham;
-        private TextView txtTenmon, txtGia, txtSoluong,tvLoai,tvLoaiMon,tvId;
+        private TextView txtTenmon, txtGia, txtSoluong, tvLoai, tvLoaiMon, tvId;
         private ImageButton btnPre, btnNext, btnDelete;
 
         public GiohangItemView(ViewGroup parent) {
@@ -63,30 +63,32 @@ public class RecyclerViewGiohang {
                     oder.setLoaiMon(tvLoaiMon.getText().toString());
                     oder.setMonID(tvId.getText().toString());
                     Integer SoLuong = Integer.parseInt(txtSoluong.getText().toString());
-                    SoLuong--;
-                    oder.setSoluong(SoLuong);
-                    oder.setTenMon(txtTenmon.getText().toString());
-                    new OderFirebaseHelper().SuaHoaDonTam(key, oder, new OderFirebaseHelper.OderDataStatuts() {
-                        @Override
-                        public void DataIsLoaded(List<Oder> oders, List<String> keys) {
+                    if (SoLuong > 0) {
+                        SoLuong--;
+                        oder.setSoluong(SoLuong);
+                        oder.setTenMon(txtTenmon.getText().toString());
+                        new OderFirebaseHelper().SuaHoaDonTam(key, oder, new OderFirebaseHelper.OderDataStatuts() {
+                            @Override
+                            public void DataIsLoaded(List<Oder> oders, List<String> keys) {
 
-                        }
+                            }
 
-                        @Override
-                        public void DataIsInserted() {
+                            @Override
+                            public void DataIsInserted() {
 
-                        }
+                            }
 
-                        @Override
-                        public void DataIsUpdated() {
+                            @Override
+                            public void DataIsUpdated() {
 
-                        }
+                            }
 
-                        @Override
-                        public void DataIsDeleted() {
+                            @Override
+                            public void DataIsDeleted() {
 
-                        }
-                    });
+                            }
+                        });
+                    }
                 }
             });
             btnNext.setOnClickListener(new View.OnClickListener() {
@@ -164,7 +166,7 @@ public class RecyclerViewGiohang {
                 img_Anhsanpham.setImageResource(R.drawable.img_do_an);
             }
             txtTenmon.setText(oder.getTenMon());
-            txtGia.setText(Integer.toString( oder.getGia()));
+            txtGia.setText(Integer.toString(oder.getGia()));
             txtSoluong.setText(Integer.toString(oder.getSoluong()));
             tvLoai.setText(oder.getLoai().toString());
             tvLoaiMon.setText(oder.getLoaiMon().toString());

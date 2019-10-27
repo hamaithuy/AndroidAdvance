@@ -8,6 +8,7 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.Spinner;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.quanlycuahang.Admin.HoaDon.HoaDon;
@@ -16,7 +17,9 @@ import com.example.quanlycuahang.Admin.Mon.Mon;
 import com.example.quanlycuahang.Admin.Mon.MonFireBaseDatabaseHelper;
 import com.example.quanlycuahang.R;
 
+import java.text.NumberFormat;
 import java.util.List;
+import java.util.Locale;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -31,6 +34,7 @@ public class OrderFragment extends Fragment {
     private Spinner spLocTheo;
     private boolean load = false;
     private List<Oder> glstOder;
+    private TextView txtTongtien;
 
     public OrderFragment() {
     }
@@ -49,6 +53,7 @@ public class OrderFragment extends Fragment {
     }
 
     private void init() {
+        txtTongtien = vRoot.findViewById(R.id.txtTongtien_Giohang);
         String arrLocTheo[] = {
                 "Lọc theo",
                 "Sinh tố",
@@ -172,6 +177,15 @@ public class OrderFragment extends Fragment {
             @Override
             public void DataIsLoaded(List<Oder> oders, List<String> keys) {
                 new RecyclerViewGiohang().setConfig(m_recyclerViewGiohang, getContext(), oders, keys);
+                Integer tongtien=0;
+                for(Oder oder : oders)
+                {
+                    tongtien+= oder.getSoluong()*oder.getGia();
+                }
+                Locale loc = Locale.getDefault();
+                NumberFormat nf = NumberFormat.getCurrencyInstance(loc);
+
+                txtTongtien.setText(nf.format(tongtien)+" VNĐ");
             }
 
             @Override
@@ -239,6 +253,8 @@ public class OrderFragment extends Fragment {
                     }
                 });
                 if (load)
+                {
+                    if(glstOder.size()>0)
                     new HoaDonFirebaseHelper().ThemHoaDon(glstOder, new HoaDonFirebaseHelper.HoaDonDataStatuts() {
                         @Override
                         public void DataIsLoaded(List<HoaDon> hoaDons, List<String> keys) {
@@ -260,6 +276,7 @@ public class OrderFragment extends Fragment {
 
                         }
                     });
+                }
             }
         });
     }

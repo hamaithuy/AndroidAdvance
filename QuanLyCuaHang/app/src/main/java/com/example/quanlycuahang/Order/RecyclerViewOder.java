@@ -140,7 +140,6 @@ public class RecyclerViewOder {
 
                             @Override
                             public void DataIsInserted() {
-                                Toast.makeText(mContext, "Thêm thành công vào giỏ hàng", Toast.LENGTH_SHORT).show();
 
                             }
 

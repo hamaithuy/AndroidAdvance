@@ -1,5 +1,7 @@
 package com.example.quanlycuahang.Admin.HoaDon;
 
+import com.example.quanlycuahang.Admin.Mon.Mon;
+import com.example.quanlycuahang.Admin.Mon.MonFireBaseDatabaseHelper;
 import com.example.quanlycuahang.Order.Oder;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.database.DataSnapshot;
@@ -18,6 +20,7 @@ public class HoaDonFirebaseHelper {
     private FirebaseDatabase database;
     private DatabaseReference reference;
     private List<HoaDon> hoaDons = new ArrayList<>();
+    private Mon Resmon;
 
     public interface HoaDonDataStatuts {
         void DataIsLoaded(List<HoaDon> hoaDons, List<String> keys);
@@ -54,6 +57,7 @@ public class HoaDonFirebaseHelper {
             }
         });
     }
+
     public void SuaHoadon(String key, HoaDon hoaDon, final HoaDonDataStatuts dataStatuts) {
         reference.child(key).setValue(hoaDon).addOnSuccessListener(new OnSuccessListener<Void>() {
             @Override
@@ -62,18 +66,88 @@ public class HoaDonFirebaseHelper {
             }
         });
     }
+
     public void ThemHoaDon(List<Oder> glstOder, final HoaDonFirebaseHelper.HoaDonDataStatuts hoaDonDataStatuts) {
         String key = reference.push().getKey();
         HoaDon hoaDon = new HoaDon();
-        hoaDon.setDanhSachOder(glstOder);
         hoaDon.setHoanThanh(false);
         hoaDon.setThoigianGhinhan(new Date());
         Integer tongtien = 0;
-        for (Oder oder : glstOder) {
+        for (final Oder oder : glstOder) {
             tongtien += oder.getGia() * oder.getSoluong();
-        }
-        hoaDon.setTongTien(tongtien);
+            new MonFireBaseDatabaseHelper().LayMonTheoMonID(oder.getMonID(), new MonFireBaseDatabaseHelper.DataStatuts() {
+                @Override
+                public void DataIsLoaded(List<Mon> mons, List<String> keys) {
+                    Resmon = mons.get(0);
+                    if (Resmon.getSoLuong() >= oder.getSoluong()) {
+                        Resmon.setSoLuong(Resmon.getSoLuong() - oder.getSoluong());
+                        new MonFireBaseDatabaseHelper().SuaMon(oder.getMonID(), Resmon, new MonFireBaseDatabaseHelper.DataStatuts() {
+                            @Override
+                            public void DataIsLoaded(List<Mon> mons, List<String> keys) {
 
+                            }
+
+                            @Override
+                            public void DataIsInserted() {
+
+                            }
+
+                            @Override
+                            public void DataIsUpdated() {
+                                return;
+                            }
+
+                            @Override
+                            public void DataIsDeleted() {
+
+                            }
+                        });
+                        return;
+                    } else {
+                        Resmon.setSoLuong(Resmon.getSoLuong() - oder.getSoluong());
+                        new MonFireBaseDatabaseHelper().SuaMon(oder.getMonID(), Resmon, new MonFireBaseDatabaseHelper.DataStatuts() {
+                            @Override
+                            public void DataIsLoaded(List<Mon> mons, List<String> keys) {
+
+                            }
+
+                            @Override
+                            public void DataIsInserted() {
+
+                            }
+
+                            @Override
+                            public void DataIsUpdated() {
+                                return;
+                            }
+
+                            @Override
+                            public void DataIsDeleted() {
+
+                            }
+                        });
+                        return;
+                    }
+                }
+
+                @Override
+                public void DataIsInserted() {
+
+                }
+
+                @Override
+                public void DataIsUpdated() {
+
+                }
+
+                @Override
+                public void DataIsDeleted() {
+
+                }
+            });
+        }
+        hoaDon.setDanhSachOder(glstOder);
+        hoaDon.setTongTien(tongtien);
         reference.child(key).setValue(hoaDon).addOnSuccessListener(new OnSuccessListener<Void>() {
             @Override
             public void onSuccess(Void aVoid) {
@@ -82,5 +156,6 @@ public class HoaDonFirebaseHelper {
                 hoaDonDataStatuts.DataIsInserted();
             }
         });
+
     }
 }

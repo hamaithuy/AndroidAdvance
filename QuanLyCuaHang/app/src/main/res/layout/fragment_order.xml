@@ -16,7 +16,7 @@
 
         <Spinner
             android:layout_margin="10dp"
-            android:background="@drawable/custom_seach_view"
+            android:background="@color/colorPrimary"
             android:id="@+id/sp_oder_loc_theo"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -72,7 +72,26 @@
             </ScrollView>
 
         </LinearLayout>
-
+        <LinearLayout
+            android:background="@drawable/tienphaitra"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+        <TextView
+            android:textAlignment="center"
+            android:textSize="20dp"
+            android:text="Tổng tiền:"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+        <TextView
+            android:textColor="@color/colorRed"
+            android:textAlignment="center"
+            android:id="@+id/txtTongtien_Giohang"
+            android:textSize="25dp"
+            android:text="tiền"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+        </LinearLayout>
         <Button
             android:fontFamily="@font/calibribold"
             android:id="@+id/btnThanhtoan"

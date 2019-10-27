@@ -32,7 +32,7 @@
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/calibribold"
                 android:text="Tên món   : "
-                android:textColor="@color/colorRed"
+
                 android:textSize="20dp"></TextView>
 
             <TextView
@@ -67,7 +67,7 @@
                android:layout_marginTop="5dp"
                android:fontFamily="@font/calibribold"
                android:text="1"
-               android:textColor="@color/colorXam"
+               android:textColor="@color/colorRed"
                android:textSize="20dp"></TextView>
        </LinearLayout>
 
