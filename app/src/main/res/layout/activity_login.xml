@@ -56,7 +56,7 @@
                         android:layout_height="30dp"
                         android:background="@drawable/et_bg"
                         android:paddingLeft="10dp"
-                        android:hint="@string/username"
+                        android:hint="@string/email"
                         android:inputType="textEmailAddress"
                         android:textColor="@color/editTextColor"
                         android:textSize="13sp" />

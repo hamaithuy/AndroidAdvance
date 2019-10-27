@@ -29,7 +29,7 @@
 
     <style name="TextLabel" parent="Theme.AppCompat.Light.NoActionBar">
         <!-- Label color in TRUE state and bar color FALSE and TRUE State -->
-        <item name="colorControlActivated">#FFCC00</item>
+        <item name="colorControlActivated">#4fa881</item>
     </style>
 
     <style name="Translucent" parent="Theme.AppCompat.Light.NoActionBar">
@@ -46,7 +46,7 @@
         <item name="colorPrimary">#03A9F4</item>
         <item name="colorPrimaryDark">#FFCC00</item>
         <item name="colorAccent">#4fa881</item>
-        <item name="android:windowBackground">@drawable/bg</item>
+        <item name="android:windowBackground">@drawable/bg1</item>
     </style>
 
 </resources>
