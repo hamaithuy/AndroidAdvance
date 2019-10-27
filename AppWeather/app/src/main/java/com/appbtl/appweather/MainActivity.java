@@ -9,6 +9,7 @@ import android.location.Location;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -31,11 +32,9 @@ import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.gson.Gson;
 
-import org.lucasr.twowayview.TwoWayView;
-
 import java.io.File;
 import java.io.IOException;
-import java.util.ArrayList;
+import java.text.Normalizer;
 import java.util.HashMap;
 import java.util.List;
 import java.util.concurrent.ExecutionException;
@@ -56,7 +55,8 @@ public class MainActivity extends AppCompatActivity {
     private RequestPermission pms;
     AddressInfo add;
     private Intent it;
-    
+    private static final String TAG = "MyActivity";
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -65,14 +65,12 @@ public class MainActivity extends AppCompatActivity {
         mContext = getApplicationContext();
         setIcon();
         pms = new RequestPermission();
-
         add = new AddressInfo();
         ioFile = new IOFile();
         locationAPI = new LocationAPI();
         locationAPI.connectLocationApi(this);//kết nối API
         locationAPI.fusedLocationClient = LocationServices.getFusedLocationProviderClient(this);
         it = new Intent(this, ServiceUpdate.class);
-
         startService(it);
         mainlayout.setOnTouchListener(new OnSwipeTouchListener(MainActivity.this) {
             @Override
@@ -86,7 +84,6 @@ public class MainActivity extends AppCompatActivity {
 
             @Override
             public void onSwipeLeft() {
-
                 overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
             }
 
@@ -94,13 +91,18 @@ public class MainActivity extends AppCompatActivity {
             public void onSwipeBottom() {
                 pms.pLocation(MainActivity.this);
                 if (isOnline() == false) {
+                    String dt;
+                    dt = ioFile.readFile("mainWeather.bat", mContext);
+                    OpenWeatherJson result = new Gson().fromJson(dt, OpenWeatherJson.class);
+                    updateUI(getAddress(result.getCoord().getLat(), result.getCoord().getLon()), data());
                     Toast.makeText(MainActivity.this, "Bạn chưa bật kết nối mạng!", Toast.LENGTH_SHORT).show();
                 } else {
                     locationAPI.fusedLocationClient.getLastLocation().addOnSuccessListener(MainActivity.this, new OnSuccessListener<Location>() {
                         @Override
                         public void onSuccess(Location location) {
                             if (location != null) {
-                                add = getAddress(location);
+                                Toast.makeText(MainActivity.this, location.toString(), Toast.LENGTH_LONG).show();
+                                add = getAddress(location.getLatitude(), location.getLongitude());
 
                                 //làm việc với location ở đây
                                 String url = "http://api.openweathermap.org/data/2.5/weather?" + "lat=" + location.getLatitude() + "&lon=" + location.getLongitude() + "&appid=b87ce30a14229dd8e26f167dd2111f06";
@@ -132,14 +134,41 @@ public class MainActivity extends AppCompatActivity {
                 View customview = inflater.inflate(R.layout.popup, null);
                 mPopupWindow = new PopupWindow(
                         customview,
-                        RelativeLayout.LayoutParams.WRAP_CONTENT,
-                        RelativeLayout.LayoutParams.WRAP_CONTENT
+                        RelativeLayout.LayoutParams.MATCH_PARENT,
+                        RelativeLayout.LayoutParams.MATCH_PARENT
                 );
                 Button btnFind = (Button) customview.findViewById(R.id.btnAccept);
-                EditText editText = (EditText) customview.findViewById(R.id.editText);
+                final EditText editText = (EditText) customview.findViewById(R.id.editText);
+                Button btnLocale = (Button) customview.findViewById(R.id.getCurrentLocale);
                 btnFind.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
+                        String normalized_string = Normalizer.normalize(editText.getText(), Normalizer.Form.NFD).replaceAll("đ", "d").replaceAll("Đ", "D").replaceAll("[^\\p{ASCII}]", "");
+                        ;
+                        normalized_string = normalized_string.replaceAll("\\s+", "+");
+                        String url = "http://api.openweathermap.org/data/2.5/weather?q=" + normalized_string + "&appid=b87ce30a14229dd8e26f167dd2111f06";
+                        try {
+                            reSultMain = new WeatherAsynctask().execute(url).get();
+                            OpenWeatherJson result = new Gson().fromJson(reSultMain, OpenWeatherJson.class);
+                            String dailys = "http://api.openweathermap.org/data/2.5/forecast/daily?lat=" + result.getCoord().getLat() + "&lon=" + result.getCoord().getLat() + "&units=metric&cnt=7&appid=be8d3e323de722ff78208a7dbb2dcd6f";
+                            resultDailys = new WeatherAsynctask().execute(dailys).get();
+                            ioFile.saveFile("mainWeather.bat", resultDailys, mContext);
+                            ioFile.saveFile("dailys.bat", resultDailys, mContext);
+                            AddressInfo address = getAddress(result.getCoord().getLat(), result.getCoord().getLon());
+                            updateUI(address, reSultMain);
+                        } catch (ExecutionException e) {
+                            e.printStackTrace();
+                        } catch (InterruptedException e) {
+                            e.printStackTrace();
+                        }
+                        ioFile.saveFile("mainWeather.bat", reSultMain, mContext);
+                        mPopupWindow.dismiss();
+                    }
+                });
+                btnLocale.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        getWeather1();
                         mPopupWindow.dismiss();
                     }
                 });
@@ -148,7 +177,6 @@ public class MainActivity extends AppCompatActivity {
                 mPopupWindow.showAtLocation(body, Gravity.CENTER, 0, 0);
             }
         });
-
     }
 
     @Override
@@ -158,30 +186,38 @@ public class MainActivity extends AppCompatActivity {
         locationAPI.fusedLocationClient.getLastLocation().addOnSuccessListener(new OnSuccessListener<Location>() {
             @Override
             public void onSuccess(Location location) {
-                add = getAddress(location);
+//                add = getAddress(location.getLatitude(),location.getLongitude());
+                add = getAddress(20.45, 106.33);
             }
         });
-        String dt = ioFile.readFile("mainWeather.bat", mContext);
         File file = new File(this.getFilesDir(), "mainWeather.bat");
-        if (file.exists())
-//        if(dt!=null||dt.equals("")){
-//
-            updateUI(add, data());
-//        }
-        else {
-            getWeather();
+        String dt;
+        if (file.exists()) {
+            dt = ioFile.readFile("mainWeather.bat", mContext);
+            Log.i(TAG, dt);
+            OpenWeatherJson result = new Gson().fromJson(dt, OpenWeatherJson.class);
+            updateUI(getAddress(result.getCoord().getLat(), result.getCoord().getLon()), data());
+        } else {
+            getWeather1();
         }
     }
 
-    private void getWeather() {
+    private void getWeather1() {
         if (isOnline() == false) {
-            Toast.makeText(MainActivity.this, "Bạn chưa bật kết nối mạng!", Toast.LENGTH_SHORT).show();
+            File file = new File(this.getFilesDir(), "mainWeather.bat");
+            String dt;
+            if (file.exists()) {
+                dt = ioFile.readFile("mainWeather.bat", mContext);
+                OpenWeatherJson result = new Gson().fromJson(dt, OpenWeatherJson.class);
+                updateUI(getAddress(result.getCoord().getLat(), result.getCoord().getLon()), data());
+                Toast.makeText(MainActivity.this, "Bạn chưa bật kết nối mạng!", Toast.LENGTH_SHORT).show();
+            }
         } else {
             locationAPI.fusedLocationClient.getLastLocation().addOnSuccessListener(this, new OnSuccessListener<Location>() {
                 @Override
                 public void onSuccess(Location location) {
                     if (location != null) {
-                        add = getAddress(location);
+                        add = getAddress(location.getLatitude(), location.getLongitude());
                         //làm việc với location ở đây
 
                         // location.getLatitude()
@@ -247,6 +283,9 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void updateUI(AddressInfo add, String rs) {
+        if (rs == null || rs == "") {
+            rs = data();
+        }
         OpenWeatherJson result = new Gson().fromJson(rs, OpenWeatherJson.class);
         int tempmain, tempmax, tempmin;
         double t = result.getMain().getTemp() - 273.15;
@@ -258,11 +297,6 @@ public class MainActivity extends AppCompatActivity {
         //kết quả trả về json thành object
         wtCity.setText(add.getCity());
         city.setText(add.getCity());
-        if (add.getVillage() == null || add.getVillage().equals("Unnamed Road")) {
-            address.setText(add.getArea() + "-" + add.getCity());
-        } else {
-            address.setText(add.getVillage() + "-" + add.getArea() + "-" + add.getCity());
-        }
 
         temp.setText(tempmain + "°C");
         tempMax.setText(tempmax + "°C");
@@ -298,14 +332,16 @@ public class MainActivity extends AppCompatActivity {
         return false;
     }
 
-    private AddressInfo getAddress(Location location) {
+    private AddressInfo getAddress(double lat, double lon) {
         AddressInfo addressInfo = new AddressInfo();
         if (Geocoder.isPresent()) {
             Geocoder geocoder = new Geocoder(this);
             try {
-                List<Address> ad = geocoder.getFromLocation(location.getLatitude(), location.getLongitude(), 1);
+                List<Address> ad = geocoder.getFromLocation(lat, lon, 1);
+                Log.i(TAG, ad.toString());
                 if (ad != null) {
                     for (Address name : ad) {
+                        Log.i(TAG, name.toString());
                         String ct = name.getAdminArea();
                         String subarea = name.getLocality();
                         String area = name.getSubAdminArea();
@@ -318,10 +354,14 @@ public class MainActivity extends AppCompatActivity {
                         addressInfo.setPlace(subarea);
                         wtCity.setText(ct);
                         city.setText(ct);
-                        if (village == "" || village.equals("Unnamed Road")) {
-                            address.setText(area + "-" + ct);
+                        if (road != "" && road != "Unnamed Road" && road != null) {
+                            address.setText(road + "-" + subarea + "-" + ct);
                         } else {
-                            address.setText(village + "-" + area + "-" + ct);
+                            if (subarea != "" && subarea != null) {
+                                address.setText(subarea + "-" + ct);
+                            } else {
+                                address.setText(ct);
+                            }
                         }
 
                         return addressInfo;
@@ -331,7 +371,6 @@ public class MainActivity extends AppCompatActivity {
                 e.printStackTrace();
             }
         }
-        return null;
+        return addressInfo;
     }
-
 }
