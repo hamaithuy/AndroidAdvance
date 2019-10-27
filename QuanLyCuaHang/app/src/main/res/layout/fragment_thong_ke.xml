@@ -4,25 +4,27 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".Admin.ThongKeFragment">
+    tools:context=".Admin.ThongKeFragment"
+    android:background="@drawable/bgthongkeadmin"
+    >
 
 
-    <TextView
-
-        android:id="@+id/textView4"
-        android:layout_width="match_parent"
+    <Button
+        android:id="@+id/btnTheongay"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Thống kê theo ngày" />
+        android:text="Thống kê theo ngày"
+        />
 
-    <TextView
+    <Button
         android:id="@+id/aaa"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Thống kê theo tháng" />
 
-    <TextView
-        android:id="@+id/textView5"
-        android:layout_width="match_parent"
+    <Button
+        android:id="@+id/bbbb"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Thống kê theo năm" />
 </LinearLayout>
