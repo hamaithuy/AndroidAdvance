@@ -3,6 +3,8 @@
     android:id="@+id/LinearlayoutItem_Nhabep"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    android:layout_marginTop="10dp"
+    android:layout_marginHorizontal="110dp"
     android:background="@drawable/custom_layout"
     android:orientation="vertical"
     android:visibility="gone"
@@ -14,8 +16,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="15dp"
-        android:fontFamily="@font/seguisb"
-        android:gravity="left"
+        android:fontFamily="@font/calibribold"
+        android:gravity="center_horizontal"
         android:text="Hóa Đơn 001"
         android:textColor="@color/colorRed"
         android:textSize="25dp"
@@ -24,22 +26,27 @@
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rv_kitchen_Child"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
         android:visibility="gone"
         ></androidx.recyclerview.widget.RecyclerView>
 
-    <Button
-        android:id="@+id/btnHoanthanh_Nhabep"
-        android:layout_width="match_parent"
-        android:layout_height="70dp"
-        android:layout_gravity="bottom"
-        android:layout_margin="5dp"
-        android:background="@drawable/button_background"
-        android:text="Hoàn Thành"
-        android:textColor="@color/colorWhite"
-        android:visibility="gone"
-        ></Button>
+        <Button
+            android:gravity="center_horizontal|center_vertical"
+            android:id="@+id/btnHoanthanh_Nhabep"
+            android:layout_width="125dp"
+            android:layout_height="40dp"
+            android:layout_gravity="bottom|center_horizontal"
+            android:layout_margin="15dp"
+            android:background="@color/colorPrimaryDark"
+            android:text="Hoàn Thành"
+            android:fontFamily="@font/calibribold"
+            android:textColor="@color/colorWhite"
+            android:visibility="gone"
+            ></Button>
+
+
+
 
 
 </LinearLayout>

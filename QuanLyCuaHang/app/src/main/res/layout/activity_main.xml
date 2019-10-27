@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/background">
+    android:background="@drawable/img_login_bg">
 
 
     <LinearLayout
@@ -17,7 +17,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="25dp"
-            android:fontFamily="@font/seguisb"
+            android:fontFamily="@font/calibribold"
             android:gravity="center_horizontal"
             android:text="TK Restaurant"
             android:textColor="@color/colorWhite"
@@ -31,7 +31,6 @@
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="150dp"
             android:layout_marginTop="50dp"
-            android:background="@drawable/layout_background"
             android:gravity="center"
             android:orientation="vertical">
 
@@ -42,16 +41,16 @@
                 android:orientation="vertical">
 
                 <EditText
+                    android:fontFamily="@font/calibribold"
                     android:id="@+id/edt_tai_khoan"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                    android:layout_height="80dp"
                     android:layout_marginStart="20dp"
                     android:layout_marginTop="80dp"
                     android:layout_marginEnd="20dp"
-                    android:background="@drawable/custom_corners"
+                    android:background="@drawable/custom_edit_text"
                     android:drawableLeft="@drawable/ic_perm_identity_black_24dp"
                     android:drawablePadding="10dp"
-                    android:fontFamily="@font/segoeui"
                     android:hint="Tên tài khoản"
                     android:inputType="text"
                     android:padding="20dp"
@@ -62,14 +61,14 @@
                 <EditText
                     android:id="@+id/edt_password"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                    android:layout_height="80dp"
                     android:layout_marginStart="20dp"
                     android:layout_marginTop="20dp"
                     android:layout_marginEnd="20dp"
-                    android:background="@drawable/custom_corners"
+                    android:background="@drawable/custom_edit_text"
                     android:drawableLeft="@drawable/ic_lock_outline_black_24dp"
                     android:drawablePadding="10dp"
-                    android:fontFamily="@font/segoeui"
+                    android:fontFamily="@font/calibribold"
                     android:hint="Mật khẩu"
                     android:inputType="textPassword"
                     android:padding="20dp"
@@ -78,11 +77,12 @@
                     android:textSize="20sp" />
 
                 <CheckBox
+                    android:visibility="gone"
+                    android:background="@drawable/custom_edit_text"
                     android:id="@+id/checkbox"
-                    android:layout_width="match_parent"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="20sp"
-                    android:layout_marginTop="40dp"
                     android:fontFamily="@font/segoeui"
                     android:paddingLeft="15dp"
                     android:text="Nhớ tài khoản"
@@ -90,13 +90,13 @@
                     android:textSize="25dp" />
 
                 <ImageButton
+
                     android:id="@+id/ib_login"
-                    android:layout_width="95dp"
-                    android:layout_height="95dp"
-                    android:layout_gravity="end"
+                    android:layout_width="195dp"
+                    android:layout_height="55dp"
+                    android:layout_gravity="center_horizontal"
                     android:layout_marginTop="110dp"
-                    android:layout_marginEnd="10dp"
-                    android:background="@drawable/button_background"
+                    android:background="@drawable/custom_button"
                     android:src="@drawable/ic_arrow_forward_black_24dp" />
 
 
