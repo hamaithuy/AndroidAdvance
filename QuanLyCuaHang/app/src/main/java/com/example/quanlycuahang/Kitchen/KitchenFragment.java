@@ -22,7 +22,6 @@ import androidx.recyclerview.widget.RecyclerView;
  */
 public class KitchenFragment extends Fragment {
     View vRoot;
-    List<HoaDon> glstHoadon = new ArrayList<>();
     private RecyclerView m_recyclerViewKitchenParent;
     public KitchenFragment() {
 
@@ -42,13 +41,7 @@ public class KitchenFragment extends Fragment {
         new HoaDonFirebaseHelper().DanhSachHoa(new HoaDonFirebaseHelper.HoaDonDataStatuts() {
             @Override
             public void DataIsLoaded(List<HoaDon> hoaDons, List<String> keys) {
-                glstHoadon.clear();
-                for(HoaDon hd : hoaDons)
-                {
-                if(!hd.isHoanThanh())
-                glstHoadon.add(hd);
-                }
-                new RecyclerViewKitchenParent().setConfig(m_recyclerViewKitchenParent, getContext(), glstHoadon, keys);
+                new RecyclerViewKitchenParent().setConfig(m_recyclerViewKitchenParent, getContext(), hoaDons, keys);
             }
 
             @Override

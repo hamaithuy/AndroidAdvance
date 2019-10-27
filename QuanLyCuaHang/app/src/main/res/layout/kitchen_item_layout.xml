@@ -1,10 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/LinearlayoutItem_Nhabep"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_margin="25dp"
     android:background="@drawable/custom_layout"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    android:visibility="gone"
+    >
 
 
     <TextView
@@ -16,12 +18,16 @@
         android:gravity="left"
         android:text="Hóa Đơn 001"
         android:textColor="@color/colorRed"
-        android:textSize="25dp"></TextView>
+        android:textSize="25dp"
+        android:visibility="gone"
+        />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rv_kitchen_Child"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"></androidx.recyclerview.widget.RecyclerView>
+        android:layout_height="wrap_content"
+        android:visibility="gone"
+        ></androidx.recyclerview.widget.RecyclerView>
 
     <Button
         android:id="@+id/btnHoanthanh_Nhabep"
@@ -31,7 +37,9 @@
         android:layout_margin="5dp"
         android:background="@drawable/button_background"
         android:text="Hoàn Thành"
-        android:textColor="@color/colorWhite"></Button>
+        android:textColor="@color/colorWhite"
+        android:visibility="gone"
+        ></Button>
 
 
 </LinearLayout>

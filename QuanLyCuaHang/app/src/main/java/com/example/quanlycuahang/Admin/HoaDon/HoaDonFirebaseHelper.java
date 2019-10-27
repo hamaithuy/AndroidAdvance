@@ -54,7 +54,14 @@ public class HoaDonFirebaseHelper {
             }
         });
     }
-
+    public void SuaHoadon(String key, HoaDon hoaDon, final HoaDonDataStatuts dataStatuts) {
+        reference.child(key).setValue(hoaDon).addOnSuccessListener(new OnSuccessListener<Void>() {
+            @Override
+            public void onSuccess(Void aVoid) {
+                dataStatuts.DataIsUpdated();
+            }
+        });
+    }
     public void ThemHoaDon(List<Oder> glstOder, final HoaDonFirebaseHelper.HoaDonDataStatuts hoaDonDataStatuts) {
         String key = reference.push().getKey();
         HoaDon hoaDon = new HoaDon();
