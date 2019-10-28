@@ -24,6 +24,22 @@ public class MainActivity extends AppCompatActivity {
         getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,new HomeFragment()).commit();
     }
 
+    @Override
+    protected void onStart() {
+
+        super.onStart();
+    }
+
+//    @Override
+//    protected void onResume() {
+//        if(flag == 0)
+//        {
+//            Intent intent = new Intent(MainActivity.this,LoginActivity.class);
+//            startActivity(intent);
+//        }
+//        super.onResume();
+//    }
+
     public String getUserUriPhoto(){
         Intent getUserDataIntent = getIntent();
         String photo = getUserDataIntent.getStringExtra("PHOTO");
@@ -34,7 +50,11 @@ public class MainActivity extends AppCompatActivity {
         String name = getUserDataIntent.getStringExtra("NAME");
         return name;
     }
-
+    public String getID(){
+        Intent getUserIdIntent = getIntent();
+        String id = getUserIdIntent.getStringExtra("ID");
+        return id;
+    }
     private BottomNavigationView.OnNavigationItemSelectedListener navListener =
             new BottomNavigationView.OnNavigationItemSelectedListener() {
                 @Override
@@ -48,7 +68,12 @@ public class MainActivity extends AppCompatActivity {
                             selectFragment = new SearchFragment();
                             break;
                         case R.id.nav_save:
-                            selectFragment = new SaveFragment();
+                            if (flag == 1) {
+                                selectFragment = new SaveFragment();
+                            } else {
+                                selectFragment = new LoginFragment();
+                            }
+
                             break;
                         case R.id.nav_account:
                             if (flag == 1) {

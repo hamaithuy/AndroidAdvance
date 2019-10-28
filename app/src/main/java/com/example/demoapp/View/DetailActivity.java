@@ -8,9 +8,14 @@ import android.view.View;
 import android.widget.CheckBox;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.demoapp.Common.Common;
 import com.example.demoapp.R;
+import com.google.android.gms.auth.api.signin.GoogleSignIn;
+import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 import com.squareup.picasso.Picasso;
 
 
@@ -19,7 +24,8 @@ public class DetailActivity extends AppCompatActivity {
     TextView tv_price, tv_title,tv_address,tv_acreage,tv_time,tv_phone, tv_description;
     ImageView iv_roomImg, ic_back, ic_bookmark;
     CheckBox cb_wifi,cb_ownWC, cb_keepCar, cb_free, cb_kitchen, cb_airMachine, cb_fridge, cb_washMachine;
-
+    Boolean stateSaved;
+    String idRoomSave;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -65,7 +71,8 @@ public class DetailActivity extends AppCompatActivity {
         cb_airMachine.setChecked(Boolean.parseBoolean(i.getExtras().getString("AIRMACHINE_KEY")));
         cb_fridge.setChecked(Boolean.parseBoolean(i.getExtras().getString("FRIDGE_KEY")));
         cb_washMachine.setChecked(Boolean.parseBoolean(i.getExtras().getString("WASHMACHINE_KEY")));
-
+        stateSaved = i.getExtras().getBoolean("SAVE_ROOM");
+        idRoomSave = i.getExtras().getString("CODE_KEY") ;
         Picasso.with(this)
                 .load(i.getExtras()
                 .getString("IMAGE_KEY"))
@@ -74,12 +81,51 @@ public class DetailActivity extends AppCompatActivity {
                 .centerCrop()
                 .into(iv_roomImg);
 
-
         ic_back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 finish();
             }
         });
+        ic_bookmark.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if(MainActivity.flag==0)
+                {
+                    Intent intent = new Intent(DetailActivity.this,LoginActivity.class);
+                    startActivity(intent);
+                    return;
+                    //finish();
+                }else{
+                    //Get current user id:
+                    GoogleSignInAccount acct = GoogleSignIn.getLastSignedInAccount(getApplicationContext());
+                    String idUser = acct.getId();
+                    DatabaseReference mUserReff = FirebaseDatabase.getInstance().getReference("Users").child(idUser);
+
+                    if(stateSaved){
+                        mUserReff.child("roomSaved").child(idRoomSave).removeValue();
+                        ic_bookmark.setImageResource(R.drawable.ic_bookmark);
+                        Toast.makeText(DetailActivity.this, "Đã bỏ lưu", Toast.LENGTH_SHORT).show();
+                    }else {
+                        mUserReff.child("roomSaved").child(idRoomSave).setValue(idRoomSave);
+                        ic_bookmark.setImageResource(R.drawable.ic_bookmark_black_24dp);
+                        Toast.makeText(DetailActivity.this, "Đã lưu", Toast.LENGTH_SHORT).show();
+                    }
+                }
+
+
+
+
+            }
+        });
+    }
+
+    @Override
+    protected void onStart() {
+        if(stateSaved)
+        {
+            ic_bookmark.setImageResource(R.drawable.ic_bookmark_black_24dp);
+        }
+        super.onStart();
     }
 }

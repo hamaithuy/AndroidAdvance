@@ -40,12 +40,9 @@ public class LoginActivity extends AppCompatActivity {
     FirebaseAuth mAuth;
     FirebaseAuth.AuthStateListener mAuthStateListener;
     SignInButton btnSignInGoogle;
-    Button btnSignOut;
-
     DatabaseReference userReff;
 
     GoogleSignInClient mGoogleSignInClient;
-    //GoogleApiClient mGoogleApiClient;
     GoogleSignInApi mGoogleSignInApi;
 
     private final int RC_SIGN_IN = 3;
@@ -65,9 +62,8 @@ public class LoginActivity extends AppCompatActivity {
         // Initialize Widget
         btnSignInGoogle = findViewById(R.id.btn_sign_in_google);
         btnSignInGoogle.setSize(SignInButton.SIZE_STANDARD);
-
         userReff = FirebaseDatabase.getInstance().getReference("Users");
-        //userReff.setValue("my push");
+
 
         // Configure sign-in to request the user's ID, email address, and basic
         // profile. ID and basic profile are included in DEFAULT_SIGN_IN.
@@ -79,7 +75,6 @@ public class LoginActivity extends AppCompatActivity {
         mGoogleSignInClient = GoogleSignIn.getClient(this, gso);
 
         btnSignInGoogle.setOnClickListener(signInButtonListener);
-
         mAuthStateListener = new FirebaseAuth.AuthStateListener() {
             @Override
             public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
@@ -96,6 +91,18 @@ public class LoginActivity extends AppCompatActivity {
         };
 
     }
+    private Button.OnClickListener btnPostedRoomListener =
+            new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    comeToPostedRoomActivity();
+                }
+            };
+    private void comeToPostedRoomActivity() {
+        Intent intent= new Intent(this,com.example.demoapp.View.PostedActivity.class);
+        startActivity(intent);
+    }
+
     private SignInButton.OnClickListener signInButtonListener =
             new View.OnClickListener() {
                 @Override
@@ -187,6 +194,7 @@ public class LoginActivity extends AppCompatActivity {
 
         GoogleSignInAccount acct = GoogleSignIn.getLastSignedInAccount(getApplicationContext());
         if (acct != null) {
+           // String persionIdFirebase = user.getUid();
             String personName = acct.getDisplayName();
             String personGivenName = acct.getGivenName();
             String personFamilyName = acct.getFamilyName();
@@ -195,16 +203,21 @@ public class LoginActivity extends AppCompatActivity {
             Uri personPhoto = acct.getPhotoUrl();
 
 
-            userAccount.setId(personId);
-            userAccount.setName(personName);
-            userAccount.setEmail(personEmail);
+//            userAccount.setId(personId);
+//            userAccount.setName(personName);
+//            userAccount.setEmail(personEmail);
+
+
+           // Toast.makeText(this, "ID Firebase:"+persionIdFirebase+"----ID CurrentGoogle:"+personId, Toast.LENGTH_SHORT).show();
             //Toast.makeText(this, "Personer Name:"+ personName +"/n"+"ID:"+personId, Toast.LENGTH_SHORT).show();
             //checkUser();
             addUser();
+
             MainActivity.flag=1;
             Intent intentAccount = new Intent(this,MainActivity.class);
             intentAccount.putExtra("NAME",personName);
             intentAccount.putExtra("PHOTO",personPhoto.toString());
+            intentAccount.putExtra("ID",personId);
             startActivity(intentAccount);
 
             finish();
@@ -222,10 +235,11 @@ public class LoginActivity extends AppCompatActivity {
                     {
                         if(userData.exists())
                         {
-                            return;
+                            return ;
                         }
                     }
                     addUser();
+
                 }
             }
 
@@ -237,9 +251,8 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     private void addUser() {
-        String id = userReff.push().getKey();
-        User userFirebase = new User(id,userAccount.getName(),userAccount.getEmail());
-        userReff.child(id).setValue(userFirebase);
+        User userFirebase = new User(userAccount.getName(),false,userAccount.getEmail(),"","");
+        userReff.child(userAccount.getId()).setValue(userFirebase);
     }
 
     private void handleSignInResult(Task<GoogleSignInAccount> completedTask) {

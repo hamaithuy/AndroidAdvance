@@ -123,7 +123,8 @@ public class SearchFragment extends Fragment implements RecyclerAdapter.IOnItemC
                 roomClicked.getAirMachine().toString(),
                 roomClicked.getFridge().toString(),
                 roomClicked.getWashMachine().toString(),
-                roomClicked.getDescription()
+                roomClicked.getDescription(),
+                roomClicked.getKey()
         };
         openDetailActivity(roomData);
     }
@@ -146,6 +147,7 @@ public class SearchFragment extends Fragment implements RecyclerAdapter.IOnItemC
         intent.putExtra("FRIDGE_KEY",data[13]);
         intent.putExtra("WASHMACHINE_KEY",data[14]);
         intent.putExtra("DESCRIPTION_KEY",data[15]);
+        intent.putExtra("CODE_KEY",data[16]);
         startActivity(intent);
     }
 

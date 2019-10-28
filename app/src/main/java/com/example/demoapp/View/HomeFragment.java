@@ -57,8 +57,14 @@ public class HomeFragment extends Fragment implements GridRecyclerAdapter.IOnIte
         iv_Post.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(getContext(),PostActivity.class);
-                startActivity(intent);
+                if(MainActivity.flag==1){
+                    Intent intent = new Intent(getContext(),PostActivity.class);
+                    startActivity(intent);
+                }else {
+                    Intent intent = new Intent(getContext(),LoginActivity.class);
+                    startActivity(intent);
+                }
+
             }
         });
         // Get dữ liệu top 4 phòng cho thuê mới  và hiển thị lên RecyclerView phòng mới
@@ -162,7 +168,8 @@ public class HomeFragment extends Fragment implements GridRecyclerAdapter.IOnIte
                 roomClicked.getAirMachine().toString(),
                 roomClicked.getFridge().toString(),
                 roomClicked.getWashMachine().toString(),
-                roomClicked.getDescription()
+                roomClicked.getDescription(),
+                roomClicked.getKey()
         };
         openDetailActivity(roomData);
     }
@@ -185,6 +192,7 @@ public class HomeFragment extends Fragment implements GridRecyclerAdapter.IOnIte
         intent.putExtra("FRIDGE_KEY",data[13]);
         intent.putExtra("WASHMACHINE_KEY",data[14]);
         intent.putExtra("DESCRIPTION_KEY",data[15]);
+        intent.putExtra("CODE_KEY",data[16]);
         startActivity(intent);
     }
 

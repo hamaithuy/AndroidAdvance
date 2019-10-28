@@ -23,6 +23,8 @@ import android.widget.Toast;
 import com.example.demoapp.R;
 import com.example.demoapp.Common.FireBaseDataBaseHelper;
 import com.example.demoapp.Model.Room;
+import com.google.android.gms.auth.api.signin.GoogleSignIn;
+import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.database.DatabaseReference;
@@ -87,6 +89,10 @@ public class PostActivity extends AppCompatActivity  {
 
     }
 
+    private void comeToLoginActivity() {
+
+    }
+
     /// Thực hiện lấy ảnh trong thư viện
     public void openFileChooser(){
         Intent intent= new Intent();
@@ -123,6 +129,8 @@ public class PostActivity extends AppCompatActivity  {
                 public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
                     // Push phòng lên DB
                     Room room = new Room();
+
+
                     // Check loại tin
                     int kindPost = rb_oghep.isChecked()==true ?  2 : 1;
                     room.setKindPost(kindPost);
@@ -166,6 +174,12 @@ public class PostActivity extends AppCompatActivity  {
                         }
                     });
 
+                    //Get current user id:
+                    GoogleSignInAccount acct = GoogleSignIn.getLastSignedInAccount(getApplicationContext());
+                    String idUser = acct.getId();
+
+                    DatabaseReference mUserReff = FirebaseDatabase.getInstance().getReference("Users").child(idUser);
+                    mUserReff.child("roomPosted").child(uploadID).setValue(uploadID);
                     Toast.makeText(PostActivity.this,"Phòng của bạn đã đăng",Toast.LENGTH_SHORT).show();
                     // Trở về main activity
                     finish();

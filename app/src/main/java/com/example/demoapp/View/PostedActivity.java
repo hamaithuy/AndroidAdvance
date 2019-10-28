@@ -1,23 +1,18 @@
 package com.example.demoapp.View;
 
-import android.content.Intent;
-import android.os.Bundle;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
-import android.widget.Toast;
-
 import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.fragment.app.Fragment;
+import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Intent;
+import android.os.Bundle;
+import android.widget.Toast;
+
 import com.example.demoapp.Adapter.RecyclerAdapter;
-import com.example.demoapp.Adapter.RecyclerSaveAdapter;
 import com.example.demoapp.Common.Common;
-import com.example.demoapp.R;
 import com.example.demoapp.Model.Room;
+import com.example.demoapp.R;
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -32,48 +27,45 @@ import com.google.firebase.storage.StorageReference;
 import java.util.ArrayList;
 import java.util.List;
 
-public class SaveFragment extends Fragment implements RecyclerAdapter.IOnItemClickListener {
+public class PostedActivity extends AppCompatActivity implements RecyclerAdapter.IOnItemClickListener{
 
     private RecyclerView mRecyclerView;
-    private RecyclerSaveAdapter mAdapter;
+    private RecyclerAdapter mAdapter;
     private FirebaseStorage mStorage;
     private DatabaseReference mDatabaseRef;
     private DatabaseReference mUserRef;
     private ValueEventListener mDBListener;
     private List<Room> listRooms ;
-    private List<String> listIdRoomSaved;
+    private List<String> listIdRoomPosted;
 
-
-
-    @Nullable
     @Override
-    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_save,container,false);
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_posted);
 
-        mRecyclerView = view.findViewById(R.id.rv_SaveRoom);
+        mRecyclerView = findViewById(R.id.rv_PostedRoom);
         mRecyclerView.setHasFixedSize(true);
-        mRecyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
+        mRecyclerView.setLayoutManager(new LinearLayoutManager(this));
 
         listRooms = new ArrayList<>();
-        listIdRoomSaved = new ArrayList<>();
-        mAdapter = new RecyclerSaveAdapter(getActivity(),listRooms);
+        listIdRoomPosted = new ArrayList<>();
+        mAdapter = new RecyclerAdapter(this,listRooms);
         mRecyclerView.setAdapter(mAdapter);
         // Connect interface
         mAdapter.setOnItemClickListener(this);
 
         // Lấy danh sách ID của room
         //Get current user id:
-//        GoogleSignInAccount acct = GoogleSignIn.getLastSignedInAccount(getApplicationContext());
-        MainActivity activity = (MainActivity) getActivity();
-        String idUser = activity.getID();
+        GoogleSignInAccount acct = GoogleSignIn.getLastSignedInAccount(getApplicationContext());
+        String idUser = acct.getId();
 
-        mUserRef = FirebaseDatabase.getInstance().getReference("Users").child(idUser).child("roomSaved");
+        mUserRef = FirebaseDatabase.getInstance().getReference("Users").child(idUser).child("roomPosted");
         mUserRef.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 for(DataSnapshot idRoomSnapshot : dataSnapshot.getChildren()){
                     String id = idRoomSnapshot.getKey().toString();
-                    listIdRoomSaved.add(id);
+                    listIdRoomPosted.add(id);
                 }
             }
 
@@ -83,18 +75,20 @@ public class SaveFragment extends Fragment implements RecyclerAdapter.IOnItemCli
             }
         });
 
+        // Get room by ID of User
         mStorage = FirebaseStorage.getInstance();
         mDatabaseRef = FirebaseDatabase.getInstance().getReference("Rooms");
+
 
         mDBListener = mDatabaseRef.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 listRooms.clear();
-                for (int i =0 ; i<listIdRoomSaved.size();i++){
+                for (int i =0 ; i<listIdRoomPosted.size();i++){
                     for(DataSnapshot roomSnapshot : dataSnapshot.getChildren()) {
                         String roomID = roomSnapshot.getKey().toString();
-                        String roomSavedID = listIdRoomSaved.get(i).toString();
-                        if(roomID.equals(roomSavedID))
+                        String roomPostedID = listIdRoomPosted.get(i).toString();
+                        if(roomID.equals(roomPostedID))
                         {
                             Room room = roomSnapshot.getValue(Room.class);
                             room.setKey(roomSnapshot.getKey());
@@ -107,14 +101,10 @@ public class SaveFragment extends Fragment implements RecyclerAdapter.IOnItemCli
 
             @Override
             public void onCancelled(@NonNull DatabaseError databaseError) {
-                Toast.makeText(getContext(),databaseError.getMessage(),Toast.LENGTH_SHORT).show();
+                Toast.makeText(PostedActivity.this,databaseError.getMessage(),Toast.LENGTH_SHORT).show();
             }
         });
-
-        return view;
     }
-
-
 
     @Override
     public void onItemClick(int position) {
@@ -139,14 +129,13 @@ public class SaveFragment extends Fragment implements RecyclerAdapter.IOnItemCli
                 roomClicked.getAirMachine().toString(),
                 roomClicked.getFridge().toString(),
                 roomClicked.getWashMachine().toString(),
-                roomClicked.getDescription(),
-                roomClicked.getKey()
+                roomClicked.getDescription()
         };
         openDetailActivity(roomData);
     }
 
     private void openDetailActivity(String[] data){
-        Intent intent = new Intent(getContext(), DetailActivity.class);
+        Intent intent = new Intent(this, DetailActivity.class);
         intent.putExtra("PRICE_KEY",data[0]);
         intent.putExtra("IMAGE_KEY",data[1]);
         intent.putExtra("TITLE_KEY",data[2]);
@@ -163,8 +152,6 @@ public class SaveFragment extends Fragment implements RecyclerAdapter.IOnItemCli
         intent.putExtra("FRIDGE_KEY",data[13]);
         intent.putExtra("WASHMACHINE_KEY",data[14]);
         intent.putExtra("DESCRIPTION_KEY",data[15]);
-        intent.putExtra("CODE_KEY",data[16]);
-        intent.putExtra("SAVE_ROOM",true);
         startActivity(intent);
     }
 
@@ -185,7 +172,7 @@ public class SaveFragment extends Fragment implements RecyclerAdapter.IOnItemCli
             @Override
             public void onSuccess(Void aVoid) {
                 mDatabaseRef.child(selectedKey).removeValue();
-                Toast.makeText(getContext(),"Item deleted",Toast.LENGTH_SHORT).show();
+                Toast.makeText(PostedActivity.this,"Item deleted",Toast.LENGTH_SHORT).show();
             }
         });
     }
@@ -194,9 +181,5 @@ public class SaveFragment extends Fragment implements RecyclerAdapter.IOnItemCli
         super.onDestroy();
         mDatabaseRef.removeEventListener(mDBListener);
     }
-
-
-
-
 
 }

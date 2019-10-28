@@ -34,10 +34,15 @@ public class AccountFragment extends Fragment implements View.OnClickListener {
         btnLogout = view.findViewById(R.id.btn_logout);
         imgUserAvatar = view.findViewById(R.id.img_user_avatar);
         txtUserName = view.findViewById(R.id.txt_user_name);
-
+        btnPostedRoom = view.findViewById(R.id.btn_phong_da_dang);
 //        String photo = getArguments().getString("PHOTO");
 //        String name = getArguments().getString("NAME");
-
+        btnPostedRoom.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                comeToPostedActivity();
+            }
+        });
         MainActivity activity = (MainActivity) getActivity();
         String photoFromMainActivity = activity.getUserUriPhoto();
         String nameFromMainActivity = activity.getUserName();
@@ -58,6 +63,11 @@ public class AccountFragment extends Fragment implements View.OnClickListener {
             }
         });
         return view;
+    }
+
+    private void comeToPostedActivity() {
+        Intent intent =new Intent(getContext(),com.example.demoapp.View.PostedActivity.class);
+        startActivity(intent);
     }
 
     @Override

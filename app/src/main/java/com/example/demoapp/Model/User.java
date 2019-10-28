@@ -5,33 +5,28 @@ public class User {
     private String name;
     private Boolean perAdmin;
     private String email;
-    private String postedRoom;
-    private String savedRoom;
+    private String RoomPosted;
+    private String RoomSaved;
+
 
     public User() {
     }
 
-    public User(String id, String name, Boolean perAdmin, String photo, String postedRoom, String savedRoom) {
+    public User(String id, String name, Boolean perAdmin, String email, String roomPosted, String roomSaved) {
         this.id = id;
         this.name = name;
         this.perAdmin = perAdmin;
-        this.email = photo;
-        this.postedRoom = postedRoom;
-        this.savedRoom = savedRoom;
-    }
-
-    public User(String id, String name, String email) {
-        this.id = id;
-        this.name = name;
         this.email = email;
+        RoomPosted = roomPosted;
+        RoomSaved = roomSaved;
     }
 
-    public User(String id, String name, Boolean perAdmin, String postedRoom, String savedRoom) {
-        this.id = id;
+    public User(String name, Boolean perAdmin, String email, String roomPosted, String roomSaved) {
         this.name = name;
         this.perAdmin = perAdmin;
-        this.postedRoom = postedRoom;
-        this.savedRoom = savedRoom;
+        this.email = email;
+        RoomPosted = roomPosted;
+        RoomSaved = roomSaved;
     }
 
     public String getId() {
@@ -66,20 +61,20 @@ public class User {
         this.email = email;
     }
 
-    public String getPostedRoom() {
-        return postedRoom;
+    public String getRoomPosted() {
+        return RoomPosted;
     }
 
-    public void setPostedRoom(String postedRoom) {
-        this.postedRoom = postedRoom;
+    public void setRoomPosted(String roomPosted) {
+        RoomPosted = roomPosted;
     }
 
-    public String getSavedRoom() {
-        return savedRoom;
+    public String getRoomSaved() {
+        return RoomSaved;
     }
 
-    public void setSavedRoom(String savedRoom) {
-        this.savedRoom = savedRoom;
+    public void setRoomSaved(String roomSaved) {
+        RoomSaved = roomSaved;
     }
 }
 
