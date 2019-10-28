@@ -1,0 +1,604 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        tools:context=".View.PostActivity"
+        >
+
+
+
+    <androidx.appcompat.widget.Toolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="#FFFFFF"
+            android:minHeight="?attr/actionBarSize"
+            android:scrollbarFadeDuration="250"
+            android:theme="?attr/actionBarTheme"
+            app:contentInsetStart="0dp"
+            app:contentInsetStartWithNavigation="0dp"
+            app:titleMargin="0dp"
+            app:titleTextColor="@color/colorPrimaryDark">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="56dp">
+
+            <TextView
+                    android:id="@+id/tv_Cancel"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="20dp"
+                    android:text="Hủy"
+                    android:textColor="@android:color/holo_red_dark"
+                    android:textSize="18sp"
+                    android:textStyle="bold"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                    android:id="@+id/tv_Post"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="20dp"
+                    android:text="Đăng"
+                    android:textColor="@color/colorPrimaryDark"
+                    android:textSize="18sp"
+                    android:textStyle="bold"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintRight_toRightOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                    android:id="@+id/tv_price"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:gravity="center"
+                    android:text="Đăng tin"
+                    android:textColor="@color/colorPrimaryDark"
+                    android:textSize="22sp"
+                    android:textStyle="bold"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintRight_toRightOf="parent">
+
+            </TextView>
+
+            <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="@color/text"
+                    app:layout_constraintBottom_toBottomOf="parent">
+
+            </View>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </androidx.appcompat.widget.Toolbar>
+
+
+        <ScrollView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="#FFFFFF">
+            <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical">
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:paddingBottom="50dp">
+
+                    <TextView
+                            android:id="@+id/tv_Loaitin"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="15dp"
+                            android:layout_marginTop="15dp"
+                            android:text="Loại tin"
+                            android:textColor="@color/colorPrimaryDark"
+                            android:textSize="18sp"
+                            android:textStyle="bold"
+                            app:layout_constraintLeft_toLeftOf="parent"
+                            app:layout_constraintTop_toTopOf="parent" />
+
+                    <RadioGroup
+                            android:id="@+id/rg_kindPost"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="15dp"
+                            android:layout_marginTop="15dp"
+                            android:layout_marginRight="15dp"
+                            android:orientation="horizontal"
+                            app:layout_constraintLeft_toLeftOf="parent"
+                            app:layout_constraintRight_toRightOf="parent"
+                            app:layout_constraintTop_toBottomOf="@id/tv_Loaitin">
+
+
+                        <RadioButton
+                                android:id="@+id/rb_chothue"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:text="Cho thuê"
+                                android:textSize="16dp" />
+
+                        <RadioButton
+                                android:id="@+id/rb_oghep"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:text="Tìm người ở ghép"
+                                android:textSize="16dp" />
+
+                    </RadioGroup>
+
+                    <TextView
+                            android:id="@+id/tv_Loaiphong"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="15dp"
+                            android:layout_marginTop="15dp"
+                            android:text="Loại phòng"
+                            android:textColor="@color/colorPrimaryDark"
+                            android:textSize="18sp"
+                            android:textStyle="bold"
+                            app:layout_constraintLeft_toLeftOf="parent"
+                            app:layout_constraintTop_toBottomOf="@id/rg_kindPost" />
+
+                    <RadioGroup
+                            android:id="@+id/rg_kindRoom"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="15dp"
+                            android:layout_marginTop="15dp"
+                            android:layout_marginRight="15dp"
+                            android:orientation="vertical"
+                            app:layout_constraintLeft_toLeftOf="parent"
+                            app:layout_constraintRight_toRightOf="parent"
+                            app:layout_constraintTop_toBottomOf="@id/tv_Loaiphong">
+
+
+                        <RadioButton
+                                android:id="@+id/rb_Phong"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:text="Phòng"
+                                android:textSize="16sp" />
+
+                        <RadioButton
+                                android:id="@+id/rb_Canho"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:text="Căn hộ"
+                                android:textSize="16sp" />
+
+                        <RadioButton
+                                android:id="@+id/rb_Canhomini"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:text="Căn hộ mini"
+                                android:textSize="16sp" />
+
+                        <RadioButton
+                                android:id="@+id/rb_Nguyencan"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:text="Nguyên căn"
+                                android:textSize="16sp" />
+
+                    </RadioGroup>
+
+                    <TextView
+                            android:id="@+id/tv1"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="15dp"
+                            android:layout_marginTop="15dp"
+
+                            android:text="Địa chỉ"
+                            android:textColor="@color/colorPrimaryDark"
+                            android:textSize="18sp"
+                            android:textStyle="bold"
+                            app:layout_constraintLeft_toLeftOf="parent"
+                            app:layout_constraintTop_toBottomOf="@id/rg_kindRoom" />
+
+
+                    <EditText
+                            android:id="@+id/et_address"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="15dp"
+                            android:layout_marginTop="15dp"
+                            android:layout_marginRight="15dp"
+                            android:gravity="center_vertical"
+                            android:hint="Chọn địa chỉ"
+                            android:paddingLeft="8dp"
+                            android:textSize="16sp"
+                            app:layout_constraintLeft_toLeftOf="parent"
+                            app:layout_constraintRight_toRightOf="parent"
+                            app:layout_constraintTop_toBottomOf="@id/tv1" />
+
+                    <TextView
+                            android:id="@+id/tv_giaphong"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="15dp"
+                            android:layout_marginTop="15dp"
+                            android:text="Giá phòng (VND)"
+                            android:textColor="@color/colorPrimaryDark"
+                            android:textSize="18sp"
+                            android:textStyle="bold"
+                            app:layout_constraintLeft_toLeftOf="parent"
+                            app:layout_constraintTop_toBottomOf="@id/et_address" />
+
+                    <TextView
+                            android:id="@+id/tv_dienTich"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="15dp"
+                            android:layout_marginRight="15dp"
+                            android:text="Diện tích (m2)"
+                            android:textColor="@color/colorPrimaryDark"
+                            android:textSize="18sp"
+                            android:textStyle="bold"
+                            app:layout_constraintRight_toRightOf="parent"
+                            app:layout_constraintTop_toBottomOf="@id/et_address" />
+
+                    <LinearLayout
+                            android:id="@+id/ln_gia_dt"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="15dp"
+                            android:layout_marginRight="15dp"
+                            android:orientation="horizontal"
+                            app:layout_constraintLeft_toLeftOf="parent"
+                            app:layout_constraintRight_toRightOf="parent"
+                            app:layout_constraintTop_toBottomOf="@id/tv_giaphong">
+
+                        <EditText
+                                android:id="@+id/et_price"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_marginRight="15dp"
+                                android:layout_weight="1"
+                                android:hint="3000000"></EditText>
+
+                        <EditText
+                                android:id="@+id/et_acreage"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_marginLeft="15dp"
+                                android:layout_weight="1"
+                                android:hint="20"></EditText>
+                    </LinearLayout>
+
+                    <TextView
+                            android:id="@+id/tv_tienIch"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="15dp"
+                            android:layout_marginTop="15dp"
+                            android:text="Tiện ích phòng"
+                            android:textColor="@color/colorPrimaryDark"
+                            android:textSize="18sp"
+                            android:textStyle="bold"
+                            app:layout_constraintLeft_toLeftOf="parent"
+                            app:layout_constraintTop_toBottomOf="@id/ln_gia_dt" />
+
+                    <LinearLayout
+                            android:id="@+id/ln_tienich1"
+                            android:layout_width="match_parent"
+                            android:layout_height="50dp"
+                            android:layout_marginLeft="15dp"
+                            android:layout_marginRight="15dp"
+                            android:gravity="center"
+                            android:orientation="horizontal"
+                            app:layout_constraintLeft_toLeftOf="parent"
+                            app:layout_constraintRight_toRightOf="parent"
+                            app:layout_constraintTop_toBottomOf="@id/tv_tienIch">
+
+                        <CheckBox
+                                android:id="@+id/cb_wifi"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:text="Wifi"
+                                android:textSize="16sp" />
+
+                        <CheckBox
+                                android:id="@+id/cb_ownWC"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:text="WC riêng"
+                                android:textSize="16sp" />
+
+                        <CheckBox
+                                android:id="@+id/cb_keepCar"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:checked="false"
+                                android:text="Giữ xe"
+                                android:textSize="16sp" />
+
+                        <CheckBox
+                                android:id="@+id/cb_free"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:text="Tự do"
+                                android:textSize="16sp" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                            android:id="@+id/ln_tienich2"
+                            android:layout_width="match_parent"
+                            android:layout_height="50dp"
+                            android:layout_marginLeft="15dp"
+                            android:layout_marginRight="15dp"
+                            android:gravity="center"
+                            android:orientation="horizontal"
+                            app:layout_constraintLeft_toLeftOf="parent"
+                            app:layout_constraintRight_toRightOf="parent"
+                            app:layout_constraintTop_toBottomOf="@id/ln_tienich1">
+
+                        <CheckBox
+                                android:id="@+id/cb_kitchen"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:text="Bếp"
+                                android:textSize="16sp" />
+
+                        <CheckBox
+                                android:id="@+id/cb_airMachine"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:text="Điều hòa"
+                                android:textSize="16sp" />
+
+                        <CheckBox
+                                android:id="@+id/cb_fridge"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:text="Tử lạnh"
+                                android:textSize="16sp" />
+
+                        <CheckBox
+                                android:id="@+id/cb_washMachine"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:text="Máy giặt"
+                                android:textSize="16sp" />
+                    </LinearLayout>
+
+                    <TextView
+                            android:id="@+id/tv_tieude"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="15dp"
+                            android:layout_marginTop="15dp"
+                            android:text="Tiêu đề bài đăng"
+                            android:textColor="@color/colorPrimaryDark"
+                            android:textSize="18sp"
+                            android:textStyle="bold"
+                            app:layout_constraintLeft_toLeftOf="parent"
+                            app:layout_constraintTop_toBottomOf="@id/ln_tienich2" />
+
+                    <EditText
+                            android:id="@+id/et_title"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="15dp"
+                            android:layout_marginRight="15dp"
+                            android:hint="Nhập tiêu đề bài đăng"
+                            app:layout_constraintLeft_toLeftOf="parent"
+                            app:layout_constraintRight_toRightOf="parent"
+                            app:layout_constraintTop_toBottomOf="@id/tv_tieude"></EditText>
+
+                    <TextView
+                            android:id="@+id/tv_lienHe"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="15dp"
+                            android:layout_marginTop="15dp"
+                            android:text="Liên hệ với chủ"
+                            android:textColor="@color/colorPrimaryDark"
+                            android:textSize="18sp"
+                            android:textStyle="bold"
+                            app:layout_constraintLeft_toLeftOf="parent"
+                            app:layout_constraintTop_toBottomOf="@id/et_title" />
+
+                    <EditText
+                            android:id="@+id/et_boss"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="15dp"
+                            android:layout_marginRight="15dp"
+                            android:hint="Tên chủ nhà"
+                            app:layout_constraintLeft_toLeftOf="parent"
+                            app:layout_constraintRight_toRightOf="parent"
+                            app:layout_constraintTop_toBottomOf="@id/tv_lienHe"></EditText>
+
+                    <TextView
+                            android:id="@+id/tv_sdt"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="15dp"
+                            android:layout_marginTop="15dp"
+                            android:text="Số điện thoại"
+                            android:textColor="@color/colorPrimaryDark"
+                            android:textSize="18sp"
+                            android:textStyle="bold"
+                            app:layout_constraintLeft_toLeftOf="parent"
+                            app:layout_constraintTop_toBottomOf="@id/et_boss" />
+
+                    <EditText
+                            android:id="@+id/et_phone"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="15dp"
+                            android:layout_marginRight="15dp"
+                            android:hint="Nhập số điện thoại của bạn"
+                            android:inputType="number"
+                            app:layout_constraintLeft_toLeftOf="parent"
+                            app:layout_constraintRight_toRightOf="parent"
+                            app:layout_constraintTop_toBottomOf="@id/tv_sdt"></EditText>
+
+                    <TextView
+                            android:id="@+id/tv_mieuTa"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="15dp"
+                            android:layout_marginTop="15dp"
+                            android:text="Mô tả chi tiết"
+                            android:textColor="@color/colorPrimaryDark"
+                            android:textSize="18sp"
+                            android:textStyle="bold"
+                            app:layout_constraintLeft_toLeftOf="parent"
+                            app:layout_constraintTop_toBottomOf="@id/et_phone" />
+
+                    <EditText
+                            android:id="@+id/et_description"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="15dp"
+                            android:layout_marginRight="15dp"
+                            android:ems="10"
+                            android:gravity="start|top"
+                            android:inputType="textMultiLine"
+                            app:layout_constraintLeft_toLeftOf="parent"
+                            app:layout_constraintRight_toRightOf="parent"
+                            app:layout_constraintTop_toBottomOf="@id/tv_mieuTa" />
+
+                    <Button
+                            android:id="@+id/btn_upImg"
+                            android:layout_width="150dp"
+                            android:layout_height="50dp"
+                            android:layout_marginLeft="15dp"
+                            android:layout_marginTop="15dp"
+                            android:background="@color/colorPrimaryDark"
+                            android:text="Đăng ảnh"
+                            android:textColor="#FFFFFF"
+                            android:textSize="18sp"
+                            app:layout_constraintLeft_toLeftOf="parent"
+                            app:layout_constraintTop_toBottomOf="@id/et_description"></Button>
+
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                            android:id="@+id/ct_img"
+                            android:layout_width="400dp"
+                            android:layout_height="400dp"
+                            android:layout_marginTop="15dp"
+                            android:padding="5dp"
+                            app:layout_constraintLeft_toLeftOf="parent"
+                            app:layout_constraintRight_toRightOf="parent"
+                            app:layout_constraintTop_toBottomOf="@id/btn_upImg">
+
+                        <View
+                                android:id="@+id/view6"
+                                android:layout_width="1dp"
+                                android:layout_height="match_parent"
+                                android:background="@color/text"
+                                app:layout_constraintLeft_toRightOf="@id/img1">
+
+                        </View>
+
+                        <View
+                                android:id="@+id/view5"
+                                android:layout_width="match_parent"
+                                android:layout_height="1dp"
+                                android:background="@color/text"
+                                app:layout_constraintTop_toBottomOf="@id/img1">
+
+                        </View>
+
+                        <View
+                                android:id="@+id/view4"
+                                android:layout_width="1dp"
+                                android:layout_height="match_parent"
+                                android:background="@color/text"
+                                app:layout_constraintLeft_toLeftOf="parent">
+
+                        </View>
+
+                        <View
+                                android:id="@+id/view3"
+                                android:layout_width="match_parent"
+                                android:layout_height="1dp"
+                                android:background="@color/text"
+                                app:layout_constraintBottom_toBottomOf="parent">
+
+                        </View>
+
+                        <View
+                                android:id="@+id/view2"
+                                android:layout_width="1dp"
+                                android:layout_height="match_parent"
+                                android:background="@color/text"
+                                app:layout_constraintRight_toRightOf="parent">
+
+                        </View>
+
+                        <View
+                                android:id="@+id/view1"
+                                android:layout_width="match_parent"
+                                android:layout_height="1dp"
+                                android:background="@color/text"
+                                app:layout_constraintTop_toTopOf="parent">
+
+                        </View>
+
+                        <ImageView
+                                android:id="@+id/img1"
+                                android:layout_width="0dp"
+                                android:layout_height="200dp"
+                                android:padding="10dp"
+                                app:layout_constraintLeft_toLeftOf="parent"
+                                app:layout_constraintTop_toTopOf="parent"
+                                app:layout_constraintWidth_percent="0.5"></ImageView>
+
+                        <ImageView
+                                android:id="@+id/img2"
+                                android:layout_width="0dp"
+                                android:layout_height="200dp"
+                                android:padding="10dp"
+                                app:layout_constraintLeft_toRightOf="@id/img1"
+                                app:layout_constraintTop_toTopOf="parent"
+                                app:layout_constraintWidth_percent="0.5"></ImageView>
+
+                        <ImageView
+                                android:id="@+id/img3"
+                                android:layout_width="0dp"
+                                android:layout_height="200dp"
+                                android:padding="10dp"
+                                app:layout_constraintLeft_toLeftOf="parent"
+                                app:layout_constraintTop_toBottomOf="@id/img1"
+                                app:layout_constraintWidth_percent="0.5"></ImageView>
+
+                        <ImageView
+                                android:id="@+id/img4"
+                                android:layout_width="0dp"
+                                android:layout_height="200dp"
+                                android:padding="10dp"
+                                app:layout_constraintLeft_toRightOf="@id/img3"
+                                app:layout_constraintTop_toBottomOf="@id/img2"
+                                app:layout_constraintWidth_percent="0.5"></ImageView>
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+            </LinearLayout>
+        </ScrollView>
+
+
+</LinearLayout>

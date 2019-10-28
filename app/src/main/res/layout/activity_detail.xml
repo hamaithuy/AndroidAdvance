@@ -1,0 +1,344 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        tools:context=".View.DetailActivity">
+        <androidx.appcompat.widget.Toolbar
+                android:id="@+id/toolbar"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="#FFFFFF"
+                android:minHeight="?attr/actionBarSize"
+                android:scrollbarFadeDuration="250"
+                android:theme="?attr/actionBarTheme"
+                app:contentInsetStart="0dp"
+                app:contentInsetStartWithNavigation="0dp"
+                app:titleMargin="0dp"
+                app:titleTextColor="@color/colorPrimaryDark">
+            <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="56dp">
+
+                <ImageView
+                        android:id="@+id/ic_back"
+                        android:layout_width="25dp"
+                        android:layout_height="25dp"
+                        android:src="@drawable/ic_back"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintLeft_toLeftOf="parent"
+                        android:layout_marginLeft="15dp"
+                        ></ImageView>
+
+                <ImageView
+                        android:id="@+id/ic_bookmark"
+                        android:layout_width="25dp"
+                        android:layout_height="25dp"
+                        android:src="@drawable/ic_bookmark"
+                        android:layout_marginRight="15dp"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintRight_toRightOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                        android:id="@+id/tv_price"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:gravity="center"
+                        android:text="6 triệu/ tháng"
+                        android:textColor="@color/colorPrimaryDark"
+                        android:textSize="22sp"
+                        android:textStyle="bold"
+                        app:layout_constraintLeft_toLeftOf="parent"
+                        app:layout_constraintRight_toRightOf="parent">
+
+                </TextView>
+
+                <View
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:background="@color/text"
+                        app:layout_constraintBottom_toBottomOf="parent">
+
+                </View>
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </androidx.appcompat.widget.Toolbar>
+
+    <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="#FFFFFF">
+        <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+            <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingBottom="50dp">
+                <ImageView
+                        android:id="@+id/iv_roomImg"
+                        android:layout_width="match_parent"
+                        android:layout_height="230dp"
+                        android:src="@drawable/home"
+                        android:scaleType="centerCrop"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintLeft_toLeftOf="parent"
+                        app:layout_constraintRight_toRightOf="parent">
+                </ImageView>
+
+                <TextView
+                        android:id="@+id/tv_title"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="15dp"
+                        android:layout_marginTop="15dp"
+                        android:layout_marginRight="15dp"
+                        android:gravity="left"
+                        android:paddingLeft="8dp"
+                        android:paddingRight="8dp"
+                        android:text="Chung cư Nguyễn Văn Lượng 2 "
+                        android:textColor="@color/colorPrimaryDark"
+                        android:textSize="18sp"
+                        android:textStyle="bold"
+                        app:layout_constraintLeft_toLeftOf="parent"
+                        app:layout_constraintRight_toRightOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/iv_roomImg" />
+                <ImageView
+                        android:id="@+id/ic_location"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="8dp"
+                        android:layout_marginLeft="20dp"
+                        app:layout_constraintLeft_toLeftOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/tv_title"
+                        app:srcCompat="@drawable/ic_location_on_black_24dp" />
+                <ImageView
+                        android:id="@+id/ic_land"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="8dp"
+                        android:layout_marginLeft="20dp"
+                        app:layout_constraintLeft_toLeftOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/ic_location"
+                        app:srcCompat="@drawable/ic_acreage_24dp" />
+
+                <ImageView
+                        android:id="@+id/ic_time"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="8dp"
+                        android:layout_marginLeft="20dp"
+                        app:layout_constraintLeft_toLeftOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/ic_land"
+                        app:srcCompat="@drawable/ic_access_time" />
+                <ImageView
+                        android:id="@+id/ic_phone"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="8dp"
+                        android:layout_marginLeft="20dp"
+                        app:layout_constraintLeft_toLeftOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/ic_time"
+                        app:srcCompat="@drawable/ic_phone" />
+                <TextView
+                        android:id="@+id/tv_address"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="15dp"
+                        android:text="Phường 11, Gò Vấp"
+                        android:textColor="@color/colorBtnThem"
+                        app:layout_constraintLeft_toRightOf="@id/ic_location"
+                        app:layout_constraintTop_toTopOf="@id/ic_location" />
+
+                <TextView
+                        android:id="@+id/tv_acreage"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="15dp"
+                        android:text="TextView"
+                        android:textColor="@color/colorBtnThem"
+                        app:layout_constraintLeft_toRightOf="@id/ic_land"
+                        app:layout_constraintTop_toTopOf="@id/ic_land" />
+
+                <TextView
+                        android:id="@+id/tv_time"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="15dp"
+                        android:text="TextView"
+                        app:layout_constraintLeft_toRightOf="@id/ic_time"
+                        app:layout_constraintTop_toTopOf="@id/ic_time" />
+                <TextView
+                        android:id="@+id/tv_phone"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="15dp"
+                        android:text="TextView"
+                        app:layout_constraintLeft_toRightOf="@id/ic_phone"
+                        app:layout_constraintTop_toTopOf="@id/ic_phone" />
+                <TextView
+                        android:id="@+id/tv_tienIch"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="15dp"
+                        android:layout_marginRight="15dp"
+                        android:layout_marginTop="15dp"
+                        android:paddingLeft="8dp"
+                        android:paddingRight="8dp"
+                        android:text="Tiện ích phòng"
+                        android:textColor="@color/colorPrimaryDark"
+                        android:textSize="15sp"
+                        app:layout_constraintLeft_toLeftOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/ic_phone"
+                        />
+                <LinearLayout
+                        android:id="@+id/ln_tienich1"
+                        android:layout_width="match_parent"
+                        android:layout_height="50dp"
+                        android:layout_marginTop="15dp"
+                        android:layout_marginLeft="15dp"
+                        android:layout_marginRight="15dp"
+                        android:gravity="center"
+                        android:orientation="horizontal"
+                        app:layout_constraintLeft_toLeftOf="parent"
+                        app:layout_constraintRight_toRightOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/tv_tienIch">
+
+                    <CheckBox
+                            android:id="@+id/cb_wifi"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:checked="true"
+                            android:clickable="false"
+                            android:text="Wifi"
+                            android:textSize="16sp" />
+
+                    <CheckBox
+                            android:id="@+id/cb_ownWC"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:clickable="false"
+                            android:text="WC riêng"
+                            android:textSize="16sp" />
+
+                    <CheckBox
+                            android:id="@+id/cb_keepCar"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:checked="true"
+                            android:clickable="false"
+                            android:text="Giữ xe"
+                            android:textSize="16sp" />
+
+                    <CheckBox
+                            android:id="@+id/cb_free"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:clickable="false"
+                            android:text="Tự do"
+                            android:textSize="16sp"
+                            android:checked="true" />
+                </LinearLayout>
+
+                <LinearLayout
+                        android:id="@+id/ln_tienich2"
+                        android:layout_width="match_parent"
+                        android:layout_height="50dp"
+                        android:layout_marginLeft="15dp"
+                        android:layout_marginRight="15dp"
+                        android:gravity="center"
+                        android:orientation="horizontal"
+                        app:layout_constraintLeft_toLeftOf="parent"
+                        app:layout_constraintRight_toRightOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/ln_tienich1">
+
+                    <CheckBox
+                            android:id="@+id/cb_kitchen"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:checked="true"
+                            android:clickable="false"
+                            android:text="Bếp"
+                            android:textSize="16sp" />
+
+                    <CheckBox
+                            android:id="@+id/cb_airMachine"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:clickable="false"
+                            android:text="Điều hòa"
+                            android:textSize="16sp" />
+
+                    <CheckBox
+                            android:id="@+id/cb_fridge"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:clickable="false"
+                            android:text="Tử lạnh"
+                            android:textSize="16sp" />
+
+                    <CheckBox
+                            android:id="@+id/cb_washMachine"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:checked="true"
+                            android:clickable="false"
+                            android:text="Máy giặt"
+                            android:textSize="16sp" />
+                </LinearLayout>
+                <TextView
+                        android:id="@+id/tv_mieuTa"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="15dp"
+                        android:layout_marginRight="15dp"
+                        android:layout_marginTop="15dp"
+                        android:paddingLeft="8dp"
+                        android:paddingRight="8dp"
+                        android:text="Mô tả chi tiết"
+                        android:textColor="@color/colorPrimaryDark"
+                        android:textSize="15sp"
+                        app:layout_constraintLeft_toLeftOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/ln_tienich2"
+                        />
+                <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        app:layout_constraintTop_toBottomOf="@id/tv_mieuTa">
+                </TextView>
+
+                <TextView
+                        android:id="@+id/tv_description"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="15dp"
+                        android:layout_marginTop="8dp"
+                        android:layout_marginRight="15dp"
+                        android:paddingLeft="8dp"
+                        android:text="Chung cư riêng phù hợp gia đình. Gần Lotte Nguyễn Văn Lượng 5p đi bộ. Ngay đường Thống Nhất"
+                        android:textColor="@color/colorBtnThem"
+                        app:layout_constraintLeft_toLeftOf="parent"
+                        app:layout_constraintRight_toRightOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/tv_mieuTa">
+
+                </TextView>
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </LinearLayout>
+    </ScrollView>
+
+
+
+</LinearLayout>
