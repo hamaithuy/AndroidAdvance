@@ -1,12 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-        android:layout_width="match_parent" android:layout_height="match_parent">
+        android:layout_width="match_parent" android:layout_height="match_parent"
+        android:background="#FFFFFF">
     <TextView
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="45dp"
             android:id="@+id/txt_title"
             android:text="@string/dangnhap"
-            android:textSize="35dp"
+            android:textSize="20dp"
             android:gravity="center"
             android:background="@color/white"
             android:textStyle="bold"
@@ -17,16 +18,18 @@
             android:layout_height="200dp"
             android:src="@drawable/home"
             android:layout_below="@+id/txt_title"
+            android:layout_marginTop="25dp"
             />
     <Button
             android:id="@+id/btn_login"
             android:layout_marginTop="20dp"
             android:layout_below="@+id/img_logo"
-            android:layout_width="wrap_content"
+            android:layout_width="170dp"
             android:layout_height="wrap_content"
             android:gravity="center"
             android:layout_centerHorizontal="true"
             android:text="@string/dangnhap"
+            android:textSize="18sp"
             android:textIsSelectable="true"
             android:background="@color/colorAccent"
             android:textColor="@color/white"/>

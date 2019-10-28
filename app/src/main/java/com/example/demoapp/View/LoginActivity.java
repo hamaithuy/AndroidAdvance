@@ -203,9 +203,9 @@ public class LoginActivity extends AppCompatActivity {
             Uri personPhoto = acct.getPhotoUrl();
 
 
-//            userAccount.setId(personId);
-//            userAccount.setName(personName);
-//            userAccount.setEmail(personEmail);
+            userAccount.setId(personId);
+            userAccount.setName(personName);
+            userAccount.setEmail(personEmail);
 
 
            // Toast.makeText(this, "ID Firebase:"+persionIdFirebase+"----ID CurrentGoogle:"+personId, Toast.LENGTH_SHORT).show();
