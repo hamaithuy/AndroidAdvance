@@ -14,7 +14,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="#28000000"
-        android:text="Chi tiết trong ngày"
+        android:text="Chi tiết"
         android:textAlignment="center"
         android:textColor="@color/tempColor"
         android:textSize="24sp"

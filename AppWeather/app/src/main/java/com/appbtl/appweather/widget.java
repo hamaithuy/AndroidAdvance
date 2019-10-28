@@ -3,11 +3,10 @@ package com.appbtl.appweather;
 import android.appwidget.AppWidgetManager;
 import android.appwidget.AppWidgetProvider;
 import android.content.Context;
-import android.content.Intent;
-import android.util.Log;
 import android.widget.RemoteViews;
 
-import static com.appbtl.appweather.R.string.app_name;
+import com.appbtl.appweather.model.OpenWeatherJson;
+import com.google.gson.Gson;
 
 /**
  * Implementation of App Widget functionality.
@@ -15,19 +14,17 @@ import static com.appbtl.appweather.R.string.app_name;
 public class widget extends AppWidgetProvider {
 
     private static final String TAG = "MyActivity";
+    private String resultDailys;
+    private IOFile ioFile;
+    private String data;
 
     static void updateAppWidget(Context context, AppWidgetManager appWidgetManager,
-                                int appWidgetId) {
+                                int appWidgetId, String a) {
 
-        CharSequence widgetText = context.getString(app_name);
+        CharSequence widgetText = context.getString(R.string.app_name);
         // Construct the RemoteViews object
         RemoteViews views = new RemoteViews(context.getPackageName(), R.layout.widget);
-//Extract the data…
-        Intent intentUpdate = new Intent(context.getApplicationContext(), MainActivity.class);
-        intentUpdate.setAction(AppWidgetManager.ACTION_APPWIDGET_UPDATE);
-        String dataRe = intentUpdate.getStringExtra("data");
-        Log.i(TAG, "updateAppWidget: " + dataRe);
-        views.setTextViewText(R.id.textView13, dataRe);
+        //Extract the data…
         // Instruct the widget manager to update the widget
         appWidgetManager.updateAppWidget(appWidgetId, views);
     }
@@ -35,14 +32,24 @@ public class widget extends AppWidgetProvider {
     @Override
     public void onUpdate(Context context, AppWidgetManager appWidgetManager, int[] appWidgetIds) {
         // There may be multiple widgets active, so update all of them
+        RemoteViews views = new RemoteViews(context.getPackageName(), R.layout.widget);
         for (int appWidgetId : appWidgetIds) {
-            updateAppWidget(context, appWidgetManager, appWidgetId);
+            updateAppWidget(context, appWidgetManager, appWidgetId, data);
         }
     }
 
     @Override
     public void onEnabled(Context context) {
         // Enter relevant functionality for when the first widget is created
+        OpenWeatherJson result = new Gson().fromJson(MainActivity.reSultMain, OpenWeatherJson.class);
+//        RemoteViews remoteViews = new RemoteViews(context.getPackageName(), R.layout.widget);
+//        remoteViews.setTextViewText(R.id.textView2, result.getVisibility() + "m");
+//        remoteViews.setTextViewText(R.id.textView3, result.getMain().getPressure() + " hpa");
+//        remoteViews.setTextViewText(R.id.textView4, result.getMain().getHumidity() + "%");
+//        remoteViews.setTextViewText(R.id.textView5, result.getWind().getSpeed() + "km/h");
+//        remoteViews.setTextViewText(R.id.tvTemp, (int) (result.getMain().getTemp() - 273.15) + "°C");
+//        String des = result.getWeather().get(0).getDescription();
+//        remoteViews.setTextViewText(R.id.textView13, MainActivity.Des.get(des));
     }
 
     @Override

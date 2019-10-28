@@ -40,14 +40,14 @@ public class ActivityInfo extends AppCompatActivity {
             @Override
             public void onSwipeRight() {
                 startActivity(intent);
-                overridePendingTransition(R.anim.slide_in_left, R.anim.slide_in_left);
+                overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_right);
             }
         });
         recyclerView.setOnTouchListener(new OnSwipeTouchListener(ActivityInfo.this){
             @Override
             public void onSwipeRight() {
                 startActivity(intent);
-                overridePendingTransition(R.anim.slide_in_left, R.anim.slide_in_left);
+                overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_right);
             }
         });
         updateUI(listHours);
@@ -57,7 +57,7 @@ public class ActivityInfo extends AppCompatActivity {
     @Override
     public void finish() {
         startActivity(intent);
-        overridePendingTransition(R.anim.slide_in_left, R.anim.slide_in_left);
+        overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_right);
     }
 
     private void control() {

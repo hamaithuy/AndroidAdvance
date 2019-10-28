@@ -23,6 +23,7 @@ import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.PopupWindow;
 import android.widget.RelativeLayout;
+import android.widget.RemoteViews;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -55,9 +56,9 @@ public class MainActivity extends AppCompatActivity {
     private TextView city, temp, tempMax, tempMin, mainWeather, visibility, humidity, speed, airpress, wtCity, address;
     private ConstraintLayout body;
     private LocationAPI locationAPI;
-    private AnimationDrawable animBackgroundRain,animHumidity,animWind,animVisibility,animPressure,animTT;
-    private String resultDailys, reSultMain, resultHours;
-    private HashMap<String, String> Des = new HashMap<String, String>();
+    private AnimationDrawable animBackgroundRain, animHumidity, animWind, animVisibility, animPressure, animTT;
+    public static String resultDailys, reSultMain, resultHours;
+    public static HashMap<String, String> Des = new HashMap<String, String>();
     private IOFile ioFile;
     private RequestPermission pms;
     AddressInfo add;
@@ -157,7 +158,7 @@ public class MainActivity extends AppCompatActivity {
                 Button btnFind = (Button) customview.findViewById(R.id.btnAccept);
                 final EditText editText = (EditText) customview.findViewById(R.id.editText);
                 Button btnLocale = (Button) customview.findViewById(R.id.getCurrentLocale);
-                ListView lvls = (ListView) customview.findViewById(R.id.lv);
+                final ListView lvls = (ListView) customview.findViewById(R.id.lv);
                 ArrayList<String> sub = new ArrayList<String>();
                 sub = ls;
                 Collections.reverse(sub);
@@ -170,33 +171,28 @@ public class MainActivity extends AppCompatActivity {
                         editText.setText(parent.getItemAtPosition(position).toString());
                     }
                 });
+                final ArrayList<String> finalSub = sub;
                 btnFind.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
+                        Log.i(TAG, "onClick: " + editText.getText().toString());
                         String normalized_string = Normalizer.normalize(editText.getText(), Normalizer.Form.NFD).replaceAll("đ", "d").replaceAll("Đ", "D").replaceAll("[^\\p{ASCII}]", "");
-                        ;
                         normalized_string = normalized_string.replaceAll("\\s+", "+");
                         String url = "http://api.openweathermap.org/data/2.5/weather?q=" + normalized_string + "&appid=b87ce30a14229dd8e26f167dd2111f06";
                         try {
                             reSultMain = new WeatherAsynctask().execute(url).get();
                             OpenWeatherJson result = new Gson().fromJson(reSultMain, OpenWeatherJson.class);
-                            String dailys = "http://api.openweathermap.org/data/2.5/forecast/daily?lat=" + result.getCoord().getLat() + "&lon=" + result.getCoord().getLat() + "&units=metric&cnt=7&appid=be8d3e323de722ff78208a7dbb2dcd6f";
                             String hours = "https://openweathermap.org/data/2.5/forecast/?appid=b6907d289e10d714a6e88b30761fae22&id=" + result.getId() + "&units=metric";
                             Log.i(TAG, "onClick: " + hours);
-                            resultDailys = new WeatherDailysAsynctask().execute(dailys).get();
                             resultHours = new WeatherDailysAsynctask().execute(hours).get();
+                            String dailys = "http://api.openweathermap.org/data/2.5/forecast/daily?lat=" + result.getCoord().getLat() + "&lon=" + result.getCoord().getLat() + "&units=metric&cnt=7&appid=be8d3e323de722ff78208a7dbb2dcd6f";
+                            resultDailys = new WeatherDailysAsynctask().execute(dailys).get();
+                            Log.i(TAG, "onClick: " + mContext.toString());
                             ioFile.saveFile("mainWeather.bat", reSultMain, mContext);
                             ioFile.saveFile("dailys.bat", resultDailys, mContext);
                             ioFile.saveFile("hours.bat", resultHours, mContext);
                             AddressInfo address = getAddress(result.getCoord().getLat(), result.getCoord().getLon());
                             updateUI(address, reSultMain);
-                            //widget
-                            Intent intent = new Intent(MainActivity.this, widget.class);
-                            intent.setAction(AppWidgetManager.ACTION_APPWIDGET_UPDATE);
-                            int ids[] = AppWidgetManager.getInstance(getApplication()).getAppWidgetIds(new ComponentName(getApplication(), widget.class));
-                            intent.putExtra(AppWidgetManager.EXTRA_APPWIDGET_IDS, ids);
-                            intent.putExtra("data", reSultMain);
-                            sendBroadcast(intent);
                         } catch (ExecutionException e) {
                             e.printStackTrace();
                         } catch (InterruptedException e) {
@@ -206,6 +202,7 @@ public class MainActivity extends AppCompatActivity {
                         ls.remove(editText.getText().toString());
                         ls.add(editText.getText().toString());
                         mPopupWindow.dismiss();
+
                     }
                 });
                 btnLocale.setOnClickListener(new View.OnClickListener() {
@@ -323,6 +320,8 @@ public class MainActivity extends AppCompatActivity {
         Des.put("sky is clear", "Trời quang");
         Des.put("light rain", "Mưa nhỏ");
         Des.put("few clouds", "Ít mây");
+        Des.put("mist", "Sương mù");
+        Des.put("clear sky", "Trời quang");
 
         ls.add("hà nội");
         ls.add("hà đông");
@@ -353,9 +352,9 @@ public class MainActivity extends AppCompatActivity {
         //kết quả trả về json thành object
         wtCity.setText(add.getCity());
         city.setText(add.getCity());
-        if(!result.getWeather().get(0).getMain().equals("rain")){
+        if (!result.getWeather().get(0).getMain().equals("rain")) {
             imgTT.setImageResource(R.drawable.anim_sun);
-            animTT = (AnimationDrawable)imgTT.getDrawable();
+            animTT = (AnimationDrawable) imgTT.getDrawable();
             animTT.start();
         }
         temp.setText(tempmain + "°C");
@@ -368,22 +367,35 @@ public class MainActivity extends AppCompatActivity {
         airpress.setText(result.getMain().getPressure() + " hpa");
         humidity.setText(result.getMain().getHumidity() + "%");
         speed.setText(result.getWind().getSpeed() + "km/h");
+
+        Context context = MainActivity.this;
+        AppWidgetManager appWidgetManager = AppWidgetManager.getInstance(context);
+        RemoteViews remoteViews = new RemoteViews(context.getPackageName(), R.layout.widget);
+        ComponentName thisWidget = new ComponentName(context, widget.class);
+        remoteViews.setTextViewText(R.id.textView2, result.getVisibility() + "m");
+        remoteViews.setTextViewText(R.id.textView3, result.getMain().getPressure() + " hpa");
+        remoteViews.setTextViewText(R.id.textView4, result.getMain().getHumidity() + "%");
+        remoteViews.setTextViewText(R.id.textView5, result.getWind().getSpeed() + "km/h");
+        remoteViews.setTextViewText(R.id.tvTemp, tempmain + "°C");
+        remoteViews.setTextViewText(R.id.textView13, status);
+        remoteViews.setTextViewText(R.id.cityWidget, result.getName());
+        appWidgetManager.updateAppWidget(thisWidget, remoteViews);
         // làm việc với giao diện ở đây;
     }
 
 
     private void setIcon() {
         imgvisibility.setImageResource(R.drawable.anim_visibility);
-        animVisibility = (AnimationDrawable)imgvisibility.getDrawable();
+        animVisibility = (AnimationDrawable) imgvisibility.getDrawable();
         animVisibility.start();
         imgpressure.setImageResource(R.drawable.anim_air);
-        animPressure = (AnimationDrawable)imgpressure.getDrawable();
+        animPressure = (AnimationDrawable) imgpressure.getDrawable();
         animPressure.start();
         imghumidity.setImageResource(R.drawable.humidity_anim);
-        animHumidity = (AnimationDrawable)imghumidity.getDrawable();
+        animHumidity = (AnimationDrawable) imghumidity.getDrawable();
         animHumidity.start();
         imgwind.setImageResource(R.drawable.anim_wind);
-        animWind = (AnimationDrawable)imgwind.getDrawable();
+        animWind = (AnimationDrawable) imgwind.getDrawable();
         animWind.start();
         body.setBackgroundResource(R.drawable.background_rain2);
         animBackgroundRain = (AnimationDrawable) body.getBackground();

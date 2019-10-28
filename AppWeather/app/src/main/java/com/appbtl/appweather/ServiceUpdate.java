@@ -62,7 +62,7 @@ public class ServiceUpdate extends Service {
             }
         };
         Timer timer = new Timer("Timer");
-        timer.schedule(timerTask, 30 * 60 * 1000L, 30 * 60 * 1000L);// 30p thực hiện 1 lần cập nhập thời tiết
+        timer.schedule(timerTask, 15 * 60 * 1000L, 30 * 60 * 1000L);// 30p thực hiện 1 lần cập nhập thời tiết
 
         return START_STICKY;
     }

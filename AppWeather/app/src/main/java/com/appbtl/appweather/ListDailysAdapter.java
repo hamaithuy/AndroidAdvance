@@ -1,6 +1,7 @@
 package com.appbtl.appweather;
 
 import android.content.Context;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -21,6 +22,8 @@ public class ListDailysAdapter extends RecyclerView.Adapter<ListDailysAdapter.re
     ListDailys listDailys;
     Context context;
     private HashMap<String, String> Des = new HashMap<String, String>();
+    private HashMap<String, String> Week = new HashMap<String, String>();
+    private static final String TAG = "MyActivity";
     public ListDailysAdapter(ListDailys listDailys, Context context) {
         this.listDailys = listDailys;
         this.context = context;
@@ -30,7 +33,7 @@ public class ListDailysAdapter extends RecyclerView.Adapter<ListDailysAdapter.re
     @Override
     public recylerHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         LayoutInflater inflater = LayoutInflater.from(parent.getContext());
-        View view = inflater.inflate(R.layout.item,parent,false);
+        View view = inflater.inflate(R.layout.item, parent, false);
         return new recylerHolder(view);
     }
 
@@ -38,16 +41,16 @@ public class ListDailysAdapter extends RecyclerView.Adapter<ListDailysAdapter.re
     public void onBindViewHolder(@NonNull recylerHolder holder, int position) {
         double ma = listDailys.getList().get(position).getTemp().getMax();
         double mi = listDailys.getList().get(position).getTemp().getMin();
-        int max=(int)ma;
-        int min=(int)mi;
-        Date date = new Date(listDailys.getList().get(position).getDt()*1000L);
+        int max = (int) ma;
+        int min = (int) mi;
+        Date date = new Date(listDailys.getList().get(position).getDt() * 1000L);
         SimpleDateFormat simpleDateFormat = new SimpleDateFormat("EEEE \ndd-MM-yyyy");
         String Day = simpleDateFormat.format(date);
-        holder.tMax.setText(max+"°C");
-        holder.tMin.setText(min+"°C");
+        holder.tMax.setText(max + "°C");
+        holder.tMin.setText(min + "°C");
         holder.txtTT.setText(Des.get(listDailys.getList().get(position).getWeather().get(0).getDescription()));
         holder.tdate.setText(Day);
-        Glide.with(holder.itemView.getContext()).load("http://openweathermap.org/img/w/"+listDailys.getList().get(position).getWeather().get(0).getIcon()+".png")
+        Glide.with(holder.itemView.getContext()).load("http://openweathermap.org/img/w/" + listDailys.getList().get(position).getWeather().get(0).getIcon() + ".png")
                 .into(holder.imgTT);
     }
 
@@ -56,23 +59,33 @@ public class ListDailysAdapter extends RecyclerView.Adapter<ListDailysAdapter.re
         return listDailys.getList().size();
     }
 
-    protected class recylerHolder extends RecyclerView.ViewHolder{
+    protected class recylerHolder extends RecyclerView.ViewHolder {
         ImageView imgTT;
-        TextView tdate,txtTT,tMax,tMin;
+        TextView tdate, txtTT, tMax, tMin;
+
         public recylerHolder(@NonNull View itemView) {
             super(itemView);
-            tdate = (TextView)itemView.findViewById(R.id.tDate);
-            txtTT=(TextView)itemView.findViewById(R.id.txtTT);
-            tMax =(TextView)itemView.findViewById(R.id.thMax);
-            tMin = (TextView)itemView.findViewById(R.id.thMin);
-            imgTT = (ImageView)itemView.findViewById(R.id.imgTT);
+            tdate = (TextView) itemView.findViewById(R.id.tDate);
+            txtTT = (TextView) itemView.findViewById(R.id.txtTT);
+            tMax = (TextView) itemView.findViewById(R.id.thMax);
+            tMin = (TextView) itemView.findViewById(R.id.thMin);
+            imgTT = (ImageView) itemView.findViewById(R.id.imgTT);
             Des.put("scattered clouds", "Mây rải rác");
             Des.put("moderate rain", "Mưa vừa");
             Des.put("heavy intensity rain", "Mưa lớn");
             Des.put("broken clouds", "Mây rải rác");
             Des.put("sky is clear", "Trời quang");
             Des.put("light rain", "Mưa nhỏ");
+            Des.put("few clouds", "Ít mây");
+            Des.put("mist", "Sương mù");
 
+            Week.put("Monday", "thứ hai");
+            Week.put("Tuesday", "thứ ba");
+            Week.put("Wednesday", "thứ tư");
+            Week.put("Thusday", "thứ năm");
+            Week.put("Friday", "thứ sáu");
+            Week.put("Saturday", "thứ bảy");
+            Week.put("Sunday", "Chủ nhật");
         }
     }
 }
