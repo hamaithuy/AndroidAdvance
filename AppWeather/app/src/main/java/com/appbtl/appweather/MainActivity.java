@@ -32,6 +32,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.constraintlayout.widget.ConstraintLayout;
 
 import com.appbtl.appweather.model.AddressInfo;
+import com.appbtl.appweather.model.ListDailys;
 import com.appbtl.appweather.model.OpenWeatherJson;
 import com.google.android.gms.location.LocationServices;
 import com.google.android.gms.tasks.OnFailureListener;
@@ -345,9 +346,11 @@ public class MainActivity extends AppCompatActivity {
         int tempmain, tempmax, tempmin;
         double t = result.getMain().getTemp() - 273.15;
         tempmain = (int) t;
-        double max = result.getMain().getTemp_max() - 273.15;
+        String daily = ioFile.readFile("dailys.bat", MainActivity.this);
+        ListDailys dl = new Gson().fromJson(daily, ListDailys.class);
+        double max = dl.getList().get(0).getTemp().getMax();
         tempmax = (int) max;
-        double min = result.getMain().getTemp_min() - 273.15;
+        double min = dl.getList().get(0).getTemp().getMin();
         tempmin = (int) min;
         //kết quả trả về json thành object
         wtCity.setText(add.getCity());

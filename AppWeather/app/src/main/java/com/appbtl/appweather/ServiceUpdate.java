@@ -6,23 +6,27 @@ import android.app.NotificationManager;
 import android.app.Service;
 import android.content.Context;
 import android.content.Intent;
+import android.location.Location;
 import android.os.Build;
 import android.os.IBinder;
+import android.util.Log;
 
 import androidx.annotation.Nullable;
 import androidx.annotation.RequiresApi;
 
 import com.appbtl.appweather.model.OpenWeatherJson;
 import com.google.android.gms.location.LocationServices;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.gson.Gson;
 
 import java.util.Timer;
 import java.util.TimerTask;
+import java.util.concurrent.ExecutionException;
 
 public class ServiceUpdate extends Service {
     private LocationAPI locationAPI;
     private IOFile ioFile;
-    private String reSultMain, data;
+    private String reSultMain, reSultDailys, reSultHours;
     private Context context;
 
     @Nullable
@@ -49,21 +53,47 @@ public class ServiceUpdate extends Service {
             @RequiresApi(api = Build.VERSION_CODES.O)
             @Override
             public void run() {
-                OpenWeatherJson obj = new Gson().fromJson(data, OpenWeatherJson.class);
-                builder.setContentText("Your Weather is Updated, Have a nice day!!");
-                builder.setSmallIcon(R.mipmap.ic_launcher);
-                builder.setContentTitle("Weather Updated");
-                NotificationChannel channel = new NotificationChannel("Weather Updated", "Weather Updated", NotificationManager.IMPORTANCE_HIGH);
-                NotificationManager nfmanager = (NotificationManager) getSystemService(NOTIFICATION_SERVICE);
-                nfmanager.createNotificationChannel(channel);
-                builder.setChannelId(channel.getId());
-                Notification n = builder.build();
-                nfmanager.notify(0, n);
+                locationAPI.fusedLocationClient.getLastLocation().addOnSuccessListener(new OnSuccessListener<Location>() {
+                    @Override
+                    public void onSuccess(Location location) {
+                        if (location != null) {
+                            String url = "http://api.openweathermap.org/data/2.5/weather?" + "lat=" + location.getLatitude() + "&lon=" + location.getLongitude() + "&appid=b87ce30a14229dd8e26f167dd2111f06";
+                            //truyền tham số location để lấy file json
+                            String dailys = "http://api.openweathermap.org/data/2.5/forecast/daily?lat=" + location.getLatitude() + "&lon=" + location.getLongitude() + "&units=metric&cnt=7&appid=be8d3e323de722ff78208a7dbb2dcd6f";
+                            //get daily hours
+                            try {
+                                reSultMain = new WeatherAsynctask().execute(url).get();
+                                Log.i("MyActivity", "onSuccess: " + reSultMain);
+                                OpenWeatherJson js = new Gson().fromJson(reSultMain, OpenWeatherJson.class);
+                                String hours = "https://openweathermap.org/data/2.5/forecast/?appid=b6907d289e10d714a6e88b30761fae22&id=" + js.getId() + "&units=metric";
+                                reSultDailys = new WeatherAsynctask().execute(dailys).get();
+                                reSultHours = new WeatherAsynctask().execute(hours).get();
+                                ioFile.saveFile("mainWeather.bat", reSultMain, context);
+                                ioFile.saveFile("dailys.bat", reSultDailys, context);
+                                ioFile.saveFile("hours.bat", reSultHours, context);
+                                OpenWeatherJson obj = new Gson().fromJson(reSultMain, OpenWeatherJson.class);
+                                builder.setContentText("Your temp now is " + (int) (obj.getMain().getTemp() - 273.15)+ "°C");
+                                builder.setSmallIcon(R.mipmap.ic_launcher);
+                                builder.setContentTitle("Weather Updated");
+                                NotificationChannel channel = new NotificationChannel("Weather Updated", "Weather Updated", NotificationManager.IMPORTANCE_HIGH);
+                                NotificationManager nfmanager = (NotificationManager) getSystemService(NOTIFICATION_SERVICE);
+                                nfmanager.createNotificationChannel(channel);
+                                builder.setChannelId(channel.getId());
+                                Notification n = builder.build();
+                                nfmanager.notify(0, n);
+                            } catch (ExecutionException e) {
+                                e.printStackTrace();
+                            } catch (InterruptedException e) {
+                                e.printStackTrace();
+                            }
+                        }
+                    }
+                });
+
             }
         };
         Timer timer = new Timer("Timer");
-        timer.schedule(timerTask, 15 * 60 * 1000L, 30 * 60 * 1000L);// 30p thực hiện 1 lần cập nhập thời tiết
-
+        timer.schedule(timerTask, 10 * 1000L, 30 * 60 * 1000L);// 30p thực hiện 1 lần cập nhập thời tiết
         return START_STICKY;
     }
 }
