@@ -390,10 +390,14 @@ public class MainActivity extends AppCompatActivity {
             body.setBackgroundResource(R.drawable.background_shine);
             animBackgroundRain = (AnimationDrawable) body.getBackground();
             animBackgroundRain.start();
-        }else {
-            body.setBackgroundResource(R.drawable.background_rain2);
-            animBackgroundRain = (AnimationDrawable) body.getBackground();
-            animBackgroundRain.start();
+        } else {
+            if (result.getWeather().get(0).getIcon().substring(0, result.getWeather().get(0).getIcon().length() - 1).equals("13")) {
+                body.setBackgroundResource(R.drawable.i13);
+            } else {
+                body.setBackgroundResource(R.drawable.background_rain2);
+                animBackgroundRain = (AnimationDrawable) body.getBackground();
+                animBackgroundRain.start();
+            }
         }
         Context context = MainActivity.this;
         AppWidgetManager appWidgetManager = AppWidgetManager.getInstance(context);
