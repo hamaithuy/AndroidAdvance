@@ -5,6 +5,8 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -23,6 +25,7 @@ public class ListDailysAdapter extends RecyclerView.Adapter<ListDailysAdapter.re
     Context context;
     private HashMap<String, String> Des = new HashMap<String, String>();
     private static final String TAG = "MyActivity";
+    private int lastPosition = -1;
 
     public ListDailysAdapter(ListDailys listDailys, Context context) {
         this.listDailys = listDailys;
@@ -54,6 +57,17 @@ public class ListDailysAdapter extends RecyclerView.Adapter<ListDailysAdapter.re
         holder.tdate.setText(Day);
         Glide.with(holder.itemView.getContext()).load("http://openweathermap.org/img/w/" + listDailys.getList().get(position).getWeather().get(0).getIcon() + ".png")
                 .into(holder.imgTT);
+        setAnimation(holder.itemView,position);
+    }
+
+
+
+    private void setAnimation(View view,int position){
+        if(position>lastPosition){
+            Animation animation = AnimationUtils.loadAnimation(context,R.anim.slide_in_left_item);
+            view.startAnimation(animation);
+            lastPosition = position;
+        }
     }
 
     @Override

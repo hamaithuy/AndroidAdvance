@@ -383,7 +383,18 @@ public class MainActivity extends AppCompatActivity {
         airpress.setText(result.getMain().getPressure() + " hpa");
         humidity.setText(result.getMain().getHumidity() + "%");
         speed.setText(result.getWind().getSpeed() + "km/h");
-        body.setBackgroundResource(BodyBg.get(result.getWeather().get(0).getIcon().substring(0, result.getWeather().get(0).getIcon().length() - 1)).intValue());
+        if (result.getWeather().get(0).getIcon().substring(0, result.getWeather().get(0).getIcon().length() - 1).equals("01") ||
+                result.getWeather().get(0).getIcon().substring(0, result.getWeather().get(0).getIcon().length() - 1).equals("02") ||
+                result.getWeather().get(0).getIcon().substring(0, result.getWeather().get(0).getIcon().length() - 1).equals("03") ||
+                result.getWeather().get(0).getIcon().substring(0, result.getWeather().get(0).getIcon().length() - 1).equals("04")) {
+            body.setBackgroundResource(R.drawable.background_shine);
+            animBackgroundRain = (AnimationDrawable) body.getBackground();
+            animBackgroundRain.start();
+        }else {
+            body.setBackgroundResource(R.drawable.background_rain2);
+            animBackgroundRain = (AnimationDrawable) body.getBackground();
+            animBackgroundRain.start();
+        }
         Context context = MainActivity.this;
         AppWidgetManager appWidgetManager = AppWidgetManager.getInstance(context);
         RemoteViews remoteViews = new RemoteViews(context.getPackageName(), R.layout.widget);

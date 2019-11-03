@@ -4,6 +4,8 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -19,6 +21,7 @@ public class ListInfoAdapter extends RecyclerView.Adapter<ListInfoAdapter.recyle
     Hours listHours;
     Context context;
     private HashMap<String, String> Des = new HashMap<String, String>();
+    private int lastPosition = -1;
 
     public ListInfoAdapter(Hours listHours, Context context) {
         this.listHours = listHours;
@@ -44,6 +47,16 @@ public class ListInfoAdapter extends RecyclerView.Adapter<ListInfoAdapter.recyle
         holder.tdate.setText(time);
         Glide.with(holder.itemView.getContext()).load("http://openweathermap.org/img/w/" + listHours.getList().get(position).getWeather().get(0).getIcon() + ".png")
                 .into(holder.imgTT);
+        setAnimation(holder.itemView,position);
+    }
+
+
+    private void setAnimation(View view,int position){
+        if(position>lastPosition){
+            Animation animation = AnimationUtils.loadAnimation(context,R.anim.slide_in_right_item);
+            view.startAnimation(animation);
+            lastPosition = position;
+        }
     }
 
     @Override
