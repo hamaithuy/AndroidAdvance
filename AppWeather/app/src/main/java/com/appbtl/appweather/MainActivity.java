@@ -11,7 +11,6 @@ import android.location.Location;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -60,6 +59,7 @@ public class MainActivity extends AppCompatActivity {
     private AnimationDrawable animBackgroundRain, animHumidity, animWind, animVisibility, animPressure, animTT;
     public static String resultDailys, reSultMain, resultHours;
     public static HashMap<String, String> Des = new HashMap<String, String>();
+    public static HashMap<String, Integer> BodyBg = new HashMap<String, Integer>();
     private IOFile ioFile;
     private RequestPermission pms;
     AddressInfo add;
@@ -78,7 +78,7 @@ public class MainActivity extends AppCompatActivity {
         add = new AddressInfo();
         ioFile = new IOFile();
         locationAPI = new LocationAPI();
-        locationAPI.connectLocationApi(this);//kết nối API
+        locationAPI.connectLocationApi(this);
         locationAPI.fusedLocationClient = LocationServices.getFusedLocationProviderClient(this);
         it = new Intent(this, ServiceUpdate.class);
         startService(it);
@@ -116,10 +116,7 @@ public class MainActivity extends AppCompatActivity {
                         public void onSuccess(Location location) {
                             if (location != null) {
                                 add = getAddress(location.getLatitude(), location.getLongitude());
-
-                                //làm việc với location ở đây
                                 String url = "http://api.openweathermap.org/data/2.5/weather?" + "lat=" + location.getLatitude() + "&lon=" + location.getLongitude() + "&appid=b87ce30a14229dd8e26f167dd2111f06";
-                                //truyền tham số location để lấy file json
                                 String dailys = "http://api.openweathermap.org/data/2.5/forecast/daily?lat=" + location.getLatitude() + "&lon=" + location.getLongitude() + "&units=metric&cnt=7&appid=be8d3e323de722ff78208a7dbb2dcd6f";
                                 try {
                                     reSultMain = new WeatherAsynctask().execute(url).get();
@@ -127,7 +124,6 @@ public class MainActivity extends AppCompatActivity {
                                     OpenWeatherJson js = new Gson().fromJson(reSultMain, OpenWeatherJson.class);
                                     String hours = "https://openweathermap.org/data/2.5/forecast/?appid=b6907d289e10d714a6e88b30761fae22&id=" + js.getId() + "&units=metric";
                                     resultHours = new WeatherDailysAsynctask().execute(hours).get();
-                                    Log.i(TAG, "onSuccess: " + resultHours);
                                     updateUI(add, reSultMain);
                                     ioFile.saveFile("mainWeather.bat", reSultMain, mContext);
                                     ioFile.saveFile("dailys.bat", resultDailys, mContext);
@@ -176,30 +172,33 @@ public class MainActivity extends AppCompatActivity {
                 btnFind.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
-                        Log.i(TAG, "onClick: " + editText.getText().toString());
                         String normalized_string = Normalizer.normalize(editText.getText(), Normalizer.Form.NFD).replaceAll("đ", "d").replaceAll("Đ", "D").replaceAll("[^\\p{ASCII}]", "");
                         normalized_string = normalized_string.replaceAll("\\s+", "+");
                         String url = "http://api.openweathermap.org/data/2.5/weather?q=" + normalized_string + "&appid=b87ce30a14229dd8e26f167dd2111f06";
                         try {
                             reSultMain = new WeatherAsynctask().execute(url).get();
-                            OpenWeatherJson result = new Gson().fromJson(reSultMain, OpenWeatherJson.class);
-                            String hours = "https://openweathermap.org/data/2.5/forecast/?appid=b6907d289e10d714a6e88b30761fae22&id=" + result.getId() + "&units=metric";
-                            Log.i(TAG, "onClick: " + hours);
-                            resultHours = new WeatherDailysAsynctask().execute(hours).get();
-                            String dailys = "http://api.openweathermap.org/data/2.5/forecast/daily?lat=" + result.getCoord().getLat() + "&lon=" + result.getCoord().getLat() + "&units=metric&cnt=7&appid=be8d3e323de722ff78208a7dbb2dcd6f";
-                            resultDailys = new WeatherDailysAsynctask().execute(dailys).get();
-                            Log.i(TAG, "onClick: " + mContext.toString());
-                            ioFile.saveFile("mainWeather.bat", reSultMain, mContext);
-                            ioFile.saveFile("dailys.bat", resultDailys, mContext);
-                            ioFile.saveFile("hours.bat", resultHours, mContext);
-                            AddressInfo address = getAddress(result.getCoord().getLat(), result.getCoord().getLon());
-                            updateUI(address, reSultMain);
+                            if (reSultMain.equals(ErrorList.DailyErr)) {
+                                Toast.makeText(MainActivity.this, "City Not Found", Toast.LENGTH_SHORT).show();
+                            } else if (reSultMain.equals(ErrorList.NonError)) {
+                                mPopupWindow.dismiss();
+                            } else {
+                                OpenWeatherJson result = new Gson().fromJson(reSultMain, OpenWeatherJson.class);
+                                String hours = "https://openweathermap.org/data/2.5/forecast/?appid=b6907d289e10d714a6e88b30761fae22&id=" + result.getId() + "&units=metric";
+                                resultHours = new WeatherDailysAsynctask().execute(hours).get();
+                                String dailys = "http://api.openweathermap.org/data/2.5/forecast/daily?lat=" + result.getCoord().getLat() + "&lon=" + result.getCoord().getLat() + "&units=metric&cnt=7&appid=be8d3e323de722ff78208a7dbb2dcd6f";
+                                resultDailys = new WeatherDailysAsynctask().execute(dailys).get();
+                                ioFile.saveFile("mainWeather.bat", reSultMain, mContext);
+                                ioFile.saveFile("dailys.bat", resultDailys, mContext);
+                                ioFile.saveFile("hours.bat", resultHours, mContext);
+                                AddressInfo address = getAddress(result.getCoord().getLat(), result.getCoord().getLon());
+                                updateUI(address, reSultMain);
+                                ioFile.saveFile("mainWeather.bat", reSultMain, mContext);
+                            }
                         } catch (ExecutionException e) {
                             e.printStackTrace();
                         } catch (InterruptedException e) {
                             e.printStackTrace();
                         }
-                        ioFile.saveFile("mainWeather.bat", reSultMain, mContext);
                         ls.remove(editText.getText().toString());
                         ls.add(editText.getText().toString());
                         mPopupWindow.dismiss();
@@ -235,7 +234,6 @@ public class MainActivity extends AppCompatActivity {
                     add = getAddress(result.getCoord().getLat(), result.getCoord().getLon());
                 }
             });
-            Log.i(TAG, dt);
             updateUI(getAddress(result.getCoord().getLat(), result.getCoord().getLon()), data());
         } else {
             getWeather1();
@@ -258,14 +256,8 @@ public class MainActivity extends AppCompatActivity {
                 public void onSuccess(Location location) {
                     if (location != null) {
                         add = getAddress(location.getLatitude(), location.getLongitude());
-                        //làm việc với location ở đây
-
-                        // location.getLatitude()
-                        // location.getLongitude()
                         String url = "http://api.openweathermap.org/data/2.5/weather?" + "lat=" + location.getLatitude() + "&lon=" + location.getLongitude() + "&appid=b87ce30a14229dd8e26f167dd2111f06";
-                        //truyền tham số location để lấy file json
                         String dailys = "http://api.openweathermap.org/data/2.5/forecast/daily?lat=" + location.getLatitude() + "&lon=" + location.getLongitude() + "&units=metric&cnt=7&appid=be8d3e323de722ff78208a7dbb2dcd6f";
-                        //get daily hours
                         try {
                             reSultMain = new WeatherAsynctask().execute(url).get();
                             OpenWeatherJson js = new Gson().fromJson(reSultMain, OpenWeatherJson.class);
@@ -321,14 +313,29 @@ public class MainActivity extends AppCompatActivity {
         Des.put("sky is clear", "Trời quang");
         Des.put("light rain", "Mưa nhỏ");
         Des.put("few clouds", "Ít mây");
+        Des.put("rain", "Mưa");
+        Des.put("thunderstorm", "Sấm chớp");
+        Des.put("snow", "Tuyết");
+        Des.put("shower rain", "Mưa to");
         Des.put("mist", "Sương mù");
         Des.put("clear sky", "Trời quang");
-
+        Des.put("overcast clouds", "Trời u ám");
+        Des.put("light shower snow", "Mưa tuyết nhẹ");
+        BodyBg.put("02", Integer.valueOf(R.drawable.i02d));
+        BodyBg.put("04", Integer.valueOf(R.drawable.i04n));
+        BodyBg.put("01", Integer.valueOf(R.drawable.i01));
+        BodyBg.put("03", Integer.valueOf(R.drawable.i03));
+        BodyBg.put("10", Integer.valueOf(R.drawable.i09));
+        BodyBg.put("09", Integer.valueOf(R.drawable.i09));
+        BodyBg.put("11", Integer.valueOf(R.drawable.i11));
+        BodyBg.put("13", Integer.valueOf(R.drawable.i13));
+        BodyBg.put("50", Integer.valueOf(R.drawable.i50));
         ls.add("hà nội");
         ls.add("hà đông");
         ls.add("hà giang");
         ls.add("bắc giang");
         ls.add("london");
+        ls.add("Saguenay");
         ls.add("ottawa");
         ls.add("tokyo");
     }
@@ -352,7 +359,6 @@ public class MainActivity extends AppCompatActivity {
         tempmax = (int) max;
         double min = dl.getList().get(0).getTemp().getMin();
         tempmin = (int) min;
-        //kết quả trả về json thành object
         wtCity.setText(add.getCity());
         city.setText(add.getCity());
         if (!result.getWeather().get(0).getMain().equals("rain")) {
@@ -370,7 +376,7 @@ public class MainActivity extends AppCompatActivity {
         airpress.setText(result.getMain().getPressure() + " hpa");
         humidity.setText(result.getMain().getHumidity() + "%");
         speed.setText(result.getWind().getSpeed() + "km/h");
-
+        body.setBackgroundResource(BodyBg.get(result.getWeather().get(0).getIcon().substring(0, result.getWeather().get(0).getIcon().length() - 1)).intValue());
         Context context = MainActivity.this;
         AppWidgetManager appWidgetManager = AppWidgetManager.getInstance(context);
         RemoteViews remoteViews = new RemoteViews(context.getPackageName(), R.layout.widget);
@@ -383,7 +389,6 @@ public class MainActivity extends AppCompatActivity {
         remoteViews.setTextViewText(R.id.textView13, status);
         remoteViews.setTextViewText(R.id.cityWidget, result.getName());
         appWidgetManager.updateAppWidget(thisWidget, remoteViews);
-        // làm việc với giao diện ở đây;
     }
 
 
@@ -403,7 +408,6 @@ public class MainActivity extends AppCompatActivity {
         body.setBackgroundResource(R.drawable.background_rain2);
         animBackgroundRain = (AnimationDrawable) body.getBackground();
         animBackgroundRain.start();
-
     }
 
     private Boolean isOnline() {
@@ -421,10 +425,8 @@ public class MainActivity extends AppCompatActivity {
             Geocoder geocoder = new Geocoder(this);
             try {
                 List<Address> ad = geocoder.getFromLocation(lat, lon, 1);
-                Log.i(TAG, ad.toString());
                 if (ad != null) {
                     for (Address name : ad) {
-                        Log.i(TAG, name.toString());
                         String ct = name.getAdminArea();
                         String subarea = name.getLocality();
                         String area = name.getSubAdminArea();
@@ -437,16 +439,11 @@ public class MainActivity extends AppCompatActivity {
                         addressInfo.setPlace(subarea);
                         wtCity.setText(ct);
                         city.setText(ct);
-                        if (road != "" && road != "Unnamed Road" && road != null) {
-                            address.setText(road + "-" + subarea + "-" + ct);
+                        if (subarea != "" || subarea != null) {
+                            address.setText(subarea + "-" + ct);
                         } else {
-                            if (subarea != "" && subarea != null) {
-                                address.setText(subarea + "-" + ct);
-                            } else {
-                                address.setText(ct);
-                            }
+                            address.setText(ct);
                         }
-
                         return addressInfo;
                     }
                 }

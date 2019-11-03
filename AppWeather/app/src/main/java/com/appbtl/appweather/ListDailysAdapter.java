@@ -22,8 +22,8 @@ public class ListDailysAdapter extends RecyclerView.Adapter<ListDailysAdapter.re
     ListDailys listDailys;
     Context context;
     private HashMap<String, String> Des = new HashMap<String, String>();
-    private HashMap<String, String> Week = new HashMap<String, String>();
     private static final String TAG = "MyActivity";
+
     public ListDailysAdapter(ListDailys listDailys, Context context) {
         this.listDailys = listDailys;
         this.context = context;
@@ -39,6 +39,7 @@ public class ListDailysAdapter extends RecyclerView.Adapter<ListDailysAdapter.re
 
     @Override
     public void onBindViewHolder(@NonNull recylerHolder holder, int position) {
+        Log.i(TAG, "onBindViewHolder: " + listDailys);
         double ma = listDailys.getList().get(position).getTemp().getMax();
         double mi = listDailys.getList().get(position).getTemp().getMin();
         int max = (int) ma;
@@ -48,6 +49,7 @@ public class ListDailysAdapter extends RecyclerView.Adapter<ListDailysAdapter.re
         String Day = simpleDateFormat.format(date);
         holder.tMax.setText(max + "°C");
         holder.tMin.setText(min + "°C");
+        Log.i(TAG, "onBindViewHolder: " + listDailys.getList().get(position).getWeather().get(0).getDescription());
         holder.txtTT.setText(Des.get(listDailys.getList().get(position).getWeather().get(0).getDescription()));
         holder.tdate.setText(Day);
         Glide.with(holder.itemView.getContext()).load("http://openweathermap.org/img/w/" + listDailys.getList().get(position).getWeather().get(0).getIcon() + ".png")
@@ -77,15 +79,14 @@ public class ListDailysAdapter extends RecyclerView.Adapter<ListDailysAdapter.re
             Des.put("sky is clear", "Trời quang");
             Des.put("light rain", "Mưa nhỏ");
             Des.put("few clouds", "Ít mây");
+            Des.put("rain", "Mưa");
+            Des.put("thunderstorm", "Sấm chớp");
+            Des.put("snow", "Tuyết");
+            Des.put("shower rain", "Mưa to");
             Des.put("mist", "Sương mù");
-
-            Week.put("Monday", "thứ hai");
-            Week.put("Tuesday", "thứ ba");
-            Week.put("Wednesday", "thứ tư");
-            Week.put("Thusday", "thứ năm");
-            Week.put("Friday", "thứ sáu");
-            Week.put("Saturday", "thứ bảy");
-            Week.put("Sunday", "Chủ nhật");
+            Des.put("clear sky", "Trời quang");
+            Des.put("overcast clouds", "Trời u ám");
+            Des.put("light shower snow", "Mưa tuyết nhẹ");
         }
     }
 }
