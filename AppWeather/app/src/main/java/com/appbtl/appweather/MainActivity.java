@@ -231,7 +231,6 @@ public class MainActivity extends AppCompatActivity {
             locationAPI.fusedLocationClient.getLastLocation().addOnSuccessListener(new OnSuccessListener<Location>() {
                 @Override
                 public void onSuccess(Location location) {
-//                add = getAddress(location.getLatitude(),location.getLongitude());
                     add = getAddress(result.getCoord().getLat(), result.getCoord().getLon());
                 }
             });
@@ -331,15 +330,15 @@ public class MainActivity extends AppCompatActivity {
         BodyBg.put("11", Integer.valueOf(R.drawable.i11));
         BodyBg.put("13", Integer.valueOf(R.drawable.i13));
         BodyBg.put("50", Integer.valueOf(R.drawable.i50));
-        WeatherIcon.put("02", Integer.valueOf(R.drawable.icshinecloud));
-        WeatherIcon.put("01", Integer.valueOf(R.drawable.icshine));
-        WeatherIcon.put("03", Integer.valueOf(R.drawable.icclound));
-        WeatherIcon.put("04", Integer.valueOf(R.drawable.icclound));
-        WeatherIcon.put("09", Integer.valueOf(R.drawable.icrain));
-        WeatherIcon.put("10", Integer.valueOf(R.drawable.icheavyrain));
-        WeatherIcon.put("11", Integer.valueOf(R.drawable.icthunder));
-        WeatherIcon.put("13", Integer.valueOf(R.drawable.icsnow));
-        WeatherIcon.put("50", Integer.valueOf(R.drawable.icclound));
+        WeatherIcon.put("02", Integer.valueOf(R.drawable.anim_mist));
+        WeatherIcon.put("01", Integer.valueOf(R.drawable.anim_isun));
+        WeatherIcon.put("03", Integer.valueOf(R.drawable.anim_cloud));
+        WeatherIcon.put("04", Integer.valueOf(R.drawable.anim_cloud));
+        WeatherIcon.put("09", Integer.valueOf(R.drawable.anim_irain));
+        WeatherIcon.put("10", Integer.valueOf(R.drawable.anim_irain));
+        WeatherIcon.put("11", Integer.valueOf(R.drawable.anim_thunder));
+        WeatherIcon.put("13", Integer.valueOf(R.drawable.anim_snow));
+        WeatherIcon.put("50", Integer.valueOf(R.drawable.anim_mist));
         ls.add("hà nội");
         ls.add("hà đông");
         ls.add("hà giang");
@@ -371,12 +370,9 @@ public class MainActivity extends AppCompatActivity {
         tempmin = (int) min;
         wtCity.setText(add.getCity());
         city.setText(add.getCity());
-//        if (!result.getWeather().get(0).getMain().equals("rain")) {
-//            imgTT.setImageResource(R.drawable.anim_sun);
-//            animTT = (AnimationDrawable) imgTT.getDrawable();
-//            animTT.start();
-//        }
         imgTT.setImageResource(WeatherIcon.get(result.getWeather().get(0).getIcon().substring(0, result.getWeather().get(0).getIcon().length() - 1)).intValue());
+        animTT = (AnimationDrawable) imgTT.getDrawable();
+        animTT.start();
         temp.setText(tempmain + "°C");
         tempMax.setText(tempmax + "°C");
         tempMin.setText(tempmin + "°C");
