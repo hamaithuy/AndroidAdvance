@@ -58,9 +58,7 @@ public class ServiceUpdate extends Service {
                     public void onSuccess(Location location) {
                         if (location != null) {
                             String url = "http://api.openweathermap.org/data/2.5/weather?" + "lat=" + location.getLatitude() + "&lon=" + location.getLongitude() + "&appid=b87ce30a14229dd8e26f167dd2111f06";
-                            //truyền tham số location để lấy file json
                             String dailys = "http://api.openweathermap.org/data/2.5/forecast/daily?lat=" + location.getLatitude() + "&lon=" + location.getLongitude() + "&units=metric&cnt=7&appid=be8d3e323de722ff78208a7dbb2dcd6f";
-                            //get daily hours
                             try {
                                 reSultMain = new WeatherAsynctask().execute(url).get();
                                 Log.i("MyActivity", "onSuccess: " + reSultMain);

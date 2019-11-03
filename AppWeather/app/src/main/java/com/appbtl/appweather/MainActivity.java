@@ -60,6 +60,7 @@ public class MainActivity extends AppCompatActivity {
     public static String resultDailys, reSultMain, resultHours;
     public static HashMap<String, String> Des = new HashMap<String, String>();
     public static HashMap<String, Integer> BodyBg = new HashMap<String, Integer>();
+    public static HashMap<String, Integer> WeatherIcon = new HashMap<String, Integer>();
     private IOFile ioFile;
     private RequestPermission pms;
     AddressInfo add;
@@ -330,6 +331,15 @@ public class MainActivity extends AppCompatActivity {
         BodyBg.put("11", Integer.valueOf(R.drawable.i11));
         BodyBg.put("13", Integer.valueOf(R.drawable.i13));
         BodyBg.put("50", Integer.valueOf(R.drawable.i50));
+        WeatherIcon.put("02", Integer.valueOf(R.drawable.icshinecloud));
+        WeatherIcon.put("01", Integer.valueOf(R.drawable.icshine));
+        WeatherIcon.put("03", Integer.valueOf(R.drawable.icclound));
+        WeatherIcon.put("04", Integer.valueOf(R.drawable.icclound));
+        WeatherIcon.put("09", Integer.valueOf(R.drawable.icrain));
+        WeatherIcon.put("10", Integer.valueOf(R.drawable.icheavyrain));
+        WeatherIcon.put("11", Integer.valueOf(R.drawable.icthunder));
+        WeatherIcon.put("13", Integer.valueOf(R.drawable.icsnow));
+        WeatherIcon.put("50", Integer.valueOf(R.drawable.icclound));
         ls.add("hà nội");
         ls.add("hà đông");
         ls.add("hà giang");
@@ -361,11 +371,12 @@ public class MainActivity extends AppCompatActivity {
         tempmin = (int) min;
         wtCity.setText(add.getCity());
         city.setText(add.getCity());
-        if (!result.getWeather().get(0).getMain().equals("rain")) {
-            imgTT.setImageResource(R.drawable.anim_sun);
-            animTT = (AnimationDrawable) imgTT.getDrawable();
-            animTT.start();
-        }
+//        if (!result.getWeather().get(0).getMain().equals("rain")) {
+//            imgTT.setImageResource(R.drawable.anim_sun);
+//            animTT = (AnimationDrawable) imgTT.getDrawable();
+//            animTT.start();
+//        }
+        imgTT.setImageResource(WeatherIcon.get(result.getWeather().get(0).getIcon().substring(0, result.getWeather().get(0).getIcon().length() - 1)).intValue());
         temp.setText(tempmain + "°C");
         tempMax.setText(tempmax + "°C");
         tempMin.setText(tempmin + "°C");
