@@ -23,8 +23,11 @@
             android:layout_height="1dp"
             android:background="@color/text"/>
     <!--            app:layout_constraintBottom_toBottomOf="parent"/>-->
-    <ImageView
+    <de.hdodenhof.circleimageview.CircleImageView
             android:id="@+id/img_user_avatar"
+            xmlns:app="http://schemas.android.com/apk/res-auto"
+
+            app:civ_border_color="#FF000000"
             android:layout_width="100dp"
             android:layout_height="100dp"
             android:layout_gravity="center"
@@ -58,5 +61,16 @@
             android:background="@color/white"
             android:gravity="center"
             android:text="@string/dangxuat"
+            android:textIsSelectable="true" />
+    <Button
+            android:id="@+id/btn_accept"
+            android:layout_width="200dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="10dp"
+            android:background="@color/white"
+            android:gravity="center"
+            android:text="Kiểm duyệt"
+            android:visibility="invisible"
             android:textIsSelectable="true" />
 </LinearLayout>

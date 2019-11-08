@@ -1,0 +1,235 @@
+package com.example.demoapp1.View;
+
+
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+
+import android.content.Intent;
+import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
+import android.widget.ImageButton;
+import android.widget.Toast;
+
+import com.example.demoapp1.Adapter.RecyclerAdapter;
+import com.example.demoapp1.Adapter.RecyclerAdminAdapter;
+import com.example.demoapp1.Common.Common;
+import com.example.demoapp1.Model.Room;
+import com.example.demoapp1.R;
+import com.google.android.gms.auth.api.signin.GoogleSignIn;
+import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
+
+import java.util.ArrayList;
+import java.util.List;
+
+public class AdminActivity extends AppCompatActivity implements RecyclerAdminAdapter.IOnItemClickListener{
+
+    private RecyclerView mRecyclerView;
+    private RecyclerAdminAdapter mAdapter;
+    private FirebaseStorage mStorage;
+    private DatabaseReference mDatabaseRef;
+    private DatabaseReference mAcceptedRef;
+    private DatabaseReference mAccept;
+    private ValueEventListener mDBListener;
+    private List<Room> listRooms ;
+    private List<String> listIdRoomPosted;
+    private List<String> listIdRoomNonAccepted;
+    private ImageButton btnBackHome;
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_admin);
+
+        btnBackHome = findViewById(R.id.btn_back_home);
+        mRecyclerView = findViewById(R.id.rv_adminRoom);
+        mRecyclerView.setHasFixedSize(true);
+        mRecyclerView.setLayoutManager(new LinearLayoutManager(this));
+
+        listRooms = new ArrayList<>();
+        listIdRoomPosted = new ArrayList<>();
+        listIdRoomNonAccepted = new ArrayList<>();
+        mAdapter = new RecyclerAdminAdapter(this,listRooms);
+        mRecyclerView.setAdapter(mAdapter);
+        // Connect interface
+        mAdapter.setOnItemClickListener((RecyclerAdminAdapter.IOnItemClickListener) this);
+        btnBackHome.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                comeToMainActivity();
+            }
+        });
+        // Lấy danh sách ID của room
+        //Get current user id:
+        //GoogleSignInAccount acct = GoogleSignIn.getLastSignedInAccount(getApplicationContext());
+        //String idUser = acct.getId();
+
+//        mUserRef = FirebaseDatabase.getInstance().getReference("Users");
+//        mUserRef.addValueEventListener(new ValueEventListener() {
+//            @Override
+//            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+//                for(DataSnapshot idRoomSnapshot : dataSnapshot.getChildren()){
+//                    String id = idRoomSnapshot.getKey().toString();
+//                    listIdRoomPosted.add(id);
+//                }
+//            }
+//
+//            @Override
+//            public void onCancelled(@NonNull DatabaseError databaseError) {
+//
+//            }
+//        });
+
+        // Get room by ID of User
+        mStorage = FirebaseStorage.getInstance();
+        mDatabaseRef = FirebaseDatabase.getInstance().getReference("Rooms");
+        mAccept = FirebaseDatabase.getInstance().getReference("Rooms");
+        mAccept.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                for(DataSnapshot childRooms:dataSnapshot.getChildren())
+                {
+                    Boolean acceptRoom = (Boolean) childRooms.child("accept").getValue();
+                    if(acceptRoom == false)
+                    {
+                        String idRoomsNonAccepted = childRooms.getKey();
+                        listIdRoomNonAccepted.add(idRoomsNonAccepted);
+                    }
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
+        mDBListener = mDatabaseRef.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                listRooms.clear();
+                for (int i =0 ; i<listIdRoomNonAccepted.size();i++){
+                    for(DataSnapshot roomSnapshot : dataSnapshot.getChildren()) {
+                        String roomID = roomSnapshot.getKey();
+                        String roomNonAcceptedID = listIdRoomNonAccepted.get(i);
+                        if(roomID.equals(roomNonAcceptedID))
+                        {
+                            Room room = roomSnapshot.getValue(Room.class);
+                            room.setKey(roomSnapshot.getKey());
+                            listRooms.add(room);
+                        }
+                    }
+                }
+                mAdapter.notifyDataSetChanged();
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+                Toast.makeText(AdminActivity.this,databaseError.getMessage(),Toast.LENGTH_SHORT).show();
+            }
+        });
+    }
+
+    private void comeToMainActivity() {
+        Intent intent = new Intent(AdminActivity.this,MainActivity.class);
+        //MainActivity.mainActivity.finish();
+        startActivity(intent);
+    }
+
+    @Override
+    public void onItemClick(int position) {
+        Room roomClicked = listRooms.get(position);
+        // Format datetime
+        String dateFormat = Common.getDateFormat(roomClicked.getTimePost());
+        // Format price
+        String price = Common.FormatCurrentcy(roomClicked.getPrice());
+        String [] roomData ={
+                price,
+                roomClicked.getImageUrl(),
+                roomClicked.getTitle(),
+                roomClicked.getAddress(),
+                dateFormat,
+                Float.toString(roomClicked.getAcreage()),
+                roomClicked.getPhoneNumber(),
+                roomClicked.getWifi().toString(),
+                roomClicked.getOwnWc().toString(),
+                roomClicked.getKeepCar().toString(),
+                roomClicked.getFreedom().toString(),
+                roomClicked.getKitchen().toString(),
+                roomClicked.getAirMachine().toString(),
+                roomClicked.getFridge().toString(),
+                roomClicked.getWashMachine().toString(),
+                roomClicked.getDescription()
+        };
+        openDetailActivity(roomData);
+    }
+
+    @Override
+    public void onButtonAcceptClick(int position) {
+        Room roomClicked = listRooms.get(position);
+        String key = roomClicked.getKey();
+        mAccept = FirebaseDatabase.getInstance().getReference("Rooms").child(key).child("accept");
+        mAccept.setValue(true);
+
+        startActivity(getIntent());
+
+    }
+
+    private void openDetailActivity(String[] data){
+        Intent intent = new Intent(this, DetailActivity.class);
+        intent.putExtra("PRICE_KEY",data[0]);
+        intent.putExtra("IMAGE_KEY",data[1]);
+        intent.putExtra("TITLE_KEY",data[2]);
+        intent.putExtra("ADDRESS_KEY",data[3]);
+        intent.putExtra("TIME_KEY",data[4]);
+        intent.putExtra("ACREAGE_KEY",data[5]);
+        intent.putExtra("PHONE_KEY",data[6]);
+        intent.putExtra("WIFI_KEY",data[7]);
+        intent.putExtra("WC_KEY",data[8]);
+        intent.putExtra("KEEPCAR_KEY",data[9]);
+        intent.putExtra("FREE_KEY",data[10]);
+        intent.putExtra("KITCHEN_KEY",data[11]);
+        intent.putExtra("AIRMACHINE_KEY",data[12]);
+        intent.putExtra("FRIDGE_KEY",data[13]);
+        intent.putExtra("WASHMACHINE_KEY",data[14]);
+        intent.putExtra("DESCRIPTION_KEY",data[15]);
+        startActivity(intent);
+    }
+
+
+
+//    @Override
+//    public void onEditItemClick(int position) {
+//
+//    }
+//
+//    @Override
+//    public void onDeleteItemClick(int position) {
+//        Room roomClicked = listRooms.get(position);
+//        final String selectedKey = roomClicked.getKey();
+//
+//        StorageReference imageRef = mStorage.getReferenceFromUrl(roomClicked.getImageUrl());
+//        imageRef.delete().addOnSuccessListener(new OnSuccessListener<Void>() {
+//            @Override
+//            public void onSuccess(Void aVoid) {
+//                mDatabaseRef.child(selectedKey).removeValue();
+//                Toast.makeText(AdminActivity.this,"Item deleted",Toast.LENGTH_SHORT).show();
+//            }
+//        });
+//    }
+
+    public void onDestroy(){
+        super.onDestroy();
+        mDatabaseRef.removeEventListener(mDBListener);
+    }
+
+}
