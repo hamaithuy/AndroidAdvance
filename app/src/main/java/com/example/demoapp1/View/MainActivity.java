@@ -31,15 +31,6 @@ public class MainActivity extends AppCompatActivity {
         super.onStart();
     }
 
-//    @Override
-//    protected void onResume() {
-//        if(flag == 0)
-//        {
-//            Intent intent = new Intent(MainActivity.this,LoginActivity.class);
-//            startActivity(intent);
-//        }
-//        super.onResume();
-//    }
 
     public String getUserUriPhoto(){
         Intent getUserDataIntent = getIntent();
