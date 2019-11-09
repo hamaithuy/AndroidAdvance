@@ -1,5 +1,6 @@
 package vn.edu.hou.appchat.activities;
 
+import android.app.Dialog;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.DialogInterface;
@@ -16,11 +17,15 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.WindowManager;
+import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
@@ -74,6 +79,10 @@ public class FriendFragment extends Fragment implements SwipeRefreshLayout.OnRef
 
     public FriendFragment() {
         onClickFloatButton = new FragFriendClickFloatButton();
+    }
+
+    public void adđFriends(String email) {
+        onClickFloatButton.findIDEmail(email);
     }
 
     @Override
@@ -176,6 +185,9 @@ public class FriendFragment extends Fragment implements SwipeRefreshLayout.OnRef
     public class FragFriendClickFloatButton implements View.OnClickListener {
         Context context;
         LovelyProgressDialog dialogWait;
+        ArrayList<Friend> mlistUser;
+        UserAdapter userAdapter;
+        boolean show = false;
 
         public FragFriendClickFloatButton() {
         }
@@ -183,6 +195,7 @@ public class FriendFragment extends Fragment implements SwipeRefreshLayout.OnRef
         public FragFriendClickFloatButton getInstance(Context context) {
             this.context = context;
             dialogWait = new LovelyProgressDialog(context);
+            mlistUser = new ArrayList<>();
             return this;
         }
 
@@ -213,7 +226,75 @@ public class FriendFragment extends Fragment implements SwipeRefreshLayout.OnRef
                         }
                     })
                     .show();
+            show = true;
+//            showAllUsers();
         }
+
+        private void showAllUsers() {
+            FirebaseDatabase.getInstance().getReference().child("user").orderByChild("email").addValueEventListener(new ValueEventListener() {
+                @Override
+                public void onDataChange(DataSnapshot dataSnapshot) {
+                    dialogWait.dismiss();
+                    mlistUser = new ArrayList<>();
+                    if (dataSnapshot.getValue() == null) {
+                        //email not found
+                        new LovelyInfoDialog(context)
+                                .setTopColorRes(R.color.colorAccent)
+                                .setIcon(R.drawable.ic_add_friend)
+                                .setTitle("Fail")
+                                .setMessage("Email not found")
+                                .show();
+                    } else
+                        for (DataSnapshot postSnapshot : dataSnapshot.getChildren()) {
+                            HashMap userMap = (HashMap) postSnapshot.getValue();
+                            Friend user = new Friend();
+                            user.name = (String) userMap.get("name");
+                            user.email = (String) userMap.get("email");
+                            user.avatar = (String) userMap.get("avatar");
+                            mlistUser.add(user);
+                        }
+                    final Dialog mDialog = new Dialog(getActivity(), R.style.EditTextTintTheme);
+                    mDialog.setContentView(R.layout.list_users);
+                    mDialog.getWindow().addFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN);
+
+                    RecyclerView recyclerView = mDialog.findViewById(R.id.vertical_courses_list);
+                    recyclerView.setHasFixedSize(true);
+                    recyclerView.setLayoutManager(new GridLayoutManager(getActivity(), 1));
+                    recyclerView.setFocusable(false);
+                    recyclerView.setNestedScrollingEnabled(false);
+                    TextView textView_no = mDialog.findViewById(R.id.no_user);
+                    ImageView image_close_dialog = mDialog.findViewById(R.id.image_close_dialog);
+                    image_close_dialog.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View view) {
+                            show = false;
+                            mDialog.dismiss();
+                        }
+                    });
+
+                    userAdapter = new UserAdapter(FriendFragment.this, mlistUser);
+                    recyclerView.setAdapter(userAdapter);
+
+                    if (userAdapter.getItemCount() == 0) {
+                        textView_no.setVisibility(View.VISIBLE);
+                    } else {
+                        textView_no.setVisibility(View.GONE);
+                    }
+                    if (show)
+                    {
+                        show = false;
+                        mDialog.show();
+                    }
+                }
+
+
+                @Override
+                public void onCancelled(DatabaseError databaseError) {
+
+                }
+            });
+        }
+
 
         /**
          * TIm id cua email tren server
@@ -738,3 +819,63 @@ class ItemFriendViewHolder extends RecyclerView.ViewHolder {
     }
 }
 
+
+class UserAdapter extends RecyclerView.Adapter<UserAdapter.ItemRowHolder> {
+
+    private ArrayList<Friend> dataList;
+    private Fragment mContext;
+
+    public UserAdapter(Fragment context, ArrayList<Friend> dataList) {
+        this.dataList = dataList;
+        this.mContext = context;
+    }
+
+    @Override
+    public ItemRowHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+        View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.rc_item_user, parent, false);
+        return new ItemRowHolder(v);
+    }
+
+    @Override
+    public void onBindViewHolder(final ItemRowHolder holder, final int position) {
+        final Friend singleItem = dataList.get(position);
+//        if (!singleItem.avatar.equals(Config.STR_DEFAULT_BASE64)) {
+//            byte[] decodedString = Base64.decode(singleItem.avatar, Base64.DEFAULT);
+//            ChatActivity.bitmapAvatarFriend.put(singleItem.id, BitmapFactory.decodeByteArray(decodedString, 0, decodedString.length));
+//        } else {
+//            ChatActivity.bitmapAvatarFriend.put(singleItem.id, BitmapFactory.decodeResource(mContext.getResources(), R.drawable.ic_default_avatar));
+//        }
+        if (singleItem.avatar.equals(Config.STR_DEFAULT_BASE64)) {
+            holder.icon_avata.setImageResource(R.drawable.ic_default_avatar);
+        } else {
+            byte[] decodedString = Base64.decode(singleItem.avatar, Base64.DEFAULT);
+            Bitmap src = BitmapFactory.decodeByteArray(decodedString, 0, decodedString.length);
+            holder.icon_avata.setImageBitmap(src);
+        }
+        holder.txtName.setText(singleItem.name);
+        holder.button_addFriende.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                ((FriendFragment) mContext).adđFriends(singleItem.email);
+            }
+        });
+    }
+
+    @Override
+    public int getItemCount() {
+        return (null != dataList ? dataList.size() : 0);
+    }
+
+    public class ItemRowHolder extends RecyclerView.ViewHolder {
+        private CircleImageView icon_avata;
+        private TextView txtName;
+        private Button button_addFriende;
+
+        private ItemRowHolder(View itemView) {
+            super(itemView);
+            icon_avata = itemView.findViewById(R.id.icon_avata);
+            txtName = itemView.findViewById(R.id.txtName);
+            button_addFriende = itemView.findViewById(R.id.button_addFriende);
+        }
+    }
+}

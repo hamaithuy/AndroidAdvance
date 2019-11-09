@@ -6,4 +6,5 @@
     <color name="editTextColor">#2fa881</color>
     <color name="white">#fff</color>
     <color name="grey">#aaa</color>
+    <color name="black">#000000</color>
 </resources>

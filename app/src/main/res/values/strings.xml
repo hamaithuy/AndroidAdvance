@@ -10,4 +10,7 @@
     <string name="logout">Đăng xuất</string>
     <string name="email">Email</string>
     <string name="enter_group_name">Tên nhóm</string>
+    <string name="addFriends">Add friend</string>
+    <string name="title_list_users">List User</string>
+    <string name="no_user">User not found</string>
 </resources>
