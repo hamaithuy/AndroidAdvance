@@ -232,10 +232,10 @@ public class LoginActivity extends AppCompatActivity {
          * @param password
          */
         void signIn(String email, String password) {
-            waitingDialog.setIcon(R.drawable.ic_user)
-                    .setTitle("Đăng nhập....")
-                    .setTopColorRes(R.color.colorPrimary)
-                    .show();
+//            waitingDialog.setIcon(R.drawable.ic_user)
+//                    .setTitle("Đăng nhập....")
+//                    .setTopColorRes(R.color.colorPrimary)
+//                    .show();
             mAuth.signInWithEmailAndPassword(email, password)
                     .addOnCompleteListener(LoginActivity.this, new OnCompleteListener<AuthResult>() {
                         @Override
@@ -266,6 +266,7 @@ public class LoginActivity extends AppCompatActivity {
                                         .setCancelable(false)
                                         .setConfirmButtonText("Ok")
                                         .show();
+                                //finish();
                             } else {
                                 saveUserInfo();
                                 startActivity(new Intent(LoginActivity.this, MainActivity.class));
