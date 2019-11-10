@@ -14,18 +14,26 @@ import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.TextView;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.yarolegovich.lovelydialog.LovelyInfoDialog;
+import com.yarolegovich.lovelydialog.LovelyProgressDialog;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashMap;
 
 import de.hdodenhof.circleimageview.CircleImageView;
@@ -77,6 +85,7 @@ public class ChatActivity extends AppCompatActivity implements View.OnClickListe
             linearLayoutManager = new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false);
             recyclerChat = (RecyclerView) findViewById(R.id.recyclerChat);
             recyclerChat.setLayoutManager(linearLayoutManager);
+            conversation.setRoomID(roomId);
             adapter = new ListMessageAdapter(this, conversation, bitmapAvatarFriend, bitmapAvatarUser);
             FirebaseDatabase.getInstance().getReference().child("message/" + roomId).addChildEventListener(new ChildEventListener() {
                 @Override
@@ -84,6 +93,7 @@ public class ChatActivity extends AppCompatActivity implements View.OnClickListe
                     if (dataSnapshot.getValue() != null) {
                         HashMap mapMessage = (HashMap) dataSnapshot.getValue();
                         Message newMessage = new Message();
+                        newMessage.key = (String) dataSnapshot.getKey();
                         newMessage.idSender = (String) mapMessage.get("idSender");
                         newMessage.idReceiver = (String) mapMessage.get("idReceiver");
                         newMessage.text = (String) mapMessage.get("text");
@@ -152,6 +162,11 @@ public class ChatActivity extends AppCompatActivity implements View.OnClickListe
             }
         }
     }
+
+    public void removeMessage(Message m) {
+        conversation.getListMessageData().remove(m);
+        adapter.notifyDataSetChanged();
+    }
 }
 
 class ListMessageAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
@@ -161,6 +176,9 @@ class ListMessageAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
     private HashMap<String, Bitmap> bitmapAvatar;
     private HashMap<String, DatabaseReference> bitmapAvatarDB;
     private Bitmap bitmapAvatarUser;
+    private int viewType;
+    LovelyProgressDialog dialogWaitDeleting;
+
 
     public ListMessageAdapter(Context context, Conversation conversation, HashMap<String, Bitmap> bitmapAvatar, Bitmap bitmapAvatarUser) {
         this.context = context;
@@ -168,10 +186,12 @@ class ListMessageAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
         this.bitmapAvatar = bitmapAvatar;
         this.bitmapAvatarUser = bitmapAvatarUser;
         bitmapAvatarDB = new HashMap<>();
+        dialogWaitDeleting = new LovelyProgressDialog(context);
     }
 
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+        this.viewType = viewType;
         if (viewType == ChatActivity.VIEW_TYPE_FRIEND_MESSAGE) {
             View view = LayoutInflater.from(context).inflate(R.layout.rc_item_message_friend, parent, false);
             return new ItemMessageFriendHolder(view);
@@ -182,10 +202,14 @@ class ListMessageAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
         return null;
     }
 
+    //    friends time message: comment: 212
+//    users time message: comment: 245
     @Override
-    public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
+    public void onBindViewHolder(final RecyclerView.ViewHolder holder, final int position) {
         if (holder instanceof ItemMessageFriendHolder) {
             ((ItemMessageFriendHolder) holder).txtContent.setText(conversation.getListMessageData().get(position).text);
+            ((ItemMessageFriendHolder) holder).txtTime.setText(new SimpleDateFormat("HH:mm").format(new Date(conversation.getListMessageData().get(position).timestamp)));
+            ((ItemMessageFriendHolder) holder).txtTime.setVisibility(View.GONE);
             Bitmap currentAvatar = bitmapAvatar.get(conversation.getListMessageData().get(position).idSender);
             if (currentAvatar != null) {
                 ((ItemMessageFriendHolder) holder).avatar.setImageBitmap(currentAvatar);
@@ -217,9 +241,142 @@ class ListMessageAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
             }
         } else if (holder instanceof ItemMessageUserHolder) {
             ((ItemMessageUserHolder) holder).txtContent.setText(conversation.getListMessageData().get(position).text);
+            ((ItemMessageUserHolder) holder).txtTime.setText(new SimpleDateFormat("HH:mm").format(new Date(conversation.getListMessageData().get(position).timestamp)));
+            ((ItemMessageUserHolder) holder).txtTime.setVisibility(View.GONE);
             if (bitmapAvatarUser != null) {
                 ((ItemMessageUserHolder) holder).avatar.setImageBitmap(bitmapAvatarUser);
             }
+        }
+
+//        remove friends message: uncomment: 257 - 279, comment: 280
+//        remove user message: uncomment: 287 - 310, comment: 311
+        if (holder instanceof ItemMessageFriendHolder) {
+            ((View) ((ItemMessageFriendHolder) holder).txtContent.getParent()).setOnLongClickListener(new View.OnLongClickListener() {
+                @Override
+                public boolean onLongClick(View view) {
+//                    new AlertDialog.Builder(context)
+//                            .setTitle("Delete message")
+//                            .setMessage("Are you sure want to delete ?")
+//                            .setPositiveButton(android.R.string.ok, new DialogInterface.OnClickListener() {
+//                                @Override
+//                                public void onClick(DialogInterface dialogInterface, int i) {
+//                                    dialogInterface.dismiss();
+//                                    final String roomId = conversation.getRoomID();
+//                                    final String key = conversation.getListMessageData().get(position).key;
+//                                    dialogWaitDeleting.setTitle("Deleting...")
+//                                            .setCancelable(false)
+//                                            .setTopColorRes(R.color.colorAccent)
+//                                            .show();
+//                                    deleteMessage(roomId, key);
+//                                }
+//                            })
+//                            .setNegativeButton(android.R.string.cancel, new DialogInterface.OnClickListener() {
+//                                @Override
+//                                public void onClick(DialogInterface dialogInterface, int i) {
+//                                    dialogInterface.dismiss();
+//                                }
+//                            }).show();
+//                    return true;
+                    return false;
+                }
+            });
+        } else if (holder instanceof ItemMessageUserHolder) {
+            ((View) ((ItemMessageUserHolder) holder).txtContent.getParent()).setOnLongClickListener(new View.OnLongClickListener() {
+                @Override
+                public boolean onLongClick(View view) {
+//                    new AlertDialog.Builder(context)
+//                            .setTitle("Delete message")
+//                            .setMessage("Are you sure want to delete ?")
+//                            .setPositiveButton(android.R.string.ok, new DialogInterface.OnClickListener() {
+//                                @Override
+//                                public void onClick(DialogInterface dialogInterface, int i) {
+//                                    dialogInterface.dismiss();
+//                                    final String roomId = conversation.getRoomID();
+//                                    final String key = conversation.getListMessageData().get(position).key;
+//                                    dialogWaitDeleting.setTitle("Deleting...")
+//                                            .setCancelable(false)
+//                                            .setTopColorRes(R.color.colorAccent)
+//                                            .show();
+//                                    deleteMessage(roomId, key);
+//                                }
+//                            })
+//                            .setNegativeButton(android.R.string.cancel, new DialogInterface.OnClickListener() {
+//                                @Override
+//                                public void onClick(DialogInterface dialogInterface, int i) {
+//                                    dialogInterface.dismiss();
+//                                }
+//                            }).show();
+//
+//                    return true;
+                    return false;
+                }
+            });
+        }
+    }
+
+    private void deleteMessage(final String roomId, final String idRemoval) {
+        if (roomId != null && idRemoval != null) {
+            FirebaseDatabase.getInstance().getReference().child("message").child(roomId)
+                    .addListenerForSingleValueEvent(new ValueEventListener() {
+                        @Override
+                        public void onDataChange(DataSnapshot dataSnapshot) {
+
+                            if (dataSnapshot.getValue() == null) {
+                                //email not found
+                                dialogWaitDeleting.dismiss();
+                                new LovelyInfoDialog(context)
+                                        .setTopColorRes(R.color.colorAccent)
+                                        .setTitle("Error")
+                                        .setMessage("Error occurred during deleting message")
+                                        .show();
+                            } else {
+//                        String idRemoval = ((HashMap) dataSnapshot.getValue()).keySet().iterator().next().toString();
+                                FirebaseDatabase.getInstance().getReference().child("message")
+                                        .child(roomId).child(idRemoval).removeValue()
+                                        .addOnCompleteListener(new OnCompleteListener<Void>() {
+                                            @Override
+                                            public void onComplete(@NonNull Task<Void> task) {
+                                                dialogWaitDeleting.dismiss();
+
+                                                new LovelyInfoDialog(context)
+                                                        .setTopColorRes(R.color.colorAccent)
+                                                        .setTitle("Success")
+                                                        .setMessage("Message deleting successfully")
+                                                        .show();
+
+                                                for (Message m : conversation.getListMessageData()) {
+                                                    if (m.key.equals(idRemoval)) {
+                                                        ((ChatActivity) context).removeMessage(m);
+                                                    }
+                                                }
+                                            }
+                                        })
+                                        .addOnFailureListener(new OnFailureListener() {
+                                            @Override
+                                            public void onFailure(@NonNull Exception e) {
+                                                dialogWaitDeleting.dismiss();
+                                                new LovelyInfoDialog(context)
+                                                        .setTopColorRes(R.color.colorAccent)
+                                                        .setTitle("Error")
+                                                        .setMessage("Error occurred during deleting friend")
+                                                        .show();
+                                            }
+                                        });
+                            }
+                        }
+
+                        @Override
+                        public void onCancelled(DatabaseError databaseError) {
+
+                        }
+                    });
+        } else {
+            dialogWaitDeleting.dismiss();
+            new LovelyInfoDialog(context)
+                    .setTopColorRes(R.color.colorPrimary)
+                    .setTitle("Error")
+                    .setMessage("Error occurred during deleting friend")
+                    .show();
         }
     }
 
@@ -235,23 +392,25 @@ class ListMessageAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 }
 
 class ItemMessageUserHolder extends RecyclerView.ViewHolder {
-    public TextView txtContent;
+    public TextView txtContent, txTtime, txtTime;
     public CircleImageView avatar;
 
     public ItemMessageUserHolder(View itemView) {
         super(itemView);
         txtContent = (TextView) itemView.findViewById(R.id.textContentUser);
         avatar = (CircleImageView) itemView.findViewById(R.id.imageView2);
+        txtTime = (TextView) itemView.findViewById(R.id.time_message);
     }
 }
 
 class ItemMessageFriendHolder extends RecyclerView.ViewHolder {
-    public TextView txtContent;
+    public TextView txtContent, txtTime;
     public CircleImageView avatar;
 
     public ItemMessageFriendHolder(View itemView) {
         super(itemView);
         txtContent = itemView.findViewById(R.id.textContentFriend);
         avatar = itemView.findViewById(R.id.imageView3);
+        txtTime = (TextView) itemView.findViewById(R.id.time_message);
     }
 }

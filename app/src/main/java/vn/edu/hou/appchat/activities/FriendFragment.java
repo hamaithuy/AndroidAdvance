@@ -199,6 +199,7 @@ public class FriendFragment extends Fragment implements SwipeRefreshLayout.OnRef
             return this;
         }
 
+//        comment: 205 - 229, uncomment: 231
         @Override
         public void onClick(final View view) {
             new LovelyTextInputDialog(view.getContext(), R.style.EditTextTintTheme)
