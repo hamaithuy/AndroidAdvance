@@ -22,7 +22,7 @@
         android:layout_alignBottom="@+id/textView"
         android:layout_marginBottom="-50dp"
         android:layout_marginLeft="70dp"
-        android:text="Email của bạn"
+        android:text="Tên của bạn"
         android:textSize="18dp"
         android:textColor="@color/colorText"/>
 
@@ -32,7 +32,28 @@
         android:layout_height="wrap_content"
         android:layout_alignBottom="@+id/textView"
         android:layout_marginLeft="65dp"
-        android:layout_marginBottom="-97dp"
+        android:layout_marginBottom="-87dp"
+        android:ems="10"
+        android:text="" />
+
+    <TextView
+        android:id="@+id/lbUserEmail"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/textView"
+        android:layout_marginBottom="-130dp"
+        android:layout_marginLeft="70dp"
+        android:text="Email của bạn"
+        android:textSize="18dp"
+        android:textColor="@color/colorText"/>
+
+    <EditText
+        android:id="@+id/txtUserEmail_Signup"
+        android:layout_width="120pt"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/textView"
+        android:layout_marginLeft="65dp"
+        android:layout_marginBottom="-170dp"
         android:ems="10"
         android:text="" />
 
@@ -41,7 +62,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignBottom="@+id/txtUsername_Signup"
-        android:layout_marginBottom="-50dp"
+        android:layout_marginBottom="-130dp"
         android:text="Mật khẩu (tối thiểu 6 ký tự)"
         android:layout_marginLeft="70dp"
         android:textSize="18dp"
@@ -52,7 +73,7 @@
         android:layout_width="120pt"
         android:layout_height="wrap_content"
         android:layout_alignBottom="@+id/lblPassword"
-        android:layout_marginBottom="-50dp"
+        android:layout_marginBottom="-40dp"
         android:layout_marginLeft="65dp"
         android:ems="10"
         android:inputType="textPassword" />

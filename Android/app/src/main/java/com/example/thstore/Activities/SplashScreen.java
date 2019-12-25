@@ -1,4 +1,4 @@
-package com.example.thstore;
+package com.example.thstore.Activities;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -10,7 +10,7 @@ public class SplashScreen extends AppCompatActivity {
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        startActivity(new Intent(this, Login.class));
+        startActivity(new Intent(this, MainActivity.class));
 
     }
 }

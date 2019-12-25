@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+<LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:id="@+id/txtNameProducts"
+        android:textColor="@color/colorText"
+        android:textSize="16dp"
+        android:layout_marginLeft="150dp"
+        android:layout_gravity="center_vertical"/>
+
+    <ImageView
+        android:layout_width="200dp"
+        android:layout_height="160dp"
+        android:layout_marginTop="10dp"
+        android:layout_gravity="center"
+        android:cropToPadding="true"
+        android:src="@drawable/no_image"
+        android:id="@+id/imgPicture"/>
+
+
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginBottom="10dp"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/txtPrice"
+            android:textColor="@color/colorText"
+            android:textSize="16sp"
+            android:layout_marginLeft="100dp"
+            android:layout_gravity="center_vertical" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/colorText"
+            android:textSize="16sp"
+            android:text="$"
+            android:layout_marginLeft="5dp"
+            android:layout_gravity="center_vertical" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/colorText"
+            android:textSize="16sp"
+            android:text="Mã sản phẩm:"
+            android:layout_marginLeft="30dp"
+            android:layout_gravity="center_vertical" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/txtID"
+            android:textColor="@color/colorText"
+            android:layout_marginLeft="5dp"
+            android:textSize="16sp"
+            android:layout_gravity="center_vertical" />
+    </LinearLayout>
+</LinearLayout>
+
+</androidx.cardview.widget.CardView>

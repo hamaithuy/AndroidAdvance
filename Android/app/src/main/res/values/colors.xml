@@ -8,4 +8,5 @@
     <color name="colorText">#000000</color>
     <color name="colorLogin">#ffffff</color>
     <color name="colorSignUp">#ffffff</color>
+    <color name="colorWhite">#ffffff</color>
 </resources>

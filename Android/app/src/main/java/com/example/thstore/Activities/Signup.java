@@ -1,8 +1,7 @@
-package com.example.thstore;
+package com.example.thstore.Activities;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -12,17 +11,18 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.thstore.R;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
 
 public class Signup  extends AppCompatActivity {
 
     Button btnVerify;
-    EditText txtUsername_Signup;
+    EditText txtUserEmail_Signup;
     EditText txtPassword_Signup;
+    EditText txtUsername_Signup;
     FirebaseAuth mAuthentication;
 // ...
 // Initialize Firebase Auth
@@ -33,8 +33,10 @@ public class Signup  extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_signup);
 
+
         btnVerify = (Button) findViewById(R.id.btnSignup1);
         txtPassword_Signup = (EditText) findViewById(R.id.txtPassword_Signup);
+        txtUserEmail_Signup = (EditText) findViewById(R.id.txtUserEmail_Signup);
         txtUsername_Signup = (EditText) findViewById(R.id.txtUsername_Signup);
 
         mAuthentication = FirebaseAuth.getInstance();
@@ -50,6 +52,7 @@ public class Signup  extends AppCompatActivity {
     private void Signup(){
         String email = txtUsername_Signup.getText().toString();
         String password = txtPassword_Signup.getText().toString();
+        //String name = txtUsername_Signup.getText().toString();
 
         mAuthentication.createUserWithEmailAndPassword(email, password)
                 .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {

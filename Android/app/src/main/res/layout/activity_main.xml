@@ -4,8 +4,11 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     android:id="@+id/RelativeLayout"
-    tools:context=".MainActivity">
+    tools:context=".Activities.MainActivity">
+
+
 
 
 
@@ -14,6 +17,8 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_above="@id/bottom_navigation">
+
+
 
 
     </FrameLayout>

@@ -1,17 +1,35 @@
-package com.example.thstore;
+package com.example.thstore.Activities;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
+
+import android.content.ClipData;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.TextView;
+
+import com.example.thstore.Model.Data_Offer;
+import com.example.thstore.R;
+import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.google.firebase.database.ValueEventListener;
+import com.google.firebase.database.core.Tag;
+
+import java.util.ArrayList;
 
 
 public class MainActivity extends AppCompatActivity {
+
+    public static ArrayList<Data_Offer> arrayData_Offers;
 
 
 
@@ -20,11 +38,8 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        // Write a message to the database
-        FirebaseDatabase database = FirebaseDatabase.getInstance();
-        DatabaseReference myRef = database.getReference("message");
+        //Button app_bar_search = findViewById(R.id.app_bar_search);
 
-        myRef.setValue("Hello, This Fucking World!");
 
 
 
@@ -32,14 +47,29 @@ public class MainActivity extends AppCompatActivity {
         BottomNavigationView bottomNav = findViewById(R.id.bottom_navigation);
         bottomNav.setOnNavigationItemSelectedListener(navListener);
         getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new Home()).commit();
+
+        //Adapter_Products adapterProducts = new Adapter_Products();
+
+        if (arrayData_Offers != null)
+        {
+
+        }
+        else {
+            arrayData_Offers = new ArrayList<>();
+        }
+
+
     }
 
 
-    @Override
+   /* @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.actionbar_navigation, menu);
         return super.onCreateOptionsMenu(menu);
-    }
+
+
+
+    }*/
 
     private BottomNavigationView.OnNavigationItemSelectedListener navListener = new BottomNavigationView.OnNavigationItemSelectedListener() {
         @Override
@@ -55,9 +85,6 @@ public class MainActivity extends AppCompatActivity {
                     selectedFragment = new Bill();
                     break;
 
-                case R.id.nav_notif:
-                    selectedFragment = new Nofitication();
-                    break;
 
                 case R.id.nav_acc:
                     selectedFragment = new Account();
@@ -70,4 +97,5 @@ public class MainActivity extends AppCompatActivity {
 
         }
     };
+
 }
